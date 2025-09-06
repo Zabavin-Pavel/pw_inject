@@ -29,7 +29,6 @@ DWORD get_process_id(const std::wstring& process_name) {
 }
 
 uintptr_t read_pointer(uintptr_t address) {
-    if (!hProcess) return 0;
     uintptr_t value = 0;
     ReadProcessMemory(hProcess, (LPCVOID)address, &value, sizeof(value), nullptr);
     return value;
