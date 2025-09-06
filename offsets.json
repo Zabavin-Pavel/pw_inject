@@ -1,0 +1,9 @@
+{
+  "process_name": "ElementClient.exe",
+  "offsets": {
+    "char_origin": "0x013F6BD8",
+    "char_base_offsets": [104],
+    "health_offset": "0x6BC",
+    "mana_offset": "0x6C0"
+  }
+}

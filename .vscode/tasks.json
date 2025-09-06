@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/memory_utils.cpp",
+                "${workspaceFolder}/memory_utils.h",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
