@@ -1,0 +1,2784 @@
+2025-10-09 00:16:23,297 - INFO - Иконка трея создана
+2025-10-09 00:16:23,772 - INFO - Загружена иконка 0
+2025-10-09 00:16:23,773 - INFO - Загружена иконка 1
+2025-10-09 00:16:23,774 - INFO - Загружена иконка 2
+2025-10-09 00:16:23,774 - INFO - Загружена иконка 3
+2025-10-09 00:16:23,775 - INFO - Загружена иконка 4
+2025-10-09 00:16:23,776 - INFO - Загружена иконка 5
+2025-10-09 00:16:23,776 - INFO - Загружена иконка 6
+2025-10-09 00:16:23,776 - INFO - Загружена иконка 7
+2025-10-09 00:16:23,777 - INFO - Загружена иконка 8
+2025-10-09 00:16:23,777 - INFO - Загружена иконка 9
+2025-10-09 00:16:23,778 - INFO - Загружена иконка 10
+2025-10-09 00:16:23,985 - INFO - Загружен хоткей: Show All Characters = Shift+U
+2025-10-09 00:16:23,986 - INFO - Загружен хоткей: Show Active Characters = Shift+Y
+2025-10-09 00:16:23,986 - INFO - GUI инициализирован
+2025-10-09 00:16:24,498 - INFO - Нажата кнопка Refresh
+2025-10-09 00:16:24,505 - INFO - WorldManager создан для PID 15992
+2025-10-09 00:16:24,507 - INFO - Найдено валидных персонажей: 4
+2025-10-09 00:16:24,507 - INFO - Выбранный персонаж удалён из списка
+2025-10-09 00:16:24,507 - INFO - Создание строки: bahab (ID:699312, Class:8)
+2025-10-09 00:16:24,516 - INFO - Добавлен: bahab, выбран: None
+2025-10-09 00:16:24,516 - INFO - Создание строки: tunuk (ID:699328, Class:8)
+2025-10-09 00:16:24,521 - INFO - Добавлен: tunuk, выбран: None
+2025-10-09 00:16:24,521 - INFO - Создание строки: apathique (ID:1936, Class:5)
+2025-10-09 00:16:24,526 - INFO - Добавлен: apathique, выбран: None
+2025-10-09 00:16:24,526 - INFO - Создание строки: yyyyy (ID:698019, Class:1)
+2025-10-09 00:16:24,532 - INFO - Добавлен: yyyyy, выбран: None
+2025-10-09 00:16:24,532 - INFO - Обновлён список: 4 персонажей
+2025-10-09 00:30:44,518 - INFO - Выбран: yyyyy
+2025-10-09 00:30:44,945 - INFO - Выбран: apathique
+2025-10-09 00:30:45,584 - INFO - Выбран: tunuk
+2025-10-09 00:30:45,933 - INFO - Снято выделение с: tunuk
+2025-10-09 00:30:51,213 - INFO - Выбран: tunuk
+2025-10-09 00:30:51,564 - INFO - Выбран: tunuk
+2025-10-09 00:43:07,766 - INFO - Action 2: Показано 4 активных
+2025-10-09 00:44:29,917 - INFO - Action 2: Показано 4 активных
+2025-10-09 01:19:10,979 - INFO - Action 2: Показано 4 активных
+2025-10-09 01:22:40,015 - INFO - Action 2: Показано 4 активных
+2025-10-09 01:34:05,248 - INFO - Action 2: Показано 4 активных
+2025-10-09 01:39:42,195 - INFO - Action 2: Показано 4 активных
+2025-10-09 01:51:45,869 - INFO - Окно показано из трея
+2025-10-09 01:51:47,545 - INFO - Закрытие приложения
+2025-10-09 02:07:03,045 - ERROR - Bot is already running!
+2025-10-09 02:07:03,045 - INFO - Lock file removed
+2025-10-09 02:07:03,046 - INFO - === Завершение приложения ===
+2025-10-09 02:07:17,609 - INFO - Lock file created
+2025-10-09 02:07:17,890 - INFO - === Запуск приложения ===
+2025-10-09 02:07:17,890 - INFO - Settings loaded
+2025-10-09 02:07:17,891 - INFO - Registered action: follow (toggle)
+2025-10-09 02:07:17,891 - INFO - Registered action: attack (toggle)
+2025-10-09 02:07:17,891 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:07:17,892 - INFO - Registered action: show_all (quick)
+2025-10-09 02:07:17,893 - INFO - Registered action: show_active (quick)
+2025-10-09 02:07:17,893 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:07:17,893 - INFO - Registered action: show_players (quick)
+2025-10-09 02:07:17,893 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:07:18,331 - INFO - Hotkey bound: Shift+U -> show_all
+2025-10-09 02:07:18,332 - INFO - Hotkey bound: Shift+Y -> show_active
+2025-10-09 02:07:18,332 - INFO - GUI инициализирован
+2025-10-09 02:07:18,433 - INFO - Нажата кнопка Refresh
+2025-10-09 02:07:18,433 - INFO - Попытка верификации...
+2025-10-09 02:07:18,436 - INFO - Settings saved
+2025-10-09 02:07:18,437 - WARNING - License verification failed: empty key
+2025-10-09 02:07:18,437 - WARNING - ❌ Верификация не пройдена. Refresh прерван.
+2025-10-09 02:07:28,136 - INFO - Нажата кнопка Refresh
+2025-10-09 02:07:28,136 - INFO - Попытка верификации...
+2025-10-09 02:07:28,137 - INFO - Settings saved
+2025-10-09 02:07:28,137 - WARNING - License verification failed: empty key
+2025-10-09 02:07:28,137 - WARNING - ❌ Верификация не пройдена. Refresh прерван.
+2025-10-09 02:07:41,401 - INFO - Нажата кнопка Refresh
+2025-10-09 02:07:41,402 - INFO - Попытка верификации...
+2025-10-09 02:07:41,403 - INFO - Settings saved
+2025-10-09 02:07:41,403 - WARNING - License verification failed: empty key
+2025-10-09 02:07:41,403 - WARNING - ❌ Верификация не пройдена. Refresh прерван.
+2025-10-09 02:07:43,721 - INFO - Нажата кнопка Refresh
+2025-10-09 02:07:43,721 - INFO - Попытка верификации...
+2025-10-09 02:07:43,722 - INFO - Settings saved
+2025-10-09 02:07:43,722 - WARNING - License verification failed: empty key
+2025-10-09 02:07:43,722 - WARNING - ❌ Верификация не пройдена. Refresh прерван.
+2025-10-09 02:07:45,083 - INFO - Нажата кнопка Refresh
+2025-10-09 02:07:45,084 - INFO - Попытка верификации...
+2025-10-09 02:07:45,084 - INFO - Settings saved
+2025-10-09 02:07:45,084 - WARNING - License verification failed: empty key
+2025-10-09 02:07:45,085 - WARNING - ❌ Верификация не пройдена. Refresh прерван.
+2025-10-09 02:07:46,447 - INFO - Закрытие приложения
+2025-10-09 02:07:46,448 - INFO - Settings saved
+2025-10-09 02:07:46,448 - INFO - All hotkeys unbound
+2025-10-09 02:07:46,465 - INFO - Lock file removed
+2025-10-09 02:07:46,465 - INFO - === Завершение приложения ===
+2025-10-09 02:07:57,481 - INFO - Lock file created
+2025-10-09 02:07:57,696 - INFO - === Запуск приложения ===
+2025-10-09 02:07:57,697 - INFO - Settings loaded
+2025-10-09 02:07:57,697 - INFO - Registered action: follow (toggle)
+2025-10-09 02:07:57,697 - INFO - Registered action: attack (toggle)
+2025-10-09 02:07:57,697 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:07:57,698 - INFO - Registered action: show_all (quick)
+2025-10-09 02:07:57,698 - INFO - Registered action: show_active (quick)
+2025-10-09 02:07:57,698 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:07:57,698 - INFO - Registered action: show_players (quick)
+2025-10-09 02:07:57,698 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:07:58,121 - INFO - Hotkey bound: Shift+U -> show_all
+2025-10-09 02:07:58,122 - INFO - Hotkey bound: Shift+Y -> show_active
+2025-10-09 02:07:58,122 - INFO - GUI инициализирован
+2025-10-09 02:07:58,229 - INFO - Нажата кнопка Refresh
+2025-10-09 02:07:58,229 - INFO - Попытка верификации...
+2025-10-09 02:07:58,231 - INFO - Settings saved
+2025-10-09 02:07:58,231 - WARNING - License verification failed: empty key
+2025-10-09 02:07:58,232 - WARNING - ❌ Верификация не пройдена. Refresh прерван.
+2025-10-09 02:08:08,079 - INFO - Нажата кнопка Refresh
+2025-10-09 02:08:08,080 - INFO - Попытка верификации...
+2025-10-09 02:08:08,080 - INFO - Settings saved
+2025-10-09 02:08:08,080 - WARNING - License verification failed: empty key
+2025-10-09 02:08:08,081 - WARNING - ❌ Верификация не пройдена. Refresh прерван.
+2025-10-09 02:08:10,487 - INFO - Закрытие приложения
+2025-10-09 02:08:10,488 - INFO - Settings saved
+2025-10-09 02:08:10,488 - INFO - All hotkeys unbound
+2025-10-09 02:08:10,505 - INFO - Lock file removed
+2025-10-09 02:08:10,505 - INFO - === Завершение приложения ===
+2025-10-09 02:08:31,536 - INFO - Lock file created
+2025-10-09 02:08:31,750 - INFO - === Запуск приложения ===
+2025-10-09 02:08:31,751 - INFO - Settings loaded
+2025-10-09 02:08:31,751 - INFO - Registered action: follow (toggle)
+2025-10-09 02:08:31,751 - INFO - Registered action: attack (toggle)
+2025-10-09 02:08:31,752 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:08:31,752 - INFO - Registered action: show_all (quick)
+2025-10-09 02:08:31,752 - INFO - Registered action: show_active (quick)
+2025-10-09 02:08:31,752 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:08:31,752 - INFO - Registered action: show_players (quick)
+2025-10-09 02:08:31,752 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:08:32,271 - INFO - Hotkey bound: Shift+U -> show_all
+2025-10-09 02:08:32,271 - INFO - Hotkey bound: Shift+Y -> show_active
+2025-10-09 02:08:32,272 - INFO - GUI инициализирован
+2025-10-09 02:08:32,376 - INFO - Нажата кнопка Refresh
+2025-10-09 02:08:32,376 - INFO - Попытка верификации...
+2025-10-09 02:08:32,379 - INFO - Settings saved
+2025-10-09 02:08:33,098 - INFO - License verification: SUCCESS
+2025-10-09 02:08:33,098 - INFO - ✅ Верификация успешна!
+2025-10-09 02:08:33,098 - INFO - Загрузка персонажей...
+2025-10-09 02:08:38,679 - INFO - Нажата кнопка Refresh
+2025-10-09 02:08:38,679 - INFO - Загрузка персонажей...
+2025-10-09 02:09:19,144 - INFO - Закрытие приложения
+2025-10-09 02:09:19,145 - INFO - Settings saved
+2025-10-09 02:09:19,146 - INFO - All hotkeys unbound
+2025-10-09 02:09:19,165 - INFO - Lock file removed
+2025-10-09 02:09:19,165 - INFO - === Завершение приложения ===
+2025-10-09 02:09:37,105 - INFO - Lock file created
+2025-10-09 02:09:37,334 - INFO - === Запуск приложения ===
+2025-10-09 02:09:37,334 - INFO - Settings loaded
+2025-10-09 02:09:37,335 - INFO - Registered action: follow (toggle)
+2025-10-09 02:09:37,335 - INFO - Registered action: attack (toggle)
+2025-10-09 02:09:37,335 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:09:37,335 - INFO - Registered action: show_all (quick)
+2025-10-09 02:09:37,335 - INFO - Registered action: show_active (quick)
+2025-10-09 02:09:37,336 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:09:37,336 - INFO - Registered action: show_players (quick)
+2025-10-09 02:09:37,336 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:09:37,759 - INFO - Hotkey bound: Shift+U -> show_all
+2025-10-09 02:09:37,760 - INFO - Hotkey bound: Shift+Y -> show_active
+2025-10-09 02:09:37,760 - INFO - GUI инициализирован
+2025-10-09 02:09:37,863 - INFO - Нажата кнопка Refresh
+2025-10-09 02:09:37,864 - INFO - Попытка верификации...
+2025-10-09 02:09:37,866 - INFO - Settings saved
+2025-10-09 02:09:38,509 - INFO - License verification: SUCCESS
+2025-10-09 02:09:38,511 - INFO - ✅ Верификация успешна!
+2025-10-09 02:09:38,511 - INFO - Загрузка персонажей...
+2025-10-09 02:09:41,312 - INFO - Закрытие приложения
+2025-10-09 02:09:41,313 - INFO - Settings saved
+2025-10-09 02:09:41,313 - INFO - All hotkeys unbound
+2025-10-09 02:09:41,330 - INFO - Lock file removed
+2025-10-09 02:09:41,330 - INFO - === Завершение приложения ===
+2025-10-09 02:09:58,314 - INFO - Lock file created
+2025-10-09 02:09:58,526 - INFO - === Запуск приложения ===
+2025-10-09 02:09:58,527 - INFO - Settings loaded
+2025-10-09 02:09:58,527 - INFO - Registered action: follow (toggle)
+2025-10-09 02:09:58,528 - INFO - Registered action: attack (toggle)
+2025-10-09 02:09:58,528 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:09:58,528 - INFO - Registered action: show_all (quick)
+2025-10-09 02:09:58,528 - INFO - Registered action: show_active (quick)
+2025-10-09 02:09:58,529 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:09:58,529 - INFO - Registered action: show_players (quick)
+2025-10-09 02:09:58,529 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:09:59,026 - INFO - Hotkey bound: Shift+U -> show_all
+2025-10-09 02:09:59,027 - INFO - Hotkey bound: Shift+Y -> show_active
+2025-10-09 02:09:59,028 - INFO - GUI инициализирован
+2025-10-09 02:09:59,137 - INFO - Нажата кнопка Refresh
+2025-10-09 02:09:59,138 - INFO - Попытка верификации...
+2025-10-09 02:09:59,140 - INFO - Settings saved
+2025-10-09 02:09:59,141 - WARNING - License verification: FAILED - Invalid signature
+2025-10-09 02:09:59,141 - WARNING - ❌ Верификация не пройдена. Refresh прерван.
+2025-10-09 02:10:01,171 - INFO - Закрытие приложения
+2025-10-09 02:10:01,172 - INFO - Settings saved
+2025-10-09 02:10:01,172 - INFO - All hotkeys unbound
+2025-10-09 02:10:01,187 - INFO - Lock file removed
+2025-10-09 02:10:01,187 - INFO - === Завершение приложения ===
+2025-10-09 02:10:20,726 - INFO - Lock file created
+2025-10-09 02:10:20,967 - INFO - === Запуск приложения ===
+2025-10-09 02:10:20,968 - INFO - Settings loaded
+2025-10-09 02:10:20,968 - INFO - Registered action: follow (toggle)
+2025-10-09 02:10:20,968 - INFO - Registered action: attack (toggle)
+2025-10-09 02:10:20,968 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:10:20,968 - INFO - Registered action: show_all (quick)
+2025-10-09 02:10:20,969 - INFO - Registered action: show_active (quick)
+2025-10-09 02:10:20,969 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:10:20,969 - INFO - Registered action: show_players (quick)
+2025-10-09 02:10:20,969 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:10:21,444 - INFO - Hotkey bound: Shift+U -> show_all
+2025-10-09 02:10:21,444 - INFO - Hotkey bound: Shift+Y -> show_active
+2025-10-09 02:10:21,445 - INFO - GUI инициализирован
+2025-10-09 02:10:21,559 - INFO - Нажата кнопка Refresh
+2025-10-09 02:10:21,560 - INFO - Попытка верификации...
+2025-10-09 02:10:21,562 - INFO - Settings saved
+2025-10-09 02:10:22,094 - INFO - License verification: SUCCESS
+2025-10-09 02:10:22,095 - INFO - ✅ Верификация успешна!
+2025-10-09 02:10:22,095 - INFO - Загрузка персонажей...
+2025-10-09 02:10:43,968 - INFO - Закрытие приложения
+2025-10-09 02:10:43,969 - INFO - Settings saved
+2025-10-09 02:10:43,969 - INFO - All hotkeys unbound
+2025-10-09 02:10:43,985 - INFO - Lock file removed
+2025-10-09 02:10:43,985 - INFO - === Завершение приложения ===
+2025-10-09 02:11:44,582 - INFO - Lock file created
+2025-10-09 02:11:44,861 - INFO - === Запуск приложения ===
+2025-10-09 02:11:44,861 - INFO - Settings loaded
+2025-10-09 02:11:44,862 - INFO - Registered action: follow (toggle)
+2025-10-09 02:11:44,862 - INFO - Registered action: attack (toggle)
+2025-10-09 02:11:44,862 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:11:44,862 - INFO - Registered action: show_all (quick)
+2025-10-09 02:11:44,862 - INFO - Registered action: show_active (quick)
+2025-10-09 02:11:44,863 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:11:44,863 - INFO - Registered action: show_players (quick)
+2025-10-09 02:11:44,863 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:11:45,349 - INFO - Hotkey bound: Shift+U -> show_all
+2025-10-09 02:11:45,349 - INFO - Hotkey bound: Shift+Y -> show_active
+2025-10-09 02:11:45,350 - INFO - GUI инициализирован
+2025-10-09 02:11:45,464 - INFO - Нажата кнопка Refresh
+2025-10-09 02:11:45,464 - INFO - Попытка верификации...
+2025-10-09 02:11:45,467 - INFO - Settings saved
+2025-10-09 02:11:45,805 - INFO - License verification: SUCCESS
+2025-10-09 02:11:45,805 - INFO - ✅ Верификация успешна!
+2025-10-09 02:11:45,805 - INFO - Загрузка персонажей...
+2025-10-09 02:11:49,518 - INFO - Выполнение по клику: show_all
+2025-10-09 02:11:49,518 - INFO - Executing action: show_all
+2025-10-09 02:11:49,519 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:11:50,870 - INFO - Выполнение по клику: show_all
+2025-10-09 02:11:50,870 - INFO - Executing action: show_all
+2025-10-09 02:11:50,871 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:11:54,187 - INFO - Выполнение по клику: show_active
+2025-10-09 02:11:54,187 - INFO - Executing action: show_active
+2025-10-09 02:11:54,188 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:11:56,126 - INFO - Выполнение по клику: show_active
+2025-10-09 02:11:56,126 - INFO - Executing action: show_active
+2025-10-09 02:11:56,127 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:11:58,073 - INFO - Выполнение по клику: show_loot
+2025-10-09 02:11:58,073 - INFO - Executing action: show_loot
+2025-10-09 02:11:58,073 - INFO - === Запрос списка лута ===
+2025-10-09 02:11:58,074 - INFO - Сканирование от главного процесса
+2025-10-09 02:11:58,074 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:12:00,270 - INFO - Выполнение по клику: show_players
+2025-10-09 02:12:00,271 - INFO - Executing action: show_players
+2025-10-09 02:12:00,271 - INFO - === Запрос списка игроков ===
+2025-10-09 02:12:00,271 - INFO - Сканирование от главного процесса
+2025-10-09 02:12:00,272 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:12:01,257 - INFO - Выполнение по клику: show_npcs
+2025-10-09 02:12:01,257 - INFO - Executing action: show_npcs
+2025-10-09 02:12:01,258 - INFO - Action 5: Найдено 0 NPC
+2025-10-09 02:12:03,145 - ERROR - Failed to bind hotkey ??: ("Key '??' is not mapped to any known key.", ValueError("Key name '??' is not mapped to any known key."))
+2025-10-09 02:12:03,145 - INFO - Hotkey set: Show Nearby Loot = ??
+2025-10-09 02:12:04,950 - ERROR - Failed to bind hotkey ??: ("Key '??' is not mapped to any known key.", ValueError("Key name '??' is not mapped to any known key."))
+2025-10-09 02:12:04,950 - INFO - Hotkey set: Show Nearby Players = ??
+2025-10-09 02:12:06,515 - ERROR - Failed to bind hotkey ??: ("Key '??' is not mapped to any known key.", ValueError("Key name '??' is not mapped to any known key."))
+2025-10-09 02:12:06,515 - INFO - Hotkey set: Show Nearby NPCs = ??
+2025-10-09 02:12:19,408 - ERROR - Failed to bind hotkey ??: ("Key '??' is not mapped to any known key.", ValueError("Key name '??' is not mapped to any known key."))
+2025-10-09 02:12:19,408 - INFO - Hotkey set: Show Nearby Players = ??
+2025-10-09 02:12:34,030 - INFO - Settings clicked (не реализовано)
+2025-10-09 02:12:37,041 - INFO - Settings clicked (не реализовано)
+2025-10-09 02:15:12,900 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:15:12,901 - INFO - Executing action: show_active
+2025-10-09 02:15:12,901 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:16:24,364 - INFO - Закрытие приложения
+2025-10-09 02:16:24,365 - INFO - Settings saved
+2025-10-09 02:16:24,365 - INFO - All hotkeys unbound
+2025-10-09 02:16:24,383 - INFO - Lock file removed
+2025-10-09 02:16:24,384 - INFO - === Завершение приложения ===
+2025-10-09 02:21:30,769 - INFO - Lock file created
+2025-10-09 02:21:31,034 - INFO - === Запуск приложения ===
+2025-10-09 02:21:31,035 - INFO - Settings loaded
+2025-10-09 02:21:31,035 - INFO - Registered action: follow (toggle)
+2025-10-09 02:21:31,036 - INFO - Registered action: attack (toggle)
+2025-10-09 02:21:31,036 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:21:31,036 - INFO - Registered action: show_all (quick)
+2025-10-09 02:21:31,036 - INFO - Registered action: show_active (quick)
+2025-10-09 02:21:31,036 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:21:31,037 - INFO - Registered action: show_players (quick)
+2025-10-09 02:21:31,037 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:21:31,405 - INFO - Иконка трея создана
+2025-10-09 02:21:31,405 - INFO - GUI инициализирован
+2025-10-09 02:21:31,510 - INFO - Нажата кнопка Refresh
+2025-10-09 02:21:31,510 - INFO - Попытка верификации...
+2025-10-09 02:21:31,513 - INFO - Settings saved
+2025-10-09 02:21:31,927 - INFO - License verification: SUCCESS
+2025-10-09 02:21:31,928 - INFO - ✅ Верификация успешна!
+2025-10-09 02:21:31,928 - INFO - Загрузка персонажей...
+2025-10-09 02:21:36,177 - INFO - Action 'attack': started
+2025-10-09 02:21:36,178 - INFO - Выполнение по клику: attack
+2025-10-09 02:21:36,178 - INFO - Executing action: attack
+2025-10-09 02:21:36,178 - INFO - Attack: STARTED
+2025-10-09 02:21:43,555 - INFO - Action 'attack': stopped
+2025-10-09 02:21:43,556 - INFO - Выполнение по клику: attack
+2025-10-09 02:21:43,556 - INFO - Executing action: attack
+2025-10-09 02:21:43,556 - INFO - Attack: STOPPED
+2025-10-09 02:21:46,524 - INFO - Action 'follow': started
+2025-10-09 02:21:46,524 - INFO - Выполнение по клику: follow
+2025-10-09 02:21:46,524 - INFO - Executing action: follow
+2025-10-09 02:21:46,524 - INFO - Follow: STARTED
+2025-10-09 02:21:49,444 - INFO - Action 'teleport': started
+2025-10-09 02:21:49,445 - INFO - Выполнение по клику: teleport
+2025-10-09 02:21:49,445 - INFO - Executing action: teleport
+2025-10-09 02:21:49,445 - INFO - Teleport: STARTED
+2025-10-09 02:21:51,439 - INFO - Action 'attack': started
+2025-10-09 02:21:51,440 - INFO - Выполнение по клику: attack
+2025-10-09 02:21:51,440 - INFO - Executing action: attack
+2025-10-09 02:21:51,440 - INFO - Attack: STARTED
+2025-10-09 02:21:52,631 - INFO - Action 'follow': stopped
+2025-10-09 02:21:52,632 - INFO - Выполнение по клику: follow
+2025-10-09 02:21:52,633 - INFO - Executing action: follow
+2025-10-09 02:21:52,633 - INFO - Follow: STOPPED
+2025-10-09 02:21:52,925 - INFO - Action 'attack': stopped
+2025-10-09 02:21:52,926 - INFO - Выполнение по клику: attack
+2025-10-09 02:21:52,926 - INFO - Executing action: attack
+2025-10-09 02:21:52,926 - INFO - Attack: STOPPED
+2025-10-09 02:21:53,257 - INFO - Action 'teleport': stopped
+2025-10-09 02:21:53,258 - INFO - Выполнение по клику: teleport
+2025-10-09 02:21:53,258 - INFO - Executing action: teleport
+2025-10-09 02:21:53,258 - INFO - Teleport: STOPPED
+2025-10-09 02:21:53,958 - INFO - Выполнение по клику: show_all
+2025-10-09 02:21:53,959 - INFO - Executing action: show_all
+2025-10-09 02:21:53,959 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:21:55,349 - INFO - Выполнение по клику: show_all
+2025-10-09 02:21:55,350 - INFO - Executing action: show_all
+2025-10-09 02:21:55,351 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:22:03,620 - ERROR - Failed to bind hotkey ??: ("Key '??' is not mapped to any known key.", ValueError("Key name '??' is not mapped to any known key."))
+2025-10-09 02:22:03,621 - INFO - Settings saved
+2025-10-09 02:22:03,621 - INFO - Хоткей сохранён: Show Active Characters = ??
+2025-10-09 02:22:07,042 - INFO - Выполнение по клику: show_loot
+2025-10-09 02:22:07,043 - INFO - Executing action: show_loot
+2025-10-09 02:22:07,043 - INFO - === Запрос списка лута ===
+2025-10-09 02:22:07,043 - INFO - Сканирование от главного процесса
+2025-10-09 02:22:07,044 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:22:09,631 - INFO - Hotkey bound: Y -> show_active
+2025-10-09 02:22:09,632 - INFO - Settings saved
+2025-10-09 02:22:09,632 - INFO - Хоткей сохранён: Show Active Characters = Y
+2025-10-09 02:22:11,384 - INFO - Hotkey bound: Shift+Y -> show_loot
+2025-10-09 02:22:11,384 - INFO - Settings saved
+2025-10-09 02:22:11,385 - INFO - Хоткей сохранён: Show Nearby Loot = Shift+Y
+2025-10-09 02:22:21,414 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:22:21,414 - INFO - Executing action: show_loot
+2025-10-09 02:22:21,415 - INFO - === Запрос списка лута ===
+2025-10-09 02:22:21,415 - INFO - Сканирование от главного процесса
+2025-10-09 02:22:21,415 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:22:21,506 - INFO - Hotkey bound: Shift+Y -> show_all
+2025-10-09 02:22:21,506 - INFO - Settings saved
+2025-10-09 02:22:21,506 - INFO - Хоткей сохранён: Show All Characters = Shift+Y
+2025-10-09 02:22:27,918 - INFO - Нажата кнопка Refresh
+2025-10-09 02:22:27,919 - INFO - Загрузка персонажей...
+2025-10-09 02:22:34,994 - INFO - Settings clicked (не реализовано)
+2025-10-09 02:22:40,816 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:22:40,817 - INFO - Executing action: show_active
+2025-10-09 02:22:40,817 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:23:31,851 - INFO - Выполнение по клику: show_players
+2025-10-09 02:23:31,852 - INFO - Executing action: show_players
+2025-10-09 02:23:31,852 - INFO - === Запрос списка игроков ===
+2025-10-09 02:23:31,852 - INFO - Сканирование от главного процесса
+2025-10-09 02:23:31,853 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:23:59,181 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:23:59,181 - INFO - Executing action: show_active
+2025-10-09 02:23:59,182 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:24:05,356 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:24:05,356 - INFO - Executing action: show_active
+2025-10-09 02:24:05,357 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:24:10,177 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:24:10,177 - INFO - Executing action: show_active
+2025-10-09 02:24:10,178 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:24:16,040 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:24:16,041 - INFO - Executing action: show_active
+2025-10-09 02:24:16,041 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:24:23,544 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:24:23,545 - INFO - Executing action: show_active
+2025-10-09 02:24:23,545 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:24:26,542 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:24:26,542 - INFO - Executing action: show_active
+2025-10-09 02:24:26,543 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:24:28,868 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:24:28,869 - INFO - Executing action: show_active
+2025-10-09 02:24:28,869 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:24:42,059 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:24:42,060 - INFO - Executing action: show_active
+2025-10-09 02:24:42,061 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:24:44,744 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:24:44,744 - INFO - Executing action: show_active
+2025-10-09 02:24:44,745 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:25:11,347 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:25:11,348 - INFO - Executing action: show_active
+2025-10-09 02:25:11,348 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:25:21,746 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:25:21,747 - INFO - Executing action: show_active
+2025-10-09 02:25:21,747 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:25:26,369 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:25:26,369 - INFO - Executing action: show_active
+2025-10-09 02:25:26,370 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:25:32,722 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:25:32,723 - INFO - Executing action: show_active
+2025-10-09 02:25:32,724 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:25:32,843 - ERROR - Failed to bind hotkey ??: ("Key '??' is not mapped to any known key.", ValueError("Key name '??' is not mapped to any known key."))
+2025-10-09 02:25:32,844 - INFO - Settings saved
+2025-10-09 02:25:32,844 - INFO - Хоткей сохранён: Show Nearby Players = ??
+2025-10-09 02:25:34,896 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:25:34,897 - INFO - Executing action: show_active
+2025-10-09 02:25:34,897 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:25:35,005 - INFO - Hotkey bound: Y -> show_players
+2025-10-09 02:25:35,006 - INFO - Settings saved
+2025-10-09 02:25:35,006 - INFO - Хоткей сохранён: Show Nearby Players = Y
+2025-10-09 02:25:35,948 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:25:35,948 - INFO - Executing action: show_active
+2025-10-09 02:25:35,949 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:25:35,950 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:25:35,950 - INFO - Executing action: show_players
+2025-10-09 02:25:35,950 - INFO - === Запрос списка игроков ===
+2025-10-09 02:25:35,950 - INFO - Сканирование от главного процесса
+2025-10-09 02:25:35,951 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:25:36,104 - INFO - Hotkey bound: Y -> show_npcs
+2025-10-09 02:25:36,105 - INFO - Settings saved
+2025-10-09 02:25:36,105 - INFO - Хоткей сохранён: Show Nearby NPCs = Y
+2025-10-09 02:25:51,304 - INFO - Нажата кнопка Refresh
+2025-10-09 02:25:51,304 - INFO - Загрузка персонажей...
+2025-10-09 02:25:52,367 - INFO - Нажата кнопка Refresh
+2025-10-09 02:25:52,367 - INFO - Загрузка персонажей...
+2025-10-09 02:26:33,994 - INFO - Hotkey bound: Shift+Alt -> show_players
+2025-10-09 02:26:33,995 - INFO - Settings saved
+2025-10-09 02:26:33,995 - INFO - Хоткей сохранён: Show Nearby Players = Shift+Alt
+2025-10-09 02:26:35,338 - INFO - Hotkey unbound: Shift+Alt
+2025-10-09 02:26:35,338 - ERROR - Failed to bind hotkey ??: ("Key '??' is not mapped to any known key.", ValueError("Key name '??' is not mapped to any known key."))
+2025-10-09 02:26:35,339 - INFO - Settings saved
+2025-10-09 02:26:35,340 - INFO - Хоткей сохранён: Show Nearby Players = ??
+2025-10-09 02:26:39,980 - INFO - Hotkey unbound: Y
+2025-10-09 02:26:39,981 - ERROR - Failed to bind hotkey ??: ("Key '??' is not mapped to any known key.", ValueError("Key name '??' is not mapped to any known key."))
+2025-10-09 02:26:39,982 - INFO - Settings saved
+2025-10-09 02:26:39,982 - INFO - Хоткей сохранён: Show Nearby NPCs = ??
+2025-10-09 02:26:53,437 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:26:53,438 - INFO - Executing action: show_active
+2025-10-09 02:26:53,439 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:26:53,439 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:26:53,439 - INFO - Executing action: show_players
+2025-10-09 02:26:53,439 - INFO - === Запрос списка игроков ===
+2025-10-09 02:26:53,439 - INFO - Сканирование от главного процесса
+2025-10-09 02:26:53,440 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:26:56,031 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:26:56,032 - INFO - Executing action: show_active
+2025-10-09 02:26:56,032 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:26:56,033 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:26:56,033 - INFO - Executing action: show_players
+2025-10-09 02:26:56,033 - INFO - === Запрос списка игроков ===
+2025-10-09 02:26:56,033 - INFO - Сканирование от главного процесса
+2025-10-09 02:26:56,033 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:27:08,725 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:27:08,726 - INFO - Executing action: show_active
+2025-10-09 02:27:08,726 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:27:08,726 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:27:08,726 - INFO - Executing action: show_players
+2025-10-09 02:27:08,727 - INFO - === Запрос списка игроков ===
+2025-10-09 02:27:08,727 - INFO - Сканирование от главного процесса
+2025-10-09 02:27:08,727 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:27:09,414 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:27:09,415 - INFO - Executing action: show_active
+2025-10-09 02:27:09,416 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:27:09,416 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:27:09,416 - INFO - Executing action: show_players
+2025-10-09 02:27:09,416 - INFO - === Запрос списка игроков ===
+2025-10-09 02:27:09,416 - INFO - Сканирование от главного процесса
+2025-10-09 02:27:09,417 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:27:10,555 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:27:10,556 - INFO - Executing action: show_active
+2025-10-09 02:27:10,556 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:27:10,556 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:27:10,556 - INFO - Executing action: show_players
+2025-10-09 02:27:10,557 - INFO - === Запрос списка игроков ===
+2025-10-09 02:27:10,557 - INFO - Сканирование от главного процесса
+2025-10-09 02:27:10,557 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:27:11,024 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:27:11,025 - INFO - Executing action: show_active
+2025-10-09 02:27:11,026 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:27:11,026 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:27:11,026 - INFO - Executing action: show_players
+2025-10-09 02:27:11,026 - INFO - === Запрос списка игроков ===
+2025-10-09 02:27:11,026 - INFO - Сканирование от главного процесса
+2025-10-09 02:27:11,027 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:27:16,916 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:27:16,917 - INFO - Executing action: show_active
+2025-10-09 02:27:16,918 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:27:16,918 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:27:16,918 - INFO - Executing action: show_players
+2025-10-09 02:27:16,918 - INFO - === Запрос списка игроков ===
+2025-10-09 02:27:16,918 - INFO - Сканирование от главного процесса
+2025-10-09 02:27:16,919 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:27:17,418 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:27:17,419 - INFO - Executing action: show_active
+2025-10-09 02:27:17,419 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:27:17,419 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:27:17,420 - INFO - Executing action: show_players
+2025-10-09 02:27:17,420 - INFO - === Запрос списка игроков ===
+2025-10-09 02:27:17,420 - INFO - Сканирование от главного процесса
+2025-10-09 02:27:17,421 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:27:40,353 - ERROR - Failed to bind hotkey ??: ("Key '??' is not mapped to any known key.", ValueError("Key name '??' is not mapped to any known key."))
+2025-10-09 02:27:40,354 - INFO - Settings saved
+2025-10-09 02:27:40,354 - INFO - Хоткей сохранён: Show Nearby Players = ??
+2025-10-09 02:27:47,278 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:27:47,279 - INFO - Executing action: show_active
+2025-10-09 02:27:47,279 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:27:47,280 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:27:47,280 - INFO - Executing action: show_players
+2025-10-09 02:27:47,280 - INFO - === Запрос списка игроков ===
+2025-10-09 02:27:47,280 - INFO - Сканирование от главного процесса
+2025-10-09 02:27:47,281 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:08,422 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:08,423 - INFO - Executing action: show_active
+2025-10-09 02:28:08,424 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:08,424 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:08,425 - INFO - Executing action: show_players
+2025-10-09 02:28:08,425 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:08,425 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:08,425 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:08,778 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:08,778 - INFO - Executing action: show_active
+2025-10-09 02:28:08,779 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:08,779 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:08,779 - INFO - Executing action: show_players
+2025-10-09 02:28:08,779 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:08,780 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:08,780 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:10,595 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:10,595 - INFO - Executing action: show_active
+2025-10-09 02:28:10,596 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:10,596 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:10,596 - INFO - Executing action: show_players
+2025-10-09 02:28:10,596 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:10,596 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:10,597 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:14,070 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:14,071 - INFO - Executing action: show_active
+2025-10-09 02:28:14,071 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:14,071 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:14,072 - INFO - Executing action: show_players
+2025-10-09 02:28:14,072 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:14,072 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:14,072 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:23,849 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:23,850 - INFO - Executing action: show_active
+2025-10-09 02:28:23,851 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:23,851 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:23,851 - INFO - Executing action: show_players
+2025-10-09 02:28:23,851 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:23,851 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:23,852 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:27,026 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:27,027 - INFO - Executing action: show_active
+2025-10-09 02:28:27,028 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:27,029 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:27,029 - INFO - Executing action: show_players
+2025-10-09 02:28:27,029 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:27,030 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:27,030 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:29,913 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:29,914 - INFO - Executing action: show_active
+2025-10-09 02:28:29,915 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:29,915 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:29,915 - INFO - Executing action: show_players
+2025-10-09 02:28:29,915 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:29,916 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:29,916 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:33,647 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:33,647 - INFO - Executing action: show_active
+2025-10-09 02:28:33,648 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:33,648 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:33,648 - INFO - Executing action: show_players
+2025-10-09 02:28:33,648 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:33,648 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:33,649 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:34,283 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:34,284 - INFO - Executing action: show_active
+2025-10-09 02:28:34,284 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:34,285 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:34,285 - INFO - Executing action: show_players
+2025-10-09 02:28:34,285 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:34,285 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:34,285 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:37,079 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:37,080 - INFO - Executing action: show_active
+2025-10-09 02:28:37,081 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:37,081 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:37,081 - INFO - Executing action: show_players
+2025-10-09 02:28:37,081 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:37,081 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:37,082 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:28:47,490 - INFO - Выполнение по клику: show_loot
+2025-10-09 02:28:47,491 - INFO - Executing action: show_loot
+2025-10-09 02:28:47,491 - INFO - === Запрос списка лута ===
+2025-10-09 02:28:47,491 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:47,492 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:28:52,599 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:28:52,599 - INFO - Executing action: show_active
+2025-10-09 02:28:52,600 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:28:52,600 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:28:52,600 - INFO - Executing action: show_players
+2025-10-09 02:28:52,600 - INFO - === Запрос списка игроков ===
+2025-10-09 02:28:52,600 - INFO - Сканирование от главного процесса
+2025-10-09 02:28:52,601 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:29:03,116 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:29:03,116 - INFO - Executing action: show_active
+2025-10-09 02:29:03,117 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:29:03,117 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:29:03,117 - INFO - Executing action: show_players
+2025-10-09 02:29:03,117 - INFO - === Запрос списка игроков ===
+2025-10-09 02:29:03,117 - INFO - Сканирование от главного процесса
+2025-10-09 02:29:03,118 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:29:06,506 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:29:06,506 - INFO - Executing action: show_active
+2025-10-09 02:29:06,507 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:29:06,507 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:29:06,508 - INFO - Executing action: show_players
+2025-10-09 02:29:06,508 - INFO - === Запрос списка игроков ===
+2025-10-09 02:29:06,508 - INFO - Сканирование от главного процесса
+2025-10-09 02:29:06,508 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:29:08,380 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:29:08,380 - INFO - Executing action: show_active
+2025-10-09 02:29:08,381 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:29:08,381 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:29:08,381 - INFO - Executing action: show_players
+2025-10-09 02:29:08,381 - INFO - === Запрос списка игроков ===
+2025-10-09 02:29:08,381 - INFO - Сканирование от главного процесса
+2025-10-09 02:29:08,382 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:29:14,492 - INFO - Action 'follow': started
+2025-10-09 02:29:14,493 - INFO - Выполнение по клику: follow
+2025-10-09 02:29:14,493 - INFO - Executing action: follow
+2025-10-09 02:29:14,493 - INFO - Follow: STARTED
+2025-10-09 02:29:15,893 - INFO - Action 'follow': stopped
+2025-10-09 02:29:15,893 - INFO - Выполнение по клику: follow
+2025-10-09 02:29:15,894 - INFO - Executing action: follow
+2025-10-09 02:29:15,894 - INFO - Follow: STOPPED
+2025-10-09 02:29:22,239 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:29:22,239 - INFO - Executing action: show_active
+2025-10-09 02:29:22,240 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:29:22,240 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:29:22,240 - INFO - Executing action: show_players
+2025-10-09 02:29:22,240 - INFO - === Запрос списка игроков ===
+2025-10-09 02:29:22,240 - INFO - Сканирование от главного процесса
+2025-10-09 02:29:22,241 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:29:30,578 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:29:30,579 - INFO - Executing action: show_active
+2025-10-09 02:29:30,579 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:29:30,580 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:29:30,580 - INFO - Executing action: show_players
+2025-10-09 02:29:30,580 - INFO - === Запрос списка игроков ===
+2025-10-09 02:29:30,580 - INFO - Сканирование от главного процесса
+2025-10-09 02:29:30,581 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:29:32,903 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:29:32,904 - INFO - Executing action: show_active
+2025-10-09 02:29:32,905 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:29:32,906 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:29:32,906 - INFO - Executing action: show_players
+2025-10-09 02:29:32,906 - INFO - === Запрос списка игроков ===
+2025-10-09 02:29:32,906 - INFO - Сканирование от главного процесса
+2025-10-09 02:29:32,907 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:29:35,950 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:29:35,950 - INFO - Executing action: show_active
+2025-10-09 02:29:35,951 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:29:35,951 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:29:35,951 - INFO - Executing action: show_players
+2025-10-09 02:29:35,951 - INFO - === Запрос списка игроков ===
+2025-10-09 02:29:35,951 - INFO - Сканирование от главного процесса
+2025-10-09 02:29:35,952 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:29:44,252 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:29:44,252 - INFO - Executing action: show_active
+2025-10-09 02:29:44,253 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:29:44,253 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:29:44,253 - INFO - Executing action: show_players
+2025-10-09 02:29:44,253 - INFO - === Запрос списка игроков ===
+2025-10-09 02:29:44,253 - INFO - Сканирование от главного процесса
+2025-10-09 02:29:44,254 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:29:47,486 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:29:47,486 - INFO - Executing action: show_active
+2025-10-09 02:29:47,487 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:29:47,487 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:29:47,487 - INFO - Executing action: show_players
+2025-10-09 02:29:47,487 - INFO - === Запрос списка игроков ===
+2025-10-09 02:29:47,487 - INFO - Сканирование от главного процесса
+2025-10-09 02:29:47,488 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:29:58,557 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:29:58,557 - INFO - Executing action: show_active
+2025-10-09 02:29:58,558 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:29:58,558 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:29:58,558 - INFO - Executing action: show_players
+2025-10-09 02:29:58,558 - INFO - === Запрос списка игроков ===
+2025-10-09 02:29:58,558 - INFO - Сканирование от главного процесса
+2025-10-09 02:29:58,559 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:30:04,877 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:30:04,877 - INFO - Executing action: show_active
+2025-10-09 02:30:04,878 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:30:04,878 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:30:04,879 - INFO - Executing action: show_players
+2025-10-09 02:30:04,879 - INFO - === Запрос списка игроков ===
+2025-10-09 02:30:04,879 - INFO - Сканирование от главного процесса
+2025-10-09 02:30:04,879 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:30:08,877 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:30:08,877 - INFO - Executing action: show_active
+2025-10-09 02:30:08,878 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:30:08,878 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:30:08,878 - INFO - Executing action: show_players
+2025-10-09 02:30:08,878 - INFO - === Запрос списка игроков ===
+2025-10-09 02:30:08,878 - INFO - Сканирование от главного процесса
+2025-10-09 02:30:08,879 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:30:27,322 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:30:27,322 - INFO - Executing action: show_active
+2025-10-09 02:30:27,322 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:30:27,323 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:30:27,323 - INFO - Executing action: show_players
+2025-10-09 02:30:27,323 - INFO - === Запрос списка игроков ===
+2025-10-09 02:30:27,323 - INFO - Сканирование от главного процесса
+2025-10-09 02:30:27,324 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:30:47,848 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:30:47,848 - INFO - Executing action: show_active
+2025-10-09 02:30:47,849 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:30:47,849 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:30:47,849 - INFO - Executing action: show_players
+2025-10-09 02:30:47,849 - INFO - === Запрос списка игроков ===
+2025-10-09 02:30:47,850 - INFO - Сканирование от главного процесса
+2025-10-09 02:30:47,850 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:30:56,983 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:30:56,983 - INFO - Executing action: show_active
+2025-10-09 02:30:56,984 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:30:56,984 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:30:56,984 - INFO - Executing action: show_players
+2025-10-09 02:30:56,984 - INFO - === Запрос списка игроков ===
+2025-10-09 02:30:56,984 - INFO - Сканирование от главного процесса
+2025-10-09 02:30:56,985 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:31:03,257 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:31:03,257 - INFO - Executing action: show_active
+2025-10-09 02:31:03,258 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:31:03,258 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:31:03,258 - INFO - Executing action: show_players
+2025-10-09 02:31:03,258 - INFO - === Запрос списка игроков ===
+2025-10-09 02:31:03,258 - INFO - Сканирование от главного процесса
+2025-10-09 02:31:03,259 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:31:06,664 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:31:06,664 - INFO - Executing action: show_active
+2025-10-09 02:31:06,665 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:31:06,666 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:31:06,666 - INFO - Executing action: show_players
+2025-10-09 02:31:06,666 - INFO - === Запрос списка игроков ===
+2025-10-09 02:31:06,666 - INFO - Сканирование от главного процесса
+2025-10-09 02:31:06,667 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:31:25,365 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:31:25,366 - INFO - Executing action: show_active
+2025-10-09 02:31:25,367 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:31:25,367 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:31:25,367 - INFO - Executing action: show_players
+2025-10-09 02:31:25,367 - INFO - === Запрос списка игроков ===
+2025-10-09 02:31:25,367 - INFO - Сканирование от главного процесса
+2025-10-09 02:31:25,368 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:31:32,945 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:31:32,945 - INFO - Executing action: show_active
+2025-10-09 02:31:32,946 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:31:32,946 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:31:32,946 - INFO - Executing action: show_players
+2025-10-09 02:31:32,947 - INFO - === Запрос списка игроков ===
+2025-10-09 02:31:32,947 - INFO - Сканирование от главного процесса
+2025-10-09 02:31:32,947 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:31:45,286 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:31:45,286 - INFO - Executing action: show_active
+2025-10-09 02:31:45,287 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:31:45,287 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:31:45,287 - INFO - Executing action: show_players
+2025-10-09 02:31:45,287 - INFO - === Запрос списка игроков ===
+2025-10-09 02:31:45,288 - INFO - Сканирование от главного процесса
+2025-10-09 02:31:45,288 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:31:46,173 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:31:46,173 - INFO - Executing action: show_active
+2025-10-09 02:31:46,174 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:31:46,174 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:31:46,174 - INFO - Executing action: show_players
+2025-10-09 02:31:46,175 - INFO - === Запрос списка игроков ===
+2025-10-09 02:31:46,175 - INFO - Сканирование от главного процесса
+2025-10-09 02:31:46,175 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:31:57,207 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:31:57,207 - INFO - Executing action: show_active
+2025-10-09 02:31:57,208 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:31:57,208 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:31:57,208 - INFO - Executing action: show_players
+2025-10-09 02:31:57,208 - INFO - === Запрос списка игроков ===
+2025-10-09 02:31:57,209 - INFO - Сканирование от главного процесса
+2025-10-09 02:31:57,209 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:31:58,139 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:31:58,139 - INFO - Executing action: show_active
+2025-10-09 02:31:58,140 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:31:58,140 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:31:58,140 - INFO - Executing action: show_players
+2025-10-09 02:31:58,140 - INFO - === Запрос списка игроков ===
+2025-10-09 02:31:58,140 - INFO - Сканирование от главного процесса
+2025-10-09 02:31:58,141 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:31:58,757 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:31:58,757 - INFO - Executing action: show_active
+2025-10-09 02:31:58,758 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:31:58,759 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:31:58,759 - INFO - Executing action: show_players
+2025-10-09 02:31:58,759 - INFO - === Запрос списка игроков ===
+2025-10-09 02:31:58,759 - INFO - Сканирование от главного процесса
+2025-10-09 02:31:58,760 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:32:06,652 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:32:06,652 - INFO - Executing action: show_active
+2025-10-09 02:32:06,653 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:32:06,653 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:32:06,653 - INFO - Executing action: show_players
+2025-10-09 02:32:06,653 - INFO - === Запрос списка игроков ===
+2025-10-09 02:32:06,654 - INFO - Сканирование от главного процесса
+2025-10-09 02:32:06,654 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:32:21,940 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:32:21,940 - INFO - Executing action: show_active
+2025-10-09 02:32:21,941 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:32:21,941 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:32:21,941 - INFO - Executing action: show_players
+2025-10-09 02:32:21,941 - INFO - === Запрос списка игроков ===
+2025-10-09 02:32:21,941 - INFO - Сканирование от главного процесса
+2025-10-09 02:32:21,942 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:32:39,604 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:32:39,604 - INFO - Executing action: show_active
+2025-10-09 02:32:39,605 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:32:39,605 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:32:39,605 - INFO - Executing action: show_players
+2025-10-09 02:32:39,605 - INFO - === Запрос списка игроков ===
+2025-10-09 02:32:39,606 - INFO - Сканирование от главного процесса
+2025-10-09 02:32:39,606 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:32:44,694 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:32:44,695 - INFO - Executing action: show_active
+2025-10-09 02:32:44,696 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:32:44,697 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:32:44,697 - INFO - Executing action: show_players
+2025-10-09 02:32:44,697 - INFO - === Запрос списка игроков ===
+2025-10-09 02:32:44,697 - INFO - Сканирование от главного процесса
+2025-10-09 02:32:44,698 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:32:49,975 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:32:49,975 - INFO - Executing action: show_active
+2025-10-09 02:32:49,976 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:32:49,976 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:32:49,977 - INFO - Executing action: show_players
+2025-10-09 02:32:49,977 - INFO - === Запрос списка игроков ===
+2025-10-09 02:32:49,977 - INFO - Сканирование от главного процесса
+2025-10-09 02:32:49,977 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:32:59,885 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:32:59,885 - INFO - Executing action: show_active
+2025-10-09 02:32:59,886 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:32:59,886 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:32:59,886 - INFO - Executing action: show_players
+2025-10-09 02:32:59,886 - INFO - === Запрос списка игроков ===
+2025-10-09 02:32:59,887 - INFO - Сканирование от главного процесса
+2025-10-09 02:32:59,887 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:33:11,905 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:33:11,905 - INFO - Executing action: show_active
+2025-10-09 02:33:11,906 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:33:11,906 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:33:11,906 - INFO - Executing action: show_players
+2025-10-09 02:33:11,907 - INFO - === Запрос списка игроков ===
+2025-10-09 02:33:11,907 - INFO - Сканирование от главного процесса
+2025-10-09 02:33:11,907 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:33:13,554 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:33:13,555 - INFO - Executing action: show_active
+2025-10-09 02:33:13,556 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:33:13,556 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:33:13,556 - INFO - Executing action: show_players
+2025-10-09 02:33:13,556 - INFO - === Запрос списка игроков ===
+2025-10-09 02:33:13,557 - INFO - Сканирование от главного процесса
+2025-10-09 02:33:13,557 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:33:34,507 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:33:34,507 - INFO - Executing action: show_active
+2025-10-09 02:33:34,508 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:33:34,509 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:33:34,509 - INFO - Executing action: show_players
+2025-10-09 02:33:34,509 - INFO - === Запрос списка игроков ===
+2025-10-09 02:33:34,509 - INFO - Сканирование от главного процесса
+2025-10-09 02:33:34,509 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:33:46,141 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:33:46,141 - INFO - Executing action: show_active
+2025-10-09 02:33:46,142 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:33:46,142 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:33:46,142 - INFO - Executing action: show_players
+2025-10-09 02:33:46,142 - INFO - === Запрос списка игроков ===
+2025-10-09 02:33:46,143 - INFO - Сканирование от главного процесса
+2025-10-09 02:33:46,143 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:34:10,282 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:34:10,283 - INFO - Executing action: show_active
+2025-10-09 02:34:10,283 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:34:10,284 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:34:10,284 - INFO - Executing action: show_players
+2025-10-09 02:34:10,284 - INFO - === Запрос списка игроков ===
+2025-10-09 02:34:10,284 - INFO - Сканирование от главного процесса
+2025-10-09 02:34:10,284 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:34:35,556 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:34:35,556 - INFO - Executing action: show_active
+2025-10-09 02:34:35,557 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:34:35,557 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:34:35,557 - INFO - Executing action: show_players
+2025-10-09 02:34:35,557 - INFO - === Запрос списка игроков ===
+2025-10-09 02:34:35,558 - INFO - Сканирование от главного процесса
+2025-10-09 02:34:35,558 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:34:36,877 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:34:36,877 - INFO - Executing action: show_active
+2025-10-09 02:34:36,878 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:34:36,878 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:34:36,879 - INFO - Executing action: show_players
+2025-10-09 02:34:36,879 - INFO - === Запрос списка игроков ===
+2025-10-09 02:34:36,879 - INFO - Сканирование от главного процесса
+2025-10-09 02:34:36,879 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:34:40,486 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:34:40,486 - INFO - Executing action: show_active
+2025-10-09 02:34:40,487 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:34:40,488 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:34:40,488 - INFO - Executing action: show_players
+2025-10-09 02:34:40,488 - INFO - === Запрос списка игроков ===
+2025-10-09 02:34:40,488 - INFO - Сканирование от главного процесса
+2025-10-09 02:34:40,489 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:34:43,596 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:34:43,596 - INFO - Executing action: show_active
+2025-10-09 02:34:43,597 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:34:43,597 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:34:43,598 - INFO - Executing action: show_players
+2025-10-09 02:34:43,598 - INFO - === Запрос списка игроков ===
+2025-10-09 02:34:43,598 - INFO - Сканирование от главного процесса
+2025-10-09 02:34:43,598 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:34:53,322 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:34:53,323 - INFO - Executing action: show_active
+2025-10-09 02:34:53,323 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:34:53,324 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:34:53,324 - INFO - Executing action: show_players
+2025-10-09 02:34:53,324 - INFO - === Запрос списка игроков ===
+2025-10-09 02:34:53,324 - INFO - Сканирование от главного процесса
+2025-10-09 02:34:53,325 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:34:58,607 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:34:58,613 - INFO - Executing action: show_active
+2025-10-09 02:34:58,625 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:34:58,628 - INFO - Hotkey pressed for action: show_players
+2025-10-09 02:34:58,653 - INFO - Executing action: show_players
+2025-10-09 02:34:58,654 - INFO - === Запрос списка игроков ===
+2025-10-09 02:34:58,654 - INFO - Сканирование от главного процесса
+2025-10-09 02:34:58,655 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:38:59,786 - INFO - Закрытие приложения
+2025-10-09 02:38:59,787 - INFO - Settings saved
+2025-10-09 02:38:59,787 - INFO - All hotkeys unbound
+2025-10-09 02:38:59,817 - INFO - Lock file removed
+2025-10-09 02:38:59,817 - INFO - === Завершение приложения ===
+2025-10-09 02:39:04,502 - INFO - Lock file created
+2025-10-09 02:39:04,850 - INFO - === Запуск приложения ===
+2025-10-09 02:39:04,850 - INFO - Settings loaded
+2025-10-09 02:39:04,851 - INFO - Registered action: follow (toggle)
+2025-10-09 02:39:04,851 - INFO - Registered action: attack (toggle)
+2025-10-09 02:39:04,852 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:39:04,852 - INFO - Registered action: show_all (quick)
+2025-10-09 02:39:04,852 - INFO - Registered action: show_active (quick)
+2025-10-09 02:39:04,852 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:39:04,852 - INFO - Registered action: show_players (quick)
+2025-10-09 02:39:04,853 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:39:05,246 - INFO - Иконка трея создана
+2025-10-09 02:39:05,463 - INFO - Hotkey bound: Shift+Y -> show_all
+2025-10-09 02:39:05,464 - INFO - Загружен хоткей: show_all = Shift+Y
+2025-10-09 02:39:05,464 - ERROR - Failed to bind hotkey ??: ("Key '??' is not mapped to any known key.", ValueError("Key name '??' is not mapped to any known key."))
+2025-10-09 02:39:05,465 - INFO - Загружен хоткей: show_players = ??
+2025-10-09 02:39:05,465 - INFO - GUI инициализирован
+2025-10-09 02:39:05,569 - INFO - Нажата кнопка Refresh
+2025-10-09 02:39:05,569 - INFO - Попытка верификации...
+2025-10-09 02:39:05,572 - INFO - Settings saved
+2025-10-09 02:39:06,098 - INFO - License verification: SUCCESS
+2025-10-09 02:39:06,098 - INFO - ✅ Верификация успешна!
+2025-10-09 02:39:06,099 - INFO - Загрузка персонажей...
+2025-10-09 02:39:10,895 - INFO - Hotkey unbound: Shift+Y
+2025-10-09 02:39:10,896 - INFO - Hotkey bound: Y -> show_all
+2025-10-09 02:39:10,897 - INFO - Settings saved
+2025-10-09 02:39:10,897 - INFO - Хоткей сохранён: Show All Characters = Y
+2025-10-09 02:39:12,282 - INFO - Hotkey bound: Shift+Y -> show_active
+2025-10-09 02:39:12,283 - INFO - Settings saved
+2025-10-09 02:39:12,283 - INFO - Хоткей сохранён: Show Active Characters = Shift+Y
+2025-10-09 02:39:18,328 - INFO - Запись хоткея прервана для Show Nearby Loot
+2025-10-09 02:39:20,549 - INFO - Hotkey bound: H -> show_loot
+2025-10-09 02:39:20,550 - INFO - Settings saved
+2025-10-09 02:39:20,550 - INFO - Хоткей сохранён: Show Nearby Loot = H
+2025-10-09 02:39:21,823 - INFO - Hotkey unbound: H
+2025-10-09 02:39:21,823 - INFO - Hotkey bound: Shift+H -> show_loot
+2025-10-09 02:39:21,824 - INFO - Settings saved
+2025-10-09 02:39:21,825 - INFO - Хоткей сохранён: Show Nearby Loot = Shift+H
+2025-10-09 02:39:23,677 - INFO - Hotkey bound: Alt+H -> show_players
+2025-10-09 02:39:23,678 - INFO - Settings saved
+2025-10-09 02:39:23,678 - INFO - Хоткей сохранён: Show Nearby Players = Alt+H
+2025-10-09 02:39:29,509 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:39:29,510 - INFO - Executing action: show_all
+2025-10-09 02:39:29,511 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:39:30,439 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:39:30,440 - INFO - Executing action: show_all
+2025-10-09 02:39:30,440 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:39:32,720 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:39:32,720 - INFO - Executing action: show_loot
+2025-10-09 02:39:32,720 - INFO - === Запрос списка лута ===
+2025-10-09 02:39:32,721 - INFO - Сканирование от главного процесса
+2025-10-09 02:39:32,721 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:39:33,260 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:39:33,261 - INFO - Executing action: show_loot
+2025-10-09 02:39:33,261 - INFO - === Запрос списка лута ===
+2025-10-09 02:39:33,262 - INFO - Сканирование от главного процесса
+2025-10-09 02:39:33,262 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:39:34,020 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:39:34,021 - INFO - Executing action: show_loot
+2025-10-09 02:39:34,021 - INFO - === Запрос списка лута ===
+2025-10-09 02:39:34,021 - INFO - Сканирование от главного процесса
+2025-10-09 02:39:34,022 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:39:36,640 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:39:36,641 - INFO - Executing action: show_loot
+2025-10-09 02:39:36,641 - INFO - === Запрос списка лута ===
+2025-10-09 02:39:36,641 - INFO - Сканирование от главного процесса
+2025-10-09 02:39:36,642 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:39:36,763 - INFO - Hotkey bound: Shift+H -> show_npcs
+2025-10-09 02:39:36,764 - INFO - Settings saved
+2025-10-09 02:39:36,764 - INFO - Хоткей сохранён: Show Nearby NPCs = Shift+H
+2025-10-09 02:39:37,804 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:39:37,805 - INFO - Executing action: show_loot
+2025-10-09 02:39:37,805 - INFO - === Запрос списка лута ===
+2025-10-09 02:39:37,805 - INFO - Сканирование от главного процесса
+2025-10-09 02:39:37,806 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:39:37,806 - INFO - Hotkey pressed for action: show_npcs
+2025-10-09 02:39:37,807 - INFO - Executing action: show_npcs
+2025-10-09 02:39:37,807 - INFO - Action 5: Найдено 0 NPC
+2025-10-09 02:39:39,088 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:39:39,088 - INFO - Executing action: show_loot
+2025-10-09 02:39:39,089 - INFO - === Запрос списка лута ===
+2025-10-09 02:39:39,089 - INFO - Сканирование от главного процесса
+2025-10-09 02:39:39,090 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:39:39,090 - INFO - Hotkey pressed for action: show_npcs
+2025-10-09 02:39:39,090 - INFO - Executing action: show_npcs
+2025-10-09 02:39:39,091 - INFO - Action 5: Найдено 0 NPC
+2025-10-09 02:39:44,240 - INFO - Запись хоткея прервана для Show Nearby NPCs
+2025-10-09 02:39:45,256 - INFO - Hotkey unbound: Shift+H
+2025-10-09 02:39:45,257 - INFO - Settings saved
+2025-10-09 02:39:45,257 - INFO - Хоткей очищен для Show Nearby NPCs
+2025-10-09 02:39:45,764 - INFO - Hotkey unbound: Alt+H
+2025-10-09 02:39:45,765 - INFO - Settings saved
+2025-10-09 02:39:45,765 - INFO - Хоткей очищен для Show Nearby Players
+2025-10-09 02:39:46,132 - INFO - Settings saved
+2025-10-09 02:39:46,133 - INFO - Хоткей очищен для Show Nearby Loot
+2025-10-09 02:39:46,576 - INFO - Hotkey unbound: Shift+Y
+2025-10-09 02:39:46,577 - INFO - Settings saved
+2025-10-09 02:39:46,577 - INFO - Хоткей очищен для Show Active Characters
+2025-10-09 02:39:47,148 - INFO - Hotkey unbound: Y
+2025-10-09 02:39:47,148 - INFO - Settings saved
+2025-10-09 02:39:47,149 - INFO - Хоткей очищен для Show All Characters
+2025-10-09 02:39:48,866 - INFO - Action 'attack': started
+2025-10-09 02:39:48,867 - INFO - Выполнение: attack
+2025-10-09 02:39:48,867 - INFO - Executing action: attack
+2025-10-09 02:39:48,867 - INFO - Attack: STARTED
+2025-10-09 02:39:50,394 - INFO - Action 'follow': started
+2025-10-09 02:39:50,394 - INFO - Выполнение: follow
+2025-10-09 02:39:50,395 - INFO - Executing action: follow
+2025-10-09 02:39:50,395 - INFO - Follow: STARTED
+2025-10-09 02:39:54,050 - INFO - Action 'attack': stopped
+2025-10-09 02:39:54,051 - INFO - Выполнение: attack
+2025-10-09 02:39:54,051 - INFO - Executing action: attack
+2025-10-09 02:39:54,051 - INFO - Attack: STOPPED
+2025-10-09 02:39:54,471 - INFO - Action 'follow': stopped
+2025-10-09 02:39:54,471 - INFO - Выполнение: follow
+2025-10-09 02:39:54,472 - INFO - Executing action: follow
+2025-10-09 02:39:54,472 - INFO - Follow: STOPPED
+2025-10-09 02:39:55,601 - INFO - Settings saved
+2025-10-09 02:39:55,603 - INFO - Topmost: False
+2025-10-09 02:39:56,741 - INFO - Settings saved
+2025-10-09 02:39:56,743 - INFO - Topmost: True
+2025-10-09 02:40:01,316 - INFO - Нажата кнопка Refresh
+2025-10-09 02:40:01,317 - INFO - Загрузка персонажей...
+2025-10-09 02:40:04,647 - INFO - Выполнение: show_all
+2025-10-09 02:40:04,647 - INFO - Executing action: show_all
+2025-10-09 02:40:04,648 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:40:07,671 - INFO - Выполнение: show_all
+2025-10-09 02:40:07,672 - INFO - Executing action: show_all
+2025-10-09 02:40:07,673 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:40:24,965 - INFO - Свернуто в трей
+2025-10-09 02:40:42,964 - INFO - Свернуто в трей
+2025-10-09 02:40:50,610 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:40:50,610 - INFO - Executing action: show_loot
+2025-10-09 02:40:50,610 - INFO - === Запрос списка лута ===
+2025-10-09 02:40:50,610 - INFO - Сканирование от главного процесса
+2025-10-09 02:40:50,611 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:43:41,844 - INFO - Hotkey bound: Y -> show_all
+2025-10-09 02:43:41,845 - INFO - Settings saved
+2025-10-09 02:43:41,846 - INFO - Хоткей сохранён: Show All Characters = Y
+2025-10-09 02:43:44,789 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:43:44,789 - INFO - Executing action: show_all
+2025-10-09 02:43:44,790 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:43:45,784 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:43:45,785 - INFO - Executing action: show_all
+2025-10-09 02:43:45,785 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:43:46,464 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:43:46,464 - INFO - Executing action: show_all
+2025-10-09 02:43:46,465 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:43:47,495 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:43:47,495 - INFO - Executing action: show_all
+2025-10-09 02:43:47,496 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:43:50,143 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:43:50,143 - INFO - Executing action: show_all
+2025-10-09 02:43:50,143 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:43:51,592 - INFO - Hotkey unbound: Y
+2025-10-09 02:43:51,593 - INFO - Settings saved
+2025-10-09 02:43:51,594 - INFO - Хоткей очищен для Show All Characters
+2025-10-09 02:43:57,231 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:43:57,231 - INFO - Executing action: show_loot
+2025-10-09 02:43:57,232 - INFO - === Запрос списка лута ===
+2025-10-09 02:43:57,232 - INFO - Сканирование от главного процесса
+2025-10-09 02:43:57,233 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:43:59,475 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:43:59,475 - INFO - Executing action: show_loot
+2025-10-09 02:43:59,475 - INFO - === Запрос списка лута ===
+2025-10-09 02:43:59,476 - INFO - Сканирование от главного процесса
+2025-10-09 02:43:59,476 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:44:01,161 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:44:01,161 - INFO - Executing action: show_loot
+2025-10-09 02:44:01,162 - INFO - === Запрос списка лута ===
+2025-10-09 02:44:01,162 - INFO - Сканирование от главного процесса
+2025-10-09 02:44:01,163 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:44:42,327 - INFO - Выполнение: show_loot
+2025-10-09 02:44:42,329 - INFO - Executing action: show_loot
+2025-10-09 02:44:42,330 - INFO - === Запрос списка лута ===
+2025-10-09 02:44:42,330 - INFO - Сканирование от главного процесса
+2025-10-09 02:44:42,331 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:44:43,664 - INFO - Выполнение: show_loot
+2025-10-09 02:44:43,664 - INFO - Executing action: show_loot
+2025-10-09 02:44:43,664 - INFO - === Запрос списка лута ===
+2025-10-09 02:44:43,664 - INFO - Сканирование от главного процесса
+2025-10-09 02:44:43,665 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:44:44,718 - INFO - Выполнение: show_players
+2025-10-09 02:44:44,719 - INFO - Executing action: show_players
+2025-10-09 02:44:44,719 - INFO - === Запрос списка игроков ===
+2025-10-09 02:44:44,719 - INFO - Сканирование от главного процесса
+2025-10-09 02:44:44,720 - INFO - Action 4: Найдено 0 игроков
+2025-10-09 02:44:46,975 - INFO - Settings saved
+2025-10-09 02:44:46,975 - INFO - Хоткей очищен для Show Nearby Players
+2025-10-09 02:44:47,926 - INFO - Settings saved
+2025-10-09 02:44:47,927 - INFO - Хоткей очищен для Show Nearby Loot
+2025-10-09 02:44:49,328 - INFO - Settings saved
+2025-10-09 02:44:49,328 - INFO - Хоткей очищен для Show Nearby Players
+2025-10-09 02:44:51,319 - INFO - Settings saved
+2025-10-09 02:44:51,319 - INFO - Хоткей очищен для Show Nearby Loot
+2025-10-09 02:44:53,448 - INFO - Запись хоткея прервана для Show Nearby Loot
+2025-10-09 02:44:54,914 - INFO - Settings saved
+2025-10-09 02:44:54,915 - INFO - Хоткей очищен для Show Active Characters
+2025-10-09 02:44:57,683 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:44:57,683 - INFO - Executing action: show_loot
+2025-10-09 02:44:57,683 - INFO - === Запрос списка лута ===
+2025-10-09 02:44:57,684 - INFO - Сканирование от главного процесса
+2025-10-09 02:44:57,684 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:45:30,713 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:45:30,713 - INFO - Executing action: show_loot
+2025-10-09 02:45:30,714 - INFO - === Запрос списка лута ===
+2025-10-09 02:45:30,714 - INFO - Сканирование от главного процесса
+2025-10-09 02:45:30,714 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:49:56,023 - INFO - Закрытие приложения
+2025-10-09 02:49:56,024 - INFO - Settings saved
+2025-10-09 02:49:56,024 - INFO - All hotkeys unbound
+2025-10-09 02:49:56,052 - INFO - Lock file removed
+2025-10-09 02:49:56,052 - INFO - === Завершение приложения ===
+2025-10-09 02:51:28,134 - INFO - Lock file created
+2025-10-09 02:51:28,429 - INFO - === Запуск приложения ===
+2025-10-09 02:51:28,429 - INFO - Settings loaded
+2025-10-09 02:51:28,429 - INFO - Registered action: follow (toggle)
+2025-10-09 02:51:28,430 - INFO - Registered action: attack (toggle)
+2025-10-09 02:51:28,430 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:51:28,430 - INFO - Registered action: show_all (quick)
+2025-10-09 02:51:28,430 - INFO - Registered action: show_active (quick)
+2025-10-09 02:51:28,430 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:51:28,431 - INFO - Registered action: show_players (quick)
+2025-10-09 02:51:28,431 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:51:28,739 - INFO - Иконка трея создана
+2025-10-09 02:51:28,739 - INFO - GUI инициализирован
+2025-10-09 02:51:28,847 - INFO - Нажата кнопка Refresh
+2025-10-09 02:51:28,848 - INFO - Попытка верификации...
+2025-10-09 02:51:28,851 - INFO - Settings saved
+2025-10-09 02:51:29,455 - INFO - License verification: SUCCESS
+2025-10-09 02:51:29,455 - INFO - ✅ Верификация успешна!
+2025-10-09 02:51:29,455 - INFO - Загрузка персонажей...
+2025-10-09 02:51:35,495 - INFO - Action 'follow': started
+2025-10-09 02:51:35,496 - INFO - Выполнение: follow
+2025-10-09 02:51:35,496 - INFO - Executing action: follow
+2025-10-09 02:51:35,496 - INFO - Follow: STARTED
+2025-10-09 02:51:36,959 - INFO - Выполнение: show_all
+2025-10-09 02:51:36,960 - INFO - Executing action: show_all
+2025-10-09 02:51:36,960 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:51:38,989 - INFO - Выполнение: show_all
+2025-10-09 02:51:38,989 - INFO - Executing action: show_all
+2025-10-09 02:51:38,990 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:51:39,962 - INFO - Выполнение: show_active
+2025-10-09 02:51:39,962 - INFO - Executing action: show_active
+2025-10-09 02:51:39,963 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:51:41,075 - INFO - Action 'follow': stopped
+2025-10-09 02:51:41,076 - INFO - Выполнение: follow
+2025-10-09 02:51:41,076 - INFO - Executing action: follow
+2025-10-09 02:51:41,076 - INFO - Follow: STOPPED
+2025-10-09 02:51:46,868 - INFO - Hotkey bound: Y -> show_all
+2025-10-09 02:51:46,868 - INFO - Settings saved
+2025-10-09 02:51:46,869 - INFO - Хоткей сохранён: Show All Characters = Y
+2025-10-09 02:51:48,376 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:51:48,376 - INFO - Executing action: show_all
+2025-10-09 02:51:48,377 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:51:49,483 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:51:49,483 - INFO - Executing action: show_all
+2025-10-09 02:51:49,484 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:51:53,991 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:51:53,991 - INFO - Executing action: show_all
+2025-10-09 02:51:53,992 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:51:55,967 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:51:55,967 - INFO - Executing action: show_all
+2025-10-09 02:51:55,968 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:51:57,067 - INFO - Hotkey unbound: Y
+2025-10-09 02:51:57,068 - INFO - Settings saved
+2025-10-09 02:51:57,069 - INFO - Хоткей очищен для Show All Characters
+2025-10-09 02:52:01,922 - INFO - Hotkey bound: H -> show_active
+2025-10-09 02:52:01,923 - INFO - Settings saved
+2025-10-09 02:52:01,924 - INFO - Хоткей сохранён: Show Active Characters = H
+2025-10-09 02:52:02,687 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:52:02,688 - INFO - Executing action: show_active
+2025-10-09 02:52:02,689 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:52:02,977 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:52:02,977 - INFO - Executing action: show_active
+2025-10-09 02:52:02,978 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:52:06,197 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:52:06,197 - INFO - Executing action: show_active
+2025-10-09 02:52:06,198 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:52:13,759 - INFO - Hotkey unbound: H
+2025-10-09 02:52:13,761 - INFO - Settings saved
+2025-10-09 02:52:13,761 - INFO - Хоткей очищен для Show Active Characters
+2025-10-09 02:52:18,510 - INFO - Выполнение: show_active
+2025-10-09 02:52:18,510 - INFO - Executing action: show_active
+2025-10-09 02:52:18,511 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:52:29,908 - INFO - Запись хоткея прервана для Show Active Characters
+2025-10-09 02:52:32,126 - INFO - Hotkey bound: H -> show_active
+2025-10-09 02:52:32,127 - INFO - Settings saved
+2025-10-09 02:52:32,127 - INFO - Хоткей сохранён: Show Active Characters = H
+2025-10-09 02:52:34,375 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:52:34,376 - INFO - Executing action: show_active
+2025-10-09 02:52:34,376 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:52:34,965 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:52:34,965 - INFO - Executing action: show_active
+2025-10-09 02:52:34,966 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:52:36,533 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:52:36,533 - INFO - Executing action: show_active
+2025-10-09 02:52:36,534 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:52:56,708 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:52:56,708 - INFO - Executing action: show_active
+2025-10-09 02:52:56,709 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:53:14,026 - INFO - Закрытие приложения
+2025-10-09 02:53:14,028 - INFO - Settings saved
+2025-10-09 02:53:14,028 - INFO - All hotkeys unbound
+2025-10-09 02:53:14,057 - INFO - Lock file removed
+2025-10-09 02:53:14,058 - INFO - === Завершение приложения ===
+2025-10-09 02:53:16,864 - INFO - Lock file created
+2025-10-09 02:53:17,135 - INFO - === Запуск приложения ===
+2025-10-09 02:53:17,136 - INFO - Settings loaded
+2025-10-09 02:53:17,136 - INFO - Registered action: follow (toggle)
+2025-10-09 02:53:17,137 - INFO - Registered action: attack (toggle)
+2025-10-09 02:53:17,137 - INFO - Registered action: teleport (toggle)
+2025-10-09 02:53:17,137 - INFO - Registered action: show_all (quick)
+2025-10-09 02:53:17,137 - INFO - Registered action: show_active (quick)
+2025-10-09 02:53:17,137 - INFO - Registered action: show_loot (quick)
+2025-10-09 02:53:17,137 - INFO - Registered action: show_players (quick)
+2025-10-09 02:53:17,138 - INFO - Registered action: show_npcs (quick)
+2025-10-09 02:53:17,485 - INFO - Иконка трея создана
+2025-10-09 02:53:17,687 - INFO - Hotkey bound: H -> show_active
+2025-10-09 02:53:17,688 - INFO - Загружен хоткей: show_active = H
+2025-10-09 02:53:17,688 - INFO - GUI инициализирован
+2025-10-09 02:53:17,800 - INFO - Нажата кнопка Refresh
+2025-10-09 02:53:17,801 - INFO - Попытка верификации...
+2025-10-09 02:53:17,803 - INFO - Settings saved
+2025-10-09 02:53:18,198 - INFO - License verification: SUCCESS
+2025-10-09 02:53:18,198 - INFO - ✅ Верификация успешна!
+2025-10-09 02:53:18,199 - INFO - Загрузка персонажей...
+2025-10-09 02:53:20,528 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:53:20,528 - INFO - Executing action: show_active
+2025-10-09 02:53:20,529 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:53:23,042 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:53:23,042 - INFO - Executing action: show_active
+2025-10-09 02:53:23,043 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:53:25,844 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:53:25,844 - INFO - Executing action: show_active
+2025-10-09 02:53:25,845 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:53:49,520 - INFO - Выполнение: show_all
+2025-10-09 02:53:49,521 - INFO - Executing action: show_all
+2025-10-09 02:53:49,521 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:53:50,090 - INFO - Выполнение: show_all
+2025-10-09 02:53:50,090 - INFO - Executing action: show_all
+2025-10-09 02:53:50,090 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:53:50,956 - INFO - Свернуто в трей
+2025-10-09 02:54:12,914 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:54:12,914 - INFO - Executing action: show_active
+2025-10-09 02:54:12,915 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:54:19,607 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:54:19,607 - INFO - Executing action: show_active
+2025-10-09 02:54:19,608 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:54:25,481 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:54:25,481 - INFO - Executing action: show_active
+2025-10-09 02:54:25,482 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:54:45,734 - INFO - Action 'follow': started
+2025-10-09 02:54:45,735 - INFO - Выполнение: follow
+2025-10-09 02:54:45,735 - INFO - Executing action: follow
+2025-10-09 02:54:45,735 - INFO - Follow: STARTED
+2025-10-09 02:54:47,834 - INFO - Action 'teleport': started
+2025-10-09 02:54:47,834 - INFO - Выполнение: teleport
+2025-10-09 02:54:47,834 - INFO - Executing action: teleport
+2025-10-09 02:54:47,834 - INFO - Teleport: STARTED
+2025-10-09 02:54:51,728 - INFO - Action 'teleport': stopped
+2025-10-09 02:54:51,728 - INFO - Выполнение: teleport
+2025-10-09 02:54:51,728 - INFO - Executing action: teleport
+2025-10-09 02:54:51,728 - INFO - Teleport: STOPPED
+2025-10-09 02:54:52,498 - INFO - Action 'follow': stopped
+2025-10-09 02:54:52,499 - INFO - Выполнение: follow
+2025-10-09 02:54:52,499 - INFO - Executing action: follow
+2025-10-09 02:54:52,499 - INFO - Follow: STOPPED
+2025-10-09 02:55:01,963 - INFO - Action 'attack': started
+2025-10-09 02:55:01,963 - INFO - Выполнение: attack
+2025-10-09 02:55:01,963 - INFO - Executing action: attack
+2025-10-09 02:55:01,963 - INFO - Attack: STARTED
+2025-10-09 02:55:05,843 - INFO - Action 'attack': stopped
+2025-10-09 02:55:05,843 - INFO - Выполнение: attack
+2025-10-09 02:55:05,843 - INFO - Executing action: attack
+2025-10-09 02:55:05,843 - INFO - Attack: STOPPED
+2025-10-09 02:55:27,220 - INFO - Выполнение: show_active
+2025-10-09 02:55:27,220 - INFO - Executing action: show_active
+2025-10-09 02:55:27,220 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:55:31,895 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:55:31,895 - INFO - Executing action: show_active
+2025-10-09 02:55:31,896 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:55:31,992 - INFO - Hotkey bound: H -> show_all
+2025-10-09 02:55:31,993 - INFO - Settings saved
+2025-10-09 02:55:31,993 - INFO - Хоткей сохранён: Show All Characters = H
+2025-10-09 02:55:32,848 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:55:32,848 - INFO - Executing action: show_active
+2025-10-09 02:55:32,849 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:55:32,849 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:55:32,849 - INFO - Executing action: show_all
+2025-10-09 02:55:32,850 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:55:32,961 - INFO - Hotkey bound: H -> show_loot
+2025-10-09 02:55:32,962 - INFO - Settings saved
+2025-10-09 02:55:32,962 - INFO - Хоткей сохранён: Show Nearby Loot = H
+2025-10-09 02:55:34,042 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:55:34,042 - INFO - Executing action: show_active
+2025-10-09 02:55:34,043 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:55:34,043 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:55:34,043 - INFO - Executing action: show_all
+2025-10-09 02:55:34,044 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:55:34,044 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:55:34,044 - INFO - Executing action: show_loot
+2025-10-09 02:55:34,044 - INFO - === Запрос списка лута ===
+2025-10-09 02:55:34,044 - INFO - Сканирование от главного процесса
+2025-10-09 02:55:34,045 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:55:36,051 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:55:36,051 - INFO - Executing action: show_active
+2025-10-09 02:55:36,052 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:55:36,052 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:55:36,052 - INFO - Executing action: show_all
+2025-10-09 02:55:36,053 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:55:36,053 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:55:36,053 - INFO - Executing action: show_loot
+2025-10-09 02:55:36,053 - INFO - === Запрос списка лута ===
+2025-10-09 02:55:36,053 - INFO - Сканирование от главного процесса
+2025-10-09 02:55:36,053 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:56:03,311 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:56:03,311 - INFO - Executing action: show_active
+2025-10-09 02:56:03,312 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:56:03,312 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:56:03,312 - INFO - Executing action: show_all
+2025-10-09 02:56:03,313 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:56:03,313 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:56:03,313 - INFO - Executing action: show_loot
+2025-10-09 02:56:03,314 - INFO - === Запрос списка лута ===
+2025-10-09 02:56:03,314 - INFO - Сканирование от главного процесса
+2025-10-09 02:56:03,314 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:56:06,512 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:56:06,512 - INFO - Executing action: show_active
+2025-10-09 02:56:06,513 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:56:06,513 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:56:06,513 - INFO - Executing action: show_all
+2025-10-09 02:56:06,514 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:56:06,514 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:56:06,514 - INFO - Executing action: show_loot
+2025-10-09 02:56:06,514 - INFO - === Запрос списка лута ===
+2025-10-09 02:56:06,514 - INFO - Сканирование от главного процесса
+2025-10-09 02:56:06,515 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:56:32,216 - INFO - Нажата кнопка Refresh
+2025-10-09 02:56:32,217 - INFO - Загрузка персонажей...
+2025-10-09 02:56:33,729 - INFO - Settings saved
+2025-10-09 02:56:33,731 - INFO - Topmost: False
+2025-10-09 02:56:34,589 - INFO - Settings saved
+2025-10-09 02:56:34,590 - INFO - Topmost: True
+2025-10-09 02:56:59,383 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:56:59,384 - INFO - Executing action: show_active
+2025-10-09 02:56:59,384 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:56:59,385 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:56:59,385 - INFO - Executing action: show_all
+2025-10-09 02:56:59,385 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:56:59,385 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:56:59,386 - INFO - Executing action: show_loot
+2025-10-09 02:56:59,386 - INFO - === Запрос списка лута ===
+2025-10-09 02:56:59,386 - INFO - Сканирование от главного процесса
+2025-10-09 02:56:59,386 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:57:03,850 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:57:03,850 - INFO - Executing action: show_active
+2025-10-09 02:57:03,851 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:57:03,851 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:57:03,851 - INFO - Executing action: show_all
+2025-10-09 02:57:03,852 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:57:03,852 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:57:03,852 - INFO - Executing action: show_loot
+2025-10-09 02:57:03,852 - INFO - === Запрос списка лута ===
+2025-10-09 02:57:03,852 - INFO - Сканирование от главного процесса
+2025-10-09 02:57:03,853 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:57:15,325 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:57:15,325 - INFO - Executing action: show_active
+2025-10-09 02:57:15,326 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:57:15,326 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:57:15,326 - INFO - Executing action: show_all
+2025-10-09 02:57:15,327 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:57:15,327 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:57:15,327 - INFO - Executing action: show_loot
+2025-10-09 02:57:15,327 - INFO - === Запрос списка лута ===
+2025-10-09 02:57:15,327 - INFO - Сканирование от главного процесса
+2025-10-09 02:57:15,328 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:57:19,479 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:57:19,479 - INFO - Executing action: show_active
+2025-10-09 02:57:19,480 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:57:19,480 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:57:19,480 - INFO - Executing action: show_all
+2025-10-09 02:57:19,481 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:57:19,481 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:57:19,482 - INFO - Executing action: show_loot
+2025-10-09 02:57:19,482 - INFO - === Запрос списка лута ===
+2025-10-09 02:57:19,482 - INFO - Сканирование от главного процесса
+2025-10-09 02:57:19,483 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:57:32,032 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:57:32,032 - INFO - Executing action: show_active
+2025-10-09 02:57:32,033 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:57:32,033 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:57:32,033 - INFO - Executing action: show_all
+2025-10-09 02:57:32,034 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:57:32,034 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:57:32,034 - INFO - Executing action: show_loot
+2025-10-09 02:57:32,034 - INFO - === Запрос списка лута ===
+2025-10-09 02:57:32,034 - INFO - Сканирование от главного процесса
+2025-10-09 02:57:32,035 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:57:33,509 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:57:33,509 - INFO - Executing action: show_active
+2025-10-09 02:57:33,510 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:57:33,510 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:57:33,511 - INFO - Executing action: show_all
+2025-10-09 02:57:33,511 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:57:33,511 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:57:33,511 - INFO - Executing action: show_loot
+2025-10-09 02:57:33,511 - INFO - === Запрос списка лута ===
+2025-10-09 02:57:33,512 - INFO - Сканирование от главного процесса
+2025-10-09 02:57:33,512 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:57:36,496 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:57:36,497 - INFO - Executing action: show_active
+2025-10-09 02:57:36,497 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:57:36,498 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:57:36,498 - INFO - Executing action: show_all
+2025-10-09 02:57:36,499 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:57:36,499 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:57:36,499 - INFO - Executing action: show_loot
+2025-10-09 02:57:36,499 - INFO - === Запрос списка лута ===
+2025-10-09 02:57:36,499 - INFO - Сканирование от главного процесса
+2025-10-09 02:57:36,500 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:57:37,081 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:57:37,081 - INFO - Executing action: show_active
+2025-10-09 02:57:37,082 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:57:37,083 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:57:37,083 - INFO - Executing action: show_all
+2025-10-09 02:57:37,083 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:57:37,084 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:57:37,084 - INFO - Executing action: show_loot
+2025-10-09 02:57:37,084 - INFO - === Запрос списка лута ===
+2025-10-09 02:57:37,084 - INFO - Сканирование от главного процесса
+2025-10-09 02:57:37,085 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:57:43,835 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:57:43,836 - INFO - Executing action: show_active
+2025-10-09 02:57:43,836 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:57:43,837 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:57:43,837 - INFO - Executing action: show_all
+2025-10-09 02:57:43,837 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:57:43,838 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:57:43,838 - INFO - Executing action: show_loot
+2025-10-09 02:57:43,838 - INFO - === Запрос списка лута ===
+2025-10-09 02:57:43,838 - INFO - Сканирование от главного процесса
+2025-10-09 02:57:43,838 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:58:06,411 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:58:06,411 - INFO - Executing action: show_active
+2025-10-09 02:58:06,412 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:58:06,412 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:58:06,412 - INFO - Executing action: show_all
+2025-10-09 02:58:06,413 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:58:06,413 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:58:06,413 - INFO - Executing action: show_loot
+2025-10-09 02:58:06,414 - INFO - === Запрос списка лута ===
+2025-10-09 02:58:06,414 - INFO - Сканирование от главного процесса
+2025-10-09 02:58:06,414 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:58:19,641 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:58:19,641 - INFO - Executing action: show_active
+2025-10-09 02:58:19,642 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:58:19,642 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:58:19,642 - INFO - Executing action: show_all
+2025-10-09 02:58:19,643 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:58:19,643 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:58:19,643 - INFO - Executing action: show_loot
+2025-10-09 02:58:19,643 - INFO - === Запрос списка лута ===
+2025-10-09 02:58:19,644 - INFO - Сканирование от главного процесса
+2025-10-09 02:58:19,644 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:58:39,238 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:58:39,239 - INFO - Executing action: show_active
+2025-10-09 02:58:39,240 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:58:39,240 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:58:39,240 - INFO - Executing action: show_all
+2025-10-09 02:58:39,240 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:58:39,241 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:58:39,241 - INFO - Executing action: show_loot
+2025-10-09 02:58:39,241 - INFO - === Запрос списка лута ===
+2025-10-09 02:58:39,241 - INFO - Сканирование от главного процесса
+2025-10-09 02:58:39,241 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:58:40,426 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:58:40,427 - INFO - Executing action: show_active
+2025-10-09 02:58:40,428 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:58:40,428 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:58:40,428 - INFO - Executing action: show_all
+2025-10-09 02:58:40,429 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:58:40,429 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:58:40,429 - INFO - Executing action: show_loot
+2025-10-09 02:58:40,429 - INFO - === Запрос списка лута ===
+2025-10-09 02:58:40,430 - INFO - Сканирование от главного процесса
+2025-10-09 02:58:40,430 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:59:03,151 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:59:03,152 - INFO - Executing action: show_active
+2025-10-09 02:59:03,152 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:59:03,152 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:59:03,152 - INFO - Executing action: show_all
+2025-10-09 02:59:03,153 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:59:03,153 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:59:03,153 - INFO - Executing action: show_loot
+2025-10-09 02:59:03,153 - INFO - === Запрос списка лута ===
+2025-10-09 02:59:03,154 - INFO - Сканирование от главного процесса
+2025-10-09 02:59:03,154 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:59:05,171 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:59:05,172 - INFO - Executing action: show_active
+2025-10-09 02:59:05,172 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:59:05,172 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:59:05,173 - INFO - Executing action: show_all
+2025-10-09 02:59:05,173 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:59:05,173 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:59:05,174 - INFO - Executing action: show_loot
+2025-10-09 02:59:05,174 - INFO - === Запрос списка лута ===
+2025-10-09 02:59:05,174 - INFO - Сканирование от главного процесса
+2025-10-09 02:59:05,174 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:59:06,912 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:59:06,913 - INFO - Executing action: show_active
+2025-10-09 02:59:06,914 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:59:06,914 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:59:06,914 - INFO - Executing action: show_all
+2025-10-09 02:59:06,914 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:59:06,915 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:59:06,915 - INFO - Executing action: show_loot
+2025-10-09 02:59:06,915 - INFO - === Запрос списка лута ===
+2025-10-09 02:59:06,915 - INFO - Сканирование от главного процесса
+2025-10-09 02:59:06,916 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:59:10,470 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:59:10,471 - INFO - Executing action: show_active
+2025-10-09 02:59:10,471 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:59:10,472 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:59:10,472 - INFO - Executing action: show_all
+2025-10-09 02:59:10,472 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:59:10,473 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:59:10,473 - INFO - Executing action: show_loot
+2025-10-09 02:59:10,473 - INFO - === Запрос списка лута ===
+2025-10-09 02:59:10,473 - INFO - Сканирование от главного процесса
+2025-10-09 02:59:10,474 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:59:34,442 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:59:34,443 - INFO - Executing action: show_active
+2025-10-09 02:59:34,443 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:59:34,444 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:59:34,444 - INFO - Executing action: show_all
+2025-10-09 02:59:34,444 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:59:34,444 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:59:34,445 - INFO - Executing action: show_loot
+2025-10-09 02:59:34,445 - INFO - === Запрос списка лута ===
+2025-10-09 02:59:34,445 - INFO - Сканирование от главного процесса
+2025-10-09 02:59:34,445 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:59:55,992 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:59:55,993 - INFO - Executing action: show_active
+2025-10-09 02:59:55,994 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:59:55,994 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:59:55,994 - INFO - Executing action: show_all
+2025-10-09 02:59:55,994 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:59:55,994 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:59:55,995 - INFO - Executing action: show_loot
+2025-10-09 02:59:55,995 - INFO - === Запрос списка лута ===
+2025-10-09 02:59:55,995 - INFO - Сканирование от главного процесса
+2025-10-09 02:59:55,995 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:59:57,063 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:59:57,063 - INFO - Executing action: show_active
+2025-10-09 02:59:57,064 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:59:57,064 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:59:57,064 - INFO - Executing action: show_all
+2025-10-09 02:59:57,065 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:59:57,065 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:59:57,065 - INFO - Executing action: show_loot
+2025-10-09 02:59:57,065 - INFO - === Запрос списка лута ===
+2025-10-09 02:59:57,065 - INFO - Сканирование от главного процесса
+2025-10-09 02:59:57,066 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 02:59:58,919 - INFO - Hotkey pressed for action: show_active
+2025-10-09 02:59:58,919 - INFO - Executing action: show_active
+2025-10-09 02:59:58,920 - INFO - Action 2: Показано 0 активных
+2025-10-09 02:59:58,921 - INFO - Hotkey pressed for action: show_all
+2025-10-09 02:59:58,921 - INFO - Executing action: show_all
+2025-10-09 02:59:58,922 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 02:59:58,922 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 02:59:58,922 - INFO - Executing action: show_loot
+2025-10-09 02:59:58,922 - INFO - === Запрос списка лута ===
+2025-10-09 02:59:58,923 - INFO - Сканирование от главного процесса
+2025-10-09 02:59:58,923 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:00:06,581 - INFO - Выполнение: show_npcs
+2025-10-09 03:00:06,581 - INFO - Executing action: show_npcs
+2025-10-09 03:00:06,582 - INFO - Action 5: Найдено 0 NPC
+2025-10-09 03:00:11,219 - INFO - Выполнение: show_active
+2025-10-09 03:00:11,219 - INFO - Executing action: show_active
+2025-10-09 03:00:11,220 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:00:13,452 - INFO - Выполнение: show_active
+2025-10-09 03:00:13,452 - INFO - Executing action: show_active
+2025-10-09 03:00:13,453 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:00:54,087 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:00:54,088 - INFO - Executing action: show_active
+2025-10-09 03:00:54,089 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:00:54,089 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:00:54,089 - INFO - Executing action: show_all
+2025-10-09 03:00:54,089 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:00:54,090 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:00:54,090 - INFO - Executing action: show_loot
+2025-10-09 03:00:54,090 - INFO - === Запрос списка лута ===
+2025-10-09 03:00:54,090 - INFO - Сканирование от главного процесса
+2025-10-09 03:00:54,091 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:00:58,377 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:00:58,378 - INFO - Executing action: show_active
+2025-10-09 03:00:58,379 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:00:58,379 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:00:58,379 - INFO - Executing action: show_all
+2025-10-09 03:00:58,380 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:00:58,380 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:00:58,380 - INFO - Executing action: show_loot
+2025-10-09 03:00:58,380 - INFO - === Запрос списка лута ===
+2025-10-09 03:00:58,380 - INFO - Сканирование от главного процесса
+2025-10-09 03:00:58,381 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:01:02,504 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:01:02,505 - INFO - Executing action: show_active
+2025-10-09 03:01:02,505 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:01:02,505 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:01:02,505 - INFO - Executing action: show_all
+2025-10-09 03:01:02,506 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:01:02,506 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:01:02,506 - INFO - Executing action: show_loot
+2025-10-09 03:01:02,506 - INFO - === Запрос списка лута ===
+2025-10-09 03:01:02,506 - INFO - Сканирование от главного процесса
+2025-10-09 03:01:02,507 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:01:05,562 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:01:05,563 - INFO - Executing action: show_active
+2025-10-09 03:01:05,563 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:01:05,564 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:01:05,564 - INFO - Executing action: show_all
+2025-10-09 03:01:05,564 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:01:05,564 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:01:05,565 - INFO - Executing action: show_loot
+2025-10-09 03:01:05,565 - INFO - === Запрос списка лута ===
+2025-10-09 03:01:05,565 - INFO - Сканирование от главного процесса
+2025-10-09 03:01:05,565 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:01:38,770 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:01:38,770 - INFO - Executing action: show_active
+2025-10-09 03:01:38,771 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:01:38,771 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:01:38,771 - INFO - Executing action: show_all
+2025-10-09 03:01:38,772 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:01:38,772 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:01:38,772 - INFO - Executing action: show_loot
+2025-10-09 03:01:38,772 - INFO - === Запрос списка лута ===
+2025-10-09 03:01:38,773 - INFO - Сканирование от главного процесса
+2025-10-09 03:01:38,773 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:01:44,027 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:01:44,028 - INFO - Executing action: show_active
+2025-10-09 03:01:44,028 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:01:44,029 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:01:44,029 - INFO - Executing action: show_all
+2025-10-09 03:01:44,029 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:01:44,029 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:01:44,029 - INFO - Executing action: show_loot
+2025-10-09 03:01:44,030 - INFO - === Запрос списка лута ===
+2025-10-09 03:01:44,030 - INFO - Сканирование от главного процесса
+2025-10-09 03:01:44,030 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:01:54,061 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:01:54,062 - INFO - Executing action: show_active
+2025-10-09 03:01:54,062 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:01:54,063 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:01:54,063 - INFO - Executing action: show_all
+2025-10-09 03:01:54,063 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:01:54,063 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:01:54,064 - INFO - Executing action: show_loot
+2025-10-09 03:01:54,064 - INFO - === Запрос списка лута ===
+2025-10-09 03:01:54,064 - INFO - Сканирование от главного процесса
+2025-10-09 03:01:54,064 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:02:56,402 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:02:56,402 - INFO - Executing action: show_active
+2025-10-09 03:02:56,403 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:02:56,403 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:02:56,403 - INFO - Executing action: show_all
+2025-10-09 03:02:56,404 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:02:56,404 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:02:56,404 - INFO - Executing action: show_loot
+2025-10-09 03:02:56,404 - INFO - === Запрос списка лута ===
+2025-10-09 03:02:56,404 - INFO - Сканирование от главного процесса
+2025-10-09 03:02:56,404 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:03:16,274 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:03:16,274 - INFO - Executing action: show_active
+2025-10-09 03:03:16,274 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:03:16,275 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:03:16,275 - INFO - Executing action: show_all
+2025-10-09 03:03:16,275 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:03:16,275 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:03:16,275 - INFO - Executing action: show_loot
+2025-10-09 03:03:16,276 - INFO - === Запрос списка лута ===
+2025-10-09 03:03:16,276 - INFO - Сканирование от главного процесса
+2025-10-09 03:03:16,276 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:03:25,151 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:03:25,152 - INFO - Executing action: show_active
+2025-10-09 03:03:25,152 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:03:25,153 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:03:25,153 - INFO - Executing action: show_all
+2025-10-09 03:03:25,153 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:03:25,154 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:03:25,154 - INFO - Executing action: show_loot
+2025-10-09 03:03:25,154 - INFO - === Запрос списка лута ===
+2025-10-09 03:03:25,154 - INFO - Сканирование от главного процесса
+2025-10-09 03:03:25,154 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:03:30,288 - INFO - Hotkey pressed for action: show_active
+2025-10-09 03:03:30,288 - INFO - Executing action: show_active
+2025-10-09 03:03:30,289 - INFO - Action 2: Показано 0 активных
+2025-10-09 03:03:30,290 - INFO - Hotkey pressed for action: show_all
+2025-10-09 03:03:30,290 - INFO - Executing action: show_all
+2025-10-09 03:03:30,290 - INFO - Action 1: Показано 0 персонажей
+2025-10-09 03:03:30,290 - INFO - Hotkey pressed for action: show_loot
+2025-10-09 03:03:30,290 - INFO - Executing action: show_loot
+2025-10-09 03:03:30,291 - INFO - === Запрос списка лута ===
+2025-10-09 03:03:30,291 - INFO - Сканирование от главного процесса
+2025-10-09 03:03:30,291 - INFO - Action 3: Найдено 0 предметов
+2025-10-09 03:06:16,024 - INFO - Закрытие приложения
+2025-10-09 03:06:16,025 - INFO - Settings saved
+2025-10-09 03:06:16,025 - INFO - All hotkeys unbound
+2025-10-09 03:06:16,056 - INFO - Lock file removed
+2025-10-09 03:06:16,056 - INFO - === Завершение приложения ===
+2025-10-09 03:06:48,717 - INFO - Lock file created
+2025-10-09 03:06:49,281 - INFO - === Запуск приложения ===
+2025-10-09 03:06:49,282 - INFO - Settings loaded
+2025-10-09 03:06:49,282 - INFO - Registered action: follow (toggle)
+2025-10-09 03:06:49,282 - INFO - Registered action: attack (toggle)
+2025-10-09 03:06:49,282 - INFO - Registered action: teleport (toggle)
+2025-10-09 03:06:49,282 - INFO - Registered action: show_all (quick)
+2025-10-09 03:06:49,282 - INFO - Registered action: show_active (quick)
+2025-10-09 03:06:49,283 - INFO - Registered action: show_loot (quick)
+2025-10-09 03:06:49,283 - INFO - Registered action: show_players (quick)
+2025-10-09 03:06:49,283 - INFO - Registered action: show_npcs (quick)
+2025-10-09 03:06:49,914 - INFO - Hotkey bound: H -> show_loot
+2025-10-09 03:06:49,915 - INFO - GUI инициализирован
+2025-10-09 03:06:50,020 - INFO - Settings saved
+2025-10-09 03:06:50,998 - INFO - License verification: SUCCESS
+2025-10-09 03:06:59,778 - INFO - Executing action: show_all
+2025-10-09 03:07:02,313 - INFO - Executing action: show_all
+2025-10-09 03:07:03,447 - INFO - Executing action: show_active
+2025-10-09 03:07:04,357 - INFO - Executing action: show_loot
+2025-10-09 03:07:17,528 - INFO - Settings saved
+2025-10-09 03:07:17,528 - INFO - All hotkeys unbound
+2025-10-09 03:07:17,553 - INFO - Lock file removed
+2025-10-09 03:07:17,553 - INFO - === Завершение приложения ===
+2025-10-09 03:09:36,468 - INFO - Lock file created
+2025-10-09 03:09:36,754 - INFO - === Запуск приложения ===
+2025-10-09 03:09:36,754 - INFO - Settings loaded
+2025-10-09 03:09:37,237 - INFO - GUI инициализирован
+2025-10-09 03:09:37,353 - INFO - Settings saved
+2025-10-09 03:09:37,830 - INFO - License verification: SUCCESS
+2025-10-09 03:09:51,883 - INFO - Settings saved
+2025-10-09 03:09:51,884 - INFO - Settings saved
+2025-10-09 03:09:56,360 - INFO - Settings saved
+2025-10-09 03:09:56,361 - INFO - Settings saved
+2025-10-09 03:10:01,578 - INFO - Settings saved
+2025-10-09 03:10:01,579 - INFO - Settings saved
+2025-10-09 03:10:26,960 - INFO - Settings saved
+2025-10-09 03:10:26,987 - INFO - Lock file removed
+2025-10-09 03:10:26,987 - INFO - === Завершение приложения ===
+2025-10-09 03:11:40,034 - INFO - Lock file created
+2025-10-09 03:11:40,294 - INFO - === Запуск приложения ===
+2025-10-09 03:11:40,295 - INFO - Settings loaded
+2025-10-09 03:11:40,854 - INFO - GUI инициализирован
+2025-10-09 03:11:40,966 - INFO - Settings saved
+2025-10-09 03:11:41,244 - INFO - License verification: SUCCESS
+2025-10-09 03:12:08,706 - INFO - Settings saved
+2025-10-09 03:12:08,729 - INFO - Lock file removed
+2025-10-09 03:12:08,729 - INFO - === Завершение приложения ===
+2025-10-09 03:12:25,907 - INFO - Lock file created
+2025-10-09 03:12:26,156 - INFO - === Запуск приложения ===
+2025-10-09 03:12:26,158 - INFO - Settings loaded
+2025-10-09 03:12:26,670 - INFO - GUI инициализирован
+2025-10-09 03:12:26,778 - INFO - Settings saved
+2025-10-09 03:12:27,681 - INFO - License verification: SUCCESS
+2025-10-09 03:12:36,144 - INFO - Settings saved
+2025-10-09 03:12:36,167 - INFO - Lock file removed
+2025-10-09 03:12:36,168 - INFO - === Завершение приложения ===
+2025-10-09 03:13:47,216 - INFO - Lock file created
+2025-10-09 03:13:47,498 - INFO - === Запуск приложения ===
+2025-10-09 03:13:47,500 - INFO - Settings loaded
+2025-10-09 03:13:48,056 - INFO - GUI инициализирован
+2025-10-09 03:13:48,161 - INFO - Settings saved
+2025-10-09 03:13:48,692 - INFO - License verification: SUCCESS
+2025-10-09 03:15:28,686 - INFO - Settings saved
+2025-10-09 03:15:59,870 - INFO - Settings saved
+2025-10-09 03:16:00,798 - INFO - Settings saved
+2025-10-09 03:16:00,798 - INFO - Settings saved
+2025-10-09 03:16:02,412 - INFO - Settings saved
+2025-10-09 03:16:02,412 - INFO - Settings saved
+2025-10-09 03:17:19,174 - INFO - Settings saved
+2025-10-09 03:17:19,208 - INFO - Lock file removed
+2025-10-09 03:17:19,209 - INFO - === Завершение приложения ===
+2025-10-09 03:17:23,502 - INFO - Lock file created
+2025-10-09 03:17:23,781 - INFO - === Запуск приложения ===
+2025-10-09 03:17:23,783 - INFO - Settings loaded
+2025-10-09 03:17:24,333 - INFO - GUI инициализирован
+2025-10-09 03:17:24,449 - INFO - Settings saved
+2025-10-09 03:17:25,120 - INFO - License verification: SUCCESS
+2025-10-09 03:25:24,621 - INFO - Settings saved
+2025-10-09 03:25:24,652 - INFO - Lock file removed
+2025-10-09 03:25:24,652 - INFO - === Завершение приложения ===
+2025-10-09 03:25:30,867 - INFO - Lock file created
+2025-10-09 03:25:31,141 - INFO - === Запуск приложения ===
+2025-10-09 03:25:31,141 - INFO - Settings loaded
+2025-10-09 03:25:31,692 - INFO - GUI инициализирован
+2025-10-09 03:25:31,809 - INFO - Settings saved
+2025-10-09 03:25:33,063 - INFO - License verification: SUCCESS
+2025-10-09 03:25:40,319 - INFO - Settings saved
+2025-10-09 03:25:40,341 - INFO - Lock file removed
+2025-10-09 03:25:40,341 - INFO - === Завершение приложения ===
+2025-10-09 03:29:55,817 - INFO - Lock file created
+2025-10-09 03:29:56,066 - INFO - === Запуск приложения ===
+2025-10-09 03:29:56,067 - INFO - Settings loaded
+2025-10-09 03:29:56,526 - INFO - GUI инициализирован
+2025-10-09 03:29:56,641 - INFO - Settings saved
+2025-10-09 03:29:57,000 - INFO - License verification: SUCCESS
+2025-10-09 03:30:23,031 - INFO - Settings saved
+2025-10-09 03:32:14,551 - INFO - Settings saved
+2025-10-09 03:32:14,571 - INFO - Lock file removed
+2025-10-09 03:32:14,571 - INFO - === Завершение приложения ===
+2025-10-09 03:32:46,127 - INFO - Lock file created
+2025-10-09 03:32:46,386 - INFO - === Запуск приложения ===
+2025-10-09 03:32:46,386 - INFO - Settings loaded
+2025-10-09 03:32:46,749 - INFO - GUI инициализирован
+2025-10-09 03:32:46,869 - INFO - Settings saved
+2025-10-09 03:32:47,416 - INFO - License verification: SUCCESS
+2025-10-09 03:32:49,801 - INFO - Settings saved
+2025-10-09 03:32:49,821 - INFO - Lock file removed
+2025-10-09 03:32:49,822 - INFO - === Завершение приложения ===
+2025-10-09 03:32:51,043 - INFO - Lock file created
+2025-10-09 03:32:51,261 - INFO - === Запуск приложения ===
+2025-10-09 03:32:51,263 - INFO - Settings loaded
+2025-10-09 03:32:51,596 - INFO - GUI инициализирован
+2025-10-09 03:32:51,709 - INFO - Settings saved
+2025-10-09 03:32:52,279 - INFO - License verification: SUCCESS
+2025-10-09 03:33:02,265 - INFO - Settings saved
+2025-10-09 03:33:02,288 - INFO - Lock file removed
+2025-10-09 03:33:02,288 - INFO - === Завершение приложения ===
+2025-10-09 03:33:10,529 - INFO - Lock file created
+2025-10-09 03:33:10,744 - INFO - === Запуск приложения ===
+2025-10-09 03:33:10,745 - INFO - Settings loaded
+2025-10-09 03:33:11,133 - INFO - GUI инициализирован
+2025-10-09 03:33:11,248 - INFO - Settings saved
+2025-10-09 03:33:11,646 - INFO - License verification: SUCCESS
+2025-10-09 03:33:19,540 - INFO - Settings saved
+2025-10-09 03:33:19,563 - INFO - Lock file removed
+2025-10-09 03:33:19,563 - INFO - === Завершение приложения ===
+2025-10-09 06:47:35,798 - INFO - Lock file created
+2025-10-09 06:47:36,064 - INFO - === Запуск приложения ===
+2025-10-09 06:47:36,064 - INFO - Settings loaded
+2025-10-09 06:47:36,371 - INFO - GUI инициализирован
+2025-10-09 06:47:36,475 - INFO - Settings saved
+2025-10-09 06:47:37,016 - INFO - License verification: SUCCESS
+2025-10-09 06:48:00,157 - INFO - Settings saved
+2025-10-09 06:48:02,143 - INFO - Settings saved
+2025-10-09 06:48:02,144 - INFO - Settings saved
+2025-10-09 06:48:07,628 - INFO - Settings saved
+2025-10-09 06:49:43,440 - INFO - Settings saved
+2025-10-09 06:49:45,848 - INFO - Settings saved
+2025-10-09 06:50:46,527 - INFO - Settings saved
+2025-10-09 06:50:51,506 - INFO - Settings saved
+2025-10-09 06:51:03,458 - INFO - Settings saved
+2025-10-09 06:51:08,416 - INFO - Settings saved
+2025-10-09 07:08:33,883 - INFO - Settings saved
+2025-10-09 07:08:33,905 - INFO - Lock file removed
+2025-10-09 07:08:33,905 - INFO - === Завершение приложения ===
+2025-10-09 07:11:27,010 - INFO - Lock file created
+2025-10-09 07:11:27,250 - INFO - === Запуск приложения ===
+2025-10-09 07:11:27,251 - INFO - Settings loaded
+2025-10-09 07:11:27,527 - INFO - GUI инициализирован
+2025-10-09 07:11:27,634 - INFO - Settings saved
+2025-10-09 07:11:27,957 - INFO - License verification: SUCCESS
+2025-10-09 07:11:46,961 - INFO - Settings saved
+2025-10-09 07:11:52,332 - INFO - Settings saved
+2025-10-09 07:11:52,351 - INFO - Lock file removed
+2025-10-09 07:11:52,352 - INFO - === Завершение приложения ===
+2025-10-09 07:11:54,202 - INFO - Lock file created
+2025-10-09 07:11:54,378 - INFO - === Запуск приложения ===
+2025-10-09 07:11:54,379 - INFO - Settings loaded
+2025-10-09 07:11:54,783 - INFO - GUI инициализирован
+2025-10-09 07:11:54,886 - INFO - Settings saved
+2025-10-09 07:11:55,505 - INFO - License verification: SUCCESS
+2025-10-09 07:11:59,627 - INFO - Settings saved
+2025-10-09 07:11:59,628 - INFO - Settings saved
+2025-10-09 07:12:01,257 - INFO - Settings saved
+2025-10-09 07:12:01,277 - INFO - Lock file removed
+2025-10-09 07:12:01,278 - INFO - === Завершение приложения ===
+2025-10-09 07:12:02,759 - INFO - Lock file created
+2025-10-09 07:12:02,943 - INFO - === Запуск приложения ===
+2025-10-09 07:12:02,944 - INFO - Settings loaded
+2025-10-09 07:12:03,362 - INFO - GUI инициализирован
+2025-10-09 07:12:03,479 - INFO - Settings saved
+2025-10-09 07:12:04,121 - INFO - License verification: SUCCESS
+2025-10-09 07:12:09,574 - INFO - Settings saved
+2025-10-09 07:12:09,592 - INFO - Lock file removed
+2025-10-09 07:12:09,593 - INFO - === Завершение приложения ===
+2025-10-09 07:12:10,939 - INFO - Lock file created
+2025-10-09 07:12:11,120 - INFO - === Запуск приложения ===
+2025-10-09 07:12:11,121 - INFO - Settings loaded
+2025-10-09 07:12:11,537 - INFO - GUI инициализирован
+2025-10-09 07:12:11,651 - INFO - Settings saved
+2025-10-09 07:12:12,040 - INFO - License verification: SUCCESS
+2025-10-09 08:51:25,593 - INFO - Settings saved
+2025-10-09 08:51:25,594 - INFO - Lock file removed
+2025-10-09 08:51:25,594 - INFO - === Завершение приложения ===
+2025-10-09 09:00:36,303 - INFO - Lock file created
+2025-10-09 09:00:36,608 - INFO - === Запуск приложения ===
+2025-10-09 09:00:36,608 - INFO - Settings loaded
+2025-10-09 09:00:37,110 - INFO - GUI инициализирован
+2025-10-09 09:00:37,212 - INFO - Settings saved
+2025-10-09 09:00:37,643 - INFO - License verification: SUCCESS
+2025-10-09 09:01:09,540 - INFO - Settings saved
+2025-10-09 09:01:10,434 - INFO - Settings saved
+2025-10-09 09:01:11,025 - INFO - Settings saved
+2025-10-09 09:01:11,630 - INFO - Settings saved
+2025-10-09 09:01:29,513 - INFO - Settings saved
+2025-10-09 09:02:58,214 - INFO - Settings saved
+2025-10-09 09:02:58,215 - INFO - Settings saved
+2025-10-09 09:02:58,242 - INFO - Lock file removed
+2025-10-09 09:02:58,243 - INFO - === Завершение приложения ===
+2025-10-09 09:04:25,885 - INFO - Lock file created
+2025-10-09 09:04:26,092 - INFO - === Запуск приложения ===
+2025-10-09 09:04:26,092 - INFO - Settings loaded
+2025-10-09 09:04:26,480 - INFO - GUI инициализирован
+2025-10-09 09:04:26,586 - INFO - Settings saved
+2025-10-09 09:04:26,896 - INFO - License verification: SUCCESS
+2025-10-09 09:04:29,316 - INFO - Settings saved
+2025-10-09 09:04:29,317 - INFO - Settings saved
+2025-10-09 09:04:29,335 - INFO - Lock file removed
+2025-10-09 09:04:29,335 - INFO - === Завершение приложения ===
+2025-10-09 09:04:30,751 - INFO - Lock file created
+2025-10-09 09:04:30,927 - INFO - === Запуск приложения ===
+2025-10-09 09:04:30,927 - INFO - Settings loaded
+2025-10-09 09:04:31,316 - INFO - GUI инициализирован
+2025-10-09 09:04:31,428 - INFO - Settings saved
+2025-10-09 09:04:31,744 - INFO - License verification: SUCCESS
+2025-10-09 09:04:36,178 - INFO - Settings saved
+2025-10-09 09:04:36,178 - INFO - Settings saved
+2025-10-09 09:04:36,199 - INFO - Lock file removed
+2025-10-09 09:04:36,200 - INFO - === Завершение приложения ===
+2025-10-09 09:06:41,867 - INFO - Lock file created
+2025-10-09 09:06:42,082 - INFO - === Запуск приложения ===
+2025-10-09 09:06:42,083 - INFO - Settings loaded
+2025-10-09 09:06:42,512 - INFO - GUI инициализирован
+2025-10-09 09:06:42,619 - INFO - Settings saved
+2025-10-09 09:06:42,900 - INFO - License verification: SUCCESS
+2025-10-09 09:07:03,376 - ERROR - Bot is already running!
+2025-10-09 09:07:03,376 - INFO - Lock file removed
+2025-10-09 09:07:03,377 - INFO - === Завершение приложения ===
+2025-10-09 09:07:10,525 - INFO - Settings saved
+2025-10-09 09:07:14,653 - INFO - Lock file created
+2025-10-09 09:07:14,769 - ERROR - Fatal error: No module named 'requests'
+Traceback (most recent call last):
+  File "C:\project\pw_inject\bot.py", line 46, in <module>
+    from gui import MainWindow
+  File "C:\project\pw_inject\gui\__init__.py", line 4, in <module>
+    from gui.main_window import MainWindow
+  File "C:\project\pw_inject\gui\main_window.py", line 15, in <module>
+    from core import AppState, ActionManager, HotkeyManager, LicenseManager
+  File "C:\project\pw_inject\core\__init__.py", line 7, in <module>
+    from core.license import LicenseManager
+  File "C:\project\pw_inject\core\license.py", line 5, in <module>
+    from keygen import verify_license, get_mac_address
+  File "C:\project\pw_inject\keygen.py", line 6, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+2025-10-09 09:07:14,772 - INFO - Lock file removed
+2025-10-09 09:07:14,772 - INFO - === Завершение приложения ===
+2025-10-09 09:07:18,112 - INFO - Lock file created
+2025-10-09 09:07:18,212 - ERROR - Fatal error: No module named 'requests'
+Traceback (most recent call last):
+  File "C:\project\pw_inject\bot.py", line 46, in <module>
+    from gui import MainWindow
+  File "C:\project\pw_inject\gui\__init__.py", line 4, in <module>
+    from gui.main_window import MainWindow
+  File "C:\project\pw_inject\gui\main_window.py", line 15, in <module>
+    from core import AppState, ActionManager, HotkeyManager, LicenseManager
+  File "C:\project\pw_inject\core\__init__.py", line 7, in <module>
+    from core.license import LicenseManager
+  File "C:\project\pw_inject\core\license.py", line 5, in <module>
+    from keygen import verify_license, get_mac_address
+  File "C:\project\pw_inject\keygen.py", line 6, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+2025-10-09 09:07:18,214 - INFO - Lock file removed
+2025-10-09 09:07:18,214 - INFO - === Завершение приложения ===
+2025-10-09 09:07:27,615 - INFO - Lock file created
+2025-10-09 09:07:27,713 - ERROR - Fatal error: No module named 'requests'
+Traceback (most recent call last):
+  File "C:\project\pw_inject\bot.py", line 46, in <module>
+    from gui import MainWindow
+  File "C:\project\pw_inject\gui\__init__.py", line 4, in <module>
+    from gui.main_window import MainWindow
+  File "C:\project\pw_inject\gui\main_window.py", line 15, in <module>
+    from core import AppState, ActionManager, HotkeyManager, LicenseManager
+  File "C:\project\pw_inject\core\__init__.py", line 7, in <module>
+    from core.license import LicenseManager
+  File "C:\project\pw_inject\core\license.py", line 5, in <module>
+    from keygen import verify_license, get_mac_address
+  File "C:\project\pw_inject\keygen.py", line 6, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+2025-10-09 09:07:27,716 - INFO - Lock file removed
+2025-10-09 09:07:27,716 - INFO - === Завершение приложения ===
+2025-10-09 09:07:34,647 - INFO - Lock file created
+2025-10-09 09:07:34,815 - INFO - === Запуск приложения ===
+2025-10-09 09:07:34,816 - INFO - Settings loaded
+2025-10-09 09:07:35,222 - INFO - GUI инициализирован
+2025-10-09 09:07:35,327 - INFO - Settings saved
+2025-10-09 09:07:35,701 - INFO - License verification: SUCCESS
+2025-10-09 09:07:47,824 - INFO - Settings saved
+2025-10-09 09:07:47,825 - INFO - Settings saved
+2025-10-09 09:07:47,844 - INFO - Lock file removed
+2025-10-09 09:07:47,844 - INFO - === Завершение приложения ===
+2025-10-09 09:07:52,971 - INFO - Settings saved
+2025-10-09 09:12:15,755 - INFO - Settings saved
+2025-10-09 09:12:15,756 - INFO - Settings saved
+2025-10-09 09:12:15,780 - INFO - === Завершение приложения ===
+2025-10-09 09:18:58,565 - INFO - Lock file created
+2025-10-09 09:18:58,779 - INFO - === Запуск приложения ===
+2025-10-09 09:18:58,779 - INFO - Settings loaded
+2025-10-09 09:18:59,036 - INFO - Иконка трея создана
+2025-10-09 09:18:59,161 - INFO - GUI инициализирован
+2025-10-09 09:18:59,276 - INFO - Settings saved
+2025-10-09 09:18:59,705 - INFO - License verification: SUCCESS
+2025-10-09 09:19:18,827 - INFO - Settings saved
+2025-10-09 09:19:18,828 - INFO - Settings saved
+2025-10-09 09:19:18,845 - INFO - Lock file removed
+2025-10-09 09:19:18,846 - INFO - === Завершение приложения ===
+2025-10-09 09:21:13,084 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:21:13,297 - INFO - === Запуск приложения ===
+2025-10-09 09:21:13,297 - INFO - Settings loaded
+2025-10-09 09:21:13,573 - INFO - Иконка трея создана
+2025-10-09 09:21:13,717 - INFO - GUI инициализирован
+2025-10-09 09:21:13,820 - INFO - Settings saved
+2025-10-09 09:21:14,184 - INFO - License verification: SUCCESS
+2025-10-09 09:21:56,498 - WARNING - Приложение уже запущено - попытка активировать окно
+2025-10-09 09:21:58,522 - ERROR - Не удалось связаться с запущенным экземпляром
+2025-10-09 09:21:58,522 - INFO - === Завершение приложения ===
+2025-10-09 09:22:03,737 - INFO - Settings saved
+2025-10-09 09:22:06,684 - WARNING - Приложение уже запущено - попытка активировать окно
+2025-10-09 09:22:08,701 - ERROR - Не удалось связаться с запущенным экземпляром
+2025-10-09 09:22:08,702 - INFO - === Завершение приложения ===
+2025-10-09 09:22:16,407 - INFO - Settings saved
+2025-10-09 09:23:09,502 - INFO - Settings saved
+2025-10-09 09:23:09,503 - INFO - Settings saved
+2025-10-09 09:23:09,529 - INFO - === Завершение приложения ===
+2025-10-09 09:23:42,892 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:23:43,108 - INFO - === Запуск приложения ===
+2025-10-09 09:23:43,109 - INFO - Settings loaded
+2025-10-09 09:23:43,380 - INFO - Иконка трея создана
+2025-10-09 09:23:43,523 - INFO - GUI инициализирован
+2025-10-09 09:23:43,629 - INFO - Settings saved
+2025-10-09 09:23:44,050 - INFO - License verification: SUCCESS
+2025-10-09 09:24:10,343 - INFO - Settings saved
+2025-10-09 09:24:10,343 - INFO - Settings saved
+2025-10-09 09:24:10,364 - INFO - Lock file removed
+2025-10-09 09:24:10,364 - INFO - === Завершение приложения ===
+2025-10-09 09:25:57,260 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:25:57,470 - INFO - === Запуск приложения ===
+2025-10-09 09:25:57,470 - INFO - Settings loaded
+2025-10-09 09:25:57,744 - INFO - Иконка трея создана
+2025-10-09 09:25:57,888 - INFO - GUI инициализирован
+2025-10-09 09:25:57,996 - INFO - Settings saved
+2025-10-09 09:25:58,671 - INFO - License verification: SUCCESS
+2025-10-09 09:26:19,006 - INFO - Settings saved
+2025-10-09 09:26:19,006 - INFO - Settings saved
+2025-10-09 09:26:19,023 - INFO - === Завершение приложения ===
+2025-10-09 09:26:36,022 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:26:36,197 - INFO - === Запуск приложения ===
+2025-10-09 09:26:36,197 - INFO - Settings loaded
+2025-10-09 09:26:36,464 - INFO - Иконка трея создана
+2025-10-09 09:26:36,606 - INFO - GUI инициализирован
+2025-10-09 09:26:36,708 - INFO - Settings saved
+2025-10-09 09:26:36,933 - INFO - License verification: SUCCESS
+2025-10-09 09:29:41,450 - INFO - Settings saved
+2025-10-09 09:29:41,450 - INFO - Settings saved
+2025-10-09 09:29:41,473 - INFO - === Завершение приложения ===
+2025-10-09 09:29:44,374 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:29:44,604 - INFO - === Запуск приложения ===
+2025-10-09 09:29:44,605 - INFO - Settings loaded
+2025-10-09 09:29:44,867 - INFO - Иконка трея создана
+2025-10-09 09:29:45,013 - INFO - GUI инициализирован
+2025-10-09 09:29:45,118 - INFO - Settings saved
+2025-10-09 09:29:45,640 - INFO - License verification: SUCCESS
+2025-10-09 09:30:38,218 - INFO - Settings saved
+2025-10-09 09:30:38,219 - INFO - Settings saved
+2025-10-09 09:30:38,244 - INFO - === Завершение приложения ===
+2025-10-09 09:30:40,482 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:30:40,696 - INFO - === Запуск приложения ===
+2025-10-09 09:30:40,696 - INFO - Settings loaded
+2025-10-09 09:30:40,949 - INFO - Иконка трея создана
+2025-10-09 09:30:41,085 - INFO - GUI инициализирован
+2025-10-09 09:30:41,198 - INFO - Settings saved
+2025-10-09 09:30:41,420 - INFO - License verification: SUCCESS
+2025-10-09 09:30:49,535 - INFO - Settings saved
+2025-10-09 09:30:49,536 - INFO - Settings saved
+2025-10-09 09:30:49,555 - INFO - === Завершение приложения ===
+2025-10-09 09:31:04,383 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:31:04,576 - INFO - === Запуск приложения ===
+2025-10-09 09:31:04,576 - INFO - Settings loaded
+2025-10-09 09:31:04,842 - INFO - Иконка трея создана
+2025-10-09 09:31:04,970 - INFO - GUI инициализирован
+2025-10-09 09:31:05,082 - INFO - Settings saved
+2025-10-09 09:31:05,394 - INFO - License verification: SUCCESS
+2025-10-09 09:31:22,196 - INFO - Settings saved
+2025-10-09 09:31:22,197 - INFO - Settings saved
+2025-10-09 09:31:22,216 - INFO - === Завершение приложения ===
+2025-10-09 09:31:31,211 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:31:31,395 - INFO - === Запуск приложения ===
+2025-10-09 09:31:31,395 - INFO - Settings loaded
+2025-10-09 09:31:31,645 - INFO - Иконка трея создана
+2025-10-09 09:31:31,768 - INFO - GUI инициализирован
+2025-10-09 09:31:31,880 - INFO - Settings saved
+2025-10-09 09:31:32,410 - INFO - License verification: SUCCESS
+2025-10-09 09:31:35,211 - INFO - Settings saved
+2025-10-09 09:31:35,211 - INFO - Settings saved
+2025-10-09 09:31:35,230 - INFO - === Завершение приложения ===
+2025-10-09 09:31:46,418 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:31:46,598 - INFO - === Запуск приложения ===
+2025-10-09 09:31:46,599 - INFO - Settings loaded
+2025-10-09 09:31:46,859 - INFO - Иконка трея создана
+2025-10-09 09:31:47,019 - INFO - GUI инициализирован
+2025-10-09 09:31:47,133 - INFO - Settings saved
+2025-10-09 09:31:47,357 - INFO - License verification: SUCCESS
+2025-10-09 09:32:03,511 - INFO - Settings saved
+2025-10-09 09:32:03,512 - INFO - Settings saved
+2025-10-09 09:32:03,531 - INFO - === Завершение приложения ===
+2025-10-09 09:32:06,244 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:32:06,429 - INFO - === Запуск приложения ===
+2025-10-09 09:32:06,429 - INFO - Settings loaded
+2025-10-09 09:32:06,691 - INFO - Иконка трея создана
+2025-10-09 09:32:06,826 - INFO - GUI инициализирован
+2025-10-09 09:32:06,934 - INFO - Settings saved
+2025-10-09 09:32:07,311 - INFO - License verification: SUCCESS
+2025-10-09 09:32:13,542 - INFO - Settings saved
+2025-10-09 09:32:13,542 - INFO - Settings saved
+2025-10-09 09:32:13,560 - INFO - === Завершение приложения ===
+2025-10-09 09:32:27,832 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:32:28,012 - INFO - === Запуск приложения ===
+2025-10-09 09:32:28,012 - INFO - Settings loaded
+2025-10-09 09:32:28,274 - INFO - Иконка трея создана
+2025-10-09 09:32:28,435 - INFO - GUI инициализирован
+2025-10-09 09:32:28,550 - INFO - Settings saved
+2025-10-09 09:32:28,896 - INFO - License verification: SUCCESS
+2025-10-09 09:32:33,478 - INFO - Settings saved
+2025-10-09 09:32:33,478 - INFO - Settings saved
+2025-10-09 09:32:33,497 - INFO - === Завершение приложения ===
+2025-10-09 09:32:43,250 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:32:43,434 - INFO - === Запуск приложения ===
+2025-10-09 09:32:43,435 - INFO - Settings loaded
+2025-10-09 09:32:43,709 - INFO - Иконка трея создана
+2025-10-09 09:32:43,850 - INFO - GUI инициализирован
+2025-10-09 09:32:43,960 - INFO - Settings saved
+2025-10-09 09:32:44,284 - INFO - License verification: SUCCESS
+2025-10-09 09:32:58,740 - INFO - Settings saved
+2025-10-09 09:32:58,740 - INFO - Settings saved
+2025-10-09 09:32:58,759 - INFO - === Завершение приложения ===
+2025-10-09 09:33:19,501 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:33:19,702 - INFO - === Запуск приложения ===
+2025-10-09 09:33:19,703 - INFO - Settings loaded
+2025-10-09 09:33:19,964 - INFO - Иконка трея создана
+2025-10-09 09:33:20,099 - INFO - GUI инициализирован
+2025-10-09 09:33:20,212 - INFO - Settings saved
+2025-10-09 09:33:20,437 - INFO - License verification: SUCCESS
+2025-10-09 09:33:29,096 - INFO - Settings saved
+2025-10-09 09:33:29,096 - INFO - Settings saved
+2025-10-09 09:33:29,115 - INFO - === Завершение приложения ===
+2025-10-09 09:33:44,451 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:33:44,628 - INFO - === Запуск приложения ===
+2025-10-09 09:33:44,629 - INFO - Settings loaded
+2025-10-09 09:33:44,902 - INFO - Иконка трея создана
+2025-10-09 09:33:45,038 - INFO - GUI инициализирован
+2025-10-09 09:33:45,141 - INFO - Settings saved
+2025-10-09 09:33:45,459 - INFO - License verification: SUCCESS
+2025-10-09 09:34:08,001 - INFO - Settings saved
+2025-10-09 09:34:08,002 - INFO - Settings saved
+2025-10-09 09:34:08,032 - INFO - === Завершение приложения ===
+2025-10-09 09:34:09,893 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:34:10,075 - INFO - === Запуск приложения ===
+2025-10-09 09:34:10,076 - INFO - Settings loaded
+2025-10-09 09:34:10,327 - INFO - Иконка трея создана
+2025-10-09 09:34:10,449 - INFO - GUI инициализирован
+2025-10-09 09:34:10,565 - INFO - Settings saved
+2025-10-09 09:34:10,975 - INFO - License verification: SUCCESS
+2025-10-09 09:34:19,120 - INFO - Settings saved
+2025-10-09 09:34:19,120 - INFO - Settings saved
+2025-10-09 09:34:19,139 - INFO - === Завершение приложения ===
+2025-10-09 09:34:38,571 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:34:38,750 - INFO - === Запуск приложения ===
+2025-10-09 09:34:38,751 - INFO - Settings loaded
+2025-10-09 09:34:39,013 - INFO - Иконка трея создана
+2025-10-09 09:34:39,165 - INFO - GUI инициализирован
+2025-10-09 09:34:39,268 - INFO - Settings saved
+2025-10-09 09:34:39,694 - INFO - License verification: SUCCESS
+2025-10-09 09:34:44,143 - INFO - Settings saved
+2025-10-09 09:34:44,143 - INFO - Settings saved
+2025-10-09 09:34:44,162 - INFO - === Завершение приложения ===
+2025-10-09 09:35:09,156 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:35:09,335 - INFO - === Запуск приложения ===
+2025-10-09 09:35:09,336 - INFO - Settings loaded
+2025-10-09 09:35:09,588 - INFO - Иконка трея создана
+2025-10-09 09:35:09,738 - INFO - GUI инициализирован
+2025-10-09 09:35:09,851 - INFO - Settings saved
+2025-10-09 09:35:10,118 - INFO - License verification: SUCCESS
+2025-10-09 09:35:16,326 - INFO - Settings saved
+2025-10-09 09:35:16,326 - INFO - Settings saved
+2025-10-09 09:35:16,344 - INFO - === Завершение приложения ===
+2025-10-09 09:36:13,888 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:36:14,108 - INFO - === Запуск приложения ===
+2025-10-09 09:36:14,108 - INFO - Settings loaded
+2025-10-09 09:36:14,364 - INFO - Иконка трея создана
+2025-10-09 09:36:14,512 - INFO - GUI инициализирован
+2025-10-09 09:36:14,624 - INFO - Settings saved
+2025-10-09 09:36:15,164 - INFO - License verification: SUCCESS
+2025-10-09 09:36:23,323 - INFO - Settings saved
+2025-10-09 09:36:23,324 - INFO - Settings saved
+2025-10-09 09:36:23,343 - INFO - === Завершение приложения ===
+2025-10-09 09:37:01,011 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:37:01,215 - INFO - === Запуск приложения ===
+2025-10-09 09:37:01,215 - INFO - Settings loaded
+2025-10-09 09:37:01,474 - INFO - Иконка трея создана
+2025-10-09 09:37:01,623 - INFO - GUI инициализирован
+2025-10-09 09:37:01,734 - INFO - Settings saved
+2025-10-09 09:37:02,254 - INFO - License verification: SUCCESS
+2025-10-09 09:37:04,525 - INFO - Settings saved
+2025-10-09 09:37:04,526 - INFO - Settings saved
+2025-10-09 09:37:04,544 - INFO - === Завершение приложения ===
+2025-10-09 09:37:14,112 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:37:14,296 - INFO - === Запуск приложения ===
+2025-10-09 09:37:14,297 - INFO - Settings loaded
+2025-10-09 09:37:14,557 - INFO - Иконка трея создана
+2025-10-09 09:37:14,693 - INFO - GUI инициализирован
+2025-10-09 09:37:14,810 - INFO - Settings saved
+2025-10-09 09:37:15,562 - INFO - License verification: SUCCESS
+2025-10-09 09:37:17,691 - INFO - Settings saved
+2025-10-09 09:37:17,692 - INFO - Settings saved
+2025-10-09 09:37:17,710 - INFO - === Завершение приложения ===
+2025-10-09 09:37:25,636 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:37:25,812 - INFO - === Запуск приложения ===
+2025-10-09 09:37:25,813 - INFO - Settings loaded
+2025-10-09 09:37:26,075 - INFO - Иконка трея создана
+2025-10-09 09:37:26,202 - INFO - GUI инициализирован
+2025-10-09 09:37:26,318 - INFO - Settings saved
+2025-10-09 09:37:26,520 - INFO - License verification: SUCCESS
+2025-10-09 09:37:29,316 - INFO - Settings saved
+2025-10-09 09:37:29,317 - INFO - Settings saved
+2025-10-09 09:37:29,335 - INFO - === Завершение приложения ===
+2025-10-09 09:37:37,877 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:37:38,064 - INFO - === Запуск приложения ===
+2025-10-09 09:37:38,065 - INFO - Settings loaded
+2025-10-09 09:37:38,334 - INFO - Иконка трея создана
+2025-10-09 09:37:38,481 - INFO - GUI инициализирован
+2025-10-09 09:37:38,592 - INFO - Settings saved
+2025-10-09 09:37:38,786 - INFO - License verification: SUCCESS
+2025-10-09 09:37:48,218 - INFO - Settings saved
+2025-10-09 09:37:48,218 - INFO - Settings saved
+2025-10-09 09:37:48,239 - INFO - === Завершение приложения ===
+2025-10-09 09:38:02,850 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:38:03,035 - INFO - === Запуск приложения ===
+2025-10-09 09:38:03,035 - INFO - Settings loaded
+2025-10-09 09:38:03,312 - INFO - Иконка трея создана
+2025-10-09 09:38:03,452 - INFO - GUI инициализирован
+2025-10-09 09:38:03,563 - INFO - Settings saved
+2025-10-09 09:38:03,787 - INFO - License verification: SUCCESS
+2025-10-09 09:38:10,264 - INFO - Settings saved
+2025-10-09 09:38:10,264 - INFO - Settings saved
+2025-10-09 09:38:10,284 - INFO - === Завершение приложения ===
+2025-10-09 09:38:16,679 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:38:16,864 - INFO - === Запуск приложения ===
+2025-10-09 09:38:16,864 - INFO - Settings loaded
+2025-10-09 09:38:17,141 - INFO - Иконка трея создана
+2025-10-09 09:38:17,266 - INFO - GUI инициализирован
+2025-10-09 09:38:17,380 - INFO - Settings saved
+2025-10-09 09:38:17,624 - INFO - License verification: SUCCESS
+2025-10-09 09:38:21,255 - INFO - Settings saved
+2025-10-09 09:38:21,256 - INFO - Settings saved
+2025-10-09 09:38:21,273 - INFO - === Завершение приложения ===
+2025-10-09 09:39:18,428 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:39:18,615 - INFO - === Запуск приложения ===
+2025-10-09 09:39:18,616 - INFO - Settings loaded
+2025-10-09 09:39:18,905 - INFO - Иконка трея создана
+2025-10-09 09:39:19,037 - INFO - GUI инициализирован
+2025-10-09 09:39:19,148 - INFO - Settings saved
+2025-10-09 09:39:19,531 - INFO - License verification: SUCCESS
+2025-10-09 09:40:11,031 - INFO - Settings saved
+2025-10-09 09:40:11,032 - INFO - Settings saved
+2025-10-09 09:40:11,058 - INFO - === Завершение приложения ===
+2025-10-09 09:40:12,074 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:40:12,249 - INFO - === Запуск приложения ===
+2025-10-09 09:40:12,250 - INFO - Settings loaded
+2025-10-09 09:40:12,508 - INFO - Иконка трея создана
+2025-10-09 09:40:12,647 - INFO - GUI инициализирован
+2025-10-09 09:40:12,750 - INFO - Settings saved
+2025-10-09 09:40:13,144 - INFO - License verification: SUCCESS
+2025-10-09 09:40:34,965 - INFO - Settings saved
+2025-10-09 09:40:34,966 - INFO - Settings saved
+2025-10-09 09:40:34,990 - INFO - === Завершение приложения ===
+2025-10-09 09:40:35,904 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:40:36,104 - INFO - === Запуск приложения ===
+2025-10-09 09:40:36,105 - INFO - Settings loaded
+2025-10-09 09:40:36,375 - INFO - Иконка трея создана
+2025-10-09 09:40:36,509 - INFO - GUI инициализирован
+2025-10-09 09:40:36,611 - INFO - Settings saved
+2025-10-09 09:40:36,915 - INFO - License verification: SUCCESS
+2025-10-09 09:40:43,124 - INFO - Settings saved
+2025-10-09 09:40:43,125 - INFO - Settings saved
+2025-10-09 09:40:43,147 - INFO - === Завершение приложения ===
+2025-10-09 09:41:16,355 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:41:16,547 - INFO - === Запуск приложения ===
+2025-10-09 09:41:16,547 - INFO - Settings loaded
+2025-10-09 09:41:16,821 - INFO - Иконка трея создана
+2025-10-09 09:41:16,958 - INFO - GUI инициализирован
+2025-10-09 09:41:17,072 - INFO - Settings saved
+2025-10-09 09:41:17,347 - INFO - License verification: SUCCESS
+2025-10-09 09:41:40,661 - INFO - Settings saved
+2025-10-09 09:41:40,662 - INFO - Settings saved
+2025-10-09 09:41:40,681 - INFO - === Завершение приложения ===
+2025-10-09 09:41:49,614 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:41:49,811 - INFO - === Запуск приложения ===
+2025-10-09 09:41:49,811 - INFO - Settings loaded
+2025-10-09 09:41:50,064 - INFO - Иконка трея создана
+2025-10-09 09:41:50,204 - INFO - GUI инициализирован
+2025-10-09 09:41:50,317 - INFO - Settings saved
+2025-10-09 09:41:50,601 - INFO - License verification: SUCCESS
+2025-10-09 09:42:17,788 - INFO - Settings saved
+2025-10-09 09:42:17,789 - INFO - Settings saved
+2025-10-09 09:42:17,808 - INFO - === Завершение приложения ===
+2025-10-09 09:43:00,191 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:43:00,372 - INFO - === Запуск приложения ===
+2025-10-09 09:43:00,372 - INFO - Settings loaded
+2025-10-09 09:43:00,629 - INFO - Иконка трея создана
+2025-10-09 09:43:00,751 - INFO - GUI инициализирован
+2025-10-09 09:43:00,861 - INFO - Settings saved
+2025-10-09 09:43:01,108 - INFO - License verification: SUCCESS
+2025-10-09 09:43:08,763 - INFO - Settings saved
+2025-10-09 09:43:08,763 - INFO - Settings saved
+2025-10-09 09:43:08,783 - INFO - === Завершение приложения ===
+2025-10-09 09:43:14,252 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:43:14,438 - INFO - === Запуск приложения ===
+2025-10-09 09:43:14,439 - INFO - Settings loaded
+2025-10-09 09:43:14,702 - INFO - Иконка трея создана
+2025-10-09 09:43:14,836 - INFO - GUI инициализирован
+2025-10-09 09:43:14,941 - INFO - Settings saved
+2025-10-09 09:43:15,292 - INFO - License verification: SUCCESS
+2025-10-09 09:43:17,912 - INFO - Settings saved
+2025-10-09 09:43:17,913 - INFO - Settings saved
+2025-10-09 09:43:17,932 - INFO - === Завершение приложения ===
+2025-10-09 09:43:26,806 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:43:26,988 - INFO - === Запуск приложения ===
+2025-10-09 09:43:26,989 - INFO - Settings loaded
+2025-10-09 09:43:27,252 - INFO - Иконка трея создана
+2025-10-09 09:43:27,401 - INFO - GUI инициализирован
+2025-10-09 09:43:27,507 - INFO - Settings saved
+2025-10-09 09:43:27,707 - INFO - License verification: SUCCESS
+2025-10-09 09:43:44,953 - INFO - Settings saved
+2025-10-09 09:43:44,953 - INFO - Settings saved
+2025-10-09 09:43:44,973 - INFO - === Завершение приложения ===
+2025-10-09 09:43:53,039 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:43:53,232 - INFO - === Запуск приложения ===
+2025-10-09 09:43:53,232 - INFO - Settings loaded
+2025-10-09 09:43:53,364 - ERROR - Fatal error: bad pad value "-2": must be positive screen distance
+Traceback (most recent call last):
+  File "c:\project\pw_inject\bot.py", line 81, in <module>
+    app = MainWindow(multibox_manager, settings_manager)
+  File "c:\project\pw_inject\gui\main_window.py", line 45, in __init__
+    self._create_ui()
+    ~~~~~~~~~~~~~~~^^
+  File "c:\project\pw_inject\gui\main_window.py", line 210, in _create_ui
+    self.minimize_btn.pack(side=tk.RIGHT, padx=-2)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\esco\AppData\Local\Programs\Python\Python313\Lib\tkinter\__init__.py", line 2602, in pack_configure
+    self.tk.call(
+    ~~~~~~~~~~~~^
+          ('pack', 'configure', self._w)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          + self._options(cnf, kw))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: bad pad value "-2": must be positive screen distance
+2025-10-09 09:43:53,368 - INFO - === Завершение приложения ===
+2025-10-09 09:44:00,010 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:44:00,188 - INFO - === Запуск приложения ===
+2025-10-09 09:44:00,188 - INFO - Settings loaded
+2025-10-09 09:44:00,393 - INFO - Иконка трея создана
+2025-10-09 09:44:00,534 - INFO - GUI инициализирован
+2025-10-09 09:44:00,642 - INFO - Settings saved
+2025-10-09 09:44:01,162 - INFO - License verification: SUCCESS
+2025-10-09 09:44:06,217 - INFO - Settings saved
+2025-10-09 09:44:06,218 - INFO - Settings saved
+2025-10-09 09:44:06,236 - INFO - === Завершение приложения ===
+2025-10-09 09:44:45,749 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:44:45,944 - INFO - === Запуск приложения ===
+2025-10-09 09:44:45,945 - INFO - Settings loaded
+2025-10-09 09:44:46,214 - INFO - Иконка трея создана
+2025-10-09 09:44:46,335 - INFO - GUI инициализирован
+2025-10-09 09:44:46,444 - INFO - Settings saved
+2025-10-09 09:44:46,958 - INFO - License verification: SUCCESS
+2025-10-09 09:44:59,908 - INFO - Settings saved
+2025-10-09 09:44:59,909 - INFO - Settings saved
+2025-10-09 09:44:59,925 - INFO - === Завершение приложения ===
+2025-10-09 09:45:13,974 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:45:14,156 - INFO - === Запуск приложения ===
+2025-10-09 09:45:14,157 - INFO - Settings loaded
+2025-10-09 09:45:14,410 - INFO - Иконка трея создана
+2025-10-09 09:45:14,543 - INFO - GUI инициализирован
+2025-10-09 09:45:14,656 - INFO - Settings saved
+2025-10-09 09:45:14,968 - INFO - License verification: SUCCESS
+2025-10-09 09:45:24,218 - INFO - Settings saved
+2025-10-09 09:45:24,218 - INFO - Settings saved
+2025-10-09 09:45:24,236 - INFO - === Завершение приложения ===
+2025-10-09 09:45:43,028 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:45:43,212 - INFO - === Запуск приложения ===
+2025-10-09 09:45:43,213 - INFO - Settings loaded
+2025-10-09 09:45:43,472 - INFO - Иконка трея создана
+2025-10-09 09:45:43,615 - INFO - GUI инициализирован
+2025-10-09 09:45:43,726 - INFO - Settings saved
+2025-10-09 09:45:44,037 - INFO - License verification: SUCCESS
+2025-10-09 09:45:49,282 - INFO - Settings saved
+2025-10-09 09:45:49,282 - INFO - Settings saved
+2025-10-09 09:45:49,301 - INFO - === Завершение приложения ===
+2025-10-09 09:45:58,558 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:45:58,735 - INFO - === Запуск приложения ===
+2025-10-09 09:45:58,736 - INFO - Settings loaded
+2025-10-09 09:45:59,000 - INFO - Иконка трея создана
+2025-10-09 09:45:59,146 - INFO - GUI инициализирован
+2025-10-09 09:45:59,258 - INFO - Settings saved
+2025-10-09 09:45:59,547 - INFO - License verification: SUCCESS
+2025-10-09 09:46:09,526 - INFO - Settings saved
+2025-10-09 09:46:09,526 - INFO - Settings saved
+2025-10-09 09:46:09,546 - INFO - === Завершение приложения ===
+2025-10-09 09:46:30,245 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:46:30,432 - INFO - === Запуск приложения ===
+2025-10-09 09:46:30,432 - INFO - Settings loaded
+2025-10-09 09:46:30,565 - ERROR - Fatal error: expected integer but got "2.5"
+Traceback (most recent call last):
+  File "c:\project\pw_inject\bot.py", line 81, in <module>
+    app = MainWindow(multibox_manager, settings_manager)
+  File "c:\project\pw_inject\gui\main_window.py", line 45, in __init__
+    self._create_ui()
+    ~~~~~~~~~~~~~~~^^
+  File "c:\project\pw_inject\gui\main_window.py", line 216, in _create_ui
+    self.pin_btn = tk.Label(
+                   ~~~~~~~~^
+        self.title_bar,
+        ^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        anchor="center"
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\esco\AppData\Local\Programs\Python\Python313\Lib\tkinter\__init__.py", line 3367, in __init__
+    Widget.__init__(self, master, 'label', cnf, kw)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\esco\AppData\Local\Programs\Python\Python313\Lib\tkinter\__init__.py", line 2780, in __init__
+    self.tk.call(
+    ~~~~~~~~~~~~^
+        (widgetName, self._w) + extra + self._options(cnf))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: expected integer but got "2.5"
+2025-10-09 09:46:30,569 - INFO - === Завершение приложения ===
+2025-10-09 09:46:44,122 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:46:44,301 - INFO - === Запуск приложения ===
+2025-10-09 09:46:44,302 - INFO - Settings loaded
+2025-10-09 09:46:44,520 - INFO - Иконка трея создана
+2025-10-09 09:46:44,654 - INFO - GUI инициализирован
+2025-10-09 09:46:44,770 - INFO - Settings saved
+2025-10-09 09:46:44,966 - INFO - License verification: SUCCESS
+2025-10-09 09:46:51,765 - INFO - Settings saved
+2025-10-09 09:46:51,765 - INFO - Settings saved
+2025-10-09 09:46:51,785 - INFO - === Завершение приложения ===
+2025-10-09 09:47:12,452 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:47:12,644 - INFO - === Запуск приложения ===
+2025-10-09 09:47:12,645 - INFO - Settings loaded
+2025-10-09 09:47:12,903 - INFO - Иконка трея создана
+2025-10-09 09:47:13,046 - INFO - GUI инициализирован
+2025-10-09 09:47:13,148 - INFO - Settings saved
+2025-10-09 09:47:13,558 - INFO - License verification: SUCCESS
+2025-10-09 09:47:17,476 - INFO - Settings saved
+2025-10-09 09:47:17,476 - INFO - Settings saved
+2025-10-09 09:47:17,496 - INFO - === Завершение приложения ===
+2025-10-09 09:47:26,596 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:47:26,780 - INFO - === Запуск приложения ===
+2025-10-09 09:47:26,781 - INFO - Settings loaded
+2025-10-09 09:47:27,040 - INFO - Иконка трея создана
+2025-10-09 09:47:27,185 - INFO - GUI инициализирован
+2025-10-09 09:47:27,295 - INFO - Settings saved
+2025-10-09 09:47:27,539 - INFO - License verification: SUCCESS
+2025-10-09 09:47:30,974 - INFO - Settings saved
+2025-10-09 09:47:30,974 - INFO - Settings saved
+2025-10-09 09:47:30,994 - INFO - === Завершение приложения ===
+2025-10-09 09:47:38,412 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:47:38,593 - INFO - === Запуск приложения ===
+2025-10-09 09:47:38,593 - INFO - Settings loaded
+2025-10-09 09:47:38,854 - INFO - Иконка трея создана
+2025-10-09 09:47:39,001 - INFO - GUI инициализирован
+2025-10-09 09:47:39,111 - INFO - Settings saved
+2025-10-09 09:47:39,472 - INFO - License verification: SUCCESS
+2025-10-09 09:47:42,559 - INFO - Settings saved
+2025-10-09 09:47:42,559 - INFO - Settings saved
+2025-10-09 09:47:42,579 - INFO - === Завершение приложения ===
+2025-10-09 09:47:48,198 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:47:48,372 - INFO - === Запуск приложения ===
+2025-10-09 09:47:48,373 - INFO - Settings loaded
+2025-10-09 09:47:48,636 - INFO - Иконка трея создана
+2025-10-09 09:47:48,800 - INFO - GUI инициализирован
+2025-10-09 09:47:48,917 - INFO - Settings saved
+2025-10-09 09:47:49,204 - INFO - License verification: SUCCESS
+2025-10-09 09:47:58,582 - INFO - Settings saved
+2025-10-09 09:47:58,582 - INFO - Settings saved
+2025-10-09 09:47:58,601 - INFO - === Завершение приложения ===
+2025-10-09 09:48:23,865 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:48:24,036 - INFO - === Запуск приложения ===
+2025-10-09 09:48:24,036 - INFO - Settings loaded
+2025-10-09 09:48:24,297 - INFO - Иконка трея создана
+2025-10-09 09:48:24,420 - INFO - GUI инициализирован
+2025-10-09 09:48:24,529 - INFO - Settings saved
+2025-10-09 09:48:24,966 - INFO - License verification: SUCCESS
+2025-10-09 09:48:38,249 - INFO - Settings saved
+2025-10-09 09:48:38,250 - INFO - Settings saved
+2025-10-09 09:48:38,268 - INFO - === Завершение приложения ===
+2025-10-09 09:49:07,827 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:49:08,013 - INFO - === Запуск приложения ===
+2025-10-09 09:49:08,014 - INFO - Settings loaded
+2025-10-09 09:49:08,280 - INFO - Иконка трея создана
+2025-10-09 09:49:08,416 - INFO - GUI инициализирован
+2025-10-09 09:49:08,521 - INFO - Settings saved
+2025-10-09 09:49:08,767 - INFO - License verification: SUCCESS
+2025-10-09 09:49:16,377 - INFO - Settings saved
+2025-10-09 09:49:16,377 - INFO - Settings saved
+2025-10-09 09:49:16,394 - INFO - === Завершение приложения ===
+2025-10-09 09:49:53,971 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:49:54,215 - INFO - === Запуск приложения ===
+2025-10-09 09:49:54,215 - INFO - Settings loaded
+2025-10-09 09:49:54,473 - INFO - Иконка трея создана
+2025-10-09 09:49:54,611 - INFO - GUI инициализирован
+2025-10-09 09:49:54,715 - INFO - Settings saved
+2025-10-09 09:49:55,032 - INFO - License verification: SUCCESS
+2025-10-09 09:50:09,365 - INFO - Settings saved
+2025-10-09 09:50:09,366 - INFO - Settings saved
+2025-10-09 09:50:09,385 - INFO - === Завершение приложения ===
+2025-10-09 09:50:16,007 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:50:16,194 - INFO - === Запуск приложения ===
+2025-10-09 09:50:16,194 - INFO - Settings loaded
+2025-10-09 09:50:16,458 - INFO - Иконка трея создана
+2025-10-09 09:50:16,617 - INFO - GUI инициализирован
+2025-10-09 09:50:16,719 - INFO - Settings saved
+2025-10-09 09:50:17,078 - INFO - License verification: SUCCESS
+2025-10-09 09:50:19,534 - INFO - Settings saved
+2025-10-09 09:50:19,535 - INFO - Settings saved
+2025-10-09 09:50:19,553 - INFO - === Завершение приложения ===
+2025-10-09 09:50:37,317 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:50:37,508 - INFO - === Запуск приложения ===
+2025-10-09 09:50:37,508 - INFO - Settings loaded
+2025-10-09 09:50:37,784 - INFO - Иконка трея создана
+2025-10-09 09:50:37,932 - INFO - GUI инициализирован
+2025-10-09 09:50:38,034 - INFO - Settings saved
+2025-10-09 09:50:38,417 - INFO - License verification: SUCCESS
+2025-10-09 09:50:49,671 - INFO - Settings saved
+2025-10-09 09:50:49,672 - INFO - Settings saved
+2025-10-09 09:50:49,690 - INFO - === Завершение приложения ===
+2025-10-09 09:51:11,446 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:51:11,631 - INFO - === Запуск приложения ===
+2025-10-09 09:51:11,632 - INFO - Settings loaded
+2025-10-09 09:51:11,888 - INFO - Иконка трея создана
+2025-10-09 09:51:12,027 - INFO - GUI инициализирован
+2025-10-09 09:51:12,137 - INFO - Settings saved
+2025-10-09 09:51:12,784 - INFO - License verification: SUCCESS
+2025-10-09 09:51:15,180 - INFO - Settings saved
+2025-10-09 09:51:15,181 - INFO - Settings saved
+2025-10-09 09:51:15,200 - INFO - === Завершение приложения ===
+2025-10-09 09:51:22,861 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:51:23,075 - INFO - === Запуск приложения ===
+2025-10-09 09:51:23,075 - INFO - Settings loaded
+2025-10-09 09:51:23,374 - INFO - Иконка трея создана
+2025-10-09 09:51:23,541 - INFO - GUI инициализирован
+2025-10-09 09:51:23,655 - INFO - Settings saved
+2025-10-09 09:51:24,028 - INFO - License verification: SUCCESS
+2025-10-09 09:51:27,936 - INFO - Settings saved
+2025-10-09 09:51:27,937 - INFO - Settings saved
+2025-10-09 09:51:27,954 - INFO - === Завершение приложения ===
+2025-10-09 09:51:33,389 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:51:33,576 - INFO - === Запуск приложения ===
+2025-10-09 09:51:33,576 - INFO - Settings loaded
+2025-10-09 09:51:33,846 - INFO - Иконка трея создана
+2025-10-09 09:51:34,000 - INFO - GUI инициализирован
+2025-10-09 09:51:34,116 - INFO - Settings saved
+2025-10-09 09:51:34,595 - INFO - License verification: SUCCESS
+2025-10-09 09:51:37,202 - INFO - Settings saved
+2025-10-09 09:51:37,202 - INFO - Settings saved
+2025-10-09 09:51:37,222 - INFO - === Завершение приложения ===
+2025-10-09 09:51:53,668 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:51:53,895 - INFO - === Запуск приложения ===
+2025-10-09 09:51:53,895 - INFO - Settings loaded
+2025-10-09 09:51:54,171 - INFO - Иконка трея создана
+2025-10-09 09:51:54,320 - INFO - GUI инициализирован
+2025-10-09 09:51:54,432 - INFO - Settings saved
+2025-10-09 09:51:54,690 - INFO - License verification: SUCCESS
+2025-10-09 09:51:56,477 - INFO - Settings saved
+2025-10-09 09:51:56,478 - INFO - Settings saved
+2025-10-09 09:51:56,496 - INFO - === Завершение приложения ===
+2025-10-09 09:52:02,070 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:52:02,251 - INFO - === Запуск приложения ===
+2025-10-09 09:52:02,252 - INFO - Settings loaded
+2025-10-09 09:52:02,514 - INFO - Иконка трея создана
+2025-10-09 09:52:02,661 - INFO - GUI инициализирован
+2025-10-09 09:52:02,774 - INFO - Settings saved
+2025-10-09 09:52:03,022 - INFO - License verification: SUCCESS
+2025-10-09 09:52:10,001 - INFO - Settings saved
+2025-10-09 09:52:10,002 - INFO - Settings saved
+2025-10-09 09:52:10,022 - INFO - === Завершение приложения ===
+2025-10-09 09:52:36,334 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:52:36,521 - INFO - === Запуск приложения ===
+2025-10-09 09:52:36,521 - INFO - Settings loaded
+2025-10-09 09:52:36,783 - INFO - Иконка трея создана
+2025-10-09 09:52:36,938 - INFO - GUI инициализирован
+2025-10-09 09:52:37,043 - INFO - Settings saved
+2025-10-09 09:52:37,365 - INFO - License verification: SUCCESS
+2025-10-09 09:52:43,344 - INFO - Settings saved
+2025-10-09 09:52:43,345 - INFO - Settings saved
+2025-10-09 09:52:43,364 - INFO - === Завершение приложения ===
+2025-10-09 09:53:01,268 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:53:01,457 - INFO - === Запуск приложения ===
+2025-10-09 09:53:01,458 - INFO - Settings loaded
+2025-10-09 09:53:01,715 - INFO - Иконка трея создана
+2025-10-09 09:53:01,857 - INFO - GUI инициализирован
+2025-10-09 09:53:01,969 - INFO - Settings saved
+2025-10-09 09:53:02,471 - INFO - License verification: SUCCESS
+2025-10-09 09:53:35,544 - INFO - Settings saved
+2025-10-09 09:53:35,545 - INFO - Settings saved
+2025-10-09 09:53:35,571 - INFO - === Завершение приложения ===
+2025-10-09 09:53:37,940 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:53:38,120 - INFO - === Запуск приложения ===
+2025-10-09 09:53:38,120 - INFO - Settings loaded
+2025-10-09 09:53:38,372 - INFO - Иконка трея создана
+2025-10-09 09:53:38,515 - INFO - GUI инициализирован
+2025-10-09 09:53:38,628 - INFO - Settings saved
+2025-10-09 09:53:38,838 - INFO - License verification: SUCCESS
+2025-10-09 09:55:10,737 - INFO - Settings saved
+2025-10-09 09:55:10,737 - INFO - Settings saved
+2025-10-09 09:55:10,764 - INFO - === Завершение приложения ===
+2025-10-09 09:55:13,077 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:55:13,284 - INFO - === Запуск приложения ===
+2025-10-09 09:55:13,284 - INFO - Settings loaded
+2025-10-09 09:55:13,543 - INFO - Иконка трея создана
+2025-10-09 09:55:13,672 - INFO - GUI инициализирован
+2025-10-09 09:55:13,782 - INFO - Settings saved
+2025-10-09 09:55:14,067 - INFO - License verification: SUCCESS
+2025-10-09 09:55:23,001 - INFO - Settings saved
+2025-10-09 09:55:23,001 - INFO - Settings saved
+2025-10-09 09:55:23,021 - INFO - === Завершение приложения ===
+2025-10-09 09:55:42,307 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:55:42,489 - INFO - === Запуск приложения ===
+2025-10-09 09:55:42,489 - INFO - Settings loaded
+2025-10-09 09:55:42,741 - INFO - Иконка трея создана
+2025-10-09 09:55:42,867 - INFO - GUI инициализирован
+2025-10-09 09:55:42,979 - INFO - Settings saved
+2025-10-09 09:55:43,465 - INFO - License verification: SUCCESS
+2025-10-09 09:55:52,013 - INFO - Settings saved
+2025-10-09 09:55:52,014 - INFO - Settings saved
+2025-10-09 09:55:52,033 - INFO - === Завершение приложения ===
+2025-10-09 09:56:09,053 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:56:09,231 - INFO - === Запуск приложения ===
+2025-10-09 09:56:09,232 - INFO - Settings loaded
+2025-10-09 09:56:09,489 - INFO - Иконка трея создана
+2025-10-09 09:56:09,630 - INFO - GUI инициализирован
+2025-10-09 09:56:09,736 - INFO - Settings saved
+2025-10-09 09:56:10,161 - INFO - License verification: SUCCESS
+2025-10-09 09:56:26,055 - INFO - Settings saved
+2025-10-09 09:56:26,055 - INFO - Settings saved
+2025-10-09 09:56:26,074 - INFO - === Завершение приложения ===
+2025-10-09 09:56:44,703 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:56:44,902 - INFO - === Запуск приложения ===
+2025-10-09 09:56:44,902 - INFO - Settings loaded
+2025-10-09 09:56:45,154 - INFO - Иконка трея создана
+2025-10-09 09:56:45,294 - INFO - GUI инициализирован
+2025-10-09 09:56:45,405 - INFO - Settings saved
+2025-10-09 09:56:45,598 - INFO - License verification: SUCCESS
+2025-10-09 09:58:09,228 - INFO - Settings saved
+2025-10-09 09:58:09,229 - INFO - Settings saved
+2025-10-09 09:58:09,259 - INFO - === Завершение приложения ===
+2025-10-09 09:58:11,214 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:58:11,410 - INFO - === Запуск приложения ===
+2025-10-09 09:58:11,410 - INFO - Settings loaded
+2025-10-09 09:58:11,676 - INFO - Иконка трея создана
+2025-10-09 09:58:11,830 - INFO - GUI инициализирован
+2025-10-09 09:58:11,937 - INFO - Settings saved
+2025-10-09 09:58:12,317 - INFO - License verification: SUCCESS
+2025-10-09 09:58:23,749 - INFO - Settings saved
+2025-10-09 09:58:23,749 - INFO - Settings saved
+2025-10-09 09:58:23,766 - INFO - === Завершение приложения ===
+2025-10-09 09:59:11,951 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 09:59:12,144 - INFO - === Запуск приложения ===
+2025-10-09 09:59:12,145 - INFO - Settings loaded
+2025-10-09 09:59:12,404 - INFO - Иконка трея создана
+2025-10-09 09:59:12,550 - INFO - GUI инициализирован
+2025-10-09 09:59:12,658 - INFO - Settings saved
+2025-10-09 09:59:12,858 - INFO - License verification: SUCCESS
+2025-10-09 09:59:17,913 - INFO - Settings saved
+2025-10-09 09:59:17,913 - INFO - Settings saved
+2025-10-09 09:59:17,931 - INFO - === Завершение приложения ===
+2025-10-09 10:00:02,455 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 10:00:02,638 - INFO - === Запуск приложения ===
+2025-10-09 10:00:02,639 - INFO - Settings loaded
+2025-10-09 10:00:02,902 - INFO - Иконка трея создана
+2025-10-09 10:00:03,027 - INFO - GUI инициализирован
+2025-10-09 10:00:03,144 - INFO - Settings saved
+2025-10-09 10:00:03,478 - INFO - License verification: SUCCESS
+2025-10-09 10:00:11,579 - INFO - Settings saved
+2025-10-09 10:00:11,580 - INFO - Settings saved
+2025-10-09 10:00:11,601 - INFO - === Завершение приложения ===
+2025-10-09 10:00:20,498 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 10:00:20,688 - INFO - === Запуск приложения ===
+2025-10-09 10:00:20,688 - INFO - Settings loaded
+2025-10-09 10:00:20,938 - INFO - Иконка трея создана
+2025-10-09 10:00:21,073 - INFO - GUI инициализирован
+2025-10-09 10:00:21,191 - INFO - Settings saved
+2025-10-09 10:00:21,609 - INFO - License verification: SUCCESS
+2025-10-09 10:00:22,987 - INFO - Settings saved
+2025-10-09 10:00:22,987 - INFO - Settings saved
+2025-10-09 10:00:23,007 - INFO - === Завершение приложения ===
+2025-10-09 10:01:09,043 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 10:01:09,248 - INFO - === Запуск приложения ===
+2025-10-09 10:01:09,249 - INFO - Settings loaded
+2025-10-09 10:01:09,504 - INFO - Иконка трея создана
+2025-10-09 10:01:09,639 - INFO - GUI инициализирован
+2025-10-09 10:01:09,755 - INFO - Settings saved
+2025-10-09 10:01:10,077 - INFO - License verification: SUCCESS
+2025-10-09 10:01:17,899 - INFO - Settings saved
+2025-10-09 10:01:17,900 - INFO - Settings saved
+2025-10-09 10:01:17,920 - INFO - === Завершение приложения ===
+2025-10-09 10:02:21,386 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 10:02:21,610 - INFO - === Запуск приложения ===
+2025-10-09 10:02:21,610 - INFO - Settings loaded
+2025-10-09 10:02:21,860 - INFO - Иконка трея создана
+2025-10-09 10:02:22,004 - INFO - GUI инициализирован
+2025-10-09 10:02:22,109 - INFO - Settings saved
+2025-10-09 10:02:22,558 - INFO - License verification: SUCCESS
+2025-10-09 10:02:55,958 - INFO - Settings saved
+2025-10-09 10:02:55,959 - INFO - Settings saved
+2025-10-09 10:02:55,976 - INFO - === Завершение приложения ===
