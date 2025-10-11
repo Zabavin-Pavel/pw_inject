@@ -137,7 +137,7 @@ class MainWindow:
     def _create_ui(self):
         """Создать UI"""
         self.root = tk.Tk()
-        self.root.title("Лисий хвостик by qkuwla")
+        self.root.title("Discord")
     
         # === ЗАГРУЗИТЬ ПОЗИЦИЮ ИЗ НАСТРОЕК ===
         pos = self.settings_manager.get_window_position()
@@ -168,7 +168,7 @@ class MainWindow:
         
         title_label = tk.Label(
             self.title_bar,
-            text="Xvocmuk by kquwka",
+            text="Xvocmuk",
             font=FONT_TITLE,
             bg=COLOR_BG,
             fg=COLOR_TEXT

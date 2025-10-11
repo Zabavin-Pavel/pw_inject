@@ -2782,3 +2782,108 @@ _tkinter.TclError: expected integer but got "2.5"
 2025-10-09 10:02:55,958 - INFO - Settings saved
 2025-10-09 10:02:55,959 - INFO - Settings saved
 2025-10-09 10:02:55,976 - INFO - === Завершение приложения ===
+2025-10-09 18:54:34,788 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 18:54:34,962 - INFO - === Запуск приложения ===
+2025-10-09 18:54:34,962 - INFO - Settings loaded
+2025-10-09 18:54:35,217 - INFO - Иконка трея создана
+2025-10-09 18:54:35,320 - INFO - GUI инициализирован
+2025-10-09 18:54:35,424 - INFO - Settings saved
+2025-10-09 18:54:35,750 - INFO - License verification: SUCCESS
+2025-10-09 18:54:45,321 - INFO - Settings saved
+2025-10-09 18:54:45,322 - INFO - Settings saved
+2025-10-09 18:54:45,336 - INFO - === Завершение приложения ===
+2025-10-09 18:55:48,200 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 18:55:48,340 - INFO - === Запуск приложения ===
+2025-10-09 18:55:48,340 - INFO - Settings loaded
+2025-10-09 18:55:48,555 - INFO - Иконка трея создана
+2025-10-09 18:55:48,662 - INFO - GUI инициализирован
+2025-10-09 18:55:48,764 - INFO - Settings saved
+2025-10-09 18:55:49,084 - INFO - License verification: SUCCESS
+2025-10-09 19:00:45,766 - INFO - Settings saved
+2025-10-09 19:00:45,766 - INFO - Settings saved
+2025-10-09 19:00:45,781 - INFO - === Завершение приложения ===
+2025-10-09 19:41:18,128 - INFO - Первый экземпляр - запуск приложения
+2025-10-09 19:41:18,277 - INFO - === Запуск приложения ===
+2025-10-09 19:41:18,278 - INFO - Settings loaded
+2025-10-09 19:41:18,486 - INFO - Иконка трея создана
+2025-10-09 19:41:18,582 - INFO - GUI инициализирован
+2025-10-09 19:41:18,684 - INFO - Settings saved
+2025-10-09 19:41:18,966 - INFO - License verification: SUCCESS
+2025-10-09 19:41:44,267 - INFO - Settings saved
+2025-10-09 19:41:44,267 - INFO - Settings saved
+2025-10-09 19:41:47,353 - INFO - Settings saved
+2025-10-09 19:41:49,682 - INFO - Settings saved
+2025-10-09 19:41:49,682 - INFO - Settings saved
+2025-10-09 19:41:54,934 - INFO - Settings saved
+2025-10-09 19:41:54,934 - INFO - Settings saved
+2025-10-09 19:47:30,586 - INFO - Settings saved
+2025-10-09 19:47:30,586 - INFO - Settings saved
+2025-10-09 19:47:30,597 - INFO - === Завершение приложения ===
+2025-10-10 09:43:19,414 - INFO - Первый экземпляр - запуск приложения
+2025-10-10 09:43:19,582 - INFO - === Запуск приложения ===
+2025-10-10 09:43:19,583 - INFO - Settings loaded
+2025-10-10 09:43:19,840 - INFO - Иконка трея создана
+2025-10-10 09:43:19,956 - INFO - GUI инициализирован
+2025-10-10 09:43:20,064 - INFO - Settings saved
+2025-10-10 09:43:20,555 - INFO - License verification: SUCCESS
+2025-10-10 09:44:35,987 - INFO - Settings saved
+2025-10-10 09:44:37,375 - INFO - Settings saved
+2025-10-10 09:44:38,536 - INFO - Settings saved
+2025-10-10 09:44:38,536 - INFO - Settings saved
+2025-10-10 09:44:50,402 - INFO - Settings saved
+2025-10-10 09:44:51,684 - INFO - Settings saved
+2025-10-10 09:44:51,685 - INFO - Settings saved
+2025-10-10 09:48:00,807 - INFO - Settings saved
+2025-10-10 09:48:06,894 - INFO - Settings saved
+2025-10-10 09:50:38,068 - INFO - Settings saved
+2025-10-10 09:50:38,069 - INFO - Settings saved
+2025-10-10 09:50:38,089 - INFO - === Завершение приложения ===
+2025-10-10 09:52:12,426 - INFO - Первый экземпляр - запуск приложения
+2025-10-10 09:52:12,603 - INFO - === Запуск приложения ===
+2025-10-10 09:52:12,604 - INFO - Settings loaded
+2025-10-10 09:52:12,836 - INFO - Иконка трея создана
+2025-10-10 09:52:12,937 - INFO - GUI инициализирован
+2025-10-10 09:52:13,041 - INFO - Settings saved
+2025-10-10 09:52:13,448 - INFO - License verification: SUCCESS
+2025-10-10 09:59:32,683 - INFO - Settings saved
+2025-10-10 09:59:32,684 - INFO - Settings saved
+2025-10-10 09:59:32,698 - INFO - === Завершение приложения ===
+2025-10-10 18:04:13,453 - INFO - Первый экземпляр - запуск приложения
+2025-10-10 18:04:13,634 - INFO - === Запуск приложения ===
+2025-10-10 18:04:13,634 - INFO - Settings loaded
+2025-10-10 18:04:13,864 - INFO - Иконка трея создана
+2025-10-10 18:04:13,971 - INFO - GUI инициализирован
+2025-10-10 18:04:14,081 - INFO - Settings saved
+2025-10-10 18:04:14,409 - INFO - License verification: SUCCESS
+2025-10-10 18:04:17,550 - INFO - Settings saved
+2025-10-10 18:04:17,550 - INFO - Settings saved
+2025-10-10 18:04:17,565 - INFO - === Завершение приложения ===
+2025-10-11 04:53:46,928 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 04:53:46,957 - ERROR - Fatal error: cannot import name 'CHAR_BASE' from 'offsets' (c:\project\pw_inject\offsets.py)
+Traceback (most recent call last):
+  File "c:\project\pw_inject\bot.py", line 70, in <module>
+    from multibox_manager import MultiboxManager
+  File "c:\project\pw_inject\multibox_manager.py", line 7, in <module>
+    from game_structs import CharBase, WorldManager
+  File "c:\project\pw_inject\game_structs.py", line 9, in <module>
+    from offsets import CHAR_BASE, WORLD_MANAGER, GAME_INFO
+ImportError: cannot import name 'CHAR_BASE' from 'offsets' (c:\project\pw_inject\offsets.py)
+2025-10-11 04:53:46,958 - INFO - === Завершение приложения ===
+2025-10-11 05:22:38,163 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 05:22:38,170 - ERROR - Fatal error: No module named 'game_structs'
+Traceback (most recent call last):
+  File "c:\project\pw_inject\bot.py", line 70, in <module>
+    from multibox_manager import MultiboxManager
+  File "c:\project\pw_inject\multibox_manager.py", line 7, in <module>
+    from game_structs import CharBase, WorldManager
+ModuleNotFoundError: No module named 'game_structs'
+2025-10-11 05:22:38,175 - INFO - === Завершение приложения ===
+2025-10-11 05:22:49,043 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 05:22:49,049 - ERROR - Fatal error: No module named 'game_structs'
+Traceback (most recent call last):
+  File "c:\project\pw_inject\bot.py", line 70, in <module>
+    from multibox_manager import MultiboxManager
+  File "c:\project\pw_inject\multibox_manager.py", line 7, in <module>
+    from game_structs import CharBase, WorldManager
+ModuleNotFoundError: No module named 'game_structs'
+2025-10-11 05:22:49,055 - INFO - === Завершение приложения ===
