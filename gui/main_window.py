@@ -28,6 +28,7 @@ class MainWindow:
         # Менеджеры
         self.action_manager = ActionManager(self.app_state)
         self.hotkey_manager = HotkeyManager(self.action_manager)
+        self.hotkey_manager.set_gui_callback(lambda func: self.root.after(0, func))
         
         # Верификация (состояние)
         self.verified = False
@@ -315,7 +316,7 @@ class MainWindow:
         
         def new_handler(action_id: str):
             # Выполнить действие
-            original_handler(action_id)
+            self.action_manager.execute(action_id)
             
             # Мигнуть в UI
             self.hotkey_panel.flash_action(action_id)
@@ -458,36 +459,40 @@ class MainWindow:
         # Мигнуть действием в HotkeyPanel
         self.hotkey_panel.flash_action(action_id)
     
+
     def on_close(self):
-        """Обработчик закрытия окна"""
-        # Сохранить позицию окна
-        x = self.root.winfo_x()
-        y = self.root.winfo_y()
-        self.settings_manager.set_window_position(x, y)
-        
-        # Остановить все таймеры
-        for timer_id in self.action_timers.values():
-            if timer_id:
-                try:
-                    self.root.after_cancel(timer_id)
-                except:
-                    pass
-        
-        # Сохранить хоткеи
-        self._save_hotkeys()
-        
-        # Отвязать все хоткеи
-        self.hotkey_manager.unbind_all()
-        
-        # Остановить tray icon
-        if self.tray_icon:
-            self.tray_icon.stop()
-        
-        # Закрыть окно
-        self.root.quit()
-        self.root.destroy()
-        sys.exit(0)
-    
+        """Закрытие приложения"""
+        try:
+            # Остановить keyboard hook
+            if hasattr(self, 'hotkey_manager'):
+                self.hotkey_manager.stop()
+            
+            # Сохранить хоткеи
+            self._save_hotkeys()
+            
+            # Сохранить позицию окна
+            x = self.root.winfo_x()
+            y = self.root.winfo_y()
+            self.settings_manager.set_window_position(x, y)
+            
+            # Закрыть tray icon
+            if self.tray_icon:
+                self.tray_icon.stop()
+            
+            # Закрыть процессы памяти
+            for char in self.manager.characters.values():
+                if hasattr(char, 'memory'):
+                    char.memory.close()
+            
+            logging.info("=== Завершение приложения ===")
+            
+            self.root.quit()
+            self.root.destroy()
+            
+        except Exception as e:
+            logging.error(f"Error during shutdown: {e}")
+            sys.exit(0)
+
     # ============================================
     # ДЕЙСТВИЯ (CALLBACKS)
     # ============================================
@@ -556,9 +561,6 @@ class MainWindow:
             """Телепортировать выделенного персонажа к его таргету"""
             # Получаем выделенного персонажа
             selected = self.app_state.selected_character
-
-            print("❌❌❌❌❌❌❌❌❌❌")
-            print(selected.char_base.target_id)
             
             if not selected:
                 print("❌ Teleport to Target: Нет выделенного персонажа!")

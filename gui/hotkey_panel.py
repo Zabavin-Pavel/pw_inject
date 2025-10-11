@@ -139,6 +139,12 @@ class IconButton(tk.Label):
             self.configure(fg=COLOR_TEXT)
 
 
+"""
+Обновления для gui/hotkey_panel.py - только класс HotkeyRow
+"""
+
+# === ИЗМЕНЕНИЯ В КЛАССЕ HotkeyRow ===
+
 class HotkeyRow(tk.Frame):
     """Строка с названием действия и полем хоткея"""
     
@@ -233,6 +239,9 @@ class HotkeyRow(tk.Frame):
         self.recording = True
         self.pressed_keys.clear()
         
+        # ВАЖНО: Включаем режим записи в HotkeyManager
+        self.hotkey_manager.set_recording_mode(True)
+        
         self.hotkey_entry.configure(
             highlightbackground=COLOR_ACCENT,
             highlightcolor=COLOR_ACCENT
@@ -244,6 +253,9 @@ class HotkeyRow(tk.Frame):
         """Потеря фокуса - конец записи"""
         self.recording = False
         self.pressed_keys.clear()
+        
+        # ВАЖНО: Выключаем режим записи в HotkeyManager
+        self.hotkey_manager.set_recording_mode(False)
         
         self.hotkey_entry.configure(
             highlightbackground=COLOR_BORDER,
@@ -305,28 +317,50 @@ class HotkeyRow(tk.Frame):
         return "break"
     
     def _normalize_key(self, keysym: str, char: str) -> str:
-        """Нормализовать имя клавиши"""
-        modifier_map = {
-            'Control_L': 'Ctrl', 'Control_R': 'Ctrl',
-            'Shift_L': 'Shift', 'Shift_R': 'Shift',
-            'Alt_L': 'Alt', 'Alt_R': 'Alt',
-            'Win_L': 'Win', 'Win_R': 'Win',
-        }
+        """
+        Нормализовать имя клавиши
+        ВАЖНО: Поддерживаем только Left модификаторы
+        """
+        # Только левые модификаторы
+        if keysym == 'Control_L':
+            return 'Ctrl'
+        elif keysym == 'Shift_L':
+            return 'Shift'
+        elif keysym == 'Alt_L':
+            return 'Alt'
         
-        if keysym in modifier_map:
-            return modifier_map[keysym]
+        # Игнорируем правые модификаторы
+        if keysym in ('Control_R', 'Shift_R', 'Alt_R', 'Win_L', 'Win_R'):
+            return None
         
+        # Русские буквы -> английские
         if char and char.lower() in self.ru_to_en:
             return self.ru_to_en[char.lower()].upper()
         
-        return keysym.capitalize() if len(keysym) == 1 else keysym
+        # Обычные клавиши
+        if len(keysym) == 1:
+            return keysym.upper()
+        
+        # F1-F12, Space и т.д.
+        if keysym.startswith('F') and len(keysym) <= 3:
+            return keysym
+        
+        special_keys = {
+            'space': 'Space',
+            'Return': 'Return',
+            'Escape': 'Escape',
+            'Tab': 'Tab',
+            'BackSpace': 'BackSpace'
+        }
+        
+        return special_keys.get(keysym, None)
     
     def _build_hotkey_string(self) -> str:
         """Собрать строку хоткея"""
         if not self.pressed_keys:
             return ""
         
-        modifiers_order = ['Ctrl', 'Shift', 'Alt', 'Win']
+        modifiers_order = ['Ctrl', 'Shift', 'Alt']
         
         modifiers = []
         keys = []
@@ -337,7 +371,12 @@ class HotkeyRow(tk.Frame):
             else:
                 keys.append(key)
         
+        # Модификаторы в правильном порядке
         modifiers.sort(key=lambda x: modifiers_order.index(x))
+        
+        # Обычные клавиши - берём только последнюю нажатую
+        if len(keys) > 1:
+            keys = [keys[-1]]
         
         parts = modifiers + keys
         return '+'.join(parts)
@@ -352,66 +391,74 @@ class HotkeyRow(tk.Frame):
     def _save_hotkey(self, hotkey: str):
         """Сохранить хоткей"""
         try:
-            # Если хоткей уже используется - очистить у старого
-            old_action_id = self.hotkey_manager.bindings.get(hotkey)
-            if old_action_id and old_action_id != self.action.id:
-                self.hotkey_manager.unbind(hotkey)
+            # ВАЖНО: Проверяем, занят ли хоткей другим действием
+            existing_action = self.hotkey_manager.bindings.get(hotkey)
+            if existing_action and existing_action != self.action.id:
+                # Освобождаем у старого действия
+                old_hotkeys = self.settings_manager.get_hotkeys()
+                old_hotkeys[existing_action] = "-"
+                self.settings_manager.set_hotkeys(old_hotkeys)
                 
-                hotkeys = self.settings_manager.get_hotkeys()
-                hotkeys[old_action_id] = "-"
-                self.settings_manager.set_hotkeys(hotkeys)
+                # Обновляем UI старого действия (если нужно)
+                self.on_hotkey_changed()
             
-            # Привязать новый хоткей
+            # Привязываем к HotkeyManager
             self.hotkey_manager.bind(hotkey, self.action.id)
             
-            # Сохранить в настройки
+            # Сохраняем в settings
             hotkeys = self.settings_manager.get_hotkeys()
             hotkeys[self.action.id] = hotkey
             self.settings_manager.set_hotkeys(hotkeys)
             
-            # Обновить UI всех строк
-            if self.on_hotkey_changed:
-                self.on_hotkey_changed()
+            self.flash_border()
+            
+            # Уведомляем об изменении
+            self.on_hotkey_changed()
             
         except Exception as e:
-            self.hotkey_entry.delete(0, tk.END)
-            self.hotkey_entry.insert(0, "ERROR")
-            self.hotkey_entry.after(1000, lambda: self._on_focus_out(None))
+            logging.error(f"Failed to save hotkey {hotkey}: {e}")
     
     def flash_text(self):
-        """Мигнуть ТЕКСТОМ (НОВЫЙ ПОДХОД - отменяет предыдущую анимацию)"""
-        # Отменить предыдущую анимацию
-        if self.flash_job:
-            try:
-                self.after_cancel(self.flash_job)
-            except:
-                pass
-            self.flash_job = None
+        """Мигание ТЕКСТА названия действия (оранжевый -> обратно)"""
+        if self.is_flashing:
+            return
         
         self.is_flashing = True
         
-        # ВСЕГДА использовать COLOR_TEXT как базовый
-        base_color = COLOR_TEXT
-        
-        # Подсветить
         self.action_label.configure(fg=COLOR_ACCENT)
         
-        # Вернуть
-        def restore():
-            self.action_label.configure(fg=base_color)
+        def reset():
+            self.action_label.configure(fg=COLOR_TEXT)
             self.is_flashing = False
-            self.flash_job = None
         
-        self.flash_job = self.after(250, restore)
+        self.flash_job = self.after(150, reset)
     
     def flash_border(self):
-        """Мигнуть РАМКОЙ"""
+        """Мигание РАМКИ поля хоткея"""
         self.hotkey_entry.configure(
             highlightbackground=COLOR_ACCENT,
             highlightcolor=COLOR_ACCENT
         )
         
-        self.after(150, lambda: self.hotkey_entry.configure(
-            highlightbackground=COLOR_BORDER,
-            highlightcolor=COLOR_BORDER
-        ))
+        def reset():
+            self.hotkey_entry.configure(
+                highlightbackground=COLOR_BORDER,
+                highlightcolor=COLOR_BORDER
+            )
+        
+        self.after(150, reset)
+
+
+# === ДОПОЛНЕНИЕ: Метод в HotkeyPanel для обновления всех хоткеев ===
+
+# Добавить в класс HotkeyPanel:
+
+def update_hotkey_display(self):
+    """Обновить отображение всех хоткеев"""
+    for action_id, row in self.hotkey_rows.items():
+        row.refresh_hotkey_display()
+
+def flash_action(self, action_id: str):
+    """Мигнуть текстом действия при срабатывании хоткея"""
+    if action_id in self.hotkey_rows:
+        self.hotkey_rows[action_id].flash_text()

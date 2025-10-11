@@ -149,3 +149,89 @@
 2025-10-11 06:57:21,437 - INFO - Settings saved
 2025-10-11 06:57:21,438 - INFO - Settings saved
 2025-10-11 06:57:21,466 - INFO - === Завершение приложения ===
+2025-10-11 07:06:41,225 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 07:06:41,373 - INFO - === Запуск приложения ===
+2025-10-11 07:06:41,374 - INFO - Settings loaded
+2025-10-11 07:06:41,416 - ERROR - Failed to install keyboard hook
+2025-10-11 07:06:41,646 - INFO - Иконка трея создана
+2025-10-11 07:06:41,646 - INFO - GUI инициализирован
+2025-10-11 07:06:41,759 - INFO - Settings saved
+2025-10-11 07:06:42,337 - INFO - License verification: SUCCESS
+2025-10-11 07:06:42,343 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 07:06:42,343 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 07:06:42,344 - INFO - Загружена иконка 0
+2025-10-11 07:06:42,346 - INFO - Загружена иконка 5
+2025-10-11 07:06:45,838 - INFO - Bound hotkey 'A' to action 'teleport_to_target'
+2025-10-11 07:06:45,839 - INFO - Settings saved
+2025-10-11 07:06:48,232 - INFO - Bound hotkey 'Shift+A' to action 'show_all'
+2025-10-11 07:06:48,233 - INFO - Settings saved
+2025-10-11 07:06:50,664 - INFO - Settings saved
+2025-10-11 07:06:50,664 - INFO - Hotkey A reassigned from teleport_to_target to show_active
+2025-10-11 07:06:50,664 - INFO - Bound hotkey 'A' to action 'show_active'
+2025-10-11 07:06:50,665 - INFO - Settings saved
+2025-10-11 07:06:52,694 - INFO - Settings saved
+2025-10-11 07:06:52,695 - INFO - Hotkey A reassigned from show_active to teleport_to_target
+2025-10-11 07:06:52,695 - INFO - Bound hotkey 'A' to action 'teleport_to_target'
+2025-10-11 07:06:52,695 - INFO - Settings saved
+2025-10-11 07:07:12,464 - INFO - Bound hotkey 'T' to action 'show_active'
+2025-10-11 07:07:12,465 - INFO - Settings saved
+2025-10-11 07:07:13,676 - INFO - Bound hotkey 'Shift+T' to action 'show_loot'
+2025-10-11 07:07:13,677 - INFO - Settings saved
+2025-10-11 07:07:15,072 - INFO - Bound hotkey 'Shift' to action 'show_players'
+2025-10-11 07:07:15,073 - INFO - Settings saved
+2025-10-11 07:07:17,169 - INFO - Unbound hotkey 'Shift' from action 'show_players'
+2025-10-11 07:07:17,169 - INFO - Bound hotkey 'W' to action 'show_players'
+2025-10-11 07:07:17,170 - INFO - Settings saved
+2025-10-11 07:07:19,928 - INFO - Settings saved
+2025-10-11 07:07:19,929 - INFO - Hotkey T reassigned from show_active to show_npcs
+2025-10-11 07:07:19,929 - INFO - Bound hotkey 'T' to action 'show_npcs'
+2025-10-11 07:07:19,929 - INFO - Settings saved
+2025-10-11 07:07:30,989 - INFO - Unbound hotkey 'Shift+T' from action 'show_loot'
+2025-10-11 07:07:30,990 - INFO - Bound hotkey 'Shift' to action 'show_loot'
+2025-10-11 07:07:30,990 - INFO - Settings saved
+2025-10-11 07:07:34,015 - INFO - Unbound hotkey 'Shift' from action 'show_loot'
+2025-10-11 07:07:34,016 - INFO - Settings saved
+2025-10-11 07:07:34,634 - INFO - Unbound hotkey 'W' from action 'show_players'
+2025-10-11 07:07:34,635 - INFO - Settings saved
+2025-10-11 07:07:35,088 - INFO - Unbound hotkey 'T' from action 'show_npcs'
+2025-10-11 07:07:35,088 - INFO - Settings saved
+2025-10-11 07:07:35,722 - INFO - Unbound hotkey 'Shift+A' from action 'show_all'
+2025-10-11 07:07:35,723 - INFO - Settings saved
+2025-10-11 07:07:36,099 - INFO - Unbound hotkey 'A' from action 'teleport_to_target'
+2025-10-11 07:07:36,100 - INFO - Settings saved
+2025-10-11 07:08:18,053 - INFO - Bound hotkey 'Y' to action 'show_all'
+2025-10-11 07:08:18,054 - INFO - Settings saved
+2025-10-11 07:08:20,530 - INFO - Unbound hotkey 'Y' from action 'show_all'
+2025-10-11 07:08:20,531 - INFO - Settings saved
+2025-10-11 07:08:22,229 - INFO - Bound hotkey 'Y' to action 'show_all'
+2025-10-11 07:08:22,230 - INFO - Settings saved
+2025-10-11 07:08:30,761 - INFO - Bound hotkey 'Shift+Y' to action 'show_active'
+2025-10-11 07:08:30,762 - INFO - Settings saved
+2025-10-11 07:09:07,473 - INFO - Unbound hotkey 'Shift+Y' from action 'show_active'
+2025-10-11 07:09:07,474 - INFO - Settings saved
+2025-10-11 07:09:08,889 - INFO - Unbound hotkey 'Y' from action 'show_all'
+2025-10-11 07:09:08,890 - INFO - Settings saved
+2025-10-11 07:09:40,017 - INFO - Settings saved
+2025-10-11 07:09:40,017 - INFO - Settings saved
+2025-10-11 07:09:40,017 - INFO - === Завершение приложения ===
+2025-10-11 07:09:40,040 - INFO - === Завершение приложения ===
+2025-10-11 07:17:32,166 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 07:17:32,296 - INFO - === Запуск приложения ===
+2025-10-11 07:17:32,297 - INFO - Settings loaded
+2025-10-11 07:17:32,337 - ERROR - Failed to install keyboard hook
+2025-10-11 07:17:32,548 - INFO - Иконка трея создана
+2025-10-11 07:17:32,548 - INFO - GUI инициализирован
+2025-10-11 07:17:32,650 - INFO - Settings saved
+2025-10-11 07:17:33,166 - INFO - License verification: SUCCESS
+2025-10-11 07:17:33,171 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 07:17:33,172 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 07:17:33,173 - INFO - Загружена иконка 0
+2025-10-11 07:17:33,175 - INFO - Загружена иконка 5
+2025-10-11 07:17:35,954 - INFO - Bound hotkey 'Y' to action 'teleport_to_target'
+2025-10-11 07:17:35,955 - INFO - Settings saved
+2025-10-11 07:17:42,495 - INFO - Bound hotkey 'Shift+Y' to action 'show_all'
+2025-10-11 07:17:42,496 - INFO - Settings saved
+2025-10-11 07:17:57,199 - INFO - Settings saved
+2025-10-11 07:17:57,199 - INFO - Settings saved
+2025-10-11 07:17:57,200 - INFO - === Завершение приложения ===
+2025-10-11 07:17:57,229 - INFO - === Завершение приложения ===
