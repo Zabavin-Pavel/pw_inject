@@ -44,6 +44,20 @@ OFFSETS = {
     "loot_container": "ptr:world_base +0x28",
     "loot_items": "array:loot_container:4096:4:{x:float:0x10->0x50,y:float:0x10->0x48}",
     
+    # Люди
+    "people_count": "int32:world_origin +0x0 -> +0x48",
+    "people_container": "ptr:world_base +0x28",
+    "people_items": "array:people_container:4096:4:{id:uint32:0x10->0x6A8,x:float:0x10->0x50,y:float:0x10->0x48,z:float:0x10->0x4C}",
+    
+    # ========================================
+    # TARGET MANAGER
+    # ========================================
+    "target_origin": "static:ElementClient.exe +0x013FBB40",  # БЕЗ +0x1000!
+    "target_ptr": "ptr:target_origin +0x58 -> +0x0 -> +0x0 -> +0x10",
+    "target_pos_x": "float:target_ptr +0xFC",
+    "target_pos_y": "float:target_ptr +0xF4",
+    "target_pos_z": "float:target_ptr +0xF8",
+
     # ========================================
     # GAME INFO
     # ========================================
@@ -457,11 +471,41 @@ def main():
             if loot_items:
                 print(f"Loot items nearby ({len(loot_items)}):")
                 for item in loot_items:
-                    print(f"  Pos: ({item['x']:.1f}, {item['y']:.1f})")
+                    print(item)
             else:
                 print("Loot items nearby: []")
         else:
             print("Loot container: NULL")
+        
+        # Лут
+        people_container = resolve_offset(memory, OFFSETS["people_container"], cache)
+        if people_container:
+            cache["people_container"] = people_container
+            print(f"✅ people_container: {hex(people_container)}")
+            
+            people_count = resolve_offset(memory, OFFSETS["people_count"], cache)
+            print(f"people count: {people_count}")
+            
+            # Получаем все предметы лута (без фильтрации по расстоянию)
+            people_items_raw = resolve_offset(memory, OFFSETS["people_items"], cache)
+
+            # Фильтруем по расстоянию от персонажа
+            people_items = []
+            if people_items_raw:
+                for item in people_items_raw:
+                    people_id = item.get('id')
+
+                    if people_id is not None and people_id > 1:
+                        people_items.append(item)
+            
+            if people_items:
+                print(f"people nearby ({len(people_items)}):")
+                for item in people_items:
+                    print(item)
+            else:
+                print("people nearby: []")
+        else:
+            print("people container: NULL")
                     
         # ========================================
         # GAME INFO
@@ -485,8 +529,49 @@ def main():
         
         teleport_id = resolve_offset(memory, OFFSETS["teleport_id"], cache)
         print(f"Teleport ID: {teleport_id}")
-        
+
+        # ========================================
+        # TARGET INFO
+        # ========================================
         print("="*70)
+        print("TARGET INFO")
+        print("="*70)
+
+        # Добавляем вывод target_origin
+        target_origin = resolve_offset(memory, OFFSETS["target_origin"], cache)
+        if target_origin:
+            cache["target_origin"] = target_origin
+            print(f"✅ target_origin: {hex(target_origin)}")
+            print(f"   (Expected: 0x237ACE78A10)")
+        else:
+            print("❌ target_origin: NULL")
+
+        if target_id and target_id != 0:
+            print(f"Target ID: {target_id}")
+            
+            target_ptr = resolve_offset(memory, OFFSETS["target_ptr"], cache)
+            if target_ptr:
+                cache["target_ptr"] = target_ptr
+                print(f"✅ target_ptr: {hex(target_ptr)}")
+                
+                target_x = resolve_offset(memory, OFFSETS["target_pos_x"], cache)
+                target_y = resolve_offset(memory, OFFSETS["target_pos_y"], cache)
+                target_z = resolve_offset(memory, OFFSETS["target_pos_z"], cache)
+                
+                if target_x is not None and target_y is not None and target_z is not None:
+                    print(f"Target Position: X={target_x:.2f}, Y={target_y:.2f}, Z={target_z:.2f}")
+                    
+                    # Расстояние до таргета
+                    if x is not None and y is not None and z is not None:
+                        import math
+                        distance = math.sqrt((target_x - x)**2 + (target_y - y)**2 + (target_z - z)**2)
+                        print(f"Distance to target: {distance:.2f}m")
+                else:
+                    print("❌ Could not read target position")
+            else:
+                print("❌ target_ptr: NULL")
+        else:
+            print("No target selected")
         
     except Exception as e:
         print(f"\n❌ ОШИБКА: {e}")

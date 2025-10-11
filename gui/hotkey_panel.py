@@ -2,6 +2,7 @@
 Панель хоткеев и действий
 """
 import tkinter as tk
+import logging
 from gui.styles import *
 
 class HotkeyPanel(tk.Frame):
