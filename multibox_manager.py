@@ -89,7 +89,10 @@ class MultiboxManager:
                 if self._main_pid is None:
                     self._main_pid = pid
                     self.world_manager = WorldManager(mem)
-                    # logging.info(f"WorldManager создан для PID {pid}")
+    
+    def refresh_characters(self):
+        """Алиас для refresh() - для совместимости с GUI"""
+        self.refresh()
     
     def get_nearby_loot(self, character=None):
         """
@@ -97,8 +100,21 @@ class MultiboxManager:
         Args:
             character: персонаж для сканирования (если None - главный процесс)
         """
-        # TODO: Реализовать когда будет готов WorldManager
-        return []
+        if not self.world_manager:
+            return []
+        
+        # Если персонаж не указан - используем первого валидного
+        if character is None:
+            chars = self.get_all_characters()
+            if not chars:
+                return []
+            character = chars[0]
+        
+        # Получаем позицию персонажа
+        x, y, z = character.char_base.position
+        
+        # Получаем лут вокруг
+        return self.world_manager.get_nearby_loot(x, y)
 
     def get_nearby_players(self, character=None):
         """Получить игроков вокруг"""
@@ -147,6 +163,10 @@ class MultiboxManager:
             if char.is_valid():
                 valid_chars.append(char)
         return valid_chars
+    
+    def get_valid_characters(self):
+        """Алиас для get_all_characters() - для совместимости с GUI"""
+        return self.get_all_characters()
     
     def get_total_count(self):
         """Получить общее количество процессов (включая невалидные)"""
