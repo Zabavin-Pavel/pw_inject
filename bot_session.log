@@ -1058,3 +1058,60 @@ AttributeError: 'HotkeyManager' object has no attribute 'set_gui_callback'
 2025-10-11 08:16:31,758 - INFO - Settings saved
 2025-10-11 08:16:31,759 - INFO - === Завершение приложения ===
 2025-10-11 08:16:31,784 - INFO - === Завершение приложения ===
+2025-10-11 11:34:42,851 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 11:34:43,100 - INFO - === Запуск приложения ===
+2025-10-11 11:34:43,101 - INFO - Settings loaded
+2025-10-11 11:34:43,503 - INFO - Иконка трея создана
+2025-10-11 11:34:43,503 - INFO - Bound hotkey 'T' to action 'show_all'
+2025-10-11 11:34:43,504 - INFO - Bound hotkey 'Shift+F' to action 'show_active'
+2025-10-11 11:34:43,504 - INFO - GUI инициализирован
+2025-10-11 11:34:43,613 - INFO - Settings saved
+2025-10-11 11:34:44,045 - INFO - License verification: SUCCESS
+2025-10-11 11:34:44,049 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 11:34:44,050 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 11:34:44,052 - INFO - Загружена иконка 3
+2025-10-11 11:34:44,054 - INFO - Загружена иконка 0
+2025-10-11 11:34:49,486 - INFO - All hotkeys unbound
+2025-10-11 11:34:49,486 - INFO - Hotkey manager stopped
+2025-10-11 11:34:49,487 - INFO - Settings saved
+2025-10-11 11:34:49,487 - INFO - === Завершение приложения ===
+2025-10-11 11:34:49,511 - INFO - === Завершение приложения ===
+2025-10-11 11:47:28,426 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 11:47:28,620 - INFO - === Запуск приложения ===
+2025-10-11 11:47:28,620 - INFO - Settings loaded
+2025-10-11 11:47:28,940 - INFO - Иконка трея создана
+2025-10-11 11:47:28,940 - INFO - Bound hotkey 'T' to action 'show_all'
+2025-10-11 11:47:28,941 - INFO - Bound hotkey 'Shift+F' to action 'show_active'
+2025-10-11 11:47:28,941 - INFO - GUI инициализирован
+2025-10-11 11:47:29,055 - INFO - Settings saved
+2025-10-11 11:47:29,475 - INFO - License verification: SUCCESS
+2025-10-11 11:47:29,481 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 11:47:29,482 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 11:47:29,483 - INFO - Загружена иконка 3
+2025-10-11 11:47:29,485 - INFO - Загружена иконка 0
+2025-10-11 11:47:46,153 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 11:47:46,154 - INFO - Settings saved
+2025-10-11 11:48:30,585 - INFO - All hotkeys unbound
+2025-10-11 11:48:30,586 - INFO - Hotkey manager stopped
+2025-10-11 11:48:30,586 - INFO - Settings saved
+2025-10-11 11:48:30,587 - INFO - === Завершение приложения ===
+2025-10-11 11:48:30,614 - INFO - === Завершение приложения ===
+2025-10-11 11:48:31,750 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 11:48:31,931 - INFO - === Запуск приложения ===
+2025-10-11 11:48:31,931 - INFO - Settings loaded
+2025-10-11 11:48:32,252 - INFO - Иконка трея создана
+2025-10-11 11:48:32,253 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 11:48:32,253 - INFO - Bound hotkey 'T' to action 'show_all'
+2025-10-11 11:48:32,253 - INFO - Bound hotkey 'Shift+F' to action 'show_active'
+2025-10-11 11:48:32,254 - INFO - GUI инициализирован
+2025-10-11 11:48:32,356 - INFO - Settings saved
+2025-10-11 11:48:32,570 - INFO - License verification: SUCCESS
+2025-10-11 11:48:32,576 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 11:48:32,577 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 11:48:32,577 - INFO - Загружена иконка 3
+2025-10-11 11:48:32,579 - INFO - Загружена иконка 0
+2025-10-11 11:48:44,509 - INFO - All hotkeys unbound
+2025-10-11 11:48:44,509 - INFO - Hotkey manager stopped
+2025-10-11 11:48:44,510 - INFO - Settings saved
+2025-10-11 11:48:44,510 - INFO - === Завершение приложения ===
+2025-10-11 11:48:44,527 - INFO - === Завершение приложения ===

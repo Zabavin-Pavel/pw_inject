@@ -1,227 +1,168 @@
 """
-Игровые структуры - обёртки над оффсетами
+Игровые структуры для чтения/записи данных из памяти
 """
 from offsets import OFFSETS, resolve_offset
 
 
 class CharBase:
-    """Обёртка над персонажем"""
+    """Базовая информация о персонаже"""
     
     def __init__(self, memory):
         self.memory = memory
-        self._cache = {}
+        self.cache = {}
+        self._update()
+    
+    def _update(self):
+        """Обновить данные из памяти"""
+        # Получаем базовые адреса
+        char_origin = resolve_offset(self.memory, OFFSETS["char_origin"], self.cache)
+        if char_origin:
+            self.cache["char_origin"] = char_origin
         
-    def _get(self, key):
-        """Получить значение оффсета с кешированием базовых адресов"""
-        return resolve_offset(self.memory, OFFSETS[key], self._cache)
-    
-    def _get_address(self, key):
-        """Получить адрес оффсета (для записи)"""
-        # Получаем путь
-        path_str = OFFSETS[key]
-        parts = path_str.split()
+        char_base = resolve_offset(self.memory, OFFSETS["char_base"], self.cache)
+        if char_base:
+            self.cache["char_base"] = char_base
         
-        # Парсим тип и базу
-        type_and_ref = parts[0].split(":", 1)
-        data_type = type_and_ref[0]
-        ref = type_and_ref[1] if len(type_and_ref) > 1 else None
+        # Читаем данные
+        self.char_id = resolve_offset(self.memory, OFFSETS["char_id"], self.cache)
+        self.char_class = resolve_offset(self.memory, OFFSETS["char_class"], self.cache)
+        self.char_name = resolve_offset(self.memory, OFFSETS["char_name"], self.cache)
+        self.char_level = resolve_offset(self.memory, OFFSETS["char_level"], self.cache)
+        self.char_target_id = resolve_offset(self.memory, OFFSETS["char_target_id"], self.cache)
         
-        # Получаем базовый адрес
-        if ref and ref in self._cache:
-            current_addr = self._cache[ref]
-        elif ref and ref in OFFSETS:
-            current_addr = resolve_offset(self.memory, OFFSETS[ref], self._cache)
-        else:
-            return None
+        # HP/MP
+        self.char_hp = resolve_offset(self.memory, OFFSETS["char_hp"], self.cache)
+        self.char_max_hp = resolve_offset(self.memory, OFFSETS["char_max_hp"], self.cache)
         
-        # Применяем оффсеты
-        i = 1
-        while i < len(parts):
-            part = parts[i]
-            
-            if part.startswith("+0x"):
-                offset = int(part[1:], 16)
-                current_addr += offset
-                
-                # Если следующий элемент "->" - читаем указатель
-                if i + 1 < len(parts) and parts[i + 1] == "->":
-                    current_addr = self.memory.read_uint64(current_addr)
-                    if not current_addr:
-                        return None
-                    i += 1
-            
-            i += 1
-        
-        return current_addr
-    
-    @property
-    def char_id(self):
-        return self._get("char_id")
-    
-    @property
-    def char_class(self):
-        return self._get("char_class")
-    
-    @property
-    def char_name(self):
-        return self._get("char_name")
-    
-    @property
-    def char_level(self):
-        return self._get("char_level")
-    
-    @property
-    def target_id(self):
-        return self._get("char_target_id")
-    
-    @property
-    def hp(self):
-        return self._get("char_hp")
-    
-    @property
-    def max_hp(self):
-        return self._get("char_max_hp")
-    
-    @property
-    def pos_x(self):
-        return self._get("char_pos_x")
-    
-    @property
-    def pos_y(self):
-        return self._get("char_pos_y")
-    
-    @property
-    def pos_z(self):
-        return self._get("char_pos_z")
-    
-    @property
-    def position(self):
-        """Возвращает tuple (x, y, z)"""
-        return (self.pos_x, self.pos_y, self.pos_z)
-    
-    def set_position(self, x, y, z):
-        """Записать новые координаты"""
-        addr_x = self._get_address("char_pos_x")
-        addr_y = self._get_address("char_pos_y")
-        addr_z = self._get_address("char_pos_z")
-        
-        if addr_x and addr_y and addr_z:
-            self.memory.write_float(addr_x, x)
-            self.memory.write_float(addr_y, y)
-            self.memory.write_float(addr_z, z)
-            return True
-        return False
-    
-    # Party
-    @property
-    def party_ptr(self):
-        return self._get("party_ptr")
-    
-    @property
-    def in_party(self):
-        """Проверка что персонаж в группе"""
-        return self.party_ptr is not None and self.party_ptr != 0
-    
-    @property
-    def party_count(self):
-        if not self.in_party:
-            return 0
-        return self._get("party_count")
-    
-    @property
-    def party_leader_id(self):
-        if not self.in_party:
-            return None
-        return self._get("party_leader_id")
-    
-    @property
-    def is_leader(self):
-        """Проверка что персонаж - лидер группы"""
-        if not self.in_party:
-            return False
-        return self.party_leader_id == self.char_id
-    
-    @property
-    def party_members(self):
-        """Получить список ID участников группы"""
-        if not self.in_party:
-            return []
-        members = self._get("party_members")
-        if members:
-            return [m['id'] for m in members if m['id'] != 0]
-        return []
+        # Координаты
+        self.char_pos_x = resolve_offset(self.memory, OFFSETS["char_pos_x"], self.cache)
+        self.char_pos_y = resolve_offset(self.memory, OFFSETS["char_pos_y"], self.cache)
+        self.char_pos_z = resolve_offset(self.memory, OFFSETS["char_pos_z"], self.cache)
     
     def is_valid(self):
-        """Проверка валидности структуры"""
-        char_id = self.char_id
-        return char_id is not None and char_id != 0
+        """Проверка валидности данных"""
+        return self.char_id is not None and self.char_id != 0
+    
+    def get_position(self):
+        """Получить координаты (x, y, z)"""
+        self._update()
+        return (self.char_pos_x, self.char_pos_y, self.char_pos_z)
+    
+    def set_position(self, x, y, z):
+        """Записать координаты в память"""
+        if "char_base" not in self.cache:
+            self._update()
+        
+        if "char_base" not in self.cache:
+            return False
+        
+        char_base = self.cache["char_base"]
+        
+        # Записываем координаты
+        success = True
+        success &= self.memory.write_float(char_base + 0xA00, x)  # X
+        success &= self.memory.write_float(char_base + 0x9F8, y)  # Y
+        success &= self.memory.write_float(char_base + 0x9FC, z)  # Z
+        
+        return success
+    
+    def get_target_position(self):
+        """Получить координаты таргета"""
+        # Обновляем target_id
+        self.char_target_id = resolve_offset(self.memory, OFFSETS["char_target_id"], self.cache)
+        
+        if not self.char_target_id or self.char_target_id == 0:
+            return None
+        
+        # Получаем target_origin
+        target_origin = resolve_offset(self.memory, OFFSETS["target_origin"], self.cache)
+        if target_origin:
+            self.cache["target_origin"] = target_origin
+        
+        # Получаем target_ptr
+        target_ptr = resolve_offset(self.memory, OFFSETS["target_ptr"], self.cache)
+        if not target_ptr:
+            return None
+        
+        self.cache["target_ptr"] = target_ptr
+        
+        # Читаем координаты
+        x = resolve_offset(self.memory, OFFSETS["target_pos_x"], self.cache)
+        y = resolve_offset(self.memory, OFFSETS["target_pos_y"], self.cache)
+        z = resolve_offset(self.memory, OFFSETS["target_pos_z"], self.cache)
+        
+        if x is None or y is None or z is None:
+            return None
+        
+        return (x, y, z)
+    
+    def refresh(self):
+        """Обновить все данные"""
+        self._update()
 
 
 class WorldManager:
-    """Обёртка над World Manager"""
+    """Управление миром (лут, игроки, NPC)"""
     
     def __init__(self, memory):
         self.memory = memory
-        self._cache = {}
+        self.cache = {}
+        self._update_base()
     
-    def _get(self, key):
-        """Получить значение оффсета с кешированием"""
-        return resolve_offset(self.memory, OFFSETS[key], self._cache)
-    
-    @property
-    def loot_count(self):
-        return self._get("loot_count")
-    
-    @property
-    def loot_container(self):
-        return self._get("loot_container")
-    
-    def get_nearby_loot(self, char_x, char_y, radius=50):
-        """
-        Получить лут вокруг позиции персонажа
-        Args:
-            char_x, char_y: координаты персонажа
-            radius: радиус поиска
-        """
-        loot_items_raw = self._get("loot_items")
-        if not loot_items_raw:
-            return []
+    def _update_base(self):
+        """Обновить базовые адреса"""
+        world_origin = resolve_offset(self.memory, OFFSETS["world_origin"], self.cache)
+        if world_origin:
+            self.cache["world_origin"] = world_origin
         
+        world_base = resolve_offset(self.memory, OFFSETS["world_base"], self.cache)
+        if world_base:
+            self.cache["world_base"] = world_base
+    
+    def get_loot_nearby(self, char_position, max_distance=50):
+        """Получить лут вокруг персонажа"""
+        char_x, char_y, _ = char_position
+        
+        # Получаем контейнер
+        loot_container = resolve_offset(self.memory, OFFSETS["loot_container"], self.cache)
+        if loot_container:
+            self.cache["loot_container"] = loot_container
+        
+        # Получаем все предметы
+        loot_items_raw = resolve_offset(self.memory, OFFSETS["loot_items"], self.cache)
+        
+        # Фильтруем по расстоянию
         loot_items = []
-        for item in loot_items_raw:
-            loot_x = item.get('x')
-            loot_y = item.get('y')
-            
-            if loot_x is not None and loot_y is not None:
-                dx = abs(loot_x - char_x)
-                dy = abs(loot_y - char_y)
+        if loot_items_raw:
+            for item in loot_items_raw:
+                loot_x = item.get('x')
+                loot_y = item.get('y')
                 
-                if dx <= radius and dy <= radius:
-                    loot_items.append(item)
+                if loot_x is not None and loot_y is not None:
+                    dx = abs(loot_x - char_x)
+                    dy = abs(loot_y - char_y)
+                    
+                    if dx <= max_distance and dy <= max_distance:
+                        loot_items.append(item)
         
         return loot_items
     
-    def is_valid(self):
-        """Проверка валидности структуры"""
-        container = self.loot_container
-        return container is not None and container != 0
-
-
-class GameInfo:
-    """Обёртка над игровой информацией"""
-    
-    def __init__(self, memory):
-        self.memory = memory
-        self._cache = {}
-    
-    def _get(self, key):
-        """Получить значение оффсета с кешированием"""
-        return resolve_offset(self.memory, OFFSETS[key], self._cache)
-    
-    @property
-    def location_id(self):
-        return self._get("location_id")
-    
-    @property
-    def teleport_id(self):
-        return self._get("teleport_id")
+    def get_people_nearby(self, char_position=None, max_distance=None):
+        """Получить людей вокруг"""
+        # Получаем контейнер
+        people_container = resolve_offset(self.memory, OFFSETS["people_container"], self.cache)
+        if people_container:
+            self.cache["people_container"] = people_container
+        
+        # Получаем всех людей
+        people_items_raw = resolve_offset(self.memory, OFFSETS["people_items"], self.cache)
+        
+        # Фильтруем
+        people_items = []
+        if people_items_raw:
+            for item in people_items_raw:
+                people_id = item.get('id')
+                if people_id is not None and people_id > 1:
+                    people_items.append(item)
+        
+        return people_items

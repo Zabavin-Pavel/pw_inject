@@ -7,7 +7,7 @@
   },
   "is_topmost": true,
   "hotkeys": {
-    "teleport_to_target": "-",
+    "teleport_to_target": "7",
     "show_all": "T",
     "show_active": "Shift+F",
     "show_loot": "-",

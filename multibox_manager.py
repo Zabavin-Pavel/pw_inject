@@ -175,3 +175,32 @@ class MultiboxManager:
     def get_valid_count(self):
         """Получить количество валидных персонажей"""
         return len([c for c in self.characters.values() if c.is_valid()])
+    
+    def action_teleport_to_target(self, character):
+        """
+        Телепортировать персонажа к его таргету
+        Args:
+            character: персонаж для телепорта
+        Returns:
+            bool: успех операции
+        """
+        if not character:
+            return False
+        
+        # Получаем координаты таргета
+        target_pos = character.char_base.get_target_position()
+        
+        if not target_pos:
+            return False
+        
+        target_x, target_y, target_z = target_pos
+        
+        # Телепортируем с +1 к Z
+        new_z = target_z + 1
+        
+        success = character.char_base.set_position(target_x, target_y, new_z)
+        
+        if success:
+            print(f"✅ {character.char_base.char_name}: Телепорт → ({target_x:.2f}, {target_y:.2f}, {new_z:.2f})")
+        
+        return success

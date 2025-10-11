@@ -562,54 +562,18 @@ class MainWindow:
         self.hotkey_panel.update_display()
     
     def action_teleport_to_target(self):
-            """Телепортировать выделенного персонажа к его таргету"""
-            # Получаем выделенного персонажа
-            selected = self.app_state.selected_character
-            
-            if not selected:
-                print("❌ Teleport to Target: Нет выделенного персонажа!")
-                return
-            
-            if not selected.is_valid():
-                print("❌ Teleport to Target: Выделенный персонаж невалиден!")
-                return
-            
-            # Получаем ID таргета
-            target_id = selected.char_base.target_id
-            
-            if not target_id or target_id == 0:
-                print("❌ Teleport to Target: У персонажа нет таргета!")
-                return
-            
-            print(f"✅ Teleport to Target: target_id={target_id}")
-            
-            # Ищем персонажа с таким ID среди всех персонажей
-            target_char = None
-            for char in self.manager.get_all_characters():
-                if char.char_base.char_id == target_id:
-                    target_char = char
-                    break
-            
-            if not target_char:
-                print(f"❌ Teleport to Target: Таргет с ID {target_id} не найден среди персонажей!")
-                return
-            
-            # Получаем координаты таргета
-            target_x, target_y, target_z = target_char.char_base.position
-            
-            if target_x is None or target_y is None or target_z is None:
-                print("❌ Teleport to Target: Не удалось прочитать координаты таргета!")
-                return
-            
-            print(f"✅ Координаты таргета: X={target_x:.2f}, Y={target_y:.2f}, Z={target_z:.2f}")
-            
-            # Записываем координаты в выделенного персонажа
-            success = selected.char_base.set_position(target_x, target_y, target_z)
-            
-            if success:
-                print(f"✅ Телепортирован к таргету!")
-            else:
-                print("❌ Не удалось записать координаты!")
+        """Action: Телепортировать к таргету"""
+        selected = self.app_state.selected_character
+        
+        if not selected:
+            print("\n[Teleport to Target] Нет выбранного персонажа")
+            return
+        
+        success = self.manager.action_teleport_to_target(selected)
+        
+        if not success:
+            char_name = selected.char_base.char_name
+            print(f"[Teleport to Target] {char_name}: Неудача (нет таргета или ошибка записи)\n")
 
     def action_show_all(self):
         """Action: Показать всех персонажей"""
