@@ -137,7 +137,7 @@ class MainWindow:
         
         self.action_manager.register(
             'show_npcs',
-            label='Show Nearby NPCs',
+            label='Show Nearby NPC',
             type='quick',
             callback=self.action_show_npcs,
             has_hotkey=True
@@ -284,7 +284,7 @@ class MainWindow:
             on_character_selected=self.on_character_selected,
             on_character_toggled=self.on_character_toggled
         )
-        self.character_panel.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        self.character_panel.pack(fill=tk.BOTH, expand=True, padx=0, pady=0)
         
         # Правая панель: хоткеи + иконки действий (С РАМКОЙ)
         right_container = tk.Frame(
@@ -359,7 +359,7 @@ class MainWindow:
                 item('Exit', self._exit_from_tray)
             )
             
-            self.tray_icon = pystray.Icon("pw_bot", image, "Лисий хвостик", menu)
+            self.tray_icon = pystray.Icon("pw_bot", image, "Xvocmuk", menu)
             
             # Запустить в отдельном потоке
             threading.Thread(target=self.tray_icon.run, daemon=True).start()
@@ -442,14 +442,20 @@ class MainWindow:
         self.character_panel.set_characters(characters)
     
     def on_character_selected(self, character):
-        """Обработчик выбора персонажа (оранжевая подсветка)"""
-        self.app_state.select_character(character)
+        """Обработчик клика по никнейму персонажа - toggle выбора"""
+        # Если этот персонаж уже выбран - снять выбор
+        if self.app_state.selected_character == character:
+            self.app_state.select_character(None)
+        else:
+            # Иначе - выбрать его
+            self.app_state.select_character(character)
+        
+        # Обновить отображение
         self.character_panel.update_display()
     
     def on_character_toggled(self, character):
         """Обработчик переключения активности персонажа (чекбокс)"""
-        self.app_state.toggle_character_active(character)
-        self.character_panel.update_display()
+        pass
     
     def on_action_executed(self, action_id: str):
         """Обработчик выполнения действия"""
@@ -465,9 +471,7 @@ class MainWindow:
             # ВАЖНО: Остановить keyboard hook
             if hasattr(self, 'hotkey_manager'):
                 self.hotkey_manager.stop()
-            
-            # Сохранить хоткеи
-            self._save_hotkeys()
+ 
             
             # Сохранить позицию окна
             x = self.root.winfo_x()

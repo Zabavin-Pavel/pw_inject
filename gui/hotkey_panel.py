@@ -111,7 +111,7 @@ class IconButton(tk.Label):
         super().__init__(
             parent,
             text=action.icon,
-            font=("Segoe UI", 20),  # Размер иконок (пункт 4)
+            font=("Segoe UI", 17),  # Размер иконок (пункт 4)
             bg=COLOR_BG,
             fg=COLOR_TEXT,
             cursor="hand2"
@@ -198,7 +198,7 @@ class HotkeyRow(tk.Frame):
         
         self.hotkey_entry = tk.Entry(
             self,
-            width=10,
+            width=8,  # ИЗМЕНЕНО: было 10, теперь 6
             font=FONT_HOTKEY,
             bg=COLOR_BG_LIGHT,
             fg=COLOR_TEXT_BRIGHT,
@@ -211,7 +211,10 @@ class HotkeyRow(tk.Frame):
             highlightcolor=COLOR_BORDER
         )
         self.hotkey_entry.pack(side=tk.RIGHT, padx=(10, 0))
-        self.hotkey_entry.insert(0, current_hotkey if current_hotkey else "-")
+        
+        # ИЗМЕНЕНО: Отображать в коротком формате
+        display_hotkey = hotkey_to_short_format(current_hotkey) if current_hotkey else "-"
+        self.hotkey_entry.insert(0, display_hotkey)
         
         # Обработчики
         self.hotkey_entry.bind("<FocusIn>", self._on_focus_in)
@@ -226,8 +229,12 @@ class HotkeyRow(tk.Frame):
             return
         
         current_hotkey = self.hotkey_manager.get_hotkey_for_action(self.action.id)
+        
+        # ИЗМЕНЕНО: Отображать в коротком формате
+        display_hotkey = hotkey_to_short_format(current_hotkey) if current_hotkey else "-"
+        
         self.hotkey_entry.delete(0, tk.END)
-        self.hotkey_entry.insert(0, current_hotkey if current_hotkey else "-")
+        self.hotkey_entry.insert(0, display_hotkey)
     
     def _on_label_click(self):
         """Клик по названию - выполнить и мигнуть ТЕКСТОМ"""
@@ -384,8 +391,14 @@ class HotkeyRow(tk.Frame):
         """Обновить отображение в поле"""
         hotkey = self._build_hotkey_string()
         
+        # ИЗМЕНЕНО: Отображать в коротком формате
+        if hotkey:
+            display_hotkey = hotkey_to_short_format(hotkey)
+        else:
+            display_hotkey = "..."
+        
         self.hotkey_entry.delete(0, tk.END)
-        self.hotkey_entry.insert(0, hotkey if hotkey else "...")
+        self.hotkey_entry.insert(0, display_hotkey)
     
     def _save_hotkey(self, hotkey: str):
         """Сохранить хоткей"""

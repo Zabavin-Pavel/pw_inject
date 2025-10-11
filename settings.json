@@ -2,14 +2,14 @@
   "hwid": "238300919419878",
   "key": "238300919419878-202510-a1f1a62194b05d2137b4859a78bbee185503ed406f669abef73fcb9ab8e736d6",
   "window_position": {
-    "x": -689,
-    "y": 143
+    "x": -423,
+    "y": 180
   },
   "is_topmost": true,
   "hotkeys": {
     "teleport_to_target": "-",
-    "show_all": "-",
-    "show_active": "-",
+    "show_all": "T",
+    "show_active": "Shift+F",
     "show_loot": "-",
     "show_players": "-",
     "show_npcs": "-"
