@@ -1115,3 +1115,370 @@ AttributeError: 'HotkeyManager' object has no attribute 'set_gui_callback'
 2025-10-11 11:48:44,510 - INFO - Settings saved
 2025-10-11 11:48:44,510 - INFO - === Завершение приложения ===
 2025-10-11 11:48:44,527 - INFO - === Завершение приложения ===
+2025-10-11 11:55:05,572 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 11:55:05,772 - INFO - === Запуск приложения ===
+2025-10-11 11:55:05,773 - INFO - Settings loaded
+2025-10-11 11:55:06,136 - INFO - Иконка трея создана
+2025-10-11 11:55:06,137 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 11:55:06,137 - INFO - Bound hotkey 'T' to action 'show_all'
+2025-10-11 11:55:06,138 - INFO - Bound hotkey 'Shift+F' to action 'show_active'
+2025-10-11 11:55:06,138 - INFO - GUI инициализирован
+2025-10-11 11:55:06,240 - INFO - Settings saved
+2025-10-11 11:55:06,562 - INFO - License verification: SUCCESS
+2025-10-11 11:55:06,568 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 11:55:06,569 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 11:55:06,570 - INFO - Загружена иконка 3
+2025-10-11 11:55:06,571 - INFO - Загружена иконка 0
+2025-10-11 11:56:02,834 - INFO - Unbound hotkey '7' from action 'teleport_to_target'
+2025-10-11 11:56:02,834 - INFO - Bound hotkey 'Shift+Y' to action 'teleport_to_target'
+2025-10-11 11:56:02,835 - INFO - Settings saved
+2025-10-11 11:56:06,410 - INFO - Unbound hotkey 'Shift+Y' from action 'teleport_to_target'
+2025-10-11 11:56:06,410 - INFO - Bound hotkey 'Shift+T' to action 'teleport_to_target'
+2025-10-11 11:56:06,410 - INFO - Settings saved
+2025-10-11 11:56:22,368 - INFO - All hotkeys unbound
+2025-10-11 11:56:22,368 - INFO - Hotkey manager stopped
+2025-10-11 11:56:22,369 - INFO - Settings saved
+2025-10-11 11:56:22,369 - INFO - === Завершение приложения ===
+2025-10-11 11:56:22,386 - INFO - === Завершение приложения ===
+2025-10-11 11:57:02,545 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 11:57:02,761 - INFO - === Запуск приложения ===
+2025-10-11 11:57:02,762 - INFO - Settings loaded
+2025-10-11 11:57:03,113 - INFO - Иконка трея создана
+2025-10-11 11:57:03,113 - INFO - Bound hotkey 'Shift+T' to action 'teleport_to_target'
+2025-10-11 11:57:03,114 - INFO - Bound hotkey 'T' to action 'show_all'
+2025-10-11 11:57:03,114 - INFO - Bound hotkey 'Shift+F' to action 'show_active'
+2025-10-11 11:57:03,114 - INFO - GUI инициализирован
+2025-10-11 11:57:03,227 - INFO - Settings saved
+2025-10-11 11:57:03,631 - INFO - License verification: SUCCESS
+2025-10-11 11:57:03,636 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 11:57:03,637 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 11:57:03,638 - INFO - Загружена иконка 3
+2025-10-11 11:57:03,639 - INFO - Загружена иконка 0
+2025-10-11 11:57:05,121 - INFO - Unbound hotkey 'Shift+T' from action 'teleport_to_target'
+2025-10-11 11:57:05,121 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 11:57:05,122 - INFO - Settings saved
+2025-10-11 11:57:49,626 - INFO - Unbound hotkey 'T' from action 'show_all'
+2025-10-11 11:57:49,626 - INFO - Settings saved
+2025-10-11 11:57:50,870 - INFO - Unbound hotkey 'Shift+F' from action 'show_active'
+2025-10-11 11:57:50,870 - INFO - Settings saved
+2025-10-11 11:57:53,343 - INFO - Activated window for character 55555515 (HWND: 14747818)
+2025-10-11 11:57:54,015 - INFO - Activated window for character MSE (HWND: 3279382)
+2025-10-11 12:00:29,422 - INFO - All hotkeys unbound
+2025-10-11 12:00:29,423 - INFO - Hotkey manager stopped
+2025-10-11 12:00:29,424 - INFO - Settings saved
+2025-10-11 12:00:29,424 - INFO - === Завершение приложения ===
+2025-10-11 12:00:29,451 - INFO - === Завершение приложения ===
+2025-10-11 12:00:31,853 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 12:00:32,058 - INFO - === Запуск приложения ===
+2025-10-11 12:00:32,059 - INFO - Settings loaded
+2025-10-11 12:00:32,383 - INFO - Иконка трея создана
+2025-10-11 12:00:32,383 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:00:32,383 - INFO - GUI инициализирован
+2025-10-11 12:00:32,486 - INFO - Settings saved
+2025-10-11 12:00:32,913 - INFO - License verification: SUCCESS
+2025-10-11 12:00:32,918 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 12:00:32,919 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 12:00:32,920 - INFO - Загружена иконка 3
+2025-10-11 12:00:32,922 - INFO - Загружена иконка 0
+2025-10-11 12:00:40,604 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:00:45,674 - INFO - Unbound hotkey '7' from action 'teleport_to_target'
+2025-10-11 12:00:45,674 - INFO - Bound hotkey 'Shift+T' to action 'teleport_to_target'
+2025-10-11 12:00:45,675 - INFO - Settings saved
+2025-10-11 12:01:00,469 - INFO - Bound hotkey 'Shift+T' to action 'teleport_to_target'
+2025-10-11 12:01:00,470 - INFO - Settings saved
+2025-10-11 12:01:04,553 - INFO - Unbound hotkey 'Shift+T' from action 'teleport_to_target'
+2025-10-11 12:01:04,553 - INFO - Bound hotkey 'T' to action 'teleport_to_target'
+2025-10-11 12:01:04,554 - INFO - Settings saved
+2025-10-11 12:01:14,780 - INFO - Unbound hotkey 'T' from action 'teleport_to_target'
+2025-10-11 12:01:14,781 - INFO - Settings saved
+2025-10-11 12:01:16,122 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:01:16,123 - INFO - Settings saved
+2025-10-11 12:01:17,190 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:01:23,831 - INFO - Unbound hotkey '7' from action 'teleport_to_target'
+2025-10-11 12:01:23,831 - INFO - Bound hotkey 'T' to action 'teleport_to_target'
+2025-10-11 12:01:23,832 - INFO - Settings saved
+2025-10-11 12:01:38,997 - INFO - All hotkeys unbound
+2025-10-11 12:01:38,998 - INFO - Hotkey manager stopped
+2025-10-11 12:01:38,998 - INFO - Settings saved
+2025-10-11 12:01:38,998 - INFO - === Завершение приложения ===
+2025-10-11 12:01:39,016 - INFO - === Завершение приложения ===
+2025-10-11 12:01:41,659 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 12:01:41,829 - INFO - === Запуск приложения ===
+2025-10-11 12:01:41,829 - INFO - Settings loaded
+2025-10-11 12:01:42,172 - INFO - Иконка трея создана
+2025-10-11 12:01:42,173 - INFO - Bound hotkey 'T' to action 'teleport_to_target'
+2025-10-11 12:01:42,173 - INFO - GUI инициализирован
+2025-10-11 12:01:42,275 - INFO - Settings saved
+2025-10-11 12:01:42,587 - INFO - License verification: SUCCESS
+2025-10-11 12:01:42,592 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 12:01:42,593 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 12:01:42,594 - INFO - Загружена иконка 3
+2025-10-11 12:01:42,595 - INFO - Загружена иконка 0
+2025-10-11 12:01:49,307 - INFO - Unbound hotkey 'T' from action 'teleport_to_target'
+2025-10-11 12:01:49,307 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:01:49,308 - INFO - Settings saved
+2025-10-11 12:01:50,299 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:01:51,459 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:01:58,797 - INFO - Unbound hotkey '7' from action 'teleport_to_target'
+2025-10-11 12:01:58,798 - INFO - Bound hotkey 'H' to action 'teleport_to_target'
+2025-10-11 12:01:58,798 - INFO - Settings saved
+2025-10-11 12:02:04,116 - INFO - Unbound hotkey 'H' from action 'teleport_to_target'
+2025-10-11 12:02:04,116 - INFO - Bound hotkey '5' to action 'teleport_to_target'
+2025-10-11 12:02:04,117 - INFO - Settings saved
+2025-10-11 12:02:05,587 - INFO - Hotkey '5' triggered for action: teleport_to_target
+2025-10-11 12:02:43,544 - INFO - Unbound hotkey '5' from action 'teleport_to_target'
+2025-10-11 12:02:43,545 - INFO - Bound hotkey 'Shift' to action 'teleport_to_target'
+2025-10-11 12:02:43,545 - INFO - Settings saved
+2025-10-11 12:02:47,636 - INFO - Bound hotkey 'Shift' to action 'teleport_to_target'
+2025-10-11 12:02:47,637 - INFO - Settings saved
+2025-10-11 12:04:23,068 - INFO - Bound hotkey 'Shift' to action 'teleport_to_target'
+2025-10-11 12:04:23,069 - INFO - Settings saved
+2025-10-11 12:05:54,138 - INFO - All hotkeys unbound
+2025-10-11 12:05:54,138 - INFO - Hotkey manager stopped
+2025-10-11 12:05:54,139 - INFO - Settings saved
+2025-10-11 12:05:54,139 - INFO - === Завершение приложения ===
+2025-10-11 12:05:54,167 - INFO - === Завершение приложения ===
+2025-10-11 12:05:55,250 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 12:05:55,443 - INFO - === Запуск приложения ===
+2025-10-11 12:05:55,444 - INFO - Settings loaded
+2025-10-11 12:05:55,794 - INFO - Иконка трея создана
+2025-10-11 12:05:55,794 - INFO - Bound hotkey 'Shift' to action 'teleport_to_target'
+2025-10-11 12:05:55,794 - INFO - GUI инициализирован
+2025-10-11 12:05:55,896 - INFO - Settings saved
+2025-10-11 12:05:56,428 - INFO - License verification: SUCCESS
+2025-10-11 12:05:56,434 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 12:05:56,434 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 12:05:56,435 - INFO - Загружена иконка 3
+2025-10-11 12:05:56,437 - INFO - Загружена иконка 0
+2025-10-11 12:05:58,295 - INFO - Bound hotkey 'Shift' to action 'teleport_to_target'
+2025-10-11 12:05:58,296 - INFO - Settings saved
+2025-10-11 12:06:00,178 - INFO - Bound hotkey 'Shift' to action 'teleport_to_target'
+2025-10-11 12:06:00,178 - INFO - Settings saved
+2025-10-11 12:06:01,541 - INFO - Unbound hotkey 'Shift' from action 'teleport_to_target'
+2025-10-11 12:06:01,541 - INFO - Bound hotkey 'Shift+T' to action 'teleport_to_target'
+2025-10-11 12:06:01,541 - INFO - Settings saved
+2025-10-11 12:06:11,889 - INFO - Unbound hotkey 'Shift+T' from action 'teleport_to_target'
+2025-10-11 12:06:11,889 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:06:11,889 - INFO - Settings saved
+2025-10-11 12:06:12,777 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:06:34,094 - INFO - All hotkeys unbound
+2025-10-11 12:06:34,094 - INFO - Hotkey manager stopped
+2025-10-11 12:06:34,095 - INFO - Settings saved
+2025-10-11 12:06:34,095 - INFO - === Завершение приложения ===
+2025-10-11 12:06:34,123 - INFO - === Завершение приложения ===
+2025-10-11 12:07:19,614 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 12:07:19,775 - INFO - === Запуск приложения ===
+2025-10-11 12:07:19,775 - INFO - Settings loaded
+2025-10-11 12:07:20,115 - INFO - Иконка трея создана
+2025-10-11 12:07:20,116 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:07:20,116 - INFO - GUI инициализирован
+2025-10-11 12:07:20,232 - INFO - Settings saved
+2025-10-11 12:07:20,412 - INFO - License verification: SUCCESS
+2025-10-11 12:07:20,417 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 12:07:20,418 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 12:07:20,420 - INFO - Загружена иконка 3
+2025-10-11 12:07:20,421 - INFO - Загружена иконка 0
+2025-10-11 12:07:22,804 - INFO - Unbound hotkey '7' from action 'teleport_to_target'
+2025-10-11 12:07:22,804 - INFO - Bound hotkey 'Y' to action 'teleport_to_target'
+2025-10-11 12:07:22,804 - INFO - Settings saved
+2025-10-11 12:07:32,227 - INFO - Unbound hotkey 'Y' from action 'teleport_to_target'
+2025-10-11 12:07:32,228 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:07:32,228 - INFO - Settings saved
+2025-10-11 12:07:33,157 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:10:16,034 - INFO - All hotkeys unbound
+2025-10-11 12:10:16,035 - INFO - Hotkey manager stopped
+2025-10-11 12:10:16,035 - INFO - Settings saved
+2025-10-11 12:10:16,035 - INFO - === Завершение приложения ===
+2025-10-11 12:10:16,064 - INFO - === Завершение приложения ===
+2025-10-11 12:10:17,342 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 12:10:17,536 - INFO - === Запуск приложения ===
+2025-10-11 12:10:17,536 - INFO - Settings loaded
+2025-10-11 12:10:17,879 - INFO - Иконка трея создана
+2025-10-11 12:10:17,879 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:10:17,880 - INFO - GUI инициализирован
+2025-10-11 12:10:17,981 - INFO - Settings saved
+2025-10-11 12:10:18,301 - INFO - License verification: SUCCESS
+2025-10-11 12:10:18,307 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 12:10:18,308 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 12:10:18,309 - INFO - Загружена иконка 3
+2025-10-11 12:10:18,310 - INFO - Загружена иконка 0
+2025-10-11 12:10:19,474 - INFO - Unbound hotkey '7' from action 'teleport_to_target'
+2025-10-11 12:10:19,474 - INFO - Bound hotkey 'T' to action 'teleport_to_target'
+2025-10-11 12:10:19,475 - INFO - Settings saved
+2025-10-11 12:10:29,289 - INFO - Unbound hotkey 'T' from action 'teleport_to_target'
+2025-10-11 12:10:29,289 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:10:29,290 - INFO - Settings saved
+2025-10-11 12:10:30,603 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:10:31,879 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:10:35,282 - INFO - Unbound hotkey '7' from action 'teleport_to_target'
+2025-10-11 12:10:35,282 - INFO - Bound hotkey 'Shift' to action 'teleport_to_target'
+2025-10-11 12:10:35,283 - INFO - Settings saved
+2025-10-11 12:10:38,200 - INFO - Unbound hotkey 'Shift' from action 'teleport_to_target'
+2025-10-11 12:10:38,200 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:10:38,201 - INFO - Settings saved
+2025-10-11 12:10:40,078 - INFO - Unbound hotkey '7' from action 'teleport_to_target'
+2025-10-11 12:10:40,078 - INFO - Bound hotkey 'F1' to action 'teleport_to_target'
+2025-10-11 12:10:40,078 - INFO - Settings saved
+2025-10-11 12:10:41,175 - INFO - Hotkey 'F1' triggered for action: teleport_to_target
+2025-10-11 12:10:44,675 - INFO - Unbound hotkey 'F1' from action 'teleport_to_target'
+2025-10-11 12:10:44,675 - INFO - Bound hotkey 'Tab' to action 'teleport_to_target'
+2025-10-11 12:10:44,676 - INFO - Settings saved
+2025-10-11 12:10:45,614 - INFO - Hotkey 'Tab' triggered for action: teleport_to_target
+2025-10-11 12:10:49,021 - INFO - Unbound hotkey 'Tab' from action 'teleport_to_target'
+2025-10-11 12:10:49,022 - INFO - Bound hotkey 'T' to action 'teleport_to_target'
+2025-10-11 12:10:49,022 - INFO - Settings saved
+2025-10-11 12:10:53,581 - INFO - Unbound hotkey 'T' from action 'teleport_to_target'
+2025-10-11 12:10:53,581 - INFO - Bound hotkey 'U' to action 'teleport_to_target'
+2025-10-11 12:10:53,582 - INFO - Settings saved
+2025-10-11 12:10:56,436 - INFO - Unbound hotkey 'U' from action 'teleport_to_target'
+2025-10-11 12:10:56,436 - INFO - Bound hotkey 'Y' to action 'teleport_to_target'
+2025-10-11 12:10:56,437 - INFO - Settings saved
+2025-10-11 12:12:02,009 - INFO - Unbound hotkey 'Y' from action 'teleport_to_target'
+2025-10-11 12:12:02,009 - INFO - Bound hotkey 'T' to action 'teleport_to_target'
+2025-10-11 12:12:02,010 - INFO - Settings saved
+2025-10-11 12:13:33,291 - INFO - All hotkeys unbound
+2025-10-11 12:13:33,291 - INFO - Hotkey manager stopped
+2025-10-11 12:13:33,292 - INFO - Settings saved
+2025-10-11 12:13:33,292 - INFO - === Завершение приложения ===
+2025-10-11 12:13:33,322 - INFO - === Завершение приложения ===
+2025-10-11 12:13:34,832 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 12:13:35,021 - INFO - === Запуск приложения ===
+2025-10-11 12:13:35,021 - INFO - Settings loaded
+2025-10-11 12:13:35,345 - INFO - Иконка трея создана
+2025-10-11 12:13:35,346 - INFO - Bound hotkey 'T' to action 'teleport_to_target'
+2025-10-11 12:13:35,346 - INFO - GUI инициализирован
+2025-10-11 12:13:35,451 - INFO - Settings saved
+2025-10-11 12:13:35,777 - INFO - License verification: SUCCESS
+2025-10-11 12:13:35,783 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 12:13:35,784 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 12:13:35,785 - INFO - Загружена иконка 3
+2025-10-11 12:13:35,787 - INFO - Загружена иконка 0
+2025-10-11 12:13:40,693 - INFO - Hotkey 'T' triggered for action: teleport_to_target
+2025-10-11 12:13:41,268 - INFO - Hotkey 'T' triggered for action: teleport_to_target
+2025-10-11 12:13:44,769 - INFO - Hotkey 'T' triggered for action: teleport_to_target
+2025-10-11 12:13:51,404 - INFO - Bound hotkey 'Shift+T' to action 'show_all'
+2025-10-11 12:13:51,405 - INFO - Settings saved
+2025-10-11 12:13:52,802 - INFO - Hotkey 'Shift+T' triggered for action: show_all
+2025-10-11 12:13:52,882 - INFO - Hotkey 'Shift+T' triggered for action: show_all
+2025-10-11 12:13:53,559 - INFO - Hotkey 'Shift+T' triggered for action: show_all
+2025-10-11 12:13:53,976 - INFO - Hotkey 'Shift+T' triggered for action: show_all
+2025-10-11 12:13:54,628 - INFO - Hotkey 'Shift+T' triggered for action: show_all
+2025-10-11 12:13:55,560 - INFO - Hotkey 'T' triggered for action: teleport_to_target
+2025-10-11 12:13:56,585 - INFO - Hotkey 'T' triggered for action: teleport_to_target
+2025-10-11 12:14:00,981 - INFO - Unbound hotkey 'T' from action 'teleport_to_target'
+2025-10-11 12:14:00,981 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:14:00,982 - INFO - Settings saved
+2025-10-11 12:14:02,440 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:07,802 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:09,408 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:11,498 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:13,094 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:14,496 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:17,853 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:21,863 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:23,621 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:25,027 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:26,823 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:29,088 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:29,562 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:30,077 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:30,661 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:30,982 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:31,300 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:31,614 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:31,915 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:32,217 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:32,489 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:32,842 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:14:36,072 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:15:19,657 - INFO - Activated window for character 55555515 (HWND: 14747818)
+2025-10-11 12:15:20,481 - INFO - Activated window for character MSE (HWND: 3279382)
+2025-10-11 12:15:21,326 - INFO - Activated window for character 55555515 (HWND: 14747818)
+2025-10-11 12:15:21,782 - INFO - Activated window for character MSE (HWND: 3279382)
+2025-10-11 12:15:22,363 - INFO - Activated window for character 55555515 (HWND: 14747818)
+2025-10-11 12:15:23,685 - INFO - Activated window for character MSE (HWND: 3279382)
+2025-10-11 12:15:25,988 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:15:28,024 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:15:31,103 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:15:33,179 - INFO - Activated window for character 55555515 (HWND: 14747818)
+2025-10-11 12:15:36,301 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:16:30,861 - INFO - All hotkeys unbound
+2025-10-11 12:16:30,861 - INFO - Hotkey manager stopped
+2025-10-11 12:16:30,862 - INFO - Settings saved
+2025-10-11 12:16:30,862 - INFO - === Завершение приложения ===
+2025-10-11 12:16:30,883 - INFO - === Завершение приложения ===
+2025-10-11 12:18:47,296 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 12:18:47,478 - INFO - === Запуск приложения ===
+2025-10-11 12:18:47,478 - INFO - Settings loaded
+2025-10-11 12:18:47,794 - INFO - Иконка трея создана
+2025-10-11 12:18:47,794 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:18:47,794 - INFO - Bound hotkey 'Shift+T' to action 'show_all'
+2025-10-11 12:18:47,795 - INFO - GUI инициализирован
+2025-10-11 12:18:47,897 - INFO - Settings saved
+2025-10-11 12:18:48,545 - INFO - License verification: SUCCESS
+2025-10-11 12:18:48,550 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 12:18:48,551 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 12:18:48,552 - INFO - Загружена иконка 3
+2025-10-11 12:18:48,553 - INFO - Загружена иконка 0
+2025-10-11 12:18:52,291 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:18:54,106 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:18:59,176 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:19:00,680 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:20:16,206 - INFO - All hotkeys unbound
+2025-10-11 12:20:16,206 - INFO - Hotkey manager stopped
+2025-10-11 12:20:16,207 - INFO - Settings saved
+2025-10-11 12:20:16,207 - INFO - === Завершение приложения ===
+2025-10-11 12:20:16,226 - INFO - === Завершение приложения ===
+2025-10-11 12:20:19,241 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 12:20:19,421 - INFO - === Запуск приложения ===
+2025-10-11 12:20:19,421 - INFO - Settings loaded
+2025-10-11 12:20:19,727 - INFO - Иконка трея создана
+2025-10-11 12:20:19,727 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:20:19,727 - INFO - Bound hotkey 'Shift+T' to action 'show_all'
+2025-10-11 12:20:19,727 - INFO - GUI инициализирован
+2025-10-11 12:20:19,836 - INFO - Settings saved
+2025-10-11 12:20:20,461 - INFO - License verification: SUCCESS
+2025-10-11 12:20:20,467 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 12:20:20,467 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 12:20:20,468 - INFO - Загружена иконка 3
+2025-10-11 12:20:20,470 - INFO - Загружена иконка 5
+2025-10-11 12:20:57,099 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:21:03,550 - INFO - All hotkeys unbound
+2025-10-11 12:21:03,551 - INFO - Hotkey manager stopped
+2025-10-11 12:21:03,551 - INFO - Settings saved
+2025-10-11 12:21:03,552 - INFO - === Завершение приложения ===
+2025-10-11 12:21:03,578 - INFO - === Завершение приложения ===
+2025-10-11 12:32:11,497 - INFO - Первый экземпляр - запуск приложения
+2025-10-11 12:32:11,684 - INFO - === Запуск приложения ===
+2025-10-11 12:32:11,685 - INFO - Settings loaded
+2025-10-11 12:32:12,102 - INFO - Иконка трея создана
+2025-10-11 12:32:12,103 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-11 12:32:12,103 - INFO - Bound hotkey 'Shift+T' to action 'show_all'
+2025-10-11 12:32:12,103 - INFO - GUI инициализирован
+2025-10-11 12:32:12,208 - INFO - Settings saved
+2025-10-11 12:32:12,566 - INFO - License verification: SUCCESS
+2025-10-11 12:32:12,571 - INFO - Attached to PID 9888, module base: 0x7ff786ca0000
+2025-10-11 12:32:12,572 - INFO - Attached to PID 10620, module base: 0x7ff786ca0000
+2025-10-11 12:32:12,573 - INFO - Загружена иконка 3
+2025-10-11 12:32:12,574 - INFO - Загружена иконка 5
+2025-10-11 12:32:16,760 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:32:25,851 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:32:30,067 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:33:57,212 - INFO - Attached to PID 4832, module base: 0x7ff786ca0000
+2025-10-11 12:34:19,630 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:34:28,090 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:34:30,981 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:34:38,551 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:34:51,429 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:34:59,025 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:35:01,357 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:35:03,275 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:35:05,116 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:35:07,556 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:35:17,412 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:35:20,757 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-11 12:47:06,101 - INFO - All hotkeys unbound
+2025-10-11 12:47:06,101 - INFO - Hotkey manager stopped
+2025-10-11 12:47:06,102 - INFO - Settings saved
+2025-10-11 12:47:06,102 - INFO - === Завершение приложения ===
+2025-10-11 12:47:06,126 - INFO - === Завершение приложения ===

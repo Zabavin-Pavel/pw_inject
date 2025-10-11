@@ -196,7 +196,7 @@ class MultiboxManager:
         target_x, target_y, target_z = target_pos
         
         # Телепортируем с +1 к Z
-        new_z = target_z + 1
+        new_z = target_z + 2
         
         success = character.char_base.set_position(target_x, target_y, new_z)
         

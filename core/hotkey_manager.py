@@ -12,13 +12,15 @@ class HotkeyManager:
     def __init__(self, action_manager):
         self.action_manager = action_manager
         self.bindings = {}  # {hotkey: action_id}
-        self.registered_hotkeys = set()
         
         # Для режима записи
         self.recording_mode = False
         
-        # Хук для отслеживания состояния модификаторов
-        self._setup_modifier_tracking()
+        # Отслеживание всех нажатых клавиш
+        self.pressed_keys = set()
+        
+        # Хук для отслеживания клавиш
+        keyboard.hook(self._on_key_event, suppress=False)
     
     def _setup_modifier_tracking(self):
         """Настроить отслеживание модификаторов"""
@@ -36,22 +38,111 @@ class HotkeyManager:
         """Обработка всех событий клавиш"""
         key_name = event.name.lower()
         
-        # Отслеживать только левые модификаторы
-        if key_name in self.modifiers:
-            self.modifiers[key_name] = (event.event_type == 'down')
+        # Нормализовать модификаторы в формат "left modifier"
+        if key_name == 'shift':
+            key_name = 'left shift'
+        elif key_name == 'ctrl':
+            key_name = 'left ctrl'
+        elif key_name == 'alt':
+            key_name = 'left alt'
+        # Буквы и цифры - в ВЕРХНИЙ регистр (как в GUI)
+        elif len(key_name) == 1 and key_name.isalnum():
+            key_name = key_name.upper()
+        
+        if event.event_type == 'down':
+            self.pressed_keys.add(key_name)
+            
+            # При нажатии клавиши проверяем все хоткеи
+            if not self.recording_mode:
+                self._check_hotkeys(key_name)
+        elif event.event_type == 'up':
+            self.pressed_keys.discard(key_name)
     
+    def _normalize_key_name(self, key_name: str) -> str:
+        """
+        Нормализовать имя клавиши
+        Преобразует спецсимволы обратно в цифры/буквы
+        """
+        # Маппинг символов Shift+цифра -> цифра
+        shift_number_map = {
+            '!': '1', '@': '2', '#': '3', '$': '4', '%': '5',
+            '^': '6', '&': '7', '*': '8', '(': '9', ')': '0'
+        }
+        
+        key_lower = key_name.lower()
+        
+        # Если это символ от Shift+цифра - вернуть цифру
+        if key_name in shift_number_map:
+            return shift_number_map[key_name]
+        
+        # Буквы - в нижний регистр
+        if len(key_name) == 1 and key_name.isalpha():
+            return key_lower
+        
+        # Модификаторы
+        if key_lower in ['shift', 'ctrl', 'alt', 'left shift', 'left ctrl', 'left alt']:
+            return key_lower
+        
+        # Остальное как есть
+        return key_lower
+
+    def _check_hotkeys(self, pressed_key: str):
+        """Проверить все хоткеи при нажатии клавиши"""
+        # Убрать "left " из имени для проверки основной клавиши
+        check_key = pressed_key.replace('left ', '').replace('right ', '')
+        
+        for hotkey, action_id in self.bindings.items():
+            if self._hotkey_matches(hotkey, check_key):
+                logging.info(f"Hotkey '{hotkey}' triggered for action: {action_id}")
+                try:
+                    self.action_manager.execute(action_id)
+                except Exception as e:
+                    logging.error(f"Error executing action {action_id}: {e}")
+                break  # Только один хоткей за раз
+
+    def _hotkey_matches(self, hotkey: str, pressed_key: str) -> bool:
+        """
+        Проверить, соответствует ли текущее состояние клавиатуры хоткею
+        """
+        parts = hotkey.split('+')
+        
+        # Определить основную клавишу и требуемые модификаторы
+        main_key = None
+        required_modifiers = set()
+        
+        for part in parts:
+            part_lower = part.lower()
+            if part_lower in ['shift', 'ctrl', 'alt']:
+                required_modifiers.add('left ' + part_lower)
+            else:
+                # Основная клавиша - сохраняем регистр из хоткея
+                main_key = part
+        
+        # Проверить основную клавишу (с учетом регистра)
+        if main_key != pressed_key:
+            return False
+        
+        # Проверить модификаторы
+        modifier_keys = {'left shift', 'left ctrl', 'left alt', 
+                        'right shift', 'right ctrl', 'right alt'}
+        
+        for mod_key in modifier_keys:
+            is_pressed = mod_key in self.pressed_keys
+            is_required = mod_key in required_modifiers
+            
+            if is_pressed and not is_required:
+                return False
+            if is_required and not is_pressed:
+                return False
+        
+        return True
+
     def set_recording_mode(self, enabled: bool):
         """Режим записи - отключает срабатывание хоткеев"""
         self.recording_mode = enabled
     
     def bind(self, hotkey: str, action_id: str):
-        """
-        Привязать хоткей к действию
-        
-        Args:
-            hotkey: Комбинация (например "Shift+Y")
-            action_id: ID действия
-        """
+        """Привязать хоткей к действию"""
         # Отвязать старый хоткей если был
         old_hotkey = self._find_hotkey_by_action(action_id)
         if old_hotkey and old_hotkey != hotkey:
@@ -65,48 +156,17 @@ class HotkeyManager:
         
         # Привязать новый
         self.bindings[hotkey] = action_id
-        
-        # Конвертировать в формат keyboard
-        keyboard_hotkey = self._convert_to_keyboard_format(hotkey)
-        
-        # Зарегистрировать
-        try:
-            keyboard.add_hotkey(
-                keyboard_hotkey,
-                lambda aid=action_id: self._on_hotkey_pressed(aid),
-                suppress=False
-            )
-            self.registered_hotkeys.add(hotkey)
-            logging.info(f"Bound hotkey '{hotkey}' to action '{action_id}'")
-        except Exception as e:
-            logging.error(f"Failed to bind hotkey {hotkey}: {e}")
+        logging.info(f"Bound hotkey '{hotkey}' to action '{action_id}'")
     
     def unbind(self, hotkey: str):
         """Отвязать хоткей"""
         if hotkey in self.bindings:
             action_id = self.bindings.pop(hotkey)
-            
-            # Удалить из keyboard
-            if hotkey in self.registered_hotkeys:
-                try:
-                    keyboard_hotkey = self._convert_to_keyboard_format(hotkey)
-                    keyboard.remove_hotkey(keyboard_hotkey)
-                    self.registered_hotkeys.remove(hotkey)
-                    logging.info(f"Unbound hotkey '{hotkey}' from action '{action_id}'")
-                except Exception as e:
-                    logging.warning(f"Failed to unbind hotkey {hotkey}: {e}")
+            logging.info(f"Unbound hotkey '{hotkey}' from action '{action_id}'")
     
     def unbind_all(self):
         """Отвязать все хоткеи"""
-        for hotkey in list(self.registered_hotkeys):
-            try:
-                keyboard_hotkey = self._convert_to_keyboard_format(hotkey)
-                keyboard.remove_hotkey(keyboard_hotkey)
-            except:
-                pass
-        
         self.bindings.clear()
-        self.registered_hotkeys.clear()
         logging.info("All hotkeys unbound")
     
     def get_hotkey_for_action(self, action_id: str) -> str:
@@ -151,8 +211,9 @@ class HotkeyManager:
     def _check_modifiers_match(self, hotkey: str) -> bool:
         """
         Проверить, что модификаторы соответствуют хоткею
-        Если хоткей "Y" - модификаторы должны быть не нажаты
+        Если хоткей "Y" - модификаторы (Shift/Ctrl/Alt) должны быть не нажаты
         Если хоткей "Shift+Y" - должен быть нажат только Shift
+        Обычные клавиши (W, A, S и т.д.) не влияют на проверку
         """
         parts = hotkey.split('+')
         required_mods = set()
@@ -166,11 +227,18 @@ class HotkeyManager:
             elif part_lower == 'alt':
                 required_mods.add('left alt')
         
-        # Проверить, что нажаты ТОЛЬКО требуемые модификаторы
-        for mod, is_pressed in self.modifiers.items():
-            if is_pressed and mod not in required_mods:
+        # Проверить только модификаторы
+        # Если модификатор нажат, но не требуется - блокировать
+        # Если модификатор требуется, но не нажат - блокировать
+        for mod in ['left shift', 'left ctrl', 'left alt']:
+            is_pressed = self.modifiers.get(mod, False)
+            is_required = mod in required_mods
+            
+            if is_pressed and not is_required:
+                # Модификатор нажат, но не нужен
                 return False
-            if not is_pressed and mod in required_mods:
+            if is_required and not is_pressed:
+                # Модификатор нужен, но не нажат
                 return False
         
         return True
