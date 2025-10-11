@@ -239,7 +239,7 @@ class HotkeyRow(tk.Frame):
         self.recording = True
         self.pressed_keys.clear()
         
-        # ВАЖНО: Включаем режим записи в HotkeyManager
+        # ВАЖНО: Включить режим записи в HotkeyManager
         self.hotkey_manager.set_recording_mode(True)
         
         self.hotkey_entry.configure(
@@ -248,13 +248,13 @@ class HotkeyRow(tk.Frame):
         )
         self.hotkey_entry.delete(0, tk.END)
         self.hotkey_entry.insert(0, "...")
-    
+
     def _on_focus_out(self, event):
         """Потеря фокуса - конец записи"""
         self.recording = False
         self.pressed_keys.clear()
         
-        # ВАЖНО: Выключаем режим записи в HotkeyManager
+        # ВАЖНО: Выключить режим записи в HotkeyManager
         self.hotkey_manager.set_recording_mode(False)
         
         self.hotkey_entry.configure(
@@ -317,11 +317,9 @@ class HotkeyRow(tk.Frame):
         return "break"
     
     def _normalize_key(self, keysym: str, char: str) -> str:
-        """
-        Нормализовать имя клавиши
-        ВАЖНО: Поддерживаем только Left модификаторы
-        """
-        # Только левые модификаторы
+        """Нормализовать имя клавиши - ТОЛЬКО ЛЕВЫЕ модификаторы"""
+        
+        # ТОЛЬКО левые модификаторы разрешены
         if keysym == 'Control_L':
             return 'Ctrl'
         elif keysym == 'Shift_L':
@@ -329,7 +327,7 @@ class HotkeyRow(tk.Frame):
         elif keysym == 'Alt_L':
             return 'Alt'
         
-        # Игнорируем правые модификаторы
+        # Игнорируем правые модификаторы и Win
         if keysym in ('Control_R', 'Shift_R', 'Alt_R', 'Win_L', 'Win_R'):
             return None
         
@@ -341,10 +339,11 @@ class HotkeyRow(tk.Frame):
         if len(keysym) == 1:
             return keysym.upper()
         
-        # F1-F12, Space и т.д.
+        # F1-F12
         if keysym.startswith('F') and len(keysym) <= 3:
             return keysym
         
+        # Специальные клавиши
         special_keys = {
             'space': 'Space',
             'Return': 'Return',

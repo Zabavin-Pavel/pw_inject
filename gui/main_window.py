@@ -28,8 +28,7 @@ class MainWindow:
         # Менеджеры
         self.action_manager = ActionManager(self.app_state)
         self.hotkey_manager = HotkeyManager(self.action_manager)
-        self.hotkey_manager.set_gui_callback(lambda func: self.root.after(0, func))
-        
+
         # Верификация (состояние)
         self.verified = False
         
@@ -463,7 +462,7 @@ class MainWindow:
     def on_close(self):
         """Закрытие приложения"""
         try:
-            # Остановить keyboard hook
+            # ВАЖНО: Остановить keyboard hook
             if hasattr(self, 'hotkey_manager'):
                 self.hotkey_manager.stop()
             
@@ -491,6 +490,7 @@ class MainWindow:
             
         except Exception as e:
             logging.error(f"Error during shutdown: {e}")
+            import sys
             sys.exit(0)
 
     # ============================================
