@@ -169,7 +169,7 @@ class Memory:
             return buffer.value
         except:
             return None
-    
+  
     def read_string(self, address, max_length=256, encoding='utf-16-le'):
         """Прочитать строку"""
         try:
@@ -278,3 +278,71 @@ class Memory:
             self.process_handle = None
             self.pid = None
             self.module_base = None
+
+    def freeze_address(self, address, value, value_type='int32', interval=0.01):
+        """
+        Заморозить адрес - постоянно записывать значение
+        
+        Args:
+            address: адрес для заморозки
+            value: значение для записи
+            value_type: тип данных ('int32', 'float', 'byte')
+            interval: интервал обновления в секундах
+        
+        Returns:
+            dict: информация о заморозке для последующей разморозки
+        """
+        import threading
+        import time
+        
+        freeze_info = {
+            'active': True,
+            'thread': None,
+            'address': address,
+            'value': value,
+            'type': value_type
+        }
+        
+        def freeze_loop():
+            while freeze_info['active']:
+                if value_type == 'int32':
+                    self.write_int(address, value)
+                elif value_type == 'float':
+                    self.write_float(address, value)
+                elif value_type == 'byte':
+                    self.write_byte(address, value)
+                time.sleep(interval)
+        
+        freeze_info['thread'] = threading.Thread(target=freeze_loop, daemon=True)
+        freeze_info['thread'].start()
+        
+        return freeze_info
+
+    def unfreeze_address(self, freeze_info):
+        """
+        Разморозить адрес
+        
+        Args:
+            freeze_info: информация о заморозке из freeze_address()
+        """
+        freeze_info['active'] = False
+        if freeze_info['thread']:
+            freeze_info['thread'].join(timeout=1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

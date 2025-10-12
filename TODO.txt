@@ -17,3 +17,100 @@
 
 
 Рефреш не обновил список персонажей (когда сменил перса)
+
+ElementClient.exe+5D11C3
+
+
+
+
+1. ElementClient.exe +0x5D1D89
+
+    a1 0000027D73548EC0 [charorigin +0x50] "rcx"
+    a2 0000027D1ECC1B60 [charbase] "rdx"
+
+char __fastcall sub_7FF787271D89(__int64 a1, __int64 a2)
+{
+  char v2; // zf
+
+  if ( v2 )
+    return sub_7FF786CB2FA8(a1, a2);
+  else
+    return 0;
+}
+
+2. ElementClient.exe +0x12FA8
+
+char __fastcall sub_7FF786CB2FA8(__int64 a1, __int64 a2)
+{
+  return sub_7FF787272320(a1, a2);
+}
+
+
+
+3. ElementClient.exe +0x5D2320
+
+    char __fastcall sub_7FF787272320(__int64 a1, __int64 a2)
+    
+4. ElementClient.exe +0x5600
+
+    a1: 0000027D73548EC0 [charorigin +0x50] "rcx"
+    a2: 0000027D1ECC1B60 [charbase] "rdx"
+    a3: 376 [ElementClient.exe+146F4B8] "r8" HEX mouse coord (меняется от 000 до 77F)
+    a4: 40D координата мышки [ElementClient.exe+146F4BC] "r9" HEX mouse coord (меняется от 000 до 40F)
+    a5: 0 [можно не считать, всегда равен 0] "rbp+28"
+
+    __int64 __fastcall sub_7FF786CA5600(__int64 a1, __int64 a2, int a3, int a4, unsigned int a5)
+    {
+        return sub_7FF787271190(a1, a2, a3, a4, a5);
+    }
+
+5. ElementClient.exe +0x5D1190
+
+    __int64 __fastcall sub_7FF787271190(__int64 a1, __int64 a2, int a3, int a4, unsigned int a5)
+
+
+sub_7FF787203290 преобразует корды?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Теперь можно попробовать вызвать функцию передвижения (пока для примера пусть это будут координаты таргета).
+
+1. ElementClient.exe +0x5D2320
+
+    a1 0000027D73548EC0 [charorigin +0x50] "rcx"
+    a2 0000027D1ECC1B60 [charbase] "rdx"
+
+    char __fastcall sub_7FF787272320(__int64 a1, __int64 a2)
+    
+2. ElementClient.exe +0x5600
+
+    a1: 0000027D73548EC0 [charorigin +0x50] "rcx"
+    a2: 0000027D1ECC1B60 [charbase] "rdx"
+    a3: 376 [ElementClient.exe+146F4B8] "r8" HEX mouse coord (меняется от 000 до 77F)
+    a4: 40D координата мышки [ElementClient.exe+146F4BC] "r9" HEX mouse coord (меняется от 000 до 40F)
+    a5: 0 [можно не считать, всегда равен 0] "rbp+28"
+
+    __int64 __fastcall sub_7FF786CA5600(__int64 a1, __int64 a2, int a3, int a4, unsigned int a5)
+    {
+        return sub_7FF787271190(a1, a2, a3, a4, a5);
+    }
+
+3. ElementClient.exe +0x5D1190
+
+    __int64 __fastcall sub_7FF787271190(__int64 a1, __int64 a2, int a3, int a4, unsigned int a5)
+
+Не забудь сначала поменять, а потом заморозить координаты movepoint_x, y, x на время выполнения последней функции.

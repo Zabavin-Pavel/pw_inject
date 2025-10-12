@@ -28,7 +28,7 @@ class CharBase:
         self.char_class = resolve_offset(self.memory, OFFSETS["char_class"], self.cache)
         self.char_name = resolve_offset(self.memory, OFFSETS["char_name"], self.cache)
         self.char_level = resolve_offset(self.memory, OFFSETS["char_level"], self.cache)
-        self.char_target_id = resolve_offset(self.memory, OFFSETS["char_target_id"], self.cache)
+        self.target_id = resolve_offset(self.memory, OFFSETS["target_id"], self.cache)
         
         # HP/MP
         self.char_hp = resolve_offset(self.memory, OFFSETS["char_hp"], self.cache)
@@ -49,7 +49,7 @@ class CharBase:
         return (self.char_pos_x, self.char_pos_y, self.char_pos_z)
     
     def set_position(self, x, y, z):
-        """Записать координаты в память"""
+        """Записать координаты с триггером обновления"""
         if "char_base" not in self.cache:
             self._update()
         
@@ -58,26 +58,41 @@ class CharBase:
         
         char_base = self.cache["char_base"]
         
-        # Записываем координаты
-        success = True
-        success &= self.memory.write_float(char_base + 0xA00, x)  # X
-        success &= self.memory.write_float(char_base + 0x9F8, y)  # Y
-        success &= self.memory.write_float(char_base + 0x9FC, z)  # Z
+        # Основные координаты
+        self.memory.write_float(char_base + 0xA00, x)  # X
+        self.memory.write_float(char_base + 0x9F8, y)  # Y
+        self.memory.write_float(char_base + 0x9FC, z)  # Z
         
-        return success
+        # ВАЖНО: Записываем в те же адреса что и функция движения
+        # Это триггерит обновление позиции
+        self.memory.write_float(char_base + 0xA20, z)  # Копия Z (или что-то связанное)
+        self.memory.write_float(char_base + 0xA24, z)  # Еще одна копия
+        
+        # Можно попробовать записать что-то в A08, A0C тоже
+        # self.memory.write_float(char_base + 0xA08, 0.0)
+        # self.memory.write_float(char_base + 0xA0C, 0.0)
+        
+        return True
     
     def get_target_position(self):
         """Получить координаты таргета"""
         # Обновляем target_id
-        self.char_target_id = resolve_offset(self.memory, OFFSETS["char_target_id"], self.cache)
+        self.char_target_id = resolve_offset(self.memory, OFFSETS["target_id"], self.cache)
         
         if not self.char_target_id or self.char_target_id == 0:
             return None
         
-        # Получаем target_origin
-        target_origin = resolve_offset(self.memory, OFFSETS["target_origin"], self.cache)
-        if target_origin:
-            self.cache["target_origin"] = target_origin
+        # Получаем selection_origin
+        selection_origin = resolve_offset(self.memory, OFFSETS["selection_origin"], self.cache)
+        if selection_origin:
+            self.cache["selection_origin"] = selection_origin
+        
+        # Получаем selection_ptr
+        selection_ptr = resolve_offset(self.memory, OFFSETS["selection_ptr"], self.cache)
+        if not selection_ptr:
+            return None
+        
+        self.cache["selection_ptr"] = selection_ptr
         
         # Получаем target_ptr
         target_ptr = resolve_offset(self.memory, OFFSETS["target_ptr"], self.cache)
@@ -96,6 +111,38 @@ class CharBase:
         
         return (x, y, z)
     
+    # def get_movepoint_position(self):
+    #     """Получить координаты точки куда кликнули"""
+    #     # Получаем selection_origin
+    #     selection_origin = resolve_offset(self.memory, OFFSETS["selection_origin"], self.cache)
+    #     if selection_origin:
+    #         self.cache["selection_origin"] = selection_origin
+        
+    #     # Получаем selection_ptr
+    #     selection_ptr = resolve_offset(self.memory, OFFSETS["selection_ptr"], self.cache)
+    #     if not selection_ptr:
+    #         return None
+        
+    #     self.cache["selection_ptr"] = selection_ptr
+        
+    #     # Получаем movepoint_ptr
+    #     movepoint_ptr = resolve_offset(self.memory, OFFSETS["movepoint_ptr"], self.cache)
+    #     if not movepoint_ptr:
+    #         return None
+        
+    #     self.cache["movepoint_ptr"] = movepoint_ptr
+        
+    #     # Читаем координаты
+    #     x = resolve_offset(self.memory, OFFSETS["movepoint_x"], self.cache)
+    #     y = resolve_offset(self.memory, OFFSETS["movepoint_y"], self.cache)
+    #     z = resolve_offset(self.memory, OFFSETS["movepoint_z"], self.cache)
+        
+    #     if x is None or y is None or z is None:
+    #         return None
+        
+    #     return (x, y, z)
+
+
     def refresh(self):
         """Обновить все данные"""
         self._update()

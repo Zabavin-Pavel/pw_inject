@@ -10,12 +10,14 @@ OFFSETS = {
     "char_origin": "static:ElementClient.exe +0x013FAB08 +0x1000",
     "char_base": "ptr:char_origin +0x68",
     
+    # Структура для движения
+    "char_move_struct": "ptr:char_origin +0x50",
+
     # Основные данные
     "char_id": "int32:char_base +0x6A8",
     "char_class": "int32:char_base +0x9D0",
     "char_name": "str:char_base +0x9C8",
     "char_level": "int32:char_base +0x6B4",
-    "char_target_id": "uint32:char_base +0x7B4",
     
     # HP/MP
     "char_hp": "int32:char_base +0x6BC",
@@ -50,13 +52,23 @@ OFFSETS = {
     "people_items": "array:people_container:4096:4:{id:uint32:0x10->0x6A8,x:float:0x10->0x50,y:float:0x10->0x48,z:float:0x10->0x4C}",
     
     # ========================================
-    # TARGET MANAGER
+    # SELECTION MANAGER (Target + Movepoint)
     # ========================================
-    "target_origin": "static:ElementClient.exe +0x013FBB40",  # БЕЗ +0x1000!
-    "target_ptr": "ptr:target_origin +0x58 -> +0x0 -> +0x0 -> +0x10",
+    "selection_origin": "static:ElementClient.exe +0x013FBB40",  # БЕЗ +0x1000!
+    "selection_ptr": "ptr:selection_origin +0x58 -> +0x0",
+
+    # Target (выбранная цель)
+    "target_id": "uint32:char_base +0x7B4",  # ID выбранной цели
+    "target_ptr": "ptr:selection_ptr +0x0 -> +0x10",
     "target_pos_x": "float:target_ptr +0xFC",
     "target_pos_y": "float:target_ptr +0xF4",
     "target_pos_z": "float:target_ptr +0xF8",
+
+    # Movepoint (точка куда кликнули)
+    "movepoint_ptr": "ptr:selection_ptr +0x10",
+    "movepoint_x": "float:movepoint_ptr +0xFC",  # Те же оффсеты!
+    "movepoint_y": "float:movepoint_ptr +0xF4",
+    "movepoint_z": "float:movepoint_ptr +0xF8",
 
     # ========================================
     # GAME INFO
@@ -99,7 +111,6 @@ def get_first_pid(process_name="ElementClient.exe"):
     kernel32.CloseHandle(snapshot)
     return first_pid
 
-
 def parse_array_fields(fields_str):
     """
     Парсит строку полей массива
@@ -135,7 +146,6 @@ def parse_array_fields(fields_str):
             fields.append((field_name, field_type, offset_chain))
     
     return fields
-
 
 def resolve_offset(memory, path_str, cached_values=None):
     """
@@ -309,8 +319,7 @@ def resolve_offset(memory, path_str, cached_values=None):
         return None
     else:
         return current_addr
-    
-    
+
 def main():
     print("="*70)
     print("ПРОВЕРКА ВСЕХ ОФФСЕТОВ")
@@ -372,7 +381,7 @@ def main():
         char_level = resolve_offset(memory, OFFSETS["char_level"], cache)
         print(f"Level: {char_level}")
         
-        target_id = resolve_offset(memory, OFFSETS["char_target_id"], cache)
+        target_id = resolve_offset(memory, OFFSETS["target_id"], cache)
         print(f"Target ID: {target_id}")
         
         # HP/MP
@@ -531,48 +540,57 @@ def main():
         print(f"Teleport ID: {teleport_id}")
 
         # ========================================
-        # TARGET INFO
+        # SELECTION MANAGER TEST
         # ========================================
         print("="*70)
-        print("TARGET INFO")
+        print("SELECTION MANAGER (Target + Movepoint)")
         print("="*70)
 
-        # Добавляем вывод target_origin
-        target_origin = resolve_offset(memory, OFFSETS["target_origin"], cache)
-        if target_origin:
-            cache["target_origin"] = target_origin
-            print(f"✅ target_origin: {hex(target_origin)}")
-            print(f"   (Expected: 0x237ACE78A10)")
-        else:
-            print("❌ target_origin: NULL")
+        selection_origin = resolve_offset(memory, OFFSETS["selection_origin"], cache)
+        if selection_origin:
+            cache["selection_origin"] = selection_origin
+            print(f"✅ selection_origin: {hex(selection_origin)}")
 
-        if target_id and target_id != 0:
-            print(f"Target ID: {target_id}")
+        selection_ptr = resolve_offset(memory, OFFSETS["selection_ptr"], cache)
+        if selection_ptr:
+            cache["selection_ptr"] = selection_ptr
+            print(f"✅ selection_ptr: {hex(selection_ptr)}")
             
-            target_ptr = resolve_offset(memory, OFFSETS["target_ptr"], cache)
-            if target_ptr:
-                cache["target_ptr"] = target_ptr
-                print(f"✅ target_ptr: {hex(target_ptr)}")
-                
-                target_x = resolve_offset(memory, OFFSETS["target_pos_x"], cache)
-                target_y = resolve_offset(memory, OFFSETS["target_pos_y"], cache)
-                target_z = resolve_offset(memory, OFFSETS["target_pos_z"], cache)
-                
-                if target_x is not None and target_y is not None and target_z is not None:
-                    print(f"Target Position: X={target_x:.2f}, Y={target_y:.2f}, Z={target_z:.2f}")
+            # TARGET
+            print("\n--- TARGET ---")
+            if target_id and target_id != 0:
+                target_ptr = resolve_offset(memory, OFFSETS["target_ptr"], cache)
+                if target_ptr:
+                    cache["target_ptr"] = target_ptr
+                    print(f"✅ target_ptr: {hex(target_ptr)}")
                     
-                    # Расстояние до таргета
-                    if x is not None and y is not None and z is not None:
-                        import math
-                        distance = math.sqrt((target_x - x)**2 + (target_y - y)**2 + (target_z - z)**2)
-                        print(f"Distance to target: {distance:.2f}m")
+                    t_x = resolve_offset(memory, OFFSETS["target_pos_x"], cache)
+                    t_y = resolve_offset(memory, OFFSETS["target_pos_y"], cache)
+                    t_z = resolve_offset(memory, OFFSETS["target_pos_z"], cache)
+                    
+                    if t_x is not None and t_y is not None and t_z is not None:
+                        print(f"Target Position: X={t_x:.2f}, Y={t_y:.2f}, Z={t_z:.2f}")
+                        
+                        if x is not None and y is not None and z is not None:
+                            import math
+                            distance = math.sqrt((t_x - x)**2 + (t_y - y)**2 + (t_z - z)**2)
+                            print(f"Distance to target: {distance:.2f}m")
                 else:
-                    print("❌ Could not read target position")
+                    print("❌ target_ptr: NULL")
             else:
-                print("❌ target_ptr: NULL")
-        else:
-            print("No target selected")
-        
+                print("No target selected")
+
+        # ========================================
+        # TEST FREEZE MECHANISM
+        # ========================================
+        # if char_base and x is not None:
+        #     print("="*70)
+        #     print("READY TO TEST FREEZE MECHANISM")
+        #     print("="*70)
+            
+        #     test_freeze_hp(memory, char_base)
+
+
     except Exception as e:
         print(f"\n❌ ОШИБКА: {e}")
         import traceback
