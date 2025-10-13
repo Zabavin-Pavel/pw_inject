@@ -13,7 +13,7 @@
     "show_loot": "-",
     "show_players": "-",
     "show_npcs": "-",
-    "ahk_click_mouse": "7",
-    "ahk_press_space": "Shift+U"
+    "ahk_click_mouse": "-",
+    "ahk_press_space": "Shift+Y"
   }
 }

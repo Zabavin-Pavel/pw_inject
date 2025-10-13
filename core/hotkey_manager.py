@@ -39,7 +39,7 @@ class HotkeyManager:
     
     def _on_key_event(self, event):
         """Обработка всех событий клавиш"""
-        key_name = self._normalize_key_name(event.name)
+        key_name = self._normalize_key_name(event.name)  # БЕЗ scan_code
         
         if event.event_type == 'down':
             self.pressed_keys.add(key_name)
@@ -51,9 +51,16 @@ class HotkeyManager:
     
     def _normalize_key_name(self, key_name: str) -> str:
         """Нормализовать имя клавиши"""
+        
+        # РАСШИРЕННЫЙ shift_number_map - все возможные раскладки
         shift_number_map = {
+            # Английская раскладка
             '!': '1', '@': '2', '#': '3', '$': '4', '%': '5',
-            '^': '6', '&': '7', '*': '8', '(': '9', ')': '0'
+            '^': '6', '&': '7', '*': '8', '(': '9', ')': '0',
+            # Русская раскладка
+            '№': '3', ';': '4', ':': '6', '?': '7',
+            # Дополнительно (на всякий случай)
+            '"': '2',
         }
         
         ru_to_en = {
@@ -67,9 +74,11 @@ class HotkeyManager:
         
         key_lower = key_name.lower()
         
+        # Символы Shift+цифра -> цифра (ПЕРВЫМ!)
         if key_name in shift_number_map:
             return shift_number_map[key_name]
         
+        # Модификаторы
         if key_lower == 'shift':
             return 'left shift'
         elif key_lower == 'ctrl':
@@ -77,12 +86,15 @@ class HotkeyManager:
         elif key_lower == 'alt':
             return 'left alt'
         
+        # Русские буквы -> английские (UPPERCASE)
         if key_lower in ru_to_en:
             return ru_to_en[key_lower].upper()
         
+        # Буквы - UPPERCASE
         if len(key_name) == 1 and key_name.isalpha():
             return key_name.upper()
         
+        # Цифры
         if len(key_name) == 1 and key_name.isdigit():
             return key_name
         
@@ -132,6 +144,14 @@ class HotkeyManager:
     def _trigger_listener(self, action_id: str, hotkey: str):
         """Триггер для listener'а"""
         with self.listener_lock:
+            # ИСПРАВЛЕНО: Если listener уже активен для ЭТОГО ЖЕ экшена
+            if self.listener_active and self.current_action_id == action_id:
+                # Просто обновляем время последнего триггера
+                # Это позволит продолжить работу без создания нового треда
+                self.last_trigger_time = time.time()
+                logging.debug(f"Re-triggered active listener for {action_id}")
+                return
+            
             self.current_action_id = action_id
             self.current_hotkey = hotkey
             self.last_trigger_time = time.time()
@@ -150,10 +170,10 @@ class HotkeyManager:
         Основной цикл listener'а с Windows-подобным поведением:
         1. Первое выполнение - сразу
         2. Пауза (initial_delay)
-        3. Быстрые повторения (repeat_throttle)
+        3. Быстрые повторения (repeat_throttle) ТОЛЬКО ЕСЛИ ХОТКЕЙ НАЖАТ
         """
         first_execution = True
-        after_initial_delay = False
+        last_execution_time = 0
         
         while self.listener_active:
             with self.listener_lock:
@@ -164,44 +184,58 @@ class HotkeyManager:
                 time.sleep(0.05)
                 continue
             
-            # === ПРОВЕРКА: Если это НЕ первый вызов - проверяем нажата ли клавиша ===
-            if not first_execution:
-                if not self._is_hotkey_still_pressed(hotkey):
-                    # Клавиша отпущена - проверяем таймаут
-                    current_time = time.time()
-                    time_since_last_trigger = current_time - self.last_trigger_time
-                    
-                    if time_since_last_trigger >= self.listener_timeout:
-                        logging.info("Listener timeout - stopping")
-                        with self.listener_lock:
-                            self.listener_active = False
-                            self.current_action_id = None
-                            self.current_hotkey = None
-                        break
-                    else:
-                        time.sleep(0.05)
-                        continue
+            current_time = time.time()
             
-            # === ВЫПОЛНИТЬ ЭКШЕН ===
-            try:
-                self.action_manager.execute(action_id)
-                
-                if self.on_hotkey_executed:
-                    self.on_hotkey_executed(action_id)
-                
-                logging.debug(f"Listener executed: {action_id}")
-            except Exception as e:
-                logging.error(f"Error in listener executing {action_id}: {e}")
+            # === ПРОВЕРКА: ХОТКЕЙ НАЖАТ? ===
+            hotkey_pressed = self._is_hotkey_still_pressed(hotkey)
             
-            # === ЗАДЕРЖКА В СТИЛЕ WINDOWS ===
+            # ИСПРАВЛЕНО: Выполняем ТОЛЬКО если хоткей нажат (или это первый раз)
+            should_execute = False
+            wait_time = 0.05  # По умолчанию короткая пауза
+            
             if first_execution:
-                # После первого нажатия - ДОЛГАЯ пауза (500ms)
+                # Первый раз - выполняем всегда
+                should_execute = True
+                wait_time = self.initial_delay  # После первого - долгая пауза
                 first_execution = False
-                time.sleep(self.initial_delay)
-                after_initial_delay = True
-            else:
-                # После initial_delay - БЫСТРЫЕ повторения (50ms)
-                time.sleep(self.repeat_throttle)
+                last_execution_time = current_time
+            elif hotkey_pressed:
+                # Хоткей нажат - проверяем прошло ли достаточно времени
+                time_since_last_exec = current_time - last_execution_time
+                
+                if time_since_last_exec >= self.repeat_throttle:
+                    should_execute = True
+                    wait_time = self.repeat_throttle  # Быстрые повторения
+                    last_execution_time = current_time
+            
+            # === ВЫПОЛНИТЬ ЭКШЕН (если нужно) ===
+            if should_execute:
+                try:
+                    self.action_manager.execute(action_id)
+                    
+                    if self.on_hotkey_executed:
+                        self.on_hotkey_executed(action_id)
+                    
+                    logging.debug(f"Listener executed: {action_id}")
+                except Exception as e:
+                    logging.error(f"Error in listener executing {action_id}: {e}")
+            
+            # === ПРОВЕРКА ТАЙМАУТА ===
+            if not hotkey_pressed:
+                # Хоткей отпущен - проверяем таймаут
+                time_since_last_trigger = current_time - self.last_trigger_time
+                
+                if time_since_last_trigger >= self.listener_timeout:
+                    logging.info("Listener timeout - stopping")
+                    with self.listener_lock:
+                        self.listener_active = False
+                        self.current_action_id = None
+                        self.current_hotkey = None
+                    break
+                wait_time = 0.05  # Короткая пауза в режиме ожидания
+            
+            # Пауза перед следующей итерацией
+            time.sleep(wait_time)
 
     def _is_hotkey_still_pressed(self, hotkey: str) -> bool:
         """Проверить, нажата ли ещё комбинация клавиш"""

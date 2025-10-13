@@ -2248,3 +2248,336 @@ AttributeError: 'HotkeyManager' object has no attribute '_on_hotkey_pressed'
 2025-10-14 02:17:57,549 - INFO - Settings saved
 2025-10-14 02:17:57,549 - INFO - === Завершение приложения ===
 2025-10-14 02:17:57,570 - INFO - === Завершение приложения ===
+2025-10-14 02:22:35,113 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 02:22:35,320 - INFO - === Запуск приложения ===
+2025-10-14 02:22:35,320 - INFO - Settings loaded
+2025-10-14 02:22:35,322 - INFO - AHK started (PID: 2188)
+2025-10-14 02:22:36,144 - INFO - Иконка трея создана
+2025-10-14 02:22:36,144 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 02:22:36,145 - INFO - Bound hotkey 'Shift+U' to action 'ahk_press_space'
+2025-10-14 02:22:36,145 - INFO - GUI инициализирован
+2025-10-14 02:22:36,257 - INFO - Refreshing AHK window list
+2025-10-14 02:22:36,310 - INFO - Settings saved
+2025-10-14 02:22:37,120 - INFO - License verification: SUCCESS
+2025-10-14 02:22:37,126 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 02:22:37,127 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 02:22:37,128 - INFO - Загружена иконка 5
+2025-10-14 02:22:37,129 - INFO - Загружена иконка 3
+2025-10-14 02:22:40,540 - INFO - Bound hotkey 'Shift' to action 'show_npcs'
+2025-10-14 02:22:40,541 - INFO - Settings saved
+2025-10-14 02:22:47,182 - INFO - AHK stopped gracefully
+2025-10-14 02:22:47,182 - INFO - All hotkeys unbound
+2025-10-14 02:22:47,182 - INFO - Hotkey manager stopped
+2025-10-14 02:22:47,182 - INFO - Settings saved
+2025-10-14 02:22:47,183 - INFO - === Завершение приложения ===
+2025-10-14 02:22:47,205 - INFO - === Завершение приложения ===
+2025-10-14 02:27:25,030 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 02:27:25,230 - INFO - === Запуск приложения ===
+2025-10-14 02:27:25,231 - INFO - Settings loaded
+2025-10-14 02:27:25,233 - INFO - AHK started (PID: 17596)
+2025-10-14 02:27:26,069 - INFO - Иконка трея создана
+2025-10-14 02:27:26,069 - INFO - Bound hotkey 'Shift' to action 'show_npcs'
+2025-10-14 02:27:26,069 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 02:27:26,069 - INFO - Bound hotkey 'Shift+U' to action 'ahk_press_space'
+2025-10-14 02:27:26,070 - INFO - GUI инициализирован
+2025-10-14 02:27:26,174 - INFO - Refreshing AHK window list
+2025-10-14 02:27:26,228 - INFO - Settings saved
+2025-10-14 02:27:27,036 - INFO - License verification: SUCCESS
+2025-10-14 02:27:27,043 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 02:27:27,044 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 02:27:27,045 - INFO - Загружена иконка 5
+2025-10-14 02:27:27,046 - INFO - Загружена иконка 3
+2025-10-14 02:27:28,649 - INFO - Unbound hotkey 'Shift' from action 'show_npcs'
+2025-10-14 02:27:28,649 - INFO - Bound hotkey 'Shift+T' to action 'show_npcs'
+2025-10-14 02:27:28,649 - INFO - Settings saved
+2025-10-14 02:27:31,093 - INFO - Unbound hotkey 'Shift+T' from action 'show_npcs'
+2025-10-14 02:27:31,093 - INFO - Bound hotkey 'Shift' to action 'show_npcs'
+2025-10-14 02:27:31,094 - INFO - Settings saved
+2025-10-14 02:27:36,594 - INFO - Unbound hotkey 'Shift' from action 'show_npcs'
+2025-10-14 02:27:36,594 - INFO - Bound hotkey '5' to action 'show_npcs'
+2025-10-14 02:27:36,594 - INFO - Settings saved
+2025-10-14 02:27:40,362 - INFO - Unbound hotkey '5' from action 'show_npcs'
+2025-10-14 02:27:40,362 - INFO - Bound hotkey 'T' to action 'show_npcs'
+2025-10-14 02:27:40,362 - INFO - Settings saved
+2025-10-14 02:27:41,596 - INFO - Settings saved
+2025-10-14 02:27:41,596 - INFO - Hotkey T reassigned from show_npcs to show_players
+2025-10-14 02:27:41,596 - INFO - Bound hotkey 'T' to action 'show_players'
+2025-10-14 02:27:41,597 - INFO - Settings saved
+2025-10-14 02:27:43,110 - INFO - Settings saved
+2025-10-14 02:27:43,111 - INFO - Unbound hotkey 'T' from action 'show_players'
+2025-10-14 02:27:43,111 - INFO - Hotkey 7 reassigned from ahk_click_mouse to show_players
+2025-10-14 02:27:43,111 - INFO - Bound hotkey '7' to action 'show_players'
+2025-10-14 02:27:43,112 - INFO - Settings saved
+2025-10-14 02:27:44,218 - INFO - Unbound hotkey '7' from action 'show_players'
+2025-10-14 02:27:44,218 - INFO - Bound hotkey 'Shift' to action 'show_players'
+2025-10-14 02:27:44,219 - INFO - Settings saved
+2025-10-14 02:27:48,908 - INFO - Unbound hotkey 'Shift' from action 'show_players'
+2025-10-14 02:27:48,908 - INFO - Bound hotkey 'Ctrl+6' to action 'show_players'
+2025-10-14 02:27:48,909 - INFO - Settings saved
+2025-10-14 02:27:52,193 - INFO - Unbound hotkey 'Ctrl+6' from action 'show_players'
+2025-10-14 02:27:52,193 - INFO - Bound hotkey 'Alt+5' to action 'show_players'
+2025-10-14 02:27:52,193 - INFO - Settings saved
+2025-10-14 02:27:54,590 - INFO - AHK stopped gracefully
+2025-10-14 02:27:54,590 - INFO - All hotkeys unbound
+2025-10-14 02:27:54,590 - INFO - Hotkey manager stopped
+2025-10-14 02:27:54,591 - INFO - Settings saved
+2025-10-14 02:27:54,591 - INFO - === Завершение приложения ===
+2025-10-14 02:27:54,612 - INFO - === Завершение приложения ===
+2025-10-14 02:29:23,038 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 02:29:23,227 - INFO - === Запуск приложения ===
+2025-10-14 02:29:23,227 - INFO - Settings loaded
+2025-10-14 02:29:23,228 - INFO - AHK started (PID: 17480)
+2025-10-14 02:29:24,048 - INFO - Иконка трея создана
+2025-10-14 02:29:24,048 - INFO - Bound hotkey 'Alt+5' to action 'show_players'
+2025-10-14 02:29:24,048 - INFO - Bound hotkey 'Shift+U' to action 'ahk_press_space'
+2025-10-14 02:29:24,049 - INFO - GUI инициализирован
+2025-10-14 02:29:24,156 - INFO - Refreshing AHK window list
+2025-10-14 02:29:24,208 - INFO - Settings saved
+2025-10-14 02:29:25,183 - INFO - License verification: SUCCESS
+2025-10-14 02:29:25,188 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 02:29:25,189 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 02:29:25,190 - INFO - Загружена иконка 5
+2025-10-14 02:29:25,191 - INFO - Загружена иконка 3
+2025-10-14 02:29:32,916 - INFO - Bound hotkey 'Shift+Y' to action 'show_npcs'
+2025-10-14 02:29:32,917 - INFO - Settings saved
+2025-10-14 02:29:36,262 - INFO - Settings saved
+2025-10-14 02:29:36,263 - INFO - Unbound hotkey 'Shift+U' from action 'ahk_press_space'
+2025-10-14 02:29:36,263 - INFO - Hotkey Shift+Y reassigned from show_npcs to ahk_press_space
+2025-10-14 02:29:36,263 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 02:29:36,263 - INFO - Settings saved
+2025-10-14 02:29:38,236 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:29:38,237 - INFO - Listener thread started
+2025-10-14 02:29:39,244 - INFO - Listener timeout - stopping
+2025-10-14 02:29:41,259 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:29:41,260 - INFO - Listener thread started
+2025-10-14 02:29:42,265 - INFO - Listener timeout - stopping
+2025-10-14 02:29:44,924 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:29:44,925 - INFO - Listener thread started
+2025-10-14 02:29:45,931 - INFO - Listener timeout - stopping
+2025-10-14 02:29:46,091 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:29:46,092 - INFO - Listener thread started
+2025-10-14 02:29:47,055 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:29:48,050 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:29:49,009 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:29:50,031 - INFO - Listener timeout - stopping
+2025-10-14 02:29:50,160 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:29:50,161 - INFO - Listener thread started
+2025-10-14 02:29:51,012 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:29:52,026 - INFO - Listener timeout - stopping
+2025-10-14 02:29:58,889 - INFO - AHK stopped gracefully
+2025-10-14 02:29:58,890 - INFO - All hotkeys unbound
+2025-10-14 02:29:58,890 - INFO - Hotkey manager stopped
+2025-10-14 02:29:58,890 - INFO - Settings saved
+2025-10-14 02:29:58,890 - INFO - === Завершение приложения ===
+2025-10-14 02:29:58,909 - INFO - === Завершение приложения ===
+2025-10-14 02:34:10,978 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 02:34:11,176 - INFO - === Запуск приложения ===
+2025-10-14 02:34:11,176 - INFO - Settings loaded
+2025-10-14 02:34:11,178 - INFO - AHK started (PID: 5064)
+2025-10-14 02:34:12,002 - INFO - Иконка трея создана
+2025-10-14 02:34:12,003 - INFO - Bound hotkey 'Alt+5' to action 'show_players'
+2025-10-14 02:34:12,003 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 02:34:12,003 - INFO - GUI инициализирован
+2025-10-14 02:34:12,108 - INFO - Refreshing AHK window list
+2025-10-14 02:34:12,162 - INFO - Settings saved
+2025-10-14 02:34:12,585 - INFO - License verification: SUCCESS
+2025-10-14 02:34:12,591 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 02:34:12,593 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 02:34:12,593 - INFO - Загружена иконка 5
+2025-10-14 02:34:12,595 - INFO - Загружена иконка 3
+2025-10-14 02:34:14,917 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 02:34:14,918 - INFO - Settings saved
+2025-10-14 02:34:16,196 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:16,196 - INFO - Listener thread started
+2025-10-14 02:34:16,700 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:16,733 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:16,763 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:16,795 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:16,842 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:16,873 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:16,905 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:16,936 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:16,967 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:16,999 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:17,030 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:17,060 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:17,093 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:17,139 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:17,169 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:17,201 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:17,231 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:17,264 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:17,294 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 02:34:18,313 - INFO - Listener timeout - stopping
+2025-10-14 02:34:27,212 - INFO - Settings saved
+2025-10-14 02:34:27,213 - INFO - Unbound hotkey '7' from action 'ahk_click_mouse'
+2025-10-14 02:34:27,213 - INFO - Hotkey Alt+5 reassigned from show_players to ahk_click_mouse
+2025-10-14 02:34:27,213 - INFO - Bound hotkey 'Alt+5' to action 'ahk_click_mouse'
+2025-10-14 02:34:27,214 - INFO - Settings saved
+2025-10-14 02:34:28,908 - INFO - Hotkey 'Alt+5' triggered for action: ahk_click_mouse
+2025-10-14 02:34:28,908 - INFO - Listener thread started
+2025-10-14 02:34:29,914 - INFO - Listener timeout - stopping
+2025-10-14 02:34:32,285 - INFO - Unbound hotkey 'Shift+Y' from action 'ahk_press_space'
+2025-10-14 02:34:32,285 - INFO - Bound hotkey 'Shift' to action 'ahk_press_space'
+2025-10-14 02:34:32,286 - INFO - Settings saved
+2025-10-14 02:34:38,684 - INFO - Bound hotkey 'Shift' to action 'ahk_press_space'
+2025-10-14 02:34:38,685 - INFO - Settings saved
+2025-10-14 02:34:41,452 - INFO - Unbound hotkey 'Shift' from action 'ahk_press_space'
+2025-10-14 02:34:41,452 - INFO - Bound hotkey 'Shift+9' to action 'ahk_press_space'
+2025-10-14 02:34:41,453 - INFO - Settings saved
+2025-10-14 02:34:43,064 - INFO - Unbound hotkey 'Shift+9' from action 'ahk_press_space'
+2025-10-14 02:34:43,064 - INFO - Bound hotkey 'Shift+8' to action 'ahk_press_space'
+2025-10-14 02:34:43,065 - INFO - Settings saved
+2025-10-14 02:34:45,315 - INFO - Unbound hotkey 'Shift+8' from action 'ahk_press_space'
+2025-10-14 02:34:45,315 - INFO - Bound hotkey 'Shift' to action 'ahk_press_space'
+2025-10-14 02:34:45,316 - INFO - Settings saved
+2025-10-14 02:34:47,225 - INFO - Bound hotkey 'Shift' to action 'ahk_press_space'
+2025-10-14 02:34:47,226 - INFO - Settings saved
+2025-10-14 02:34:48,331 - INFO - Unbound hotkey 'Shift' from action 'ahk_press_space'
+2025-10-14 02:34:48,332 - INFO - Bound hotkey 'Shift+5' to action 'ahk_press_space'
+2025-10-14 02:34:48,332 - INFO - Settings saved
+2025-10-14 02:34:52,203 - INFO - Unbound hotkey 'Shift+5' from action 'ahk_press_space'
+2025-10-14 02:34:52,203 - INFO - Bound hotkey 'Shift+7' to action 'ahk_press_space'
+2025-10-14 02:34:52,204 - INFO - Settings saved
+2025-10-14 02:37:46,204 - INFO - AHK stopped gracefully
+2025-10-14 02:37:46,204 - INFO - All hotkeys unbound
+2025-10-14 02:37:46,204 - INFO - Hotkey manager stopped
+2025-10-14 02:37:46,205 - INFO - Settings saved
+2025-10-14 02:37:46,205 - INFO - === Завершение приложения ===
+2025-10-14 02:37:46,230 - INFO - === Завершение приложения ===
+2025-10-14 02:37:48,584 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 02:37:48,792 - INFO - === Запуск приложения ===
+2025-10-14 02:37:48,792 - INFO - Settings loaded
+2025-10-14 02:37:48,794 - INFO - AHK started (PID: 12596)
+2025-10-14 02:37:49,611 - INFO - Иконка трея создана
+2025-10-14 02:37:49,611 - INFO - Bound hotkey 'Alt+5' to action 'ahk_click_mouse'
+2025-10-14 02:37:49,611 - INFO - Bound hotkey 'Shift+7' to action 'ahk_press_space'
+2025-10-14 02:37:49,612 - INFO - GUI инициализирован
+2025-10-14 02:37:49,719 - INFO - Refreshing AHK window list
+2025-10-14 02:37:49,773 - INFO - Settings saved
+2025-10-14 02:37:50,476 - INFO - License verification: SUCCESS
+2025-10-14 02:37:50,482 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 02:37:50,483 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 02:37:50,485 - INFO - Загружена иконка 5
+2025-10-14 02:37:50,486 - INFO - Загружена иконка 3
+2025-10-14 02:37:52,679 - INFO - Unbound hotkey 'Alt+5' from action 'ahk_click_mouse'
+2025-10-14 02:37:52,679 - INFO - Bound hotkey '5' to action 'ahk_click_mouse'
+2025-10-14 02:37:52,680 - INFO - Settings saved
+2025-10-14 02:37:54,242 - INFO - Settings saved
+2025-10-14 02:37:54,243 - INFO - Unbound hotkey 'Shift+7' from action 'ahk_press_space'
+2025-10-14 02:37:54,243 - INFO - Hotkey 5 reassigned from ahk_click_mouse to ahk_press_space
+2025-10-14 02:37:54,243 - INFO - Bound hotkey '5' to action 'ahk_press_space'
+2025-10-14 02:37:54,244 - INFO - Settings saved
+2025-10-14 02:37:55,935 - INFO - Unbound hotkey '5' from action 'ahk_press_space'
+2025-10-14 02:37:55,935 - INFO - Bound hotkey 'Shift' to action 'ahk_press_space'
+2025-10-14 02:37:55,935 - INFO - Settings saved
+2025-10-14 02:38:00,155 - INFO - Bound hotkey 'Shift' to action 'ahk_press_space'
+2025-10-14 02:38:00,155 - INFO - Settings saved
+2025-10-14 02:38:02,831 - INFO - Unbound hotkey 'Shift' from action 'ahk_press_space'
+2025-10-14 02:38:02,831 - INFO - Bound hotkey 'Ctrl+4' to action 'ahk_press_space'
+2025-10-14 02:38:02,831 - INFO - Settings saved
+2025-10-14 02:38:05,760 - INFO - Unbound hotkey 'Ctrl+4' from action 'ahk_press_space'
+2025-10-14 02:38:05,760 - INFO - Bound hotkey 'Alt+4' to action 'ahk_press_space'
+2025-10-14 02:38:05,760 - INFO - Settings saved
+2025-10-14 02:38:07,072 - INFO - Unbound hotkey 'Alt+4' from action 'ahk_press_space'
+2025-10-14 02:38:07,072 - INFO - Bound hotkey 'Shift' to action 'ahk_press_space'
+2025-10-14 02:38:07,072 - INFO - Settings saved
+2025-10-14 02:38:10,567 - INFO - Bound hotkey 'Shift' to action 'ahk_press_space'
+2025-10-14 02:38:10,567 - INFO - Settings saved
+2025-10-14 02:38:17,616 - INFO - Bound hotkey 'Shift+T' to action 'ahk_click_mouse'
+2025-10-14 02:38:17,616 - INFO - Settings saved
+2025-10-14 02:38:19,263 - INFO - Unbound hotkey 'Shift+T' from action 'ahk_click_mouse'
+2025-10-14 02:38:19,264 - INFO - Bound hotkey 'Ctrl' to action 'ahk_click_mouse'
+2025-10-14 02:38:19,264 - INFO - Settings saved
+2025-10-14 02:38:21,580 - INFO - Unbound hotkey 'Ctrl' from action 'ahk_click_mouse'
+2025-10-14 02:38:21,580 - INFO - Bound hotkey 'Alt+T' to action 'ahk_click_mouse'
+2025-10-14 02:38:21,581 - INFO - Settings saved
+2025-10-14 02:38:22,935 - INFO - Unbound hotkey 'Alt+T' from action 'ahk_click_mouse'
+2025-10-14 02:38:22,935 - INFO - Bound hotkey 'Ctrl' to action 'ahk_click_mouse'
+2025-10-14 02:38:22,935 - INFO - Settings saved
+2025-10-14 02:38:25,752 - INFO - Unbound hotkey 'Ctrl' from action 'ahk_click_mouse'
+2025-10-14 02:38:25,753 - INFO - Bound hotkey 'Shift+T' to action 'ahk_click_mouse'
+2025-10-14 02:38:25,753 - INFO - Settings saved
+2025-10-14 02:38:28,263 - INFO - Settings saved
+2025-10-14 02:38:28,264 - INFO - Unbound hotkey 'Shift+T' from action 'ahk_click_mouse'
+2025-10-14 02:38:28,264 - INFO - Hotkey Shift reassigned from ahk_press_space to ahk_click_mouse
+2025-10-14 02:38:28,264 - INFO - Bound hotkey 'Shift' to action 'ahk_click_mouse'
+2025-10-14 02:38:28,264 - INFO - Settings saved
+2025-10-14 02:38:29,954 - INFO - Bound hotkey 'Shift' to action 'ahk_click_mouse'
+2025-10-14 02:38:29,955 - INFO - Settings saved
+2025-10-14 02:38:49,232 - INFO - Bound hotkey 'Shift' to action 'ahk_click_mouse'
+2025-10-14 02:38:49,233 - INFO - Settings saved
+2025-10-14 02:39:05,873 - INFO - AHK stopped gracefully
+2025-10-14 02:39:05,873 - INFO - All hotkeys unbound
+2025-10-14 02:39:05,873 - INFO - Hotkey manager stopped
+2025-10-14 02:39:05,874 - INFO - Settings saved
+2025-10-14 02:39:05,874 - INFO - === Завершение приложения ===
+2025-10-14 02:39:05,899 - INFO - === Завершение приложения ===
+2025-10-14 02:40:21,623 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 02:40:21,830 - INFO - === Запуск приложения ===
+2025-10-14 02:40:21,830 - INFO - Settings loaded
+2025-10-14 02:40:21,832 - INFO - AHK started (PID: 10764)
+2025-10-14 02:40:22,713 - INFO - Иконка трея создана
+2025-10-14 02:40:22,713 - INFO - Bound hotkey 'Shift' to action 'ahk_click_mouse'
+2025-10-14 02:40:22,713 - INFO - GUI инициализирован
+2025-10-14 02:40:22,815 - INFO - Refreshing AHK window list
+2025-10-14 02:40:22,868 - INFO - Settings saved
+2025-10-14 02:40:23,350 - INFO - License verification: SUCCESS
+2025-10-14 02:40:23,356 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 02:40:23,357 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 02:40:23,358 - INFO - Загружена иконка 5
+2025-10-14 02:40:23,359 - INFO - Загружена иконка 3
+2025-10-14 02:40:24,747 - INFO - Unbound hotkey 'Shift' from action 'ahk_click_mouse'
+2025-10-14 02:40:24,747 - INFO - Bound hotkey 'Shift+5' to action 'ahk_click_mouse'
+2025-10-14 02:40:24,748 - INFO - Settings saved
+2025-10-14 02:40:29,880 - INFO - Bound hotkey 'Shift+5' to action 'ahk_click_mouse'
+2025-10-14 02:40:29,880 - INFO - Settings saved
+2025-10-14 02:40:31,266 - INFO - Unbound hotkey 'Shift+5' from action 'ahk_click_mouse'
+2025-10-14 02:40:31,266 - INFO - Bound hotkey 'Ctrl+5' to action 'ahk_click_mouse'
+2025-10-14 02:40:31,266 - INFO - Settings saved
+2025-10-14 02:40:33,020 - INFO - Unbound hotkey 'Ctrl+5' from action 'ahk_click_mouse'
+2025-10-14 02:40:33,020 - INFO - Bound hotkey 'Ctrl+4' to action 'ahk_click_mouse'
+2025-10-14 02:40:33,020 - INFO - Settings saved
+2025-10-14 02:40:35,420 - INFO - Unbound hotkey 'Ctrl+4' from action 'ahk_click_mouse'
+2025-10-14 02:40:35,420 - INFO - Bound hotkey 'Ctrl+5' to action 'ahk_click_mouse'
+2025-10-14 02:40:35,421 - INFO - Settings saved
+2025-10-14 02:40:36,235 - INFO - Unbound hotkey 'Ctrl+5' from action 'ahk_click_mouse'
+2025-10-14 02:40:36,235 - INFO - Bound hotkey 'Ctrl+6' to action 'ahk_click_mouse'
+2025-10-14 02:40:36,235 - INFO - Settings saved
+2025-10-14 02:40:37,979 - INFO - Unbound hotkey 'Ctrl+6' from action 'ahk_click_mouse'
+2025-10-14 02:40:37,979 - INFO - Bound hotkey 'Shift+5' to action 'ahk_click_mouse'
+2025-10-14 02:40:37,980 - INFO - Settings saved
+2025-10-14 02:40:40,655 - INFO - Settings saved
+2025-10-14 02:40:40,656 - INFO - Hotkey Shift+5 reassigned from ahk_click_mouse to ahk_press_space
+2025-10-14 02:40:40,656 - INFO - Bound hotkey 'Shift+5' to action 'ahk_press_space'
+2025-10-14 02:40:40,656 - INFO - Settings saved
+2025-10-14 02:40:42,230 - INFO - Hotkey 'Shift+5' triggered for action: ahk_press_space
+2025-10-14 02:40:42,231 - INFO - Listener thread started
+2025-10-14 02:40:43,237 - INFO - Listener timeout - stopping
+2025-10-14 02:40:46,416 - INFO - Unbound hotkey 'Shift+5' from action 'ahk_press_space'
+2025-10-14 02:40:46,416 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-14 02:40:46,416 - INFO - Settings saved
+2025-10-14 02:40:47,436 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 02:40:47,437 - INFO - Listener thread started
+2025-10-14 02:40:48,443 - INFO - Listener timeout - stopping
+2025-10-14 02:40:50,171 - INFO - Unbound hotkey '6' from action 'ahk_press_space'
+2025-10-14 02:40:50,171 - INFO - Bound hotkey 'Shift+6' to action 'ahk_press_space'
+2025-10-14 02:40:50,171 - INFO - Settings saved
+2025-10-14 02:40:51,710 - INFO - Hotkey 'Shift+6' triggered for action: ahk_press_space
+2025-10-14 02:40:51,711 - INFO - Listener thread started
+2025-10-14 02:40:52,716 - INFO - Listener timeout - stopping
+2025-10-14 02:40:55,936 - INFO - Unbound hotkey 'Shift+6' from action 'ahk_press_space'
+2025-10-14 02:40:55,936 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 02:40:55,937 - INFO - Settings saved
+2025-10-14 02:40:57,309 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:40:57,309 - INFO - Listener thread started
+2025-10-14 02:40:58,316 - INFO - Listener timeout - stopping
+2025-10-14 02:40:58,695 - INFO - Hotkey 'Shift+Y' triggered for action: ahk_press_space
+2025-10-14 02:40:58,696 - INFO - Listener thread started
+2025-10-14 02:40:59,703 - INFO - Listener timeout - stopping
+2025-10-14 02:41:09,936 - INFO - AHK stopped gracefully
+2025-10-14 02:41:09,936 - INFO - All hotkeys unbound
+2025-10-14 02:41:09,936 - INFO - Hotkey manager stopped
+2025-10-14 02:41:09,937 - INFO - Settings saved
+2025-10-14 02:41:09,937 - INFO - === Завершение приложения ===
+2025-10-14 02:41:09,953 - INFO - === Завершение приложения ===

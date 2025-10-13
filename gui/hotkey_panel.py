@@ -339,6 +339,25 @@ class HotkeyRow(tk.Frame):
         if keysym in ('Control_R', 'Shift_R', 'Alt_R', 'Win_L', 'Win_R'):
             return None
         
+        # РАСШИРЕННЫЙ shift_number_map - все возможные раскладки
+        shift_number_map = {
+            # Английская раскладка
+            '!': '1', '@': '2', '#': '3', '$': '4', '%': '5',
+            '^': '6', '&': '7', '*': '8', '(': '9', ')': '0',
+            # Русская раскладка
+            '№': '3', ';': '4', ':': '6', '?': '7',
+            # Дополнительно
+            '"': '2',
+        }
+        
+        # Shift+цифра: char будет символ из shift_number_map
+        if char and char in shift_number_map:
+            return shift_number_map[char]
+        
+        # Обычные цифры (без Shift) - ТОЛЬКО keysym
+        if keysym.isdigit():
+            return keysym
+        
         # Русские буквы -> английские (UPPERCASE)
         if char and char.lower() in self.ru_to_en:
             return self.ru_to_en[char.lower()].upper()
@@ -346,10 +365,6 @@ class HotkeyRow(tk.Frame):
         # Обычные буквы (UPPERCASE)
         if len(keysym) == 1 and keysym.isalpha():
             return keysym.upper()
-        
-        # Цифры как есть
-        if len(keysym) == 1 and keysym.isdigit():
-            return keysym
         
         # F-клавиши
         if keysym.startswith('F') and len(keysym) <= 3:
