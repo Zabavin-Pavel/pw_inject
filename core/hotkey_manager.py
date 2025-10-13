@@ -11,7 +11,7 @@ class HotkeyManager:
     
     def __init__(self, action_manager, on_hotkey_executed=None):
         self.action_manager = action_manager
-        self.on_hotkey_executed = on_hotkey_executed  # НОВОЕ: Callback для UI
+        self.on_hotkey_executed = on_hotkey_executed
         self.bindings = {}  # {hotkey: action_id}
         
         # Для режима записи
@@ -29,8 +29,10 @@ class HotkeyManager:
         self.current_hotkey = None
         self.last_trigger_time = 0
         
-        self.throttle_delay = 0.1  # 100ms между вызовами
-        self.listener_timeout = 1.0  # 1 секунда ожидания перед закрытием
+        # НОВОЕ: Параметры как в Windows
+        self.initial_delay = 0.5        # 500ms - задержка после первого нажатия
+        self.repeat_throttle = 0.1      # 100ms - быстрые повторения
+        self.listener_timeout = 1.0     # 1 секунда ожидания перед закрытием
         
         # Хук для отслеживания клавиш
         keyboard.hook(self._on_key_event, suppress=False)
@@ -145,12 +147,13 @@ class HotkeyManager:
 
     def _listener_loop(self):
         """
-        Основной цикл listener'а
-        - Первый вызов: выполняется сразу (триггер уже произошёл)
-        - Дальше: выполняется только если клавиша ВСЁ ЕЩЁ нажата
-        - Таймаут 1 секунда: если клавиша отпущена и нет новых триггеров → завершается
+        Основной цикл listener'а с Windows-подобным поведением:
+        1. Первое выполнение - сразу
+        2. Пауза (initial_delay)
+        3. Быстрые повторения (repeat_throttle)
         """
-        first_execution = True  # Флаг для первого вызова
+        first_execution = True
+        after_initial_delay = False
         
         while self.listener_active:
             with self.listener_lock:
@@ -169,7 +172,6 @@ class HotkeyManager:
                     time_since_last_trigger = current_time - self.last_trigger_time
                     
                     if time_since_last_trigger >= self.listener_timeout:
-                        # Прошла 1 секунда без новых триггеров - завершаем
                         logging.info("Listener timeout - stopping")
                         with self.listener_lock:
                             self.listener_active = False
@@ -177,15 +179,13 @@ class HotkeyManager:
                             self.current_hotkey = None
                         break
                     else:
-                        # Ждём ещё (возможно будет новый триггер)
                         time.sleep(0.05)
-                        continue  # НЕ выполняем экшен, просто ждём
+                        continue
             
-            # === ВЫПОЛНИТЬ ЭКШЕН (клавиша нажата или это первый вызов) ===
+            # === ВЫПОЛНИТЬ ЭКШЕН ===
             try:
                 self.action_manager.execute(action_id)
                 
-                # Вызвать callback для UI (мигание)
                 if self.on_hotkey_executed:
                     self.on_hotkey_executed(action_id)
                 
@@ -193,10 +193,15 @@ class HotkeyManager:
             except Exception as e:
                 logging.error(f"Error in listener executing {action_id}: {e}")
             
-            first_execution = False  # Больше не первый вызов
-            
-            # === ЖДЁМ throttle_delay перед следующей проверкой ===
-            time.sleep(self.throttle_delay)
+            # === ЗАДЕРЖКА В СТИЛЕ WINDOWS ===
+            if first_execution:
+                # После первого нажатия - ДОЛГАЯ пауза (500ms)
+                first_execution = False
+                time.sleep(self.initial_delay)
+                after_initial_delay = True
+            else:
+                # После initial_delay - БЫСТРЫЕ повторения (50ms)
+                time.sleep(self.repeat_throttle)
 
     def _is_hotkey_still_pressed(self, hotkey: str) -> bool:
         """Проверить, нажата ли ещё комбинация клавиш"""
@@ -205,22 +210,45 @@ class HotkeyManager:
         
         parts = hotkey.split('+')
         
+        # ОТЛАДКА: Выводим что проверяем
+        logging.debug(f"Checking hotkey: {hotkey}, pressed_keys: {self.pressed_keys}")
+        
         for part in parts:
             part_lower = part.lower()
             
+            # Проверяем модификаторы
             if part_lower == 'shift':
                 if 'left shift' not in self.pressed_keys and 'right shift' not in self.pressed_keys:
+                    logging.debug(f"Shift not pressed")
                     return False
             elif part_lower == 'ctrl':
                 if 'left ctrl' not in self.pressed_keys and 'right ctrl' not in self.pressed_keys:
+                    logging.debug(f"Ctrl not pressed")
                     return False
             elif part_lower == 'alt':
                 if 'left alt' not in self.pressed_keys and 'right alt' not in self.pressed_keys:
+                    logging.debug(f"Alt not pressed")
                     return False
             else:
-                if part not in self.pressed_keys:
+                # Обычная клавиша
+                # Проверяем в разных форматах
+                found = False
+                
+                # 1. Как есть
+                if part in self.pressed_keys:
+                    found = True
+                # 2. UPPERCASE (для букв)
+                elif part.upper() in self.pressed_keys:
+                    found = True
+                # 3. lowercase (на всякий случай)
+                elif part.lower() in self.pressed_keys:
+                    found = True
+                
+                if not found:
+                    logging.debug(f"Key '{part}' not found in pressed_keys")
                     return False
         
+        logging.debug(f"All keys still pressed")
         return True
 
     def set_recording_mode(self, enabled: bool):

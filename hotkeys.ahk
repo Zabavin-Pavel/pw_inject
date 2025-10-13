@@ -36,12 +36,14 @@ ClickAtMouse() {
     }
     
     MouseGetPos, xpos, ypos
+    WinGet, active_id, ID, A
     
     ; Сначала кликаем в активном окне
     Click, x%xpos% y%ypos%
     
+    ; ИСПРАВЛЕНО: Пропускаем активное окно в цикле
     for index, window_id in element_windows {
-        if WinExist("ahk_id " . window_id) {
+        if (window_id != active_id) && WinExist("ahk_id " . window_id) {
             CoordMode, Mouse, Screen
             ControlClick, x%xpos% y%ypos%, ahk_id %window_id%, , L, NA
         }
