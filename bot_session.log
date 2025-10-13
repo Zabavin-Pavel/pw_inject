@@ -21,3 +21,474 @@
 2025-10-13 08:52:27,187 - INFO - Settings saved
 2025-10-13 08:52:27,188 - INFO - === Завершение приложения ===
 2025-10-13 08:52:27,208 - INFO - === Завершение приложения ===
+2025-10-13 09:53:28,805 - INFO - Первый экземпляр - запуск приложения
+2025-10-13 09:53:28,998 - INFO - === Запуск приложения ===
+2025-10-13 09:53:28,999 - INFO - Settings loaded
+2025-10-13 09:53:29,003 - INFO - AHK started (PID: 10752)
+2025-10-13 09:53:29,367 - INFO - Иконка трея создана
+2025-10-13 09:53:29,367 - INFO - Bound hotkey 'Shift+T' to action 'show_all'
+2025-10-13 09:53:29,367 - INFO - Bound hotkey '5' to action 'ahk_click_mouse'
+2025-10-13 09:53:29,367 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-13 09:53:29,367 - INFO - GUI инициализирован
+2025-10-13 09:53:29,481 - INFO - Settings saved
+2025-10-13 09:53:29,828 - INFO - License verification: SUCCESS
+2025-10-13 09:53:29,833 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-13 09:53:29,834 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-13 09:53:29,835 - INFO - Загружена иконка 5
+2025-10-13 09:53:29,837 - INFO - Загружена иконка 3
+2025-10-13 09:53:36,203 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:53:37,925 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:53:40,606 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-13 09:54:11,531 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:54:14,096 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-13 09:54:19,996 - INFO - Unbound hotkey '5' from action 'ahk_click_mouse'
+2025-10-13 09:54:19,997 - INFO - Bound hotkey 'F1' to action 'ahk_click_mouse'
+2025-10-13 09:54:19,997 - INFO - Settings saved
+2025-10-13 09:54:39,781 - INFO - Unbound hotkey 'F1' from action 'ahk_click_mouse'
+2025-10-13 09:54:39,782 - INFO - Bound hotkey '1' to action 'ahk_click_mouse'
+2025-10-13 09:54:39,782 - INFO - Settings saved
+2025-10-13 09:54:41,324 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:43,076 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:43,899 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:45,563 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:46,072 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:46,174 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:46,275 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:46,376 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:46,477 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:46,578 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:46,680 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:46,782 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:46,883 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:46,983 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:47,084 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:47,186 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:47,287 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:47,388 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:47,489 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:47,591 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:47,692 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:47,794 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:47,895 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:47,996 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:48,097 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:48,198 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:48,299 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:48,400 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:48,501 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:48,602 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:48,703 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:48,804 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:48,905 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:49,006 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:49,107 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:49,208 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:49,309 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:49,410 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:49,512 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:49,613 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:49,714 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:49,816 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:49,917 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:50,018 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:50,119 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:50,220 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:50,321 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:50,422 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:50,523 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:50,624 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:50,726 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:50,827 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:50,928 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:51,029 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:51,130 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:51,231 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:51,332 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:51,433 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:53,309 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:55,369 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:56,240 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:56,747 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:56,848 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:56,949 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:57,050 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:57,151 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:57,252 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:57,353 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:57,454 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:57,555 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:57,657 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:57,758 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:57,859 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:57,960 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:58,062 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:58,162 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:58,264 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:58,365 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:58,466 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:54:59,663 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:01,160 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:02,180 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:03,825 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:04,216 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:04,728 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:05,402 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:07,553 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:08,017 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:08,499 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:09,403 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:10,904 - INFO - Hotkey '1' triggered for action: ahk_click_mouse
+2025-10-13 09:55:15,093 - INFO - Unbound hotkey '1' from action 'ahk_click_mouse'
+2025-10-13 09:55:15,094 - INFO - Bound hotkey 'Y' to action 'ahk_click_mouse'
+2025-10-13 09:55:15,094 - INFO - Settings saved
+2025-10-13 09:55:24,728 - INFO - Bound hotkey 'Y' to action 'ahk_click_mouse'
+2025-10-13 09:55:24,728 - INFO - Settings saved
+2025-10-13 09:55:29,597 - INFO - Settings saved
+2025-10-13 09:55:29,597 - INFO - Unbound hotkey 'Y' from action 'ahk_click_mouse'
+2025-10-13 09:55:29,597 - INFO - Hotkey Shift+T reassigned from show_all to ahk_click_mouse
+2025-10-13 09:55:29,598 - INFO - Bound hotkey 'Shift+T' to action 'ahk_click_mouse'
+2025-10-13 09:55:29,598 - INFO - Settings saved
+2025-10-13 09:59:36,890 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-13 09:59:40,070 - INFO - Unbound hotkey 'Shift+T' from action 'ahk_click_mouse'
+2025-10-13 09:59:40,070 - INFO - Bound hotkey '5' to action 'ahk_click_mouse'
+2025-10-13 09:59:40,071 - INFO - Settings saved
+2025-10-13 09:59:42,411 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:43,591 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:44,535 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:45,995 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:46,550 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:47,908 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:48,886 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:49,376 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:49,939 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:50,614 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:51,353 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:51,899 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:54,315 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:54,801 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:56,234 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:56,734 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:56,834 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:56,935 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:57,036 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:57,137 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:57,238 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:57,339 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:57,440 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:57,541 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:57,643 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:57,744 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:57,845 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:57,946 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:58,047 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:58,149 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:58,250 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:58,352 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:58,453 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:58,555 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:58,656 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:58,758 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:58,859 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:58,960 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:59,061 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:59,162 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:59,263 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:59,365 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:59,466 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:59,566 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:59,667 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:59,769 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:59,870 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 09:59:59,971 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:00,072 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:00,173 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:00,275 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:00,375 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:00,477 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:00,577 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:00,678 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:00,779 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:00,880 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:00,981 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:01,082 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:01,183 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:01,285 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:01,386 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:01,487 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:01,588 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:01,690 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:01,790 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:01,892 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:01,993 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:02,095 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:02,196 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:02,297 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:02,398 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:02,499 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:02,600 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:02,701 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:02,801 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:02,902 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:03,004 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:03,105 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:03,207 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:03,308 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:03,409 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:03,511 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:03,612 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:03,714 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:03,815 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:03,916 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:04,017 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:04,118 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:04,219 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:04,320 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:04,421 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:04,523 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:04,624 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:04,726 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:04,827 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:04,928 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:05,029 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:05,130 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:05,231 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:05,332 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:05,433 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:05,534 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:05,635 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:05,736 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:05,837 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:05,938 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:00:06,039 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:04:12,163 - INFO - AHK stopped gracefully
+2025-10-13 10:04:12,163 - INFO - All hotkeys unbound
+2025-10-13 10:04:12,163 - INFO - Hotkey manager stopped
+2025-10-13 10:04:12,164 - INFO - Settings saved
+2025-10-13 10:04:12,164 - INFO - === Завершение приложения ===
+2025-10-13 10:04:12,183 - INFO - === Завершение приложения ===
+2025-10-13 10:07:28,110 - INFO - Первый экземпляр - запуск приложения
+2025-10-13 10:07:28,312 - INFO - === Запуск приложения ===
+2025-10-13 10:07:28,313 - INFO - Settings loaded
+2025-10-13 10:07:28,314 - INFO - AHK started (PID: 13604)
+2025-10-13 10:07:28,660 - INFO - Иконка трея создана
+2025-10-13 10:07:28,660 - INFO - Bound hotkey '5' to action 'ahk_click_mouse'
+2025-10-13 10:07:28,660 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-13 10:07:28,660 - INFO - GUI инициализирован
+2025-10-13 10:07:28,768 - INFO - Settings saved
+2025-10-13 10:07:29,371 - INFO - License verification: SUCCESS
+2025-10-13 10:07:29,376 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-13 10:07:29,377 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-13 10:07:29,378 - INFO - Загружена иконка 5
+2025-10-13 10:07:29,379 - INFO - Загружена иконка 3
+2025-10-13 10:07:46,189 - INFO - Bound hotkey 'Shift+T' to action 'show_players'
+2025-10-13 10:07:46,189 - INFO - Settings saved
+2025-10-13 10:08:20,750 - INFO - Unbound hotkey '5' from action 'ahk_click_mouse'
+2025-10-13 10:08:20,750 - INFO - Bound hotkey 'Ctrl+5' to action 'ahk_click_mouse'
+2025-10-13 10:08:20,751 - INFO - Settings saved
+2025-10-13 10:08:21,684 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:23,290 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:25,246 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:28,657 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:34,738 - INFO - Unbound hotkey '6' from action 'ahk_press_space'
+2025-10-13 10:08:34,738 - INFO - Bound hotkey 'Ctrl+6' to action 'ahk_press_space'
+2025-10-13 10:08:34,739 - INFO - Settings saved
+2025-10-13 10:08:36,062 - INFO - Hotkey 'Ctrl+6' triggered for action: ahk_press_space
+2025-10-13 10:08:39,925 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:43,981 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:46,083 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:49,450 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:51,058 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:52,378 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:53,395 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:56,273 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:08:58,054 - INFO - AHK stopped gracefully
+2025-10-13 10:08:58,054 - INFO - All hotkeys unbound
+2025-10-13 10:08:58,054 - INFO - Hotkey manager stopped
+2025-10-13 10:08:58,054 - INFO - Settings saved
+2025-10-13 10:08:58,055 - INFO - === Завершение приложения ===
+2025-10-13 10:08:58,077 - INFO - === Завершение приложения ===
+2025-10-13 10:09:03,578 - INFO - Первый экземпляр - запуск приложения
+2025-10-13 10:09:03,771 - INFO - === Запуск приложения ===
+2025-10-13 10:09:03,772 - INFO - Settings loaded
+2025-10-13 10:09:03,773 - INFO - AHK started (PID: 10360)
+2025-10-13 10:09:04,113 - INFO - Иконка трея создана
+2025-10-13 10:09:04,113 - INFO - Bound hotkey 'Shift+T' to action 'show_players'
+2025-10-13 10:09:04,113 - INFO - Bound hotkey 'Ctrl+5' to action 'ahk_click_mouse'
+2025-10-13 10:09:04,114 - INFO - Bound hotkey 'Ctrl+6' to action 'ahk_press_space'
+2025-10-13 10:09:04,114 - INFO - GUI инициализирован
+2025-10-13 10:09:04,226 - INFO - Settings saved
+2025-10-13 10:09:04,561 - INFO - License verification: SUCCESS
+2025-10-13 10:09:04,566 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-13 10:09:04,567 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-13 10:09:04,568 - INFO - Загружена иконка 5
+2025-10-13 10:09:04,569 - INFO - Загружена иконка 3
+2025-10-13 10:09:06,378 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:09:08,938 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:09:11,132 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:09:13,727 - INFO - AHK stopped gracefully
+2025-10-13 10:09:13,727 - INFO - All hotkeys unbound
+2025-10-13 10:09:13,728 - INFO - Hotkey manager stopped
+2025-10-13 10:09:13,728 - INFO - Settings saved
+2025-10-13 10:09:13,728 - INFO - === Завершение приложения ===
+2025-10-13 10:09:13,748 - INFO - === Завершение приложения ===
+2025-10-13 10:09:37,246 - INFO - Первый экземпляр - запуск приложения
+2025-10-13 10:09:37,417 - INFO - === Запуск приложения ===
+2025-10-13 10:09:37,417 - INFO - Settings loaded
+2025-10-13 10:09:37,421 - INFO - AHK started (PID: 8940)
+2025-10-13 10:09:37,759 - INFO - Иконка трея создана
+2025-10-13 10:09:37,759 - INFO - Bound hotkey 'Shift+T' to action 'show_players'
+2025-10-13 10:09:37,760 - INFO - Bound hotkey 'Ctrl+5' to action 'ahk_click_mouse'
+2025-10-13 10:09:37,760 - INFO - Bound hotkey 'Ctrl+6' to action 'ahk_press_space'
+2025-10-13 10:09:37,760 - INFO - GUI инициализирован
+2025-10-13 10:09:37,867 - INFO - Settings saved
+2025-10-13 10:09:38,298 - INFO - License verification: SUCCESS
+2025-10-13 10:09:38,301 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-13 10:09:38,302 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-13 10:09:38,303 - INFO - Загружена иконка 5
+2025-10-13 10:09:38,303 - INFO - Загружена иконка 3
+2025-10-13 10:09:43,741 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:09:45,363 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:09:46,445 - INFO - Hotkey 'Ctrl+6' triggered for action: ahk_press_space
+2025-10-13 10:09:52,809 - INFO - AHK stopped gracefully
+2025-10-13 10:09:52,809 - INFO - All hotkeys unbound
+2025-10-13 10:09:52,809 - INFO - Hotkey manager stopped
+2025-10-13 10:09:52,810 - INFO - Settings saved
+2025-10-13 10:09:52,810 - INFO - === Завершение приложения ===
+2025-10-13 10:09:52,832 - INFO - === Завершение приложения ===
+2025-10-13 10:11:05,010 - INFO - Первый экземпляр - запуск приложения
+2025-10-13 10:11:05,193 - INFO - === Запуск приложения ===
+2025-10-13 10:11:05,194 - INFO - Settings loaded
+2025-10-13 10:11:05,198 - INFO - AHK started (PID: 7368)
+2025-10-13 10:11:05,553 - INFO - Иконка трея создана
+2025-10-13 10:11:05,553 - INFO - Bound hotkey 'Shift+T' to action 'show_players'
+2025-10-13 10:11:05,554 - INFO - Bound hotkey 'Ctrl+5' to action 'ahk_click_mouse'
+2025-10-13 10:11:05,554 - INFO - Bound hotkey 'Ctrl+6' to action 'ahk_press_space'
+2025-10-13 10:11:05,554 - INFO - GUI инициализирован
+2025-10-13 10:11:05,656 - INFO - Settings saved
+2025-10-13 10:11:05,857 - INFO - License verification: SUCCESS
+2025-10-13 10:11:05,862 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-13 10:11:05,863 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-13 10:11:05,864 - INFO - Загружена иконка 5
+2025-10-13 10:11:05,866 - INFO - Загружена иконка 3
+2025-10-13 10:11:07,514 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:11:09,260 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:11:10,930 - INFO - Hotkey 'Ctrl+6' triggered for action: ahk_press_space
+2025-10-13 10:11:14,938 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:11:16,328 - INFO - Hotkey 'Ctrl+6' triggered for action: ahk_press_space
+2025-10-13 10:11:37,458 - INFO - Hotkey 'Ctrl+6' triggered for action: ahk_press_space
+2025-10-13 10:11:44,409 - INFO - Hotkey 'Ctrl+5' triggered for action: ahk_click_mouse
+2025-10-13 10:14:09,073 - INFO - AHK stopped gracefully
+2025-10-13 10:14:09,073 - INFO - All hotkeys unbound
+2025-10-13 10:14:09,073 - INFO - Hotkey manager stopped
+2025-10-13 10:14:09,074 - INFO - Settings saved
+2025-10-13 10:14:09,074 - INFO - === Завершение приложения ===
+2025-10-13 10:14:09,096 - INFO - === Завершение приложения ===
+2025-10-13 10:15:26,472 - INFO - Первый экземпляр - запуск приложения
+2025-10-13 10:15:26,664 - INFO - === Запуск приложения ===
+2025-10-13 10:15:26,665 - INFO - Settings loaded
+2025-10-13 10:15:26,668 - INFO - AHK started (PID: 22276)
+2025-10-13 10:15:27,005 - INFO - Иконка трея создана
+2025-10-13 10:15:27,005 - INFO - Bound hotkey 'Shift+T' to action 'show_players'
+2025-10-13 10:15:27,006 - INFO - Bound hotkey 'Ctrl+5' to action 'ahk_click_mouse'
+2025-10-13 10:15:27,006 - INFO - Bound hotkey 'Ctrl+6' to action 'ahk_press_space'
+2025-10-13 10:15:27,006 - INFO - GUI инициализирован
+2025-10-13 10:15:27,119 - INFO - Settings saved
+2025-10-13 10:15:27,407 - INFO - License verification: SUCCESS
+2025-10-13 10:15:27,412 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-13 10:15:27,413 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-13 10:15:27,413 - INFO - Загружена иконка 5
+2025-10-13 10:15:27,415 - INFO - Загружена иконка 3
+2025-10-13 10:15:30,272 - INFO - Unbound hotkey 'Ctrl+5' from action 'ahk_click_mouse'
+2025-10-13 10:15:30,272 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-13 10:15:30,273 - INFO - Settings saved
+2025-10-13 10:15:31,741 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:32,252 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:32,353 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:32,454 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:32,555 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:32,657 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:32,758 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:32,859 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:32,960 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:33,061 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:40,489 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-13 10:15:44,513 - INFO - Unbound hotkey '7' from action 'ahk_click_mouse'
+2025-10-13 10:15:44,514 - INFO - Bound hotkey '5' to action 'ahk_click_mouse'
+2025-10-13 10:15:44,514 - INFO - Settings saved
+2025-10-13 10:15:44,951 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:15:45,576 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:15:46,158 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:15:48,573 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:15:49,680 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:15:51,975 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:15:52,641 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:15:53,475 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:15:54,309 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:15:55,264 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:01,272 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:01,272 - WARNING - AHK not running, restarting...
+2025-10-13 10:16:01,274 - INFO - AHK started (PID: 13292)
+2025-10-13 10:16:01,947 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:02,796 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:08,353 - WARNING - AHK killed forcefully
+2025-10-13 10:16:08,354 - INFO - All hotkeys unbound
+2025-10-13 10:16:08,354 - INFO - Hotkey manager stopped
+2025-10-13 10:16:08,354 - INFO - Settings saved
+2025-10-13 10:16:08,355 - INFO - === Завершение приложения ===
+2025-10-13 10:16:08,380 - INFO - === Завершение приложения ===
+2025-10-13 10:16:39,309 - INFO - Первый экземпляр - запуск приложения
+2025-10-13 10:16:39,482 - INFO - === Запуск приложения ===
+2025-10-13 10:16:39,482 - INFO - Settings loaded
+2025-10-13 10:16:39,486 - INFO - AHK started (PID: 17556)
+2025-10-13 10:16:39,829 - INFO - Иконка трея создана
+2025-10-13 10:16:39,829 - INFO - Bound hotkey 'Shift+T' to action 'show_players'
+2025-10-13 10:16:39,829 - INFO - Bound hotkey '5' to action 'ahk_click_mouse'
+2025-10-13 10:16:39,829 - INFO - Bound hotkey 'Ctrl+6' to action 'ahk_press_space'
+2025-10-13 10:16:39,830 - INFO - GUI инициализирован
+2025-10-13 10:16:39,937 - INFO - Settings saved
+2025-10-13 10:16:40,697 - INFO - License verification: SUCCESS
+2025-10-13 10:16:40,702 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-13 10:16:40,703 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-13 10:16:40,704 - INFO - Загружена иконка 5
+2025-10-13 10:16:40,705 - INFO - Загружена иконка 3
+2025-10-13 10:16:42,058 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:43,358 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:43,860 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:43,960 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:44,061 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:44,162 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:44,263 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:44,365 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:44,466 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:44,568 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:44,669 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:44,771 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:44,873 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:44,974 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:45,075 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:45,176 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:45,277 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:45,379 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:45,481 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:45,582 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:45,683 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:45,784 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:45,886 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:45,987 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:46,088 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:46,189 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:46,290 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:46,391 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:46,493 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:46,594 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:46,696 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:46,797 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:46,898 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:47,000 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:47,101 - INFO - Hotkey '5' triggered for action: ahk_click_mouse
+2025-10-13 10:16:50,714 - INFO - AHK stopped gracefully
+2025-10-13 10:16:50,714 - INFO - All hotkeys unbound
+2025-10-13 10:16:50,714 - INFO - Hotkey manager stopped
+2025-10-13 10:16:50,715 - INFO - Settings saved
+2025-10-13 10:16:50,715 - INFO - === Завершение приложения ===
+2025-10-13 10:16:50,736 - INFO - === Завершение приложения ===

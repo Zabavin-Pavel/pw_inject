@@ -8,12 +8,12 @@
   "is_topmost": true,
   "hotkeys": {
     "teleport_to_target": "-",
-    "show_all": "Shift+T",
+    "show_all": "-",
     "show_active": "-",
     "show_loot": "-",
-    "show_players": "-",
+    "show_players": "Shift+T",
     "show_npcs": "-",
     "ahk_click_mouse": "5",
-    "ahk_press_space": "6"
+    "ahk_press_space": "Ctrl+6"
   }
 }

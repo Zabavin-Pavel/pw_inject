@@ -1,4 +1,4 @@
-; hotkeys.ahk - С ручными хоткеями для тестирования
+; hotkeys.ahk - ИСПРАВЛЕННАЯ ВЕРСИЯ
 #SingleInstance Force
 #NoEnv
 #Persistent
@@ -15,7 +15,7 @@ global element_windows := []
 global command_file := script_dir . "\ahk_command.txt"
 global log_file := script_dir . "\ahk_log.txt"
 
-; Логирование (оставляем для отладки)
+; Логирование
 Log(message) {
     global log_file
     FormatTime, timestamp, , yyyy-MM-dd HH:mm:ss
@@ -43,7 +43,6 @@ ClickAtMouse() {
     
     if (element_windows.Length() = 0) {
         Log("No windows found")
-        TrayTip, AHK Debug, No ElementClient windows found!, 2, 1
         return
     }
     
@@ -53,29 +52,31 @@ ClickAtMouse() {
     Log("Mouse position: " . xpos . ", " . ypos)
     Log("Active window: " . Format("0x{:x}", active_id))
     
-    CoordMode, Mouse, Screen
+    ; ВАЖНО: Сначала кликаем в активном окне
+    Click, x%xpos% y%ypos%
     
     clicked := 0
     for index, window_id in element_windows {
-        if (window_id != active_id) && WinExist("ahk_id " . window_id) {
-            ControlClick, x%xpos% y%ypos%, ahk_id %window_id%, , L, 1, NA
+        if WinExist("ahk_id " . window_id) {
+            ; ВАЖНО: CoordMode перед каждым ControlClick
+            CoordMode, Mouse, Screen
+            ; ВАЖНО: Без лишней "1" в параметрах
+            ControlClick, x%xpos% y%ypos%, ahk_id %window_id%, , L, NA
             clicked++
             Log("Clicked window: " . Format("0x{:x}", window_id))
         }
     }
     Log("Total clicks: " . clicked)
-    TrayTip, AHK Debug, Clicked %clicked% windows at (%xpos%, %ypos%), 1, 1
 }
 
-; Отправить клавишу во все окна
-SendKeyToAll(key) {
+; ИСПРАВЛЕНО: Отправить клавишу во все окна (включая активное) + повторения
+SendKeyToAll(key, repeat_count := 1) {
     global element_windows
-    Log("KEY command received: " . key)
+    Log("KEY command received: " . key . " x" . repeat_count)
     UpdateWindowList()
     
     if (element_windows.Length() = 0) {
         Log("No windows found")
-        TrayTip, AHK Debug, No ElementClient windows found!, 2, 1
         return
     }
     
@@ -83,56 +84,24 @@ SendKeyToAll(key) {
     
     sent := 0
     for index, window_id in element_windows {
-        if (window_id != active_id) && WinExist("ahk_id " . window_id) {
-            ControlSend, , {%key%}, ahk_id %window_id%
+        ; УБРАЛИ ПРОВЕРКУ (window_id != active_id) - теперь и активное окно получает
+        if WinExist("ahk_id " . window_id) {
+            ; Отправляем клавишу repeat_count раз
+            Loop, %repeat_count%
+            {
+                ControlSend, , {%key%}, ahk_id %window_id%
+            }
             sent++
-            Log("Sent key to window: " . Format("0x{:x}", window_id))
+            Log("Sent key to window: " . Format("0x{:x}", window_id) . " x" . repeat_count)
         }
     }
-    Log("Total keys sent: " . sent)
-    TrayTip, AHK Debug, Sent '%key%' to %sent% windows, 1, 1
+    Log("Total keys sent to " . sent . " windows")
 }
-
-; === РУЧНЫЕ ХОТКЕИ ДЛЯ ТЕСТИРОВАНИЯ ===
-F1::
-    Log("=== F1 pressed - Manual CLICK test ===")
-    ClickAtMouse()
-return
-
-F2::
-    Log("=== F2 pressed - Manual SPACE test ===")
-    SendKeyToAll("Space")
-return
-
-F3::
-    Log("=== F3 pressed - Test info ===")
-    UpdateWindowList()
-    global element_windows
-    
-    if (element_windows.Length() = 0) {
-        MsgBox, No ElementClient windows found!
-    } else {
-        msg := "Found " . element_windows.Length() . " windows:`n`n"
-        for index, window_id in element_windows {
-            WinGetTitle, title, ahk_id %window_id%
-            msg .= index . ". " . Format("0x{:x}", window_id) . " - " . title . "`n"
-        }
-        MsgBox, %msg%
-    }
-return
-
-F4::
-    Log("=== F4 pressed - EXIT ===")
-    MsgBox, 4, AHK Exit, Exit AHK script?
-    IfMsgBox Yes
-        ExitApp
-return
 
 ; === ИНИЦИАЛИЗАЦИЯ ===
 Log("=== AHK Script Started ===")
 Log("Script dir: " . script_dir)
 Log("Command file: " . command_file)
-TrayTip, AHK Started, F1=Click | F2=Space | F3=Info | F4=Exit, 3, 1
 
 ; Удаляем старый файл команд при запуске
 if FileExist(command_file) {
@@ -141,7 +110,7 @@ if FileExist(command_file) {
 }
 
 ; === ТАЙМЕР ДЛЯ ПРОВЕРКИ КОМАНД ===
-SetTimer, CheckCommand, 50
+SetTimer, CheckCommand, 1
 return
 
 CheckCommand:
@@ -151,7 +120,6 @@ CheckCommand:
         FileDelete, %command_file%
         
         if (command = "") {
-            Log("Empty command received")
             return
         }
         
@@ -160,9 +128,6 @@ CheckCommand:
         ; Выполняем команду
         if (command = "CLICK") {
             ClickAtMouse()
-        }
-        else if (command = "SPACE") {
-            SendKeyToAll("Space")
         }
         else if (command = "EXIT") {
             Log("EXIT command received")
