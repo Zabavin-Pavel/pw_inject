@@ -78,6 +78,19 @@ OFFSETS = {
     
     "teleport_origin": "static:ElementClient.exe +0x0142CDD8 +0x1000",
     "teleport_id": "int32:teleport_origin -> +0x550 -> +0x3D8 -> +0x138",
+
+    # ========================================
+    # MOVEMENT FUNCTIONS
+    # ========================================
+    "func_click_handler": 0x5D1D89,      # Первая функция - обработчик кадров
+    "func_redirect_1": 0x12FA8,          # Редирект 1
+    "func_action_dispatcher": 0x5D2320,  # Диспетчер действий (switch case)
+    "func_redirect_2": 0x5600,           # Редирект 2
+    "func_move": 0x5D1190,               # Конечная функция движения
+
+    # Координаты мыши
+    "mouse_coord_x": 0x146F4B8,          # Координата X мыши
+    "mouse_coord_y": 0x146F4BC,          # Координата Y мыши
 }
 
 

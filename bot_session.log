@@ -1915,3 +1915,23 @@ AttributeError: 'HotkeyManager' object has no attribute 'set_gui_callback'
 2025-10-12 09:42:37,895 - INFO - Settings saved
 2025-10-12 09:42:37,896 - INFO - === Завершение приложения ===
 2025-10-12 09:42:37,913 - INFO - === Завершение приложения ===
+2025-10-13 01:50:42,998 - INFO - Первый экземпляр - запуск приложения
+2025-10-13 01:50:43,241 - INFO - === Запуск приложения ===
+2025-10-13 01:50:43,241 - INFO - Settings loaded
+2025-10-13 01:50:43,634 - INFO - Иконка трея создана
+2025-10-13 01:50:43,634 - INFO - Bound hotkey '7' to action 'teleport_to_target'
+2025-10-13 01:50:43,634 - INFO - Bound hotkey 'Shift+T' to action 'show_all'
+2025-10-13 01:50:43,635 - INFO - GUI инициализирован
+2025-10-13 01:50:43,740 - INFO - Settings saved
+2025-10-13 01:50:44,020 - INFO - License verification: SUCCESS
+2025-10-13 01:50:44,024 - INFO - Attached to PID 3836, module base: 0x7ff786ca0000
+2025-10-13 01:50:44,025 - INFO - Загружена иконка 5
+2025-10-13 01:50:48,919 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-13 01:50:53,592 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-13 01:50:57,528 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-13 01:51:03,744 - INFO - Hotkey '7' triggered for action: teleport_to_target
+2025-10-13 01:51:09,161 - INFO - All hotkeys unbound
+2025-10-13 01:51:09,162 - INFO - Hotkey manager stopped
+2025-10-13 01:51:09,162 - INFO - Settings saved
+2025-10-13 01:51:09,162 - INFO - === Завершение приложения ===
+2025-10-13 01:51:09,183 - INFO - === Завершение приложения ===

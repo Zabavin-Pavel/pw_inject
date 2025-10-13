@@ -337,6 +337,232 @@ class Memory:
 
 
 
+    def write_uint64(self, address, value):
+        """Записать 8-байтовое целое число"""
+        try:
+            buffer = ctypes.c_uint64(value)
+            bytes_written = ctypes.c_size_t()
+            
+            result = self.kernel32.WriteProcessMemory(
+                self.process_handle,
+                ctypes.c_void_p(address),
+                ctypes.byref(buffer),
+                8,
+                ctypes.byref(bytes_written)
+            )
+            
+            return result and bytes_written.value == 8
+        except:
+            return False
+
+
+    def allocate_memory(self, size):
+        """Выделить память в процессе"""
+        try:
+            MEM_COMMIT = 0x1000
+            MEM_RESERVE = 0x2000
+            PAGE_EXECUTE_READWRITE = 0x40
+            
+            address = self.kernel32.VirtualAllocEx(
+                self.process_handle,
+                None,
+                size,
+                MEM_COMMIT | MEM_RESERVE,
+                PAGE_EXECUTE_READWRITE
+            )
+            
+            if address:
+                self.logger.info(f"Memory allocated at {hex(address)}, size: {size}")
+                return address
+            else:
+                self.logger.error("Failed to allocate memory")
+                return None
+        except Exception as e:
+            self.logger.error(f"Exception in allocate_memory: {e}")
+            return None
+
+    def free_memory(self, address):
+        """Освободить память в процессе"""
+        try:
+            MEM_RELEASE = 0x8000
+            result = self.kernel32.VirtualFreeEx(
+                self.process_handle,
+                address,
+                0,
+                MEM_RELEASE
+            )
+            if result:
+                self.logger.info(f"Memory freed at {hex(address)}")
+            return result
+        except Exception as e:
+            self.logger.error(f"Exception in free_memory: {e}")
+            return False
+
+    def write_bytes(self, address, data):
+        """Записать массив байтов"""
+        try:
+            buffer = (ctypes.c_byte * len(data))(*data)
+            bytes_written = ctypes.c_size_t()
+            
+            result = self.kernel32.WriteProcessMemory(
+                self.process_handle,
+                ctypes.c_void_p(address),
+                buffer,
+                len(data),
+                ctypes.byref(bytes_written)
+            )
+            
+            if result and bytes_written.value == len(data):
+                return True
+            else:
+                self.logger.error(f"Failed to write bytes at {hex(address)}")
+                return False
+        except Exception as e:
+            self.logger.error(f"Exception in write_bytes: {e}")
+            return False
+
+    def create_remote_thread(self, start_address, parameter=0):
+        """Создать поток в удалённом процессе"""
+        try:
+            thread_id = ctypes.c_ulong()
+            
+            thread_handle = self.kernel32.CreateRemoteThread(
+                self.process_handle,
+                None,
+                0,
+                start_address,
+                parameter,
+                0,
+                ctypes.byref(thread_id)
+            )
+            
+            if thread_handle:
+                self.logger.info(f"Remote thread created: {hex(thread_handle)}, TID: {thread_id.value}")
+                # Ждём завершения потока
+                self.kernel32.WaitForSingleObject(thread_handle, 5000)  # 5 секунд таймаут
+                self.kernel32.CloseHandle(thread_handle)
+                return True
+            else:
+                self.logger.error("Failed to create remote thread")
+                return False
+        except Exception as e:
+            self.logger.error(f"Exception in create_remote_thread: {e}")
+            return False
+
+    def call_function(self, func_offset, args):
+        """
+        Вызвать функцию в игре через shellcode
+        
+        Args:
+            func_offset: оффсет функции от базы модуля
+            args: список аргументов (до 4-х для x64 fastcall)
+        
+        Returns:
+            bool: успешность вызова
+        """
+        if not self.module_base:
+            self.logger.error("Module base not set")
+            return False
+        
+        func_address = self.module_base + func_offset
+        
+        # x64 fastcall: первые 4 аргумента в rcx, rdx, r8, r9
+        # Создаём shellcode для вызова функции
+        shellcode = self._generate_call_shellcode(func_address, args)
+        
+        # Выделяем память для shellcode
+        shellcode_addr = self.allocate_memory(len(shellcode))
+        if not shellcode_addr:
+            return False
+        
+        # Записываем shellcode
+        if not self.write_bytes(shellcode_addr, shellcode):
+            self.free_memory(shellcode_addr)
+            return False
+        
+        # Запускаем shellcode
+        success = self.create_remote_thread(shellcode_addr)
+        
+        # Освобождаем память
+        self.free_memory(shellcode_addr)
+        
+        return success
+
+    def _generate_call_shellcode(self, func_address, args):
+        """
+        Генерировать x64 shellcode для вызова функции
+        
+        Shellcode структура:
+        1. Сохранить регистры
+        2. Загрузить аргументы в rcx, rdx, r8, r9
+        3. Вызвать функцию
+        4. Восстановить регистры
+        5. Вернуться
+        """
+        shellcode = []
+        
+        # push rbp
+        shellcode.extend([0x55])
+        # mov rbp, rsp
+        shellcode.extend([0x48, 0x89, 0xE5])
+        # sub rsp, 0x20 (выделяем shadow space)
+        shellcode.extend([0x48, 0x83, 0xEC, 0x20])
+        
+        # Загружаем аргументы
+        if len(args) > 0:
+            # mov rcx, arg0
+            arg0 = args[0] & 0xFFFFFFFFFFFFFFFF
+            shellcode.extend([0x48, 0xB9])  # movabs rcx
+            shellcode.extend(arg0.to_bytes(8, 'little'))
+        
+        if len(args) > 1:
+            # mov rdx, arg1
+            arg1 = args[1] & 0xFFFFFFFFFFFFFFFF
+            shellcode.extend([0x48, 0xBA])  # movabs rdx
+            shellcode.extend(arg1.to_bytes(8, 'little'))
+        
+        if len(args) > 2:
+            # mov r8, arg2
+            arg2 = args[2] & 0xFFFFFFFFFFFFFFFF
+            shellcode.extend([0x49, 0xB8])  # movabs r8
+            shellcode.extend(arg2.to_bytes(8, 'little'))
+        
+        if len(args) > 3:
+            # mov r9, arg3
+            arg3 = args[3] & 0xFFFFFFFFFFFFFFFF
+            shellcode.extend([0x49, 0xB9])  # movabs r9
+            shellcode.extend(arg3.to_bytes(8, 'little'))
+        
+        # Если есть 5-й аргумент, кладём его в стек
+        if len(args) > 4:
+            arg4 = args[4] & 0xFFFFFFFF
+            # mov dword ptr [rsp+0x20], arg4
+            shellcode.extend([0xC7, 0x44, 0x24, 0x20])
+            shellcode.extend(arg4.to_bytes(4, 'little'))
+        
+        # Вызываем функцию
+        # mov rax, func_address
+        shellcode.extend([0x48, 0xB8])
+        shellcode.extend(func_address.to_bytes(8, 'little'))
+        # call rax
+        shellcode.extend([0xFF, 0xD0])
+        
+        # Восстанавливаем стек
+        # add rsp, 0x20
+        shellcode.extend([0x48, 0x83, 0xC4, 0x20])
+        # pop rbp
+        shellcode.extend([0x5D])
+        # ret
+        shellcode.extend([0xC3])
+        
+        return shellcode
+
+
+
+
+
+
+
 
 
 
