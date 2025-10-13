@@ -1,0 +1,3 @@
+2025-10-13 09:05:58 - === AHK Script Started ===
+2025-10-13 09:05:58 - Script dir: C:\project\pw_inject
+2025-10-13 09:05:58 - Command file: C:\project\pw_inject\ahk_command.txt

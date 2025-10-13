@@ -14,6 +14,7 @@ from gui.character_panel import CharacterPanel
 from gui.hotkey_panel import HotkeyPanel
 from core import AppState, ActionManager, HotkeyManager, LicenseManager
 from keygen import get_mac_address
+from ahk_manager import AHKManager
 
 class MainWindow:
     """Главное окно - координатор"""
@@ -21,6 +22,7 @@ class MainWindow:
     def __init__(self, multibox_manager, settings_manager):
         self.manager = multibox_manager
         self.settings_manager = settings_manager
+        self.ahk_manager = AHKManager()
         
         # Состояние приложения
         self.app_state = AppState()
@@ -143,6 +145,23 @@ class MainWindow:
             has_hotkey=True
         )
     
+        # AHK экшены
+        self.action_manager.register(
+            'ahk_click_mouse',
+            label='AHK: Click at Mouse',
+            type='quick',
+            callback=self.ahk_manager.click_at_mouse,
+            has_hotkey=True
+        )
+
+        self.action_manager.register(
+            'ahk_press_space',
+            label='AHK: Press Space',
+            type='quick',
+            callback=lambda: self.ahk_manager.send_key("Space"),
+            has_hotkey=True
+        )
+
     def _create_ui(self):
         """Создать UI"""
         self.root = tk.Tk()
@@ -468,6 +487,10 @@ class MainWindow:
     def on_close(self):
         """Закрытие приложения"""
         try:
+            # Остановить AHK
+            if hasattr(self, 'ahk_manager'):
+                self.ahk_manager.stop()
+                
             # ВАЖНО: Остановить keyboard hook
             if hasattr(self, 'hotkey_manager'):
                 self.hotkey_manager.stop()

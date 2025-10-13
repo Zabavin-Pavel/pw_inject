@@ -24,9 +24,8 @@ ElementClient.exe+5D11C3
 
 
 1. ElementClient.exe +0x5D1D89
-
-    a1 0000027D73548EC0 [charorigin +0x50] "rcx"
-    a2 0000027D1ECC1B60 [charbase] "rdx"
+    a1: 0000027D73548EC0 [charorigin +0x50] "rcx"
+    a2: 0000027D1ECC1B60 [charbase] "rdx"
 
 char __fastcall sub_7FF787271D89(__int64 a1, __int64 a2)
 {
@@ -45,28 +44,135 @@ char __fastcall sub_7FF786CB2FA8(__int64 a1, __int64 a2)
   return sub_7FF787272320(a1, a2);
 }
 
-
-
 3. ElementClient.exe +0x5D2320
 
     char __fastcall sub_7FF787272320(__int64 a1, __int64 a2)
+    {
+    _UNKNOWN ***v3; // rcx
+    _UNKNOWN **v5; // r14
+    __int64 v6; // rsi
+    __int64 v7; // rdi
+    __int64 v8; // rdx
+    __int64 v9; // r8
+    __int64 v10; // r9
+    unsigned int v11; // r10d
+    __int64 v12; // rdx
+    int v13; // eax
+    _BOOL8 v14; // rdi
+    int v15; // eax
+    int v17; // [rsp+28h] [rbp-40h]
+
+    v3 = off_7FF7880C8CE8;
+    v5 = off_7FF7880C8CE8[7];
+    v6 = *(int *)(*(_QWORD *)(a1 + 8) + 24LL);
+    if ( v6 > 0 )
+    {
+        v7 = 0;
+        do
+        {
+        v8 = v7 + *(_QWORD *)(*(_QWORD *)(a1 + 8) + 16LL);
+        v9 = (unsigned int)*(__int16 *)(v8 + 16);
+        v10 = (unsigned int)*(__int16 *)(v8 + 18);
+        v11 = *(_DWORD *)(v8 + 24);
+        switch ( *(_DWORD *)v8 )
+        {
+            case 0x200:
+            sub_7FF786CAF55B(a1, a2, v9, v10, v11, *(_QWORD *)(v8 + 8));
+            break;
+            case 0x201:
+            sub_7FF786CA5600(a1, a2, v9, v10, v11);
+            break;
+            case 0x202:
+            sub_7FF786CDDD02(a1, a2, v9, v10, v11);
+            break;
+            case 0x203:
+            sub_7FF786CBFAB4(a1, a2, v9, v10, v11);
+            break;
+            case 0x204:
+            sub_7FF786CD85AA(a1, a2, v9, v10, v11);
+            break;
+            case 0x205:
+            sub_7FF786CAFF33(a1, a2, v9, v10, v11, v17);
+            break;
+            case 0x206:
+            sub_7FF786CA9228(a1, a2, v9, v10, v11);
+            break;
+            case 0x207:
+            sub_7FF786CAFB2D(a1, a2, v9, v10, v11);
+            break;
+            case 0x20A:
+            v17 = *(unsigned __int16 *)(v8 + 8);
+            sub_7FF786CA686B(a1, a2, v9, v10, *(__int16 *)(v8 + 10));
+            break;
+            default:
+            break;
+        }
+        v7 += 32;
+        --v6;
+        }
+        while ( v6 );
+        v3 = off_7FF7880C8CE8;
+    }
+    v12 = *(unsigned __int8 *)(a1 + 48);
+    if ( (_BYTE)v12 || *(_BYTE *)(a1 + 68) )
+    {
+        if ( !*(_BYTE *)(a2 + 4761) && !*(_BYTE *)(a2 + 4760) )
+        {
+        v13 = *(_DWORD *)(a1 + 16);
+        v14 = (_BYTE)v12 != 0;
+        if ( v13 )
+            sub_7FF786CBC940((_DWORD)v5, 223, 0, 0, -v13, 0, v14, 0, 0);
+        v15 = *(_DWORD *)(a1 + 20);
+        if ( v15 )
+            sub_7FF786CBC940((_DWORD)v5, 222, 0, 0, -v15, 0, v14, 0, 0);
+        }
+        *(_QWORD *)(a1 + 16) = 0;
+        v3 = off_7FF7880C8CE8;
+        if ( *((_BYTE *)off_7FF7880C8CE8[2] + 72) )
+        {
+        v12 = 0;
+        goto LABEL_27;
+        }
+    }
+    else if ( !*((_BYTE *)v3[2] + 72) )
+    {
+        LOBYTE(v12) = 1;
+    LABEL_27:
+        sub_7FF786CE11E1(v3, v12);
+    }
+    return 1;
+    }
     
 4. ElementClient.exe +0x5600
 
-    a1: 0000027D73548EC0 [charorigin +0x50] "rcx"
-    a2: 0000027D1ECC1B60 [charbase] "rdx"
+    __int64 __fastcall sub_7FF786CA5600(__int64 a1, __int64 a2, int a3, int a4, unsigned int a5)
+    {
+    return sub_7FF787271190(a1, a2, a3, a4, a5);
+    }
+
+5. ElementClient.exe +0x5D1190
     a3: 376 [ElementClient.exe+146F4B8] "r8" HEX mouse coord (меняется от 000 до 77F)
     a4: 40D координата мышки [ElementClient.exe+146F4BC] "r9" HEX mouse coord (меняется от 000 до 40F)
     a5: 0 [можно не считать, всегда равен 0] "rbp+28"
 
-    __int64 __fastcall sub_7FF786CA5600(__int64 a1, __int64 a2, int a3, int a4, unsigned int a5)
-    {
-        return sub_7FF787271190(a1, a2, a3, a4, a5);
-    }
-
-5. ElementClient.exe +0x5D1190
-
     __int64 __fastcall sub_7FF787271190(__int64 a1, __int64 a2, int a3, int a4, unsigned int a5)
+    {
+    __int64 v5; // rsi
+    __int64 v7; // rbp
+    __int64 result; // rax
+
+    v5 = a4;
+    v7 = a3;
+    *(_BYTE *)(a1 + 32) = 1;
+    result = sub_7FF786CD061B();
+    *(_DWORD *)(a1 + 36) = result;
+    *(_BYTE *)(a1 + 48) = 0;
+    *(_DWORD *)(a1 + 40) = v7;
+    *(_DWORD *)(a1 + 44) = v5;
+    if ( !*(_BYTE *)(a2 + 4761) && !*(_BYTE *)(a2 + 4760) )
+        return sub_7FF786CBC940((unsigned int)off_7FF7880C8CE8[7], 224, 0, 0, v7, v5, a5, 0, 0);
+    return result;
+    }
 
 
 sub_7FF787203290 преобразует корды?
