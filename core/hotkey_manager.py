@@ -19,6 +19,10 @@ class HotkeyManager:
         # Отслеживание всех нажатых клавиш
         self.pressed_keys = set()
         
+        # НОВОЕ: Throttling - последний вызов каждого хоткея
+        self.last_trigger_time = {}  # {action_id: timestamp}
+        self.throttle_delay = 0.15  # 150мс минимум между вызовами
+        
         # Хук для отслеживания клавиш
         keyboard.hook(self._on_key_event, suppress=False)
     
@@ -36,18 +40,8 @@ class HotkeyManager:
     
     def _on_key_event(self, event):
         """Обработка всех событий клавиш"""
-        key_name = event.name.lower()
-        
-        # Нормализовать модификаторы в формат "left modifier"
-        if key_name == 'shift':
-            key_name = 'left shift'
-        elif key_name == 'ctrl':
-            key_name = 'left ctrl'
-        elif key_name == 'alt':
-            key_name = 'left alt'
-        # Буквы и цифры - в ВЕРХНИЙ регистр (как в GUI)
-        elif len(key_name) == 1 and key_name.isalnum():
-            key_name = key_name.upper()
+        # ВАЖНО: Сначала нормализуем имя клавиши
+        key_name = self._normalize_key_name(event.name)
         
         if event.event_type == 'down':
             self.pressed_keys.add(key_name)
@@ -61,7 +55,7 @@ class HotkeyManager:
     def _normalize_key_name(self, key_name: str) -> str:
         """
         Нормализовать имя клавиши
-        Преобразует спецсимволы обратно в цифры/буквы
+        Преобразует спецсимволы, русские буквы, модификаторы
         """
         # Маппинг символов Shift+цифра -> цифра
         shift_number_map = {
@@ -69,30 +63,65 @@ class HotkeyManager:
             '^': '6', '&': '7', '*': '8', '(': '9', ')': '0'
         }
         
+        # Маппинг русских букв (как в GUI)
+        ru_to_en = {
+            'й': 'q', 'ц': 'w', 'у': 'e', 'к': 'r', 'е': 't', 'н': 'y', 
+            'г': 'u', 'ш': 'i', 'щ': 'o', 'з': 'p', 'х': '[', 'ъ': ']',
+            'ф': 'a', 'ы': 's', 'в': 'd', 'а': 'f', 'п': 'g', 'р': 'h', 
+            'о': 'j', 'л': 'k', 'д': 'l', 'ж': ';', 'э': "'",
+            'я': 'z', 'ч': 'x', 'с': 'c', 'м': 'v', 'и': 'b', 
+            'т': 'n', 'ь': 'm', 'б': ',', 'ю': '.'
+        }
+        
         key_lower = key_name.lower()
         
-        # Если это символ от Shift+цифра - вернуть цифру
+        # Символы Shift+цифра -> цифра
         if key_name in shift_number_map:
             return shift_number_map[key_name]
         
-        # Буквы - в нижний регистр
+        # Модификаторы -> left modifier
+        if key_lower == 'shift':
+            return 'left shift'
+        elif key_lower == 'ctrl':
+            return 'left ctrl'
+        elif key_lower == 'alt':
+            return 'left alt'
+        
+        # Русские буквы -> английские (UPPERCASE)
+        if key_lower in ru_to_en:
+            return ru_to_en[key_lower].upper()
+        
+        # Буквы и цифры - в ВЕРХНИЙ регистр
         if len(key_name) == 1 and key_name.isalpha():
-            return key_lower
+            return key_name.upper()
         
-        # Модификаторы
-        if key_lower in ['shift', 'ctrl', 'alt', 'left shift', 'left ctrl', 'left alt']:
-            return key_lower
+        if len(key_name) == 1 and key_name.isdigit():
+            return key_name
         
-        # Остальное как есть
-        return key_lower
+        # F-клавиши, Tab, Space и т.д. - как есть
+        return key_name
 
     def _check_hotkeys(self, pressed_key: str):
         """Проверить все хоткеи при нажатии клавиши"""
+        import time
+        
         # Убрать "left " из имени для проверки основной клавиши
         check_key = pressed_key.replace('left ', '').replace('right ', '')
         
+        current_time = time.time()
+        
         for hotkey, action_id in self.bindings.items():
             if self._hotkey_matches(hotkey, check_key):
+                # THROTTLING: Проверяем время последнего вызова
+                last_time = self.last_trigger_time.get(action_id, 0)
+                
+                if current_time - last_time < self.throttle_delay:
+                    # Слишком рано - пропускаем
+                    return
+                
+                # Обновляем время последнего вызова
+                self.last_trigger_time[action_id] = current_time
+                
                 logging.info(f"Hotkey '{hotkey}' triggered for action: {action_id}")
                 try:
                     self.action_manager.execute(action_id)

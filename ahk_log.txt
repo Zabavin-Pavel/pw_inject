@@ -2153,3 +2153,3024 @@
 2025-10-13 10:16:47 - Total clicks: 2
 2025-10-13 10:16:50 - Command received: EXIT
 2025-10-13 10:16:50 - EXIT command received
+2025-10-13 11:23:04 - === AHK Script Started ===
+2025-10-13 11:23:04 - Script dir: C:\project\pw_inject
+2025-10-13 11:23:04 - Command file: C:\project\pw_inject\ahk_command.txt
+2025-10-13 11:23:10 - Command received: CLICK
+2025-10-13 11:23:10 - CLICK command received
+2025-10-13 11:23:10 - Updated window list: 2 windows found
+2025-10-13 11:23:10 - Mouse position: 808, 495
+2025-10-13 11:23:10 - Active window: 0xa7042e
+2025-10-13 11:23:10 - Clicked window: 0xa7042e
+2025-10-13 11:23:11 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:11 - Total clicks: 2
+2025-10-13 11:23:21 - Command received: CLICK
+2025-10-13 11:23:21 - CLICK command received
+2025-10-13 11:23:21 - Updated window list: 2 windows found
+2025-10-13 11:23:21 - Mouse position: 812, 506
+2025-10-13 11:23:21 - Active window: 0x3c70ae2
+2025-10-13 11:23:21 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:21 - Clicked window: 0xa7042e
+2025-10-13 11:23:21 - Total clicks: 2
+2025-10-13 11:23:24 - Command received: CLICK
+2025-10-13 11:23:24 - CLICK command received
+2025-10-13 11:23:24 - Updated window list: 2 windows found
+2025-10-13 11:23:24 - Mouse position: 562, 468
+2025-10-13 11:23:24 - Active window: 0x3c70ae2
+2025-10-13 11:23:24 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:24 - Clicked window: 0xa7042e
+2025-10-13 11:23:24 - Total clicks: 2
+2025-10-13 11:23:28 - Command received: CLICK
+2025-10-13 11:23:28 - CLICK command received
+2025-10-13 11:23:28 - Updated window list: 2 windows found
+2025-10-13 11:23:28 - Mouse position: 131, 273
+2025-10-13 11:23:28 - Active window: 0x490842
+2025-10-13 11:23:29 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:29 - Clicked window: 0xa7042e
+2025-10-13 11:23:29 - Total clicks: 2
+2025-10-13 11:23:40 - Command received: CLICK
+2025-10-13 11:23:40 - CLICK command received
+2025-10-13 11:23:40 - Updated window list: 2 windows found
+2025-10-13 11:23:40 - Mouse position: 1140, 536
+2025-10-13 11:23:40 - Active window: 0xa7042e
+2025-10-13 11:23:40 - Clicked window: 0xa7042e
+2025-10-13 11:23:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:40 - Total clicks: 2
+2025-10-13 11:23:43 - Command received: CLICK
+2025-10-13 11:23:43 - CLICK command received
+2025-10-13 11:23:43 - Updated window list: 2 windows found
+2025-10-13 11:23:43 - Mouse position: 1090, 661
+2025-10-13 11:23:43 - Active window: 0xa7042e
+2025-10-13 11:23:43 - Clicked window: 0xa7042e
+2025-10-13 11:23:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:43 - Total clicks: 2
+2025-10-13 11:23:51 - Command received: CLICK
+2025-10-13 11:23:51 - CLICK command received
+2025-10-13 11:23:51 - Updated window list: 2 windows found
+2025-10-13 11:23:51 - Mouse position: 1254, 622
+2025-10-13 11:23:51 - Active window: 0x3c70ae2
+2025-10-13 11:23:51 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:51 - Clicked window: 0xa7042e
+2025-10-13 11:23:51 - Total clicks: 2
+2025-10-13 11:23:51 - Command received: CLICK
+2025-10-13 11:23:51 - CLICK command received
+2025-10-13 11:23:51 - Updated window list: 2 windows found
+2025-10-13 11:23:51 - Mouse position: 1299, 486
+2025-10-13 11:23:51 - Active window: 0x3c70ae2
+2025-10-13 11:23:51 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:51 - Clicked window: 0xa7042e
+2025-10-13 11:23:51 - Total clicks: 2
+2025-10-13 11:23:51 - Command received: CLICK
+2025-10-13 11:23:51 - CLICK command received
+2025-10-13 11:23:51 - Updated window list: 2 windows found
+2025-10-13 11:23:51 - Mouse position: 1290, 472
+2025-10-13 11:23:51 - Active window: 0x3c70ae2
+2025-10-13 11:23:51 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:51 - Clicked window: 0xa7042e
+2025-10-13 11:23:51 - Total clicks: 2
+2025-10-13 11:23:52 - Command received: CLICK
+2025-10-13 11:23:52 - CLICK command received
+2025-10-13 11:23:52 - Updated window list: 2 windows found
+2025-10-13 11:23:52 - Mouse position: 1251, 438
+2025-10-13 11:23:52 - Active window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0xa7042e
+2025-10-13 11:23:52 - Total clicks: 2
+2025-10-13 11:23:52 - Command received: CLICK
+2025-10-13 11:23:52 - CLICK command received
+2025-10-13 11:23:52 - Updated window list: 2 windows found
+2025-10-13 11:23:52 - Mouse position: 1160, 400
+2025-10-13 11:23:52 - Active window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0xa7042e
+2025-10-13 11:23:52 - Total clicks: 2
+2025-10-13 11:23:52 - Command received: CLICK
+2025-10-13 11:23:52 - CLICK command received
+2025-10-13 11:23:52 - Updated window list: 2 windows found
+2025-10-13 11:23:52 - Mouse position: 1012, 370
+2025-10-13 11:23:52 - Active window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0xa7042e
+2025-10-13 11:23:52 - Total clicks: 2
+2025-10-13 11:23:52 - Command received: CLICK
+2025-10-13 11:23:52 - CLICK command received
+2025-10-13 11:23:52 - Updated window list: 2 windows found
+2025-10-13 11:23:52 - Mouse position: 920, 381
+2025-10-13 11:23:52 - Active window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0xa7042e
+2025-10-13 11:23:52 - Total clicks: 2
+2025-10-13 11:23:52 - Command received: CLICK
+2025-10-13 11:23:52 - CLICK command received
+2025-10-13 11:23:52 - Updated window list: 2 windows found
+2025-10-13 11:23:52 - Mouse position: 859, 406
+2025-10-13 11:23:52 - Active window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0xa7042e
+2025-10-13 11:23:52 - Total clicks: 2
+2025-10-13 11:23:52 - Command received: CLICK
+2025-10-13 11:23:52 - CLICK command received
+2025-10-13 11:23:52 - Updated window list: 2 windows found
+2025-10-13 11:23:52 - Mouse position: 823, 445
+2025-10-13 11:23:52 - Active window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0xa7042e
+2025-10-13 11:23:52 - Total clicks: 2
+2025-10-13 11:23:52 - Command received: CLICK
+2025-10-13 11:23:52 - CLICK command received
+2025-10-13 11:23:52 - Updated window list: 2 windows found
+2025-10-13 11:23:52 - Mouse position: 789, 505
+2025-10-13 11:23:52 - Active window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0xa7042e
+2025-10-13 11:23:52 - Total clicks: 2
+2025-10-13 11:23:52 - Command received: CLICK
+2025-10-13 11:23:52 - CLICK command received
+2025-10-13 11:23:52 - Updated window list: 2 windows found
+2025-10-13 11:23:52 - Mouse position: 768, 601
+2025-10-13 11:23:52 - Active window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0xa7042e
+2025-10-13 11:23:52 - Total clicks: 2
+2025-10-13 11:23:52 - Command received: CLICK
+2025-10-13 11:23:52 - CLICK command received
+2025-10-13 11:23:52 - Updated window list: 2 windows found
+2025-10-13 11:23:52 - Mouse position: 806, 681
+2025-10-13 11:23:52 - Active window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0xa7042e
+2025-10-13 11:23:52 - Total clicks: 2
+2025-10-13 11:23:52 - Command received: CLICK
+2025-10-13 11:23:52 - CLICK command received
+2025-10-13 11:23:52 - Updated window list: 2 windows found
+2025-10-13 11:23:52 - Mouse position: 852, 706
+2025-10-13 11:23:52 - Active window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:52 - Clicked window: 0xa7042e
+2025-10-13 11:23:52 - Total clicks: 2
+2025-10-13 11:23:53 - Command received: CLICK
+2025-10-13 11:23:53 - CLICK command received
+2025-10-13 11:23:53 - Updated window list: 2 windows found
+2025-10-13 11:23:53 - Mouse position: 886, 720
+2025-10-13 11:23:53 - Active window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0xa7042e
+2025-10-13 11:23:53 - Total clicks: 2
+2025-10-13 11:23:53 - Command received: CLICK
+2025-10-13 11:23:53 - CLICK command received
+2025-10-13 11:23:53 - Updated window list: 2 windows found
+2025-10-13 11:23:53 - Mouse position: 952, 732
+2025-10-13 11:23:53 - Active window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0xa7042e
+2025-10-13 11:23:53 - Total clicks: 2
+2025-10-13 11:23:53 - Command received: CLICK
+2025-10-13 11:23:53 - CLICK command received
+2025-10-13 11:23:53 - Updated window list: 2 windows found
+2025-10-13 11:23:53 - Mouse position: 1022, 732
+2025-10-13 11:23:53 - Active window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0xa7042e
+2025-10-13 11:23:53 - Total clicks: 2
+2025-10-13 11:23:53 - Command received: CLICK
+2025-10-13 11:23:53 - CLICK command received
+2025-10-13 11:23:53 - Updated window list: 2 windows found
+2025-10-13 11:23:53 - Mouse position: 1108, 693
+2025-10-13 11:23:53 - Active window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0xa7042e
+2025-10-13 11:23:53 - Total clicks: 2
+2025-10-13 11:23:53 - Command received: CLICK
+2025-10-13 11:23:53 - CLICK command received
+2025-10-13 11:23:53 - Updated window list: 2 windows found
+2025-10-13 11:23:53 - Mouse position: 1159, 633
+2025-10-13 11:23:53 - Active window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0xa7042e
+2025-10-13 11:23:53 - Total clicks: 2
+2025-10-13 11:23:53 - Command received: CLICK
+2025-10-13 11:23:53 - CLICK command received
+2025-10-13 11:23:53 - Updated window list: 2 windows found
+2025-10-13 11:23:53 - Mouse position: 1175, 560
+2025-10-13 11:23:53 - Active window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0xa7042e
+2025-10-13 11:23:53 - Total clicks: 2
+2025-10-13 11:23:53 - Command received: CLICK
+2025-10-13 11:23:53 - CLICK command received
+2025-10-13 11:23:53 - Updated window list: 2 windows found
+2025-10-13 11:23:53 - Mouse position: 1147, 483
+2025-10-13 11:23:53 - Active window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0xa7042e
+2025-10-13 11:23:53 - Total clicks: 2
+2025-10-13 11:23:53 - Command received: CLICK
+2025-10-13 11:23:53 - CLICK command received
+2025-10-13 11:23:53 - Updated window list: 2 windows found
+2025-10-13 11:23:53 - Mouse position: 1104, 430
+2025-10-13 11:23:53 - Active window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0xa7042e
+2025-10-13 11:23:53 - Total clicks: 2
+2025-10-13 11:23:53 - Command received: CLICK
+2025-10-13 11:23:53 - CLICK command received
+2025-10-13 11:23:53 - Updated window list: 2 windows found
+2025-10-13 11:23:53 - Mouse position: 1030, 392
+2025-10-13 11:23:53 - Active window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0xa7042e
+2025-10-13 11:23:53 - Total clicks: 2
+2025-10-13 11:23:53 - Command received: CLICK
+2025-10-13 11:23:53 - CLICK command received
+2025-10-13 11:23:53 - Updated window list: 2 windows found
+2025-10-13 11:23:53 - Mouse position: 937, 363
+2025-10-13 11:23:53 - Active window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:53 - Clicked window: 0xa7042e
+2025-10-13 11:23:53 - Total clicks: 2
+2025-10-13 11:23:54 - Command received: CLICK
+2025-10-13 11:23:54 - CLICK command received
+2025-10-13 11:23:54 - Updated window list: 2 windows found
+2025-10-13 11:23:54 - Mouse position: 830, 361
+2025-10-13 11:23:54 - Active window: 0x3c70ae2
+2025-10-13 11:23:54 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:54 - Clicked window: 0xa7042e
+2025-10-13 11:23:54 - Total clicks: 2
+2025-10-13 11:23:54 - Command received: CLICK
+2025-10-13 11:23:54 - CLICK command received
+2025-10-13 11:23:54 - Updated window list: 2 windows found
+2025-10-13 11:23:54 - Mouse position: 760, 406
+2025-10-13 11:23:54 - Active window: 0x3c70ae2
+2025-10-13 11:23:54 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:54 - Clicked window: 0xa7042e
+2025-10-13 11:23:54 - Total clicks: 2
+2025-10-13 11:23:54 - Command received: CLICK
+2025-10-13 11:23:54 - CLICK command received
+2025-10-13 11:23:54 - Updated window list: 2 windows found
+2025-10-13 11:23:54 - Mouse position: 736, 478
+2025-10-13 11:23:54 - Active window: 0x3c70ae2
+2025-10-13 11:23:54 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:54 - Clicked window: 0xa7042e
+2025-10-13 11:23:54 - Total clicks: 2
+2025-10-13 11:23:54 - Command received: CLICK
+2025-10-13 11:23:54 - CLICK command received
+2025-10-13 11:23:54 - Updated window list: 2 windows found
+2025-10-13 11:23:54 - Mouse position: 764, 593
+2025-10-13 11:23:54 - Active window: 0x3c70ae2
+2025-10-13 11:23:54 - Clicked window: 0x3c70ae2
+2025-10-13 11:23:54 - Clicked window: 0xa7042e
+2025-10-13 11:23:54 - Total clicks: 2
+2025-10-13 11:24:05 - Command received: EXIT
+2025-10-13 11:24:05 - EXIT command received
+2025-10-13 11:30:15 - === AHK Script Started ===
+2025-10-13 11:30:15 - Script dir: C:\project\pw_inject
+2025-10-13 11:30:15 - Command file: C:\project\pw_inject\ahk_command.txt
+2025-10-13 11:30:23 - Command received: EXIT
+2025-10-13 11:30:23 - EXIT command received
+2025-10-13 11:31:43 - === AHK Script Started ===
+2025-10-13 11:31:43 - Script dir: C:\project\pw_inject
+2025-10-13 11:31:43 - Command file: C:\project\pw_inject\ahk_command.txt
+2025-10-13 11:31:50 - Command received: CLICK
+2025-10-13 11:31:50 - CLICK command received
+2025-10-13 11:31:50 - Updated window list: 2 windows found
+2025-10-13 11:31:50 - Mouse position: 1141, 691
+2025-10-13 11:31:50 - Active window: 0x3c70ae2
+2025-10-13 11:31:50 - Clicked window: 0x3c70ae2
+2025-10-13 11:31:50 - Clicked window: 0xa7042e
+2025-10-13 11:31:50 - Total clicks: 2
+2025-10-13 11:31:52 - Command received: CLICK
+2025-10-13 11:31:52 - CLICK command received
+2025-10-13 11:31:52 - Updated window list: 2 windows found
+2025-10-13 11:31:52 - Mouse position: 1232, 474
+2025-10-13 11:31:52 - Active window: 0x3c70ae2
+2025-10-13 11:31:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:31:52 - Clicked window: 0xa7042e
+2025-10-13 11:31:52 - Total clicks: 2
+2025-10-13 11:31:53 - Command received: CLICK
+2025-10-13 11:31:53 - CLICK command received
+2025-10-13 11:31:53 - Updated window list: 2 windows found
+2025-10-13 11:31:53 - Mouse position: 772, 470
+2025-10-13 11:31:53 - Active window: 0x3c70ae2
+2025-10-13 11:31:54 - Clicked window: 0x3c70ae2
+2025-10-13 11:31:54 - Clicked window: 0xa7042e
+2025-10-13 11:31:54 - Total clicks: 2
+2025-10-13 11:31:55 - Command received: CLICK
+2025-10-13 11:31:55 - CLICK command received
+2025-10-13 11:31:55 - Updated window list: 2 windows found
+2025-10-13 11:31:55 - Mouse position: 1168, 518
+2025-10-13 11:31:55 - Active window: 0x3c70ae2
+2025-10-13 11:31:55 - Clicked window: 0x3c70ae2
+2025-10-13 11:31:55 - Clicked window: 0xa7042e
+2025-10-13 11:31:55 - Total clicks: 2
+2025-10-13 11:31:56 - Command received: CLICK
+2025-10-13 11:31:56 - CLICK command received
+2025-10-13 11:31:56 - Updated window list: 2 windows found
+2025-10-13 11:31:56 - Mouse position: 664, 816
+2025-10-13 11:31:56 - Active window: 0x3c70ae2
+2025-10-13 11:31:56 - Clicked window: 0x3c70ae2
+2025-10-13 11:31:56 - Clicked window: 0xa7042e
+2025-10-13 11:31:56 - Total clicks: 2
+2025-10-13 11:32:08 - Command received: KEY:Space
+2025-10-13 11:32:08 - KEY command received: Space x1
+2025-10-13 11:32:08 - Updated window list: 2 windows found
+2025-10-13 11:32:08 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 11:32:08 - Sent key to window: 0xa7042e x1
+2025-10-13 11:32:08 - Total keys sent to 2 windows
+2025-10-13 11:32:27 - Command received: KEY:Space
+2025-10-13 11:32:27 - KEY command received: Space x1
+2025-10-13 11:32:27 - Updated window list: 2 windows found
+2025-10-13 11:32:27 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 11:32:27 - Sent key to window: 0xa7042e x1
+2025-10-13 11:32:27 - Total keys sent to 2 windows
+2025-10-13 11:32:42 - Command received: CLICK
+2025-10-13 11:32:42 - CLICK command received
+2025-10-13 11:32:42 - Updated window list: 2 windows found
+2025-10-13 11:32:42 - Mouse position: 889, 769
+2025-10-13 11:32:42 - Active window: 0x3c70ae2
+2025-10-13 11:32:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:42 - Clicked window: 0xa7042e
+2025-10-13 11:32:42 - Total clicks: 2
+2025-10-13 11:32:42 - Command received: CLICK
+2025-10-13 11:32:42 - CLICK command received
+2025-10-13 11:32:42 - Updated window list: 2 windows found
+2025-10-13 11:32:42 - Mouse position: 950, 779
+2025-10-13 11:32:42 - Active window: 0x3c70ae2
+2025-10-13 11:32:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:42 - Clicked window: 0xa7042e
+2025-10-13 11:32:42 - Total clicks: 2
+2025-10-13 11:32:42 - Command received: CLICK
+2025-10-13 11:32:42 - CLICK command received
+2025-10-13 11:32:42 - Updated window list: 2 windows found
+2025-10-13 11:32:42 - Mouse position: 1099, 740
+2025-10-13 11:32:42 - Active window: 0x3c70ae2
+2025-10-13 11:32:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:42 - Clicked window: 0xa7042e
+2025-10-13 11:32:42 - Total clicks: 2
+2025-10-13 11:32:42 - Command received: CLICK
+2025-10-13 11:32:42 - CLICK command received
+2025-10-13 11:32:42 - Updated window list: 2 windows found
+2025-10-13 11:32:42 - Mouse position: 1143, 688
+2025-10-13 11:32:42 - Active window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0xa7042e
+2025-10-13 11:32:43 - Total clicks: 2
+2025-10-13 11:32:43 - Command received: CLICK
+2025-10-13 11:32:43 - CLICK command received
+2025-10-13 11:32:43 - Updated window list: 2 windows found
+2025-10-13 11:32:43 - Mouse position: 1150, 616
+2025-10-13 11:32:43 - Active window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0xa7042e
+2025-10-13 11:32:43 - Total clicks: 2
+2025-10-13 11:32:43 - Command received: CLICK
+2025-10-13 11:32:43 - CLICK command received
+2025-10-13 11:32:43 - Updated window list: 2 windows found
+2025-10-13 11:32:43 - Mouse position: 1087, 542
+2025-10-13 11:32:43 - Active window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0xa7042e
+2025-10-13 11:32:43 - Total clicks: 2
+2025-10-13 11:32:43 - Command received: CLICK
+2025-10-13 11:32:43 - CLICK command received
+2025-10-13 11:32:43 - Updated window list: 2 windows found
+2025-10-13 11:32:43 - Mouse position: 942, 486
+2025-10-13 11:32:43 - Active window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0xa7042e
+2025-10-13 11:32:43 - Total clicks: 2
+2025-10-13 11:32:43 - Command received: CLICK
+2025-10-13 11:32:43 - CLICK command received
+2025-10-13 11:32:43 - Updated window list: 2 windows found
+2025-10-13 11:32:43 - Mouse position: 790, 501
+2025-10-13 11:32:43 - Active window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0xa7042e
+2025-10-13 11:32:43 - Total clicks: 2
+2025-10-13 11:32:43 - Command received: CLICK
+2025-10-13 11:32:43 - CLICK command received
+2025-10-13 11:32:43 - Updated window list: 2 windows found
+2025-10-13 11:32:43 - Mouse position: 722, 554
+2025-10-13 11:32:43 - Active window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0xa7042e
+2025-10-13 11:32:43 - Total clicks: 2
+2025-10-13 11:32:43 - Command received: CLICK
+2025-10-13 11:32:43 - CLICK command received
+2025-10-13 11:32:43 - Updated window list: 2 windows found
+2025-10-13 11:32:43 - Mouse position: 874, 691
+2025-10-13 11:32:43 - Active window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:43 - Clicked window: 0xa7042e
+2025-10-13 11:32:43 - Total clicks: 2
+2025-10-13 11:32:44 - Command received: CLICK
+2025-10-13 11:32:44 - CLICK command received
+2025-10-13 11:32:44 - Updated window list: 2 windows found
+2025-10-13 11:32:44 - Mouse position: 1109, 749
+2025-10-13 11:32:44 - Active window: 0x3c70ae2
+2025-10-13 11:32:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:44 - Clicked window: 0xa7042e
+2025-10-13 11:32:44 - Total clicks: 2
+2025-10-13 11:32:44 - Command received: CLICK
+2025-10-13 11:32:44 - CLICK command received
+2025-10-13 11:32:44 - Updated window list: 2 windows found
+2025-10-13 11:32:44 - Mouse position: 1201, 720
+2025-10-13 11:32:44 - Active window: 0x3c70ae2
+2025-10-13 11:32:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:44 - Clicked window: 0xa7042e
+2025-10-13 11:32:44 - Total clicks: 2
+2025-10-13 11:32:44 - Command received: CLICK
+2025-10-13 11:32:44 - CLICK command received
+2025-10-13 11:32:44 - Updated window list: 2 windows found
+2025-10-13 11:32:44 - Mouse position: 1178, 620
+2025-10-13 11:32:44 - Active window: 0x3c70ae2
+2025-10-13 11:32:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:44 - Clicked window: 0xa7042e
+2025-10-13 11:32:44 - Total clicks: 2
+2025-10-13 11:32:44 - Command received: CLICK
+2025-10-13 11:32:44 - CLICK command received
+2025-10-13 11:32:44 - Updated window list: 2 windows found
+2025-10-13 11:32:44 - Mouse position: 1048, 525
+2025-10-13 11:32:44 - Active window: 0x3c70ae2
+2025-10-13 11:32:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:44 - Clicked window: 0xa7042e
+2025-10-13 11:32:44 - Total clicks: 2
+2025-10-13 11:32:44 - Command received: CLICK
+2025-10-13 11:32:44 - CLICK command received
+2025-10-13 11:32:44 - Updated window list: 2 windows found
+2025-10-13 11:32:44 - Mouse position: 966, 490
+2025-10-13 11:32:44 - Active window: 0x3c70ae2
+2025-10-13 11:32:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:44 - Clicked window: 0xa7042e
+2025-10-13 11:32:44 - Total clicks: 2
+2025-10-13 11:32:46 - Command received: CLICK
+2025-10-13 11:32:46 - CLICK command received
+2025-10-13 11:32:46 - Updated window list: 2 windows found
+2025-10-13 11:32:46 - Mouse position: 805, 531
+2025-10-13 11:32:46 - Active window: 0x3c70ae2
+2025-10-13 11:32:46 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:46 - Clicked window: 0xa7042e
+2025-10-13 11:32:46 - Total clicks: 2
+2025-10-13 11:32:46 - Command received: CLICK
+2025-10-13 11:32:46 - CLICK command received
+2025-10-13 11:32:46 - Updated window list: 2 windows found
+2025-10-13 11:32:46 - Mouse position: 732, 526
+2025-10-13 11:32:46 - Active window: 0x3c70ae2
+2025-10-13 11:32:46 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:46 - Clicked window: 0xa7042e
+2025-10-13 11:32:46 - Total clicks: 2
+2025-10-13 11:32:46 - Command received: CLICK
+2025-10-13 11:32:46 - CLICK command received
+2025-10-13 11:32:46 - Updated window list: 2 windows found
+2025-10-13 11:32:46 - Mouse position: 900, 642
+2025-10-13 11:32:46 - Active window: 0x3c70ae2
+2025-10-13 11:32:46 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:46 - Clicked window: 0xa7042e
+2025-10-13 11:32:46 - Total clicks: 2
+2025-10-13 11:32:46 - Command received: CLICK
+2025-10-13 11:32:46 - CLICK command received
+2025-10-13 11:32:46 - Updated window list: 2 windows found
+2025-10-13 11:32:46 - Mouse position: 1140, 751
+2025-10-13 11:32:46 - Active window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0xa7042e
+2025-10-13 11:32:47 - Total clicks: 2
+2025-10-13 11:32:47 - Command received: CLICK
+2025-10-13 11:32:47 - CLICK command received
+2025-10-13 11:32:47 - Updated window list: 2 windows found
+2025-10-13 11:32:47 - Mouse position: 1263, 760
+2025-10-13 11:32:47 - Active window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0xa7042e
+2025-10-13 11:32:47 - Total clicks: 2
+2025-10-13 11:32:47 - Command received: CLICK
+2025-10-13 11:32:47 - CLICK command received
+2025-10-13 11:32:47 - Updated window list: 2 windows found
+2025-10-13 11:32:47 - Mouse position: 1249, 656
+2025-10-13 11:32:47 - Active window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0xa7042e
+2025-10-13 11:32:47 - Total clicks: 2
+2025-10-13 11:32:47 - Command received: CLICK
+2025-10-13 11:32:47 - CLICK command received
+2025-10-13 11:32:47 - Updated window list: 2 windows found
+2025-10-13 11:32:47 - Mouse position: 1068, 539
+2025-10-13 11:32:47 - Active window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0xa7042e
+2025-10-13 11:32:47 - Total clicks: 2
+2025-10-13 11:32:47 - Command received: CLICK
+2025-10-13 11:32:47 - CLICK command received
+2025-10-13 11:32:47 - Updated window list: 2 windows found
+2025-10-13 11:32:47 - Mouse position: 894, 488
+2025-10-13 11:32:47 - Active window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0xa7042e
+2025-10-13 11:32:47 - Total clicks: 2
+2025-10-13 11:32:47 - Command received: CLICK
+2025-10-13 11:32:47 - CLICK command received
+2025-10-13 11:32:47 - Updated window list: 2 windows found
+2025-10-13 11:32:47 - Mouse position: 908, 579
+2025-10-13 11:32:47 - Active window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:47 - Clicked window: 0xa7042e
+2025-10-13 11:32:47 - Total clicks: 2
+2025-10-13 11:32:47 - Command received: CLICK
+2025-10-13 11:32:47 - CLICK command received
+2025-10-13 11:32:47 - Updated window list: 2 windows found
+2025-10-13 11:32:47 - Mouse position: 1081, 706
+2025-10-13 11:32:47 - Active window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0xa7042e
+2025-10-13 11:32:48 - Total clicks: 2
+2025-10-13 11:32:48 - Command received: CLICK
+2025-10-13 11:32:48 - CLICK command received
+2025-10-13 11:32:48 - Updated window list: 2 windows found
+2025-10-13 11:32:48 - Mouse position: 1315, 747
+2025-10-13 11:32:48 - Active window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0xa7042e
+2025-10-13 11:32:48 - Total clicks: 2
+2025-10-13 11:32:48 - Command received: CLICK
+2025-10-13 11:32:48 - CLICK command received
+2025-10-13 11:32:48 - Updated window list: 2 windows found
+2025-10-13 11:32:48 - Mouse position: 1278, 667
+2025-10-13 11:32:48 - Active window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0xa7042e
+2025-10-13 11:32:48 - Total clicks: 2
+2025-10-13 11:32:48 - Command received: CLICK
+2025-10-13 11:32:48 - CLICK command received
+2025-10-13 11:32:48 - Updated window list: 2 windows found
+2025-10-13 11:32:48 - Mouse position: 922, 509
+2025-10-13 11:32:48 - Active window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0xa7042e
+2025-10-13 11:32:48 - Total clicks: 2
+2025-10-13 11:32:48 - Command received: CLICK
+2025-10-13 11:32:48 - CLICK command received
+2025-10-13 11:32:48 - Updated window list: 2 windows found
+2025-10-13 11:32:48 - Mouse position: 770, 453
+2025-10-13 11:32:48 - Active window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0xa7042e
+2025-10-13 11:32:48 - Total clicks: 2
+2025-10-13 11:32:48 - Command received: CLICK
+2025-10-13 11:32:48 - CLICK command received
+2025-10-13 11:32:48 - Updated window list: 2 windows found
+2025-10-13 11:32:48 - Mouse position: 780, 492
+2025-10-13 11:32:48 - Active window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0xa7042e
+2025-10-13 11:32:48 - Total clicks: 2
+2025-10-13 11:32:48 - Command received: CLICK
+2025-10-13 11:32:48 - CLICK command received
+2025-10-13 11:32:48 - Updated window list: 2 windows found
+2025-10-13 11:32:48 - Mouse position: 986, 656
+2025-10-13 11:32:48 - Active window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:48 - Clicked window: 0xa7042e
+2025-10-13 11:32:48 - Total clicks: 2
+2025-10-13 11:32:49 - Command received: CLICK
+2025-10-13 11:32:49 - CLICK command received
+2025-10-13 11:32:49 - Updated window list: 2 windows found
+2025-10-13 11:32:49 - Mouse position: 1288, 783
+2025-10-13 11:32:49 - Active window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0xa7042e
+2025-10-13 11:32:49 - Total clicks: 2
+2025-10-13 11:32:49 - Command received: CLICK
+2025-10-13 11:32:49 - CLICK command received
+2025-10-13 11:32:49 - Updated window list: 2 windows found
+2025-10-13 11:32:49 - Mouse position: 1332, 779
+2025-10-13 11:32:49 - Active window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0xa7042e
+2025-10-13 11:32:49 - Total clicks: 2
+2025-10-13 11:32:49 - Command received: CLICK
+2025-10-13 11:32:49 - CLICK command received
+2025-10-13 11:32:49 - Updated window list: 2 windows found
+2025-10-13 11:32:49 - Mouse position: 1099, 612
+2025-10-13 11:32:49 - Active window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0xa7042e
+2025-10-13 11:32:49 - Total clicks: 2
+2025-10-13 11:32:49 - Command received: CLICK
+2025-10-13 11:32:49 - CLICK command received
+2025-10-13 11:32:49 - Updated window list: 2 windows found
+2025-10-13 11:32:49 - Mouse position: 781, 494
+2025-10-13 11:32:49 - Active window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0xa7042e
+2025-10-13 11:32:49 - Total clicks: 2
+2025-10-13 11:32:49 - Command received: CLICK
+2025-10-13 11:32:49 - CLICK command received
+2025-10-13 11:32:49 - Updated window list: 2 windows found
+2025-10-13 11:32:49 - Mouse position: 724, 467
+2025-10-13 11:32:49 - Active window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0xa7042e
+2025-10-13 11:32:49 - Total clicks: 2
+2025-10-13 11:32:49 - Command received: CLICK
+2025-10-13 11:32:49 - CLICK command received
+2025-10-13 11:32:49 - Updated window list: 2 windows found
+2025-10-13 11:32:49 - Mouse position: 781, 561
+2025-10-13 11:32:49 - Active window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:49 - Clicked window: 0xa7042e
+2025-10-13 11:32:49 - Total clicks: 2
+2025-10-13 11:32:50 - Command received: CLICK
+2025-10-13 11:32:50 - CLICK command received
+2025-10-13 11:32:50 - Updated window list: 2 windows found
+2025-10-13 11:32:50 - Mouse position: 1107, 761
+2025-10-13 11:32:50 - Active window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0xa7042e
+2025-10-13 11:32:50 - Total clicks: 2
+2025-10-13 11:32:50 - Command received: CLICK
+2025-10-13 11:32:50 - CLICK command received
+2025-10-13 11:32:50 - Updated window list: 2 windows found
+2025-10-13 11:32:50 - Mouse position: 1320, 813
+2025-10-13 11:32:50 - Active window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0xa7042e
+2025-10-13 11:32:50 - Total clicks: 2
+2025-10-13 11:32:50 - Command received: CLICK
+2025-10-13 11:32:50 - CLICK command received
+2025-10-13 11:32:50 - Updated window list: 2 windows found
+2025-10-13 11:32:50 - Mouse position: 1262, 618
+2025-10-13 11:32:50 - Active window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0xa7042e
+2025-10-13 11:32:50 - Total clicks: 2
+2025-10-13 11:32:50 - Command received: CLICK
+2025-10-13 11:32:50 - CLICK command received
+2025-10-13 11:32:50 - Updated window list: 2 windows found
+2025-10-13 11:32:50 - Mouse position: 847, 461
+2025-10-13 11:32:50 - Active window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0xa7042e
+2025-10-13 11:32:50 - Total clicks: 2
+2025-10-13 11:32:50 - Command received: CLICK
+2025-10-13 11:32:50 - CLICK command received
+2025-10-13 11:32:50 - Updated window list: 2 windows found
+2025-10-13 11:32:50 - Mouse position: 705, 544
+2025-10-13 11:32:50 - Active window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0xa7042e
+2025-10-13 11:32:50 - Total clicks: 2
+2025-10-13 11:32:50 - Command received: CLICK
+2025-10-13 11:32:50 - CLICK command received
+2025-10-13 11:32:50 - Updated window list: 2 windows found
+2025-10-13 11:32:50 - Mouse position: 804, 783
+2025-10-13 11:32:50 - Active window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:50 - Clicked window: 0xa7042e
+2025-10-13 11:32:50 - Total clicks: 2
+2025-10-13 11:32:51 - Command received: CLICK
+2025-10-13 11:32:51 - CLICK command received
+2025-10-13 11:32:51 - Updated window list: 2 windows found
+2025-10-13 11:32:51 - Mouse position: 1083, 791
+2025-10-13 11:32:51 - Active window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0xa7042e
+2025-10-13 11:32:51 - Total clicks: 2
+2025-10-13 11:32:51 - Command received: CLICK
+2025-10-13 11:32:51 - CLICK command received
+2025-10-13 11:32:51 - Updated window list: 2 windows found
+2025-10-13 11:32:51 - Mouse position: 1104, 609
+2025-10-13 11:32:51 - Active window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0xa7042e
+2025-10-13 11:32:51 - Total clicks: 2
+2025-10-13 11:32:51 - Command received: CLICK
+2025-10-13 11:32:51 - CLICK command received
+2025-10-13 11:32:51 - Updated window list: 2 windows found
+2025-10-13 11:32:51 - Mouse position: 910, 452
+2025-10-13 11:32:51 - Active window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0xa7042e
+2025-10-13 11:32:51 - Total clicks: 2
+2025-10-13 11:32:51 - Command received: CLICK
+2025-10-13 11:32:51 - CLICK command received
+2025-10-13 11:32:51 - Updated window list: 2 windows found
+2025-10-13 11:32:51 - Mouse position: 727, 424
+2025-10-13 11:32:51 - Active window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0xa7042e
+2025-10-13 11:32:51 - Total clicks: 2
+2025-10-13 11:32:51 - Command received: CLICK
+2025-10-13 11:32:51 - CLICK command received
+2025-10-13 11:32:51 - Updated window list: 2 windows found
+2025-10-13 11:32:51 - Mouse position: 689, 475
+2025-10-13 11:32:51 - Active window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0xa7042e
+2025-10-13 11:32:51 - Total clicks: 2
+2025-10-13 11:32:51 - Command received: CLICK
+2025-10-13 11:32:51 - CLICK command received
+2025-10-13 11:32:51 - Updated window list: 2 windows found
+2025-10-13 11:32:51 - Mouse position: 701, 504
+2025-10-13 11:32:51 - Active window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:51 - Clicked window: 0xa7042e
+2025-10-13 11:32:51 - Total clicks: 2
+2025-10-13 11:32:52 - Command received: CLICK
+2025-10-13 11:32:52 - CLICK command received
+2025-10-13 11:32:52 - Updated window list: 2 windows found
+2025-10-13 11:32:52 - Mouse position: 795, 516
+2025-10-13 11:32:52 - Active window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0xa7042e
+2025-10-13 11:32:52 - Total clicks: 2
+2025-10-13 11:32:52 - Command received: CLICK
+2025-10-13 11:32:52 - CLICK command received
+2025-10-13 11:32:52 - Updated window list: 2 windows found
+2025-10-13 11:32:52 - Mouse position: 826, 434
+2025-10-13 11:32:52 - Active window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0xa7042e
+2025-10-13 11:32:52 - Total clicks: 2
+2025-10-13 11:32:52 - Command received: CLICK
+2025-10-13 11:32:52 - CLICK command received
+2025-10-13 11:32:52 - Updated window list: 2 windows found
+2025-10-13 11:32:52 - Mouse position: 859, 436
+2025-10-13 11:32:52 - Active window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0xa7042e
+2025-10-13 11:32:52 - Total clicks: 2
+2025-10-13 11:32:52 - Command received: CLICK
+2025-10-13 11:32:52 - CLICK command received
+2025-10-13 11:32:52 - Updated window list: 2 windows found
+2025-10-13 11:32:52 - Mouse position: 895, 452
+2025-10-13 11:32:52 - Active window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0xa7042e
+2025-10-13 11:32:52 - Total clicks: 2
+2025-10-13 11:32:52 - Command received: CLICK
+2025-10-13 11:32:52 - CLICK command received
+2025-10-13 11:32:52 - Updated window list: 2 windows found
+2025-10-13 11:32:52 - Mouse position: 955, 506
+2025-10-13 11:32:52 - Active window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0xa7042e
+2025-10-13 11:32:52 - Total clicks: 2
+2025-10-13 11:32:52 - Command received: CLICK
+2025-10-13 11:32:52 - CLICK command received
+2025-10-13 11:32:52 - Updated window list: 2 windows found
+2025-10-13 11:32:52 - Mouse position: 992, 539
+2025-10-13 11:32:52 - Active window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:52 - Clicked window: 0xa7042e
+2025-10-13 11:32:52 - Total clicks: 2
+2025-10-13 11:32:53 - Command received: CLICK
+2025-10-13 11:32:53 - CLICK command received
+2025-10-13 11:32:53 - Updated window list: 2 windows found
+2025-10-13 11:32:53 - Mouse position: 1002, 543
+2025-10-13 11:32:53 - Active window: 0x3c70ae2
+2025-10-13 11:32:53 - Clicked window: 0x3c70ae2
+2025-10-13 11:32:53 - Clicked window: 0xa7042e
+2025-10-13 11:32:53 - Total clicks: 2
+2025-10-13 11:32:59 - Command received: EXIT
+2025-10-13 11:32:59 - EXIT command received
+2025-10-13 11:33:30 - === AHK Script Started ===
+2025-10-13 11:33:30 - Script dir: C:\project\pw_inject
+2025-10-13 11:33:30 - Command file: C:\project\pw_inject\ahk_command.txt
+2025-10-13 11:33:33 - Command received: CLICK
+2025-10-13 11:33:33 - CLICK command received
+2025-10-13 11:33:33 - Updated window list: 2 windows found
+2025-10-13 11:33:33 - Mouse position: 1099, 707
+2025-10-13 11:33:33 - Active window: 0x3c70ae2
+2025-10-13 11:33:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:33 - Clicked window: 0xa7042e
+2025-10-13 11:33:33 - Total clicks: 2
+2025-10-13 11:33:33 - Command received: CLICK
+2025-10-13 11:33:33 - CLICK command received
+2025-10-13 11:33:33 - Updated window list: 2 windows found
+2025-10-13 11:33:33 - Mouse position: 953, 694
+2025-10-13 11:33:33 - Active window: 0x3c70ae2
+2025-10-13 11:33:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:33 - Clicked window: 0xa7042e
+2025-10-13 11:33:33 - Total clicks: 2
+2025-10-13 11:33:33 - Command received: CLICK
+2025-10-13 11:33:33 - CLICK command received
+2025-10-13 11:33:33 - Updated window list: 2 windows found
+2025-10-13 11:33:33 - Mouse position: 857, 659
+2025-10-13 11:33:33 - Active window: 0x3c70ae2
+2025-10-13 11:33:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:33 - Clicked window: 0xa7042e
+2025-10-13 11:33:33 - Total clicks: 2
+2025-10-13 11:33:33 - Command received: CLICK
+2025-10-13 11:33:33 - CLICK command received
+2025-10-13 11:33:33 - Updated window list: 2 windows found
+2025-10-13 11:33:33 - Mouse position: 818, 638
+2025-10-13 11:33:33 - Active window: 0x3c70ae2
+2025-10-13 11:33:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:33 - Clicked window: 0xa7042e
+2025-10-13 11:33:33 - Total clicks: 2
+2025-10-13 11:33:34 - Command received: CLICK
+2025-10-13 11:33:34 - CLICK command received
+2025-10-13 11:33:34 - Updated window list: 2 windows found
+2025-10-13 11:33:34 - Mouse position: 798, 617
+2025-10-13 11:33:34 - Active window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0xa7042e
+2025-10-13 11:33:34 - Total clicks: 2
+2025-10-13 11:33:34 - Command received: CLICK
+2025-10-13 11:33:34 - CLICK command received
+2025-10-13 11:33:34 - Updated window list: 2 windows found
+2025-10-13 11:33:34 - Mouse position: 825, 579
+2025-10-13 11:33:34 - Active window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0xa7042e
+2025-10-13 11:33:34 - Total clicks: 2
+2025-10-13 11:33:34 - Command received: CLICK
+2025-10-13 11:33:34 - CLICK command received
+2025-10-13 11:33:34 - Updated window list: 2 windows found
+2025-10-13 11:33:34 - Mouse position: 995, 548
+2025-10-13 11:33:34 - Active window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0xa7042e
+2025-10-13 11:33:34 - Total clicks: 2
+2025-10-13 11:33:34 - Command received: CLICK
+2025-10-13 11:33:34 - CLICK command received
+2025-10-13 11:33:34 - Updated window list: 2 windows found
+2025-10-13 11:33:34 - Mouse position: 1093, 582
+2025-10-13 11:33:34 - Active window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0xa7042e
+2025-10-13 11:33:34 - Total clicks: 2
+2025-10-13 11:33:34 - Command received: CLICK
+2025-10-13 11:33:34 - CLICK command received
+2025-10-13 11:33:34 - Updated window list: 2 windows found
+2025-10-13 11:33:34 - Mouse position: 1102, 666
+2025-10-13 11:33:34 - Active window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0xa7042e
+2025-10-13 11:33:34 - Total clicks: 2
+2025-10-13 11:33:34 - Command received: CLICK
+2025-10-13 11:33:34 - CLICK command received
+2025-10-13 11:33:34 - Updated window list: 2 windows found
+2025-10-13 11:33:34 - Mouse position: 1093, 728
+2025-10-13 11:33:34 - Active window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0xa7042e
+2025-10-13 11:33:34 - Total clicks: 2
+2025-10-13 11:33:34 - Command received: CLICK
+2025-10-13 11:33:34 - CLICK command received
+2025-10-13 11:33:34 - Updated window list: 2 windows found
+2025-10-13 11:33:34 - Mouse position: 1015, 764
+2025-10-13 11:33:34 - Active window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0xa7042e
+2025-10-13 11:33:34 - Total clicks: 2
+2025-10-13 11:33:34 - Command received: CLICK
+2025-10-13 11:33:34 - CLICK command received
+2025-10-13 11:33:34 - Updated window list: 2 windows found
+2025-10-13 11:33:34 - Mouse position: 1009, 765
+2025-10-13 11:33:34 - Active window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0xa7042e
+2025-10-13 11:33:34 - Total clicks: 2
+2025-10-13 11:33:34 - Command received: CLICK
+2025-10-13 11:33:34 - CLICK command received
+2025-10-13 11:33:34 - Updated window list: 2 windows found
+2025-10-13 11:33:34 - Mouse position: 1131, 747
+2025-10-13 11:33:34 - Active window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:34 - Clicked window: 0xa7042e
+2025-10-13 11:33:34 - Total clicks: 2
+2025-10-13 11:33:34 - Command received: CLICK
+2025-10-13 11:33:34 - CLICK command received
+2025-10-13 11:33:34 - Updated window list: 2 windows found
+2025-10-13 11:33:34 - Mouse position: 1159, 650
+2025-10-13 11:33:34 - Active window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0xa7042e
+2025-10-13 11:33:35 - Total clicks: 2
+2025-10-13 11:33:35 - Command received: CLICK
+2025-10-13 11:33:35 - CLICK command received
+2025-10-13 11:33:35 - Updated window list: 2 windows found
+2025-10-13 11:33:35 - Mouse position: 1046, 520
+2025-10-13 11:33:35 - Active window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0xa7042e
+2025-10-13 11:33:35 - Total clicks: 2
+2025-10-13 11:33:35 - Command received: CLICK
+2025-10-13 11:33:35 - CLICK command received
+2025-10-13 11:33:35 - Updated window list: 2 windows found
+2025-10-13 11:33:35 - Mouse position: 944, 479
+2025-10-13 11:33:35 - Active window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0xa7042e
+2025-10-13 11:33:35 - Total clicks: 2
+2025-10-13 11:33:35 - Command received: CLICK
+2025-10-13 11:33:35 - CLICK command received
+2025-10-13 11:33:35 - Updated window list: 2 windows found
+2025-10-13 11:33:35 - Mouse position: 877, 477
+2025-10-13 11:33:35 - Active window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0xa7042e
+2025-10-13 11:33:35 - Total clicks: 2
+2025-10-13 11:33:35 - Command received: CLICK
+2025-10-13 11:33:35 - CLICK command received
+2025-10-13 11:33:35 - Updated window list: 2 windows found
+2025-10-13 11:33:35 - Mouse position: 840, 504
+2025-10-13 11:33:35 - Active window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0xa7042e
+2025-10-13 11:33:35 - Total clicks: 2
+2025-10-13 11:33:35 - Command received: CLICK
+2025-10-13 11:33:35 - CLICK command received
+2025-10-13 11:33:35 - Updated window list: 2 windows found
+2025-10-13 11:33:35 - Mouse position: 836, 547
+2025-10-13 11:33:35 - Active window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0xa7042e
+2025-10-13 11:33:35 - Total clicks: 2
+2025-10-13 11:33:35 - Command received: CLICK
+2025-10-13 11:33:35 - CLICK command received
+2025-10-13 11:33:35 - Updated window list: 2 windows found
+2025-10-13 11:33:35 - Mouse position: 870, 615
+2025-10-13 11:33:35 - Active window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0xa7042e
+2025-10-13 11:33:35 - Total clicks: 2
+2025-10-13 11:33:35 - Command received: CLICK
+2025-10-13 11:33:35 - CLICK command received
+2025-10-13 11:33:35 - Updated window list: 2 windows found
+2025-10-13 11:33:35 - Mouse position: 975, 692
+2025-10-13 11:33:35 - Active window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0xa7042e
+2025-10-13 11:33:35 - Total clicks: 2
+2025-10-13 11:33:35 - Command received: CLICK
+2025-10-13 11:33:35 - CLICK command received
+2025-10-13 11:33:35 - Updated window list: 2 windows found
+2025-10-13 11:33:35 - Mouse position: 1082, 717
+2025-10-13 11:33:35 - Active window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0xa7042e
+2025-10-13 11:33:35 - Total clicks: 2
+2025-10-13 11:33:35 - Command received: CLICK
+2025-10-13 11:33:35 - CLICK command received
+2025-10-13 11:33:35 - Updated window list: 2 windows found
+2025-10-13 11:33:35 - Mouse position: 1182, 692
+2025-10-13 11:33:35 - Active window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:35 - Clicked window: 0xa7042e
+2025-10-13 11:33:35 - Total clicks: 2
+2025-10-13 11:33:35 - Command received: CLICK
+2025-10-13 11:33:35 - CLICK command received
+2025-10-13 11:33:35 - Updated window list: 2 windows found
+2025-10-13 11:33:35 - Mouse position: 1214, 623
+2025-10-13 11:33:35 - Active window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0xa7042e
+2025-10-13 11:33:36 - Total clicks: 2
+2025-10-13 11:33:36 - Command received: CLICK
+2025-10-13 11:33:36 - CLICK command received
+2025-10-13 11:33:36 - Updated window list: 2 windows found
+2025-10-13 11:33:36 - Mouse position: 1173, 543
+2025-10-13 11:33:36 - Active window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0xa7042e
+2025-10-13 11:33:36 - Total clicks: 2
+2025-10-13 11:33:36 - Command received: CLICK
+2025-10-13 11:33:36 - CLICK command received
+2025-10-13 11:33:36 - Updated window list: 2 windows found
+2025-10-13 11:33:36 - Mouse position: 1063, 475
+2025-10-13 11:33:36 - Active window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0xa7042e
+2025-10-13 11:33:36 - Total clicks: 2
+2025-10-13 11:33:36 - Command received: CLICK
+2025-10-13 11:33:36 - CLICK command received
+2025-10-13 11:33:36 - Updated window list: 2 windows found
+2025-10-13 11:33:36 - Mouse position: 936, 445
+2025-10-13 11:33:36 - Active window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0xa7042e
+2025-10-13 11:33:36 - Total clicks: 2
+2025-10-13 11:33:36 - Command received: CLICK
+2025-10-13 11:33:36 - CLICK command received
+2025-10-13 11:33:36 - Updated window list: 2 windows found
+2025-10-13 11:33:36 - Mouse position: 814, 456
+2025-10-13 11:33:36 - Active window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0xa7042e
+2025-10-13 11:33:36 - Total clicks: 2
+2025-10-13 11:33:36 - Command received: CLICK
+2025-10-13 11:33:36 - CLICK command received
+2025-10-13 11:33:36 - Updated window list: 2 windows found
+2025-10-13 11:33:36 - Mouse position: 761, 516
+2025-10-13 11:33:36 - Active window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0xa7042e
+2025-10-13 11:33:36 - Total clicks: 2
+2025-10-13 11:33:36 - Command received: CLICK
+2025-10-13 11:33:36 - CLICK command received
+2025-10-13 11:33:36 - Updated window list: 2 windows found
+2025-10-13 11:33:36 - Mouse position: 795, 605
+2025-10-13 11:33:36 - Active window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0xa7042e
+2025-10-13 11:33:36 - Total clicks: 2
+2025-10-13 11:33:36 - Command received: CLICK
+2025-10-13 11:33:36 - CLICK command received
+2025-10-13 11:33:36 - Updated window list: 2 windows found
+2025-10-13 11:33:36 - Mouse position: 917, 688
+2025-10-13 11:33:36 - Active window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0xa7042e
+2025-10-13 11:33:36 - Total clicks: 2
+2025-10-13 11:33:36 - Command received: CLICK
+2025-10-13 11:33:36 - CLICK command received
+2025-10-13 11:33:36 - Updated window list: 2 windows found
+2025-10-13 11:33:36 - Mouse position: 1016, 719
+2025-10-13 11:33:36 - Active window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0xa7042e
+2025-10-13 11:33:36 - Total clicks: 2
+2025-10-13 11:33:36 - Command received: CLICK
+2025-10-13 11:33:36 - CLICK command received
+2025-10-13 11:33:36 - Updated window list: 2 windows found
+2025-10-13 11:33:36 - Mouse position: 1105, 717
+2025-10-13 11:33:36 - Active window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:36 - Clicked window: 0xa7042e
+2025-10-13 11:33:36 - Total clicks: 2
+2025-10-13 11:33:36 - Command received: CLICK
+2025-10-13 11:33:36 - CLICK command received
+2025-10-13 11:33:36 - Updated window list: 2 windows found
+2025-10-13 11:33:36 - Mouse position: 1125, 696
+2025-10-13 11:33:36 - Active window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0xa7042e
+2025-10-13 11:33:37 - Total clicks: 2
+2025-10-13 11:33:37 - Command received: CLICK
+2025-10-13 11:33:37 - CLICK command received
+2025-10-13 11:33:37 - Updated window list: 2 windows found
+2025-10-13 11:33:37 - Mouse position: 1146, 651
+2025-10-13 11:33:37 - Active window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0xa7042e
+2025-10-13 11:33:37 - Total clicks: 2
+2025-10-13 11:33:37 - Command received: CLICK
+2025-10-13 11:33:37 - CLICK command received
+2025-10-13 11:33:37 - Updated window list: 2 windows found
+2025-10-13 11:33:37 - Mouse position: 1133, 614
+2025-10-13 11:33:37 - Active window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0xa7042e
+2025-10-13 11:33:37 - Total clicks: 2
+2025-10-13 11:33:37 - Command received: CLICK
+2025-10-13 11:33:37 - CLICK command received
+2025-10-13 11:33:37 - Updated window list: 2 windows found
+2025-10-13 11:33:37 - Mouse position: 1080, 566
+2025-10-13 11:33:37 - Active window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0xa7042e
+2025-10-13 11:33:37 - Total clicks: 2
+2025-10-13 11:33:37 - Command received: CLICK
+2025-10-13 11:33:37 - CLICK command received
+2025-10-13 11:33:37 - Updated window list: 2 windows found
+2025-10-13 11:33:37 - Mouse position: 1012, 524
+2025-10-13 11:33:37 - Active window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0xa7042e
+2025-10-13 11:33:37 - Total clicks: 2
+2025-10-13 11:33:37 - Command received: CLICK
+2025-10-13 11:33:37 - CLICK command received
+2025-10-13 11:33:37 - Updated window list: 2 windows found
+2025-10-13 11:33:37 - Mouse position: 969, 511
+2025-10-13 11:33:37 - Active window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0xa7042e
+2025-10-13 11:33:37 - Total clicks: 2
+2025-10-13 11:33:37 - Command received: CLICK
+2025-10-13 11:33:37 - CLICK command received
+2025-10-13 11:33:37 - Updated window list: 2 windows found
+2025-10-13 11:33:37 - Mouse position: 905, 505
+2025-10-13 11:33:37 - Active window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0xa7042e
+2025-10-13 11:33:37 - Total clicks: 2
+2025-10-13 11:33:37 - Command received: CLICK
+2025-10-13 11:33:37 - CLICK command received
+2025-10-13 11:33:37 - Updated window list: 2 windows found
+2025-10-13 11:33:37 - Mouse position: 825, 505
+2025-10-13 11:33:37 - Active window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0xa7042e
+2025-10-13 11:33:37 - Total clicks: 2
+2025-10-13 11:33:37 - Command received: CLICK
+2025-10-13 11:33:37 - CLICK command received
+2025-10-13 11:33:37 - Updated window list: 2 windows found
+2025-10-13 11:33:37 - Mouse position: 778, 516
+2025-10-13 11:33:37 - Active window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0xa7042e
+2025-10-13 11:33:37 - Total clicks: 2
+2025-10-13 11:33:37 - Command received: CLICK
+2025-10-13 11:33:37 - CLICK command received
+2025-10-13 11:33:37 - Updated window list: 2 windows found
+2025-10-13 11:33:37 - Mouse position: 762, 526
+2025-10-13 11:33:37 - Active window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:37 - Clicked window: 0xa7042e
+2025-10-13 11:33:37 - Total clicks: 2
+2025-10-13 11:33:38 - Command received: CLICK
+2025-10-13 11:33:38 - CLICK command received
+2025-10-13 11:33:38 - Updated window list: 2 windows found
+2025-10-13 11:33:38 - Mouse position: 757, 535
+2025-10-13 11:33:38 - Active window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0xa7042e
+2025-10-13 11:33:38 - Total clicks: 2
+2025-10-13 11:33:38 - Command received: CLICK
+2025-10-13 11:33:38 - CLICK command received
+2025-10-13 11:33:38 - Updated window list: 2 windows found
+2025-10-13 11:33:38 - Mouse position: 756, 540
+2025-10-13 11:33:38 - Active window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0xa7042e
+2025-10-13 11:33:38 - Total clicks: 2
+2025-10-13 11:33:38 - Command received: CLICK
+2025-10-13 11:33:38 - CLICK command received
+2025-10-13 11:33:38 - Updated window list: 2 windows found
+2025-10-13 11:33:38 - Mouse position: 756, 542
+2025-10-13 11:33:38 - Active window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0xa7042e
+2025-10-13 11:33:38 - Total clicks: 2
+2025-10-13 11:33:38 - Command received: CLICK
+2025-10-13 11:33:38 - CLICK command received
+2025-10-13 11:33:38 - Updated window list: 2 windows found
+2025-10-13 11:33:38 - Mouse position: 761, 536
+2025-10-13 11:33:38 - Active window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0xa7042e
+2025-10-13 11:33:38 - Total clicks: 2
+2025-10-13 11:33:38 - Command received: CLICK
+2025-10-13 11:33:38 - CLICK command received
+2025-10-13 11:33:38 - Updated window list: 2 windows found
+2025-10-13 11:33:38 - Mouse position: 769, 524
+2025-10-13 11:33:38 - Active window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0xa7042e
+2025-10-13 11:33:38 - Total clicks: 2
+2025-10-13 11:33:38 - Command received: CLICK
+2025-10-13 11:33:38 - CLICK command received
+2025-10-13 11:33:38 - Updated window list: 2 windows found
+2025-10-13 11:33:38 - Mouse position: 769, 514
+2025-10-13 11:33:38 - Active window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0xa7042e
+2025-10-13 11:33:38 - Total clicks: 2
+2025-10-13 11:33:38 - Command received: CLICK
+2025-10-13 11:33:38 - CLICK command received
+2025-10-13 11:33:38 - Updated window list: 2 windows found
+2025-10-13 11:33:38 - Mouse position: 765, 511
+2025-10-13 11:33:38 - Active window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0xa7042e
+2025-10-13 11:33:38 - Total clicks: 2
+2025-10-13 11:33:38 - Command received: CLICK
+2025-10-13 11:33:38 - CLICK command received
+2025-10-13 11:33:38 - Updated window list: 2 windows found
+2025-10-13 11:33:38 - Mouse position: 760, 510
+2025-10-13 11:33:38 - Active window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0xa7042e
+2025-10-13 11:33:38 - Total clicks: 2
+2025-10-13 11:33:38 - Command received: CLICK
+2025-10-13 11:33:38 - CLICK command received
+2025-10-13 11:33:38 - Updated window list: 2 windows found
+2025-10-13 11:33:38 - Mouse position: 760, 510
+2025-10-13 11:33:38 - Active window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0xa7042e
+2025-10-13 11:33:38 - Total clicks: 2
+2025-10-13 11:33:38 - Command received: CLICK
+2025-10-13 11:33:38 - CLICK command received
+2025-10-13 11:33:38 - Updated window list: 2 windows found
+2025-10-13 11:33:38 - Mouse position: 760, 510
+2025-10-13 11:33:38 - Active window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:38 - Clicked window: 0xa7042e
+2025-10-13 11:33:38 - Total clicks: 2
+2025-10-13 11:33:39 - Command received: CLICK
+2025-10-13 11:33:39 - CLICK command received
+2025-10-13 11:33:39 - Updated window list: 2 windows found
+2025-10-13 11:33:39 - Mouse position: 778, 513
+2025-10-13 11:33:39 - Active window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0xa7042e
+2025-10-13 11:33:39 - Total clicks: 2
+2025-10-13 11:33:39 - Command received: CLICK
+2025-10-13 11:33:39 - CLICK command received
+2025-10-13 11:33:39 - Updated window list: 2 windows found
+2025-10-13 11:33:39 - Mouse position: 798, 516
+2025-10-13 11:33:39 - Active window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0xa7042e
+2025-10-13 11:33:39 - Total clicks: 2
+2025-10-13 11:33:39 - Command received: CLICK
+2025-10-13 11:33:39 - CLICK command received
+2025-10-13 11:33:39 - Updated window list: 2 windows found
+2025-10-13 11:33:39 - Mouse position: 826, 516
+2025-10-13 11:33:39 - Active window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0xa7042e
+2025-10-13 11:33:39 - Total clicks: 2
+2025-10-13 11:33:39 - Command received: CLICK
+2025-10-13 11:33:39 - CLICK command received
+2025-10-13 11:33:39 - Updated window list: 2 windows found
+2025-10-13 11:33:39 - Mouse position: 852, 517
+2025-10-13 11:33:39 - Active window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0xa7042e
+2025-10-13 11:33:39 - Total clicks: 2
+2025-10-13 11:33:39 - Command received: CLICK
+2025-10-13 11:33:39 - CLICK command received
+2025-10-13 11:33:39 - Updated window list: 2 windows found
+2025-10-13 11:33:39 - Mouse position: 897, 522
+2025-10-13 11:33:39 - Active window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0xa7042e
+2025-10-13 11:33:39 - Total clicks: 2
+2025-10-13 11:33:39 - Command received: CLICK
+2025-10-13 11:33:39 - CLICK command received
+2025-10-13 11:33:39 - Updated window list: 2 windows found
+2025-10-13 11:33:39 - Mouse position: 937, 529
+2025-10-13 11:33:39 - Active window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0xa7042e
+2025-10-13 11:33:39 - Total clicks: 2
+2025-10-13 11:33:39 - Command received: CLICK
+2025-10-13 11:33:39 - CLICK command received
+2025-10-13 11:33:39 - Updated window list: 2 windows found
+2025-10-13 11:33:39 - Mouse position: 965, 533
+2025-10-13 11:33:39 - Active window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0xa7042e
+2025-10-13 11:33:39 - Total clicks: 2
+2025-10-13 11:33:39 - Command received: CLICK
+2025-10-13 11:33:39 - CLICK command received
+2025-10-13 11:33:39 - Updated window list: 2 windows found
+2025-10-13 11:33:39 - Mouse position: 1016, 542
+2025-10-13 11:33:39 - Active window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0xa7042e
+2025-10-13 11:33:39 - Total clicks: 2
+2025-10-13 11:33:39 - Command received: CLICK
+2025-10-13 11:33:39 - CLICK command received
+2025-10-13 11:33:39 - Updated window list: 2 windows found
+2025-10-13 11:33:39 - Mouse position: 1037, 536
+2025-10-13 11:33:39 - Active window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0xa7042e
+2025-10-13 11:33:39 - Total clicks: 2
+2025-10-13 11:33:39 - Command received: CLICK
+2025-10-13 11:33:39 - CLICK command received
+2025-10-13 11:33:39 - Updated window list: 2 windows found
+2025-10-13 11:33:39 - Mouse position: 1027, 512
+2025-10-13 11:33:39 - Active window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:39 - Clicked window: 0xa7042e
+2025-10-13 11:33:39 - Total clicks: 2
+2025-10-13 11:33:40 - Command received: CLICK
+2025-10-13 11:33:40 - CLICK command received
+2025-10-13 11:33:40 - Updated window list: 2 windows found
+2025-10-13 11:33:40 - Mouse position: 1015, 492
+2025-10-13 11:33:40 - Active window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0xa7042e
+2025-10-13 11:33:40 - Total clicks: 2
+2025-10-13 11:33:40 - Command received: CLICK
+2025-10-13 11:33:40 - CLICK command received
+2025-10-13 11:33:40 - Updated window list: 2 windows found
+2025-10-13 11:33:40 - Mouse position: 990, 478
+2025-10-13 11:33:40 - Active window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0xa7042e
+2025-10-13 11:33:40 - Total clicks: 2
+2025-10-13 11:33:40 - Command received: CLICK
+2025-10-13 11:33:40 - CLICK command received
+2025-10-13 11:33:40 - Updated window list: 2 windows found
+2025-10-13 11:33:40 - Mouse position: 979, 475
+2025-10-13 11:33:40 - Active window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0xa7042e
+2025-10-13 11:33:40 - Total clicks: 2
+2025-10-13 11:33:40 - Command received: CLICK
+2025-10-13 11:33:40 - CLICK command received
+2025-10-13 11:33:40 - Updated window list: 2 windows found
+2025-10-13 11:33:40 - Mouse position: 979, 475
+2025-10-13 11:33:40 - Active window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0xa7042e
+2025-10-13 11:33:40 - Total clicks: 2
+2025-10-13 11:33:40 - Command received: CLICK
+2025-10-13 11:33:40 - CLICK command received
+2025-10-13 11:33:40 - Updated window list: 2 windows found
+2025-10-13 11:33:40 - Mouse position: 980, 475
+2025-10-13 11:33:40 - Active window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0xa7042e
+2025-10-13 11:33:40 - Total clicks: 2
+2025-10-13 11:33:40 - Command received: CLICK
+2025-10-13 11:33:40 - CLICK command received
+2025-10-13 11:33:40 - Updated window list: 2 windows found
+2025-10-13 11:33:40 - Mouse position: 984, 475
+2025-10-13 11:33:40 - Active window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0xa7042e
+2025-10-13 11:33:40 - Total clicks: 2
+2025-10-13 11:33:40 - Command received: CLICK
+2025-10-13 11:33:40 - CLICK command received
+2025-10-13 11:33:40 - Updated window list: 2 windows found
+2025-10-13 11:33:40 - Mouse position: 988, 480
+2025-10-13 11:33:40 - Active window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0xa7042e
+2025-10-13 11:33:40 - Total clicks: 2
+2025-10-13 11:33:40 - Command received: CLICK
+2025-10-13 11:33:40 - CLICK command received
+2025-10-13 11:33:40 - Updated window list: 2 windows found
+2025-10-13 11:33:40 - Mouse position: 992, 488
+2025-10-13 11:33:40 - Active window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0xa7042e
+2025-10-13 11:33:40 - Total clicks: 2
+2025-10-13 11:33:40 - Command received: CLICK
+2025-10-13 11:33:40 - CLICK command received
+2025-10-13 11:33:40 - Updated window list: 2 windows found
+2025-10-13 11:33:40 - Mouse position: 999, 500
+2025-10-13 11:33:40 - Active window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0xa7042e
+2025-10-13 11:33:40 - Total clicks: 2
+2025-10-13 11:33:40 - Command received: CLICK
+2025-10-13 11:33:40 - CLICK command received
+2025-10-13 11:33:40 - Updated window list: 2 windows found
+2025-10-13 11:33:40 - Mouse position: 1003, 506
+2025-10-13 11:33:40 - Active window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:40 - Clicked window: 0xa7042e
+2025-10-13 11:33:40 - Total clicks: 2
+2025-10-13 11:33:41 - Command received: CLICK
+2025-10-13 11:33:41 - CLICK command received
+2025-10-13 11:33:41 - Updated window list: 2 windows found
+2025-10-13 11:33:41 - Mouse position: 1009, 518
+2025-10-13 11:33:41 - Active window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0xa7042e
+2025-10-13 11:33:41 - Total clicks: 2
+2025-10-13 11:33:41 - Command received: CLICK
+2025-10-13 11:33:41 - CLICK command received
+2025-10-13 11:33:41 - Updated window list: 2 windows found
+2025-10-13 11:33:41 - Mouse position: 1012, 533
+2025-10-13 11:33:41 - Active window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0xa7042e
+2025-10-13 11:33:41 - Total clicks: 2
+2025-10-13 11:33:41 - Command received: CLICK
+2025-10-13 11:33:41 - CLICK command received
+2025-10-13 11:33:41 - Updated window list: 2 windows found
+2025-10-13 11:33:41 - Mouse position: 1010, 556
+2025-10-13 11:33:41 - Active window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0xa7042e
+2025-10-13 11:33:41 - Total clicks: 2
+2025-10-13 11:33:41 - Command received: CLICK
+2025-10-13 11:33:41 - CLICK command received
+2025-10-13 11:33:41 - Updated window list: 2 windows found
+2025-10-13 11:33:41 - Mouse position: 1010, 592
+2025-10-13 11:33:41 - Active window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0xa7042e
+2025-10-13 11:33:41 - Total clicks: 2
+2025-10-13 11:33:41 - Command received: CLICK
+2025-10-13 11:33:41 - CLICK command received
+2025-10-13 11:33:41 - Updated window list: 2 windows found
+2025-10-13 11:33:41 - Mouse position: 1011, 631
+2025-10-13 11:33:41 - Active window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0xa7042e
+2025-10-13 11:33:41 - Total clicks: 2
+2025-10-13 11:33:41 - Command received: CLICK
+2025-10-13 11:33:41 - CLICK command received
+2025-10-13 11:33:41 - Updated window list: 2 windows found
+2025-10-13 11:33:41 - Mouse position: 1003, 697
+2025-10-13 11:33:41 - Active window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0xa7042e
+2025-10-13 11:33:41 - Total clicks: 2
+2025-10-13 11:33:41 - Command received: CLICK
+2025-10-13 11:33:41 - CLICK command received
+2025-10-13 11:33:41 - Updated window list: 2 windows found
+2025-10-13 11:33:41 - Mouse position: 977, 731
+2025-10-13 11:33:41 - Active window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0xa7042e
+2025-10-13 11:33:41 - Total clicks: 2
+2025-10-13 11:33:41 - Command received: CLICK
+2025-10-13 11:33:41 - CLICK command received
+2025-10-13 11:33:41 - Updated window list: 2 windows found
+2025-10-13 11:33:41 - Mouse position: 963, 732
+2025-10-13 11:33:41 - Active window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0xa7042e
+2025-10-13 11:33:41 - Total clicks: 2
+2025-10-13 11:33:41 - Command received: CLICK
+2025-10-13 11:33:41 - CLICK command received
+2025-10-13 11:33:41 - Updated window list: 2 windows found
+2025-10-13 11:33:41 - Mouse position: 956, 729
+2025-10-13 11:33:41 - Active window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0xa7042e
+2025-10-13 11:33:41 - Total clicks: 2
+2025-10-13 11:33:41 - Command received: CLICK
+2025-10-13 11:33:41 - CLICK command received
+2025-10-13 11:33:41 - Updated window list: 2 windows found
+2025-10-13 11:33:41 - Mouse position: 968, 730
+2025-10-13 11:33:41 - Active window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:41 - Clicked window: 0xa7042e
+2025-10-13 11:33:41 - Total clicks: 2
+2025-10-13 11:33:42 - Command received: CLICK
+2025-10-13 11:33:42 - CLICK command received
+2025-10-13 11:33:42 - Updated window list: 2 windows found
+2025-10-13 11:33:42 - Mouse position: 989, 737
+2025-10-13 11:33:42 - Active window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0xa7042e
+2025-10-13 11:33:42 - Total clicks: 2
+2025-10-13 11:33:42 - Command received: CLICK
+2025-10-13 11:33:42 - CLICK command received
+2025-10-13 11:33:42 - Updated window list: 2 windows found
+2025-10-13 11:33:42 - Mouse position: 996, 739
+2025-10-13 11:33:42 - Active window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0xa7042e
+2025-10-13 11:33:42 - Total clicks: 2
+2025-10-13 11:33:42 - Command received: CLICK
+2025-10-13 11:33:42 - CLICK command received
+2025-10-13 11:33:42 - Updated window list: 2 windows found
+2025-10-13 11:33:42 - Mouse position: 1004, 735
+2025-10-13 11:33:42 - Active window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0xa7042e
+2025-10-13 11:33:42 - Total clicks: 2
+2025-10-13 11:33:42 - Command received: CLICK
+2025-10-13 11:33:42 - CLICK command received
+2025-10-13 11:33:42 - Updated window list: 2 windows found
+2025-10-13 11:33:42 - Mouse position: 1007, 730
+2025-10-13 11:33:42 - Active window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0xa7042e
+2025-10-13 11:33:42 - Total clicks: 2
+2025-10-13 11:33:42 - Command received: CLICK
+2025-10-13 11:33:42 - CLICK command received
+2025-10-13 11:33:42 - Updated window list: 2 windows found
+2025-10-13 11:33:42 - Mouse position: 1017, 720
+2025-10-13 11:33:42 - Active window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0xa7042e
+2025-10-13 11:33:42 - Total clicks: 2
+2025-10-13 11:33:42 - Command received: CLICK
+2025-10-13 11:33:42 - CLICK command received
+2025-10-13 11:33:42 - Updated window list: 2 windows found
+2025-10-13 11:33:42 - Mouse position: 1023, 709
+2025-10-13 11:33:42 - Active window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0xa7042e
+2025-10-13 11:33:42 - Total clicks: 2
+2025-10-13 11:33:42 - Command received: CLICK
+2025-10-13 11:33:42 - CLICK command received
+2025-10-13 11:33:42 - Updated window list: 2 windows found
+2025-10-13 11:33:42 - Mouse position: 1027, 696
+2025-10-13 11:33:42 - Active window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0xa7042e
+2025-10-13 11:33:42 - Total clicks: 2
+2025-10-13 11:33:42 - Command received: CLICK
+2025-10-13 11:33:42 - CLICK command received
+2025-10-13 11:33:42 - Updated window list: 2 windows found
+2025-10-13 11:33:42 - Mouse position: 1030, 675
+2025-10-13 11:33:42 - Active window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0xa7042e
+2025-10-13 11:33:42 - Total clicks: 2
+2025-10-13 11:33:42 - Command received: CLICK
+2025-10-13 11:33:42 - CLICK command received
+2025-10-13 11:33:42 - Updated window list: 2 windows found
+2025-10-13 11:33:42 - Mouse position: 1025, 657
+2025-10-13 11:33:42 - Active window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0xa7042e
+2025-10-13 11:33:42 - Total clicks: 2
+2025-10-13 11:33:42 - Command received: CLICK
+2025-10-13 11:33:42 - CLICK command received
+2025-10-13 11:33:42 - Updated window list: 2 windows found
+2025-10-13 11:33:42 - Mouse position: 1016, 639
+2025-10-13 11:33:42 - Active window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:42 - Clicked window: 0xa7042e
+2025-10-13 11:33:42 - Total clicks: 2
+2025-10-13 11:33:43 - Command received: CLICK
+2025-10-13 11:33:43 - CLICK command received
+2025-10-13 11:33:43 - Updated window list: 2 windows found
+2025-10-13 11:33:43 - Mouse position: 1003, 625
+2025-10-13 11:33:43 - Active window: 0x3c70ae2
+2025-10-13 11:33:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:33:43 - Clicked window: 0xa7042e
+2025-10-13 11:33:43 - Total clicks: 2
+2025-10-13 11:33:46 - Command received: EXIT
+2025-10-13 11:33:46 - EXIT command received
+2025-10-13 11:34:27 - === AHK Script Started ===
+2025-10-13 11:34:27 - Script dir: C:\project\pw_inject
+2025-10-13 11:34:27 - Command file: C:\project\pw_inject\ahk_command.txt
+2025-10-13 11:34:29 - Command received: CLICK
+2025-10-13 11:34:29 - CLICK command received
+2025-10-13 11:34:29 - Updated window list: 2 windows found
+2025-10-13 11:34:29 - Mouse position: 771, 537
+2025-10-13 11:34:29 - Active window: 0x3c70ae2
+2025-10-13 11:34:29 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:29 - Clicked window: 0xa7042e
+2025-10-13 11:34:29 - Total clicks: 2
+2025-10-13 11:34:29 - Command received: CLICK
+2025-10-13 11:34:29 - CLICK command received
+2025-10-13 11:34:29 - Updated window list: 2 windows found
+2025-10-13 11:34:29 - Mouse position: 785, 459
+2025-10-13 11:34:29 - Active window: 0x3c70ae2
+2025-10-13 11:34:29 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:29 - Clicked window: 0xa7042e
+2025-10-13 11:34:29 - Total clicks: 2
+2025-10-13 11:34:30 - Command received: CLICK
+2025-10-13 11:34:30 - CLICK command received
+2025-10-13 11:34:30 - Updated window list: 2 windows found
+2025-10-13 11:34:30 - Mouse position: 826, 440
+2025-10-13 11:34:30 - Active window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0xa7042e
+2025-10-13 11:34:30 - Total clicks: 2
+2025-10-13 11:34:30 - Command received: CLICK
+2025-10-13 11:34:30 - CLICK command received
+2025-10-13 11:34:30 - Updated window list: 2 windows found
+2025-10-13 11:34:30 - Mouse position: 867, 430
+2025-10-13 11:34:30 - Active window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0xa7042e
+2025-10-13 11:34:30 - Total clicks: 2
+2025-10-13 11:34:30 - Command received: CLICK
+2025-10-13 11:34:30 - CLICK command received
+2025-10-13 11:34:30 - Updated window list: 2 windows found
+2025-10-13 11:34:30 - Mouse position: 906, 436
+2025-10-13 11:34:30 - Active window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0xa7042e
+2025-10-13 11:34:30 - Total clicks: 2
+2025-10-13 11:34:30 - Command received: CLICK
+2025-10-13 11:34:30 - CLICK command received
+2025-10-13 11:34:30 - Updated window list: 2 windows found
+2025-10-13 11:34:30 - Mouse position: 951, 448
+2025-10-13 11:34:30 - Active window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0xa7042e
+2025-10-13 11:34:30 - Total clicks: 2
+2025-10-13 11:34:30 - Command received: CLICK
+2025-10-13 11:34:30 - CLICK command received
+2025-10-13 11:34:30 - Updated window list: 2 windows found
+2025-10-13 11:34:30 - Mouse position: 960, 430
+2025-10-13 11:34:30 - Active window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0xa7042e
+2025-10-13 11:34:30 - Total clicks: 2
+2025-10-13 11:34:30 - Command received: CLICK
+2025-10-13 11:34:30 - CLICK command received
+2025-10-13 11:34:30 - Updated window list: 2 windows found
+2025-10-13 11:34:30 - Mouse position: 962, 417
+2025-10-13 11:34:30 - Active window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0xa7042e
+2025-10-13 11:34:30 - Total clicks: 2
+2025-10-13 11:34:30 - Command received: CLICK
+2025-10-13 11:34:30 - CLICK command received
+2025-10-13 11:34:30 - Updated window list: 2 windows found
+2025-10-13 11:34:30 - Mouse position: 944, 416
+2025-10-13 11:34:30 - Active window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0xa7042e
+2025-10-13 11:34:30 - Total clicks: 2
+2025-10-13 11:34:30 - Command received: CLICK
+2025-10-13 11:34:30 - CLICK command received
+2025-10-13 11:34:30 - Updated window list: 2 windows found
+2025-10-13 11:34:30 - Mouse position: 908, 425
+2025-10-13 11:34:30 - Active window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0xa7042e
+2025-10-13 11:34:30 - Total clicks: 2
+2025-10-13 11:34:30 - Command received: CLICK
+2025-10-13 11:34:30 - CLICK command received
+2025-10-13 11:34:30 - Updated window list: 2 windows found
+2025-10-13 11:34:30 - Mouse position: 895, 441
+2025-10-13 11:34:30 - Active window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0xa7042e
+2025-10-13 11:34:30 - Total clicks: 2
+2025-10-13 11:34:30 - Command received: CLICK
+2025-10-13 11:34:30 - CLICK command received
+2025-10-13 11:34:30 - Updated window list: 2 windows found
+2025-10-13 11:34:30 - Mouse position: 917, 478
+2025-10-13 11:34:30 - Active window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:30 - Clicked window: 0xa7042e
+2025-10-13 11:34:30 - Total clicks: 2
+2025-10-13 11:34:31 - Command received: CLICK
+2025-10-13 11:34:31 - CLICK command received
+2025-10-13 11:34:31 - Updated window list: 2 windows found
+2025-10-13 11:34:31 - Mouse position: 977, 522
+2025-10-13 11:34:31 - Active window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0xa7042e
+2025-10-13 11:34:31 - Total clicks: 2
+2025-10-13 11:34:31 - Command received: CLICK
+2025-10-13 11:34:31 - CLICK command received
+2025-10-13 11:34:31 - Updated window list: 2 windows found
+2025-10-13 11:34:31 - Mouse position: 1085, 535
+2025-10-13 11:34:31 - Active window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0xa7042e
+2025-10-13 11:34:31 - Total clicks: 2
+2025-10-13 11:34:31 - Command received: CLICK
+2025-10-13 11:34:31 - CLICK command received
+2025-10-13 11:34:31 - Updated window list: 2 windows found
+2025-10-13 11:34:31 - Mouse position: 1134, 504
+2025-10-13 11:34:31 - Active window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0xa7042e
+2025-10-13 11:34:31 - Total clicks: 2
+2025-10-13 11:34:31 - Command received: CLICK
+2025-10-13 11:34:31 - CLICK command received
+2025-10-13 11:34:31 - Updated window list: 2 windows found
+2025-10-13 11:34:31 - Mouse position: 1082, 440
+2025-10-13 11:34:31 - Active window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0xa7042e
+2025-10-13 11:34:31 - Total clicks: 2
+2025-10-13 11:34:31 - Command received: CLICK
+2025-10-13 11:34:31 - CLICK command received
+2025-10-13 11:34:31 - Updated window list: 2 windows found
+2025-10-13 11:34:31 - Mouse position: 956, 411
+2025-10-13 11:34:31 - Active window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0xa7042e
+2025-10-13 11:34:31 - Total clicks: 2
+2025-10-13 11:34:31 - Command received: CLICK
+2025-10-13 11:34:31 - CLICK command received
+2025-10-13 11:34:31 - Updated window list: 2 windows found
+2025-10-13 11:34:31 - Mouse position: 884, 415
+2025-10-13 11:34:31 - Active window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0xa7042e
+2025-10-13 11:34:31 - Total clicks: 2
+2025-10-13 11:34:31 - Command received: CLICK
+2025-10-13 11:34:31 - CLICK command received
+2025-10-13 11:34:31 - Updated window list: 2 windows found
+2025-10-13 11:34:31 - Mouse position: 859, 446
+2025-10-13 11:34:31 - Active window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0xa7042e
+2025-10-13 11:34:31 - Total clicks: 2
+2025-10-13 11:34:31 - Command received: CLICK
+2025-10-13 11:34:31 - CLICK command received
+2025-10-13 11:34:31 - Updated window list: 2 windows found
+2025-10-13 11:34:31 - Mouse position: 899, 481
+2025-10-13 11:34:31 - Active window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0xa7042e
+2025-10-13 11:34:31 - Total clicks: 2
+2025-10-13 11:34:31 - Command received: CLICK
+2025-10-13 11:34:31 - CLICK command received
+2025-10-13 11:34:31 - Updated window list: 2 windows found
+2025-10-13 11:34:31 - Mouse position: 1047, 502
+2025-10-13 11:34:31 - Active window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0xa7042e
+2025-10-13 11:34:31 - Total clicks: 2
+2025-10-13 11:34:31 - Command received: CLICK
+2025-10-13 11:34:31 - CLICK command received
+2025-10-13 11:34:31 - Updated window list: 2 windows found
+2025-10-13 11:34:31 - Mouse position: 1172, 530
+2025-10-13 11:34:31 - Active window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:31 - Clicked window: 0xa7042e
+2025-10-13 11:34:31 - Total clicks: 2
+2025-10-13 11:34:32 - Command received: CLICK
+2025-10-13 11:34:32 - CLICK command received
+2025-10-13 11:34:32 - Updated window list: 2 windows found
+2025-10-13 11:34:32 - Mouse position: 1150, 555
+2025-10-13 11:34:32 - Active window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0xa7042e
+2025-10-13 11:34:32 - Total clicks: 2
+2025-10-13 11:34:32 - Command received: CLICK
+2025-10-13 11:34:32 - CLICK command received
+2025-10-13 11:34:32 - Updated window list: 2 windows found
+2025-10-13 11:34:32 - Mouse position: 1029, 618
+2025-10-13 11:34:32 - Active window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0xa7042e
+2025-10-13 11:34:32 - Total clicks: 2
+2025-10-13 11:34:32 - Command received: CLICK
+2025-10-13 11:34:32 - CLICK command received
+2025-10-13 11:34:32 - Updated window list: 2 windows found
+2025-10-13 11:34:32 - Mouse position: 764, 633
+2025-10-13 11:34:32 - Active window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0xa7042e
+2025-10-13 11:34:32 - Total clicks: 2
+2025-10-13 11:34:32 - Command received: CLICK
+2025-10-13 11:34:32 - CLICK command received
+2025-10-13 11:34:32 - Updated window list: 2 windows found
+2025-10-13 11:34:32 - Mouse position: 623, 683
+2025-10-13 11:34:32 - Active window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0xa7042e
+2025-10-13 11:34:32 - Total clicks: 2
+2025-10-13 11:34:32 - Command received: CLICK
+2025-10-13 11:34:32 - CLICK command received
+2025-10-13 11:34:32 - Updated window list: 2 windows found
+2025-10-13 11:34:32 - Mouse position: 711, 769
+2025-10-13 11:34:32 - Active window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0xa7042e
+2025-10-13 11:34:32 - Total clicks: 2
+2025-10-13 11:34:32 - Command received: CLICK
+2025-10-13 11:34:32 - CLICK command received
+2025-10-13 11:34:32 - Updated window list: 2 windows found
+2025-10-13 11:34:32 - Mouse position: 861, 813
+2025-10-13 11:34:32 - Active window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0xa7042e
+2025-10-13 11:34:32 - Total clicks: 2
+2025-10-13 11:34:32 - Command received: CLICK
+2025-10-13 11:34:32 - CLICK command received
+2025-10-13 11:34:32 - Updated window list: 2 windows found
+2025-10-13 11:34:32 - Mouse position: 962, 813
+2025-10-13 11:34:32 - Active window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0xa7042e
+2025-10-13 11:34:32 - Total clicks: 2
+2025-10-13 11:34:32 - Command received: CLICK
+2025-10-13 11:34:32 - CLICK command received
+2025-10-13 11:34:32 - Updated window list: 2 windows found
+2025-10-13 11:34:32 - Mouse position: 1002, 783
+2025-10-13 11:34:32 - Active window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0xa7042e
+2025-10-13 11:34:32 - Total clicks: 2
+2025-10-13 11:34:32 - Command received: CLICK
+2025-10-13 11:34:32 - CLICK command received
+2025-10-13 11:34:32 - Updated window list: 2 windows found
+2025-10-13 11:34:32 - Mouse position: 1001, 700
+2025-10-13 11:34:32 - Active window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0xa7042e
+2025-10-13 11:34:32 - Total clicks: 2
+2025-10-13 11:34:32 - Command received: CLICK
+2025-10-13 11:34:32 - CLICK command received
+2025-10-13 11:34:32 - Updated window list: 2 windows found
+2025-10-13 11:34:32 - Mouse position: 945, 601
+2025-10-13 11:34:32 - Active window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:32 - Clicked window: 0xa7042e
+2025-10-13 11:34:32 - Total clicks: 2
+2025-10-13 11:34:33 - Command received: CLICK
+2025-10-13 11:34:33 - CLICK command received
+2025-10-13 11:34:33 - Updated window list: 2 windows found
+2025-10-13 11:34:33 - Mouse position: 909, 538
+2025-10-13 11:34:33 - Active window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0xa7042e
+2025-10-13 11:34:33 - Total clicks: 2
+2025-10-13 11:34:33 - Command received: CLICK
+2025-10-13 11:34:33 - CLICK command received
+2025-10-13 11:34:33 - Updated window list: 2 windows found
+2025-10-13 11:34:33 - Mouse position: 935, 485
+2025-10-13 11:34:33 - Active window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0xa7042e
+2025-10-13 11:34:33 - Total clicks: 2
+2025-10-13 11:34:33 - Command received: CLICK
+2025-10-13 11:34:33 - CLICK command received
+2025-10-13 11:34:33 - Updated window list: 2 windows found
+2025-10-13 11:34:33 - Mouse position: 1053, 478
+2025-10-13 11:34:33 - Active window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0xa7042e
+2025-10-13 11:34:33 - Total clicks: 2
+2025-10-13 11:34:33 - Command received: CLICK
+2025-10-13 11:34:33 - CLICK command received
+2025-10-13 11:34:33 - Updated window list: 2 windows found
+2025-10-13 11:34:33 - Mouse position: 1173, 540
+2025-10-13 11:34:33 - Active window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0xa7042e
+2025-10-13 11:34:33 - Total clicks: 2
+2025-10-13 11:34:33 - Command received: CLICK
+2025-10-13 11:34:33 - CLICK command received
+2025-10-13 11:34:33 - Updated window list: 2 windows found
+2025-10-13 11:34:33 - Mouse position: 1155, 691
+2025-10-13 11:34:33 - Active window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0xa7042e
+2025-10-13 11:34:33 - Total clicks: 2
+2025-10-13 11:34:33 - Command received: CLICK
+2025-10-13 11:34:33 - CLICK command received
+2025-10-13 11:34:33 - Updated window list: 2 windows found
+2025-10-13 11:34:33 - Mouse position: 1066, 836
+2025-10-13 11:34:33 - Active window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0xa7042e
+2025-10-13 11:34:33 - Total clicks: 2
+2025-10-13 11:34:33 - Command received: CLICK
+2025-10-13 11:34:33 - CLICK command received
+2025-10-13 11:34:33 - Updated window list: 2 windows found
+2025-10-13 11:34:33 - Mouse position: 1024, 872
+2025-10-13 11:34:33 - Active window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0xa7042e
+2025-10-13 11:34:33 - Total clicks: 2
+2025-10-13 11:34:33 - Command received: CLICK
+2025-10-13 11:34:33 - CLICK command received
+2025-10-13 11:34:33 - Updated window list: 2 windows found
+2025-10-13 11:34:33 - Mouse position: 939, 827
+2025-10-13 11:34:33 - Active window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0xa7042e
+2025-10-13 11:34:33 - Total clicks: 2
+2025-10-13 11:34:33 - Command received: CLICK
+2025-10-13 11:34:33 - CLICK command received
+2025-10-13 11:34:33 - Updated window list: 2 windows found
+2025-10-13 11:34:33 - Mouse position: 831, 735
+2025-10-13 11:34:33 - Active window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:33 - Clicked window: 0xa7042e
+2025-10-13 11:34:33 - Total clicks: 2
+2025-10-13 11:34:33 - Command received: CLICK
+2025-10-13 11:34:33 - CLICK command received
+2025-10-13 11:34:33 - Updated window list: 2 windows found
+2025-10-13 11:34:33 - Mouse position: 820, 597
+2025-10-13 11:34:33 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:34 - Command received: CLICK
+2025-10-13 11:34:34 - CLICK command received
+2025-10-13 11:34:34 - Updated window list: 2 windows found
+2025-10-13 11:34:34 - Mouse position: 882, 504
+2025-10-13 11:34:34 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:34 - Command received: CLICK
+2025-10-13 11:34:34 - CLICK command received
+2025-10-13 11:34:34 - Updated window list: 2 windows found
+2025-10-13 11:34:34 - Mouse position: 1041, 454
+2025-10-13 11:34:34 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:34 - Command received: CLICK
+2025-10-13 11:34:34 - CLICK command received
+2025-10-13 11:34:34 - Updated window list: 2 windows found
+2025-10-13 11:34:34 - Mouse position: 1165, 506
+2025-10-13 11:34:34 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:34 - Command received: CLICK
+2025-10-13 11:34:34 - CLICK command received
+2025-10-13 11:34:34 - Updated window list: 2 windows found
+2025-10-13 11:34:34 - Mouse position: 1135, 644
+2025-10-13 11:34:34 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:34 - Command received: CLICK
+2025-10-13 11:34:34 - CLICK command received
+2025-10-13 11:34:34 - Updated window list: 2 windows found
+2025-10-13 11:34:34 - Mouse position: 983, 716
+2025-10-13 11:34:34 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:34 - Command received: CLICK
+2025-10-13 11:34:34 - CLICK command received
+2025-10-13 11:34:34 - Updated window list: 2 windows found
+2025-10-13 11:34:34 - Mouse position: 813, 703
+2025-10-13 11:34:34 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:34 - Command received: CLICK
+2025-10-13 11:34:34 - CLICK command received
+2025-10-13 11:34:34 - Updated window list: 2 windows found
+2025-10-13 11:34:34 - Mouse position: 767, 670
+2025-10-13 11:34:34 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:34 - Command received: CLICK
+2025-10-13 11:34:34 - CLICK command received
+2025-10-13 11:34:34 - Updated window list: 2 windows found
+2025-10-13 11:34:34 - Mouse position: 783, 642
+2025-10-13 11:34:34 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:34 - Command received: CLICK
+2025-10-13 11:34:34 - CLICK command received
+2025-10-13 11:34:34 - Updated window list: 2 windows found
+2025-10-13 11:34:34 - Mouse position: 792, 635
+2025-10-13 11:34:34 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:34 - Command received: CLICK
+2025-10-13 11:34:34 - CLICK command received
+2025-10-13 11:34:34 - Updated window list: 2 windows found
+2025-10-13 11:34:34 - Mouse position: 845, 621
+2025-10-13 11:34:34 - Active window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:34 - Clicked window: 0xa7042e
+2025-10-13 11:34:34 - Total clicks: 2
+2025-10-13 11:34:35 - Command received: CLICK
+2025-10-13 11:34:35 - CLICK command received
+2025-10-13 11:34:35 - Updated window list: 2 windows found
+2025-10-13 11:34:35 - Mouse position: 968, 597
+2025-10-13 11:34:35 - Active window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0xa7042e
+2025-10-13 11:34:35 - Total clicks: 2
+2025-10-13 11:34:35 - Command received: CLICK
+2025-10-13 11:34:35 - CLICK command received
+2025-10-13 11:34:35 - Updated window list: 2 windows found
+2025-10-13 11:34:35 - Mouse position: 1023, 581
+2025-10-13 11:34:35 - Active window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0xa7042e
+2025-10-13 11:34:35 - Total clicks: 2
+2025-10-13 11:34:35 - Command received: CLICK
+2025-10-13 11:34:35 - CLICK command received
+2025-10-13 11:34:35 - Updated window list: 2 windows found
+2025-10-13 11:34:35 - Mouse position: 1082, 545
+2025-10-13 11:34:35 - Active window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0xa7042e
+2025-10-13 11:34:35 - Total clicks: 2
+2025-10-13 11:34:35 - Command received: CLICK
+2025-10-13 11:34:35 - CLICK command received
+2025-10-13 11:34:35 - Updated window list: 2 windows found
+2025-10-13 11:34:35 - Mouse position: 1099, 522
+2025-10-13 11:34:35 - Active window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0xa7042e
+2025-10-13 11:34:35 - Total clicks: 2
+2025-10-13 11:34:35 - Command received: CLICK
+2025-10-13 11:34:35 - CLICK command received
+2025-10-13 11:34:35 - Updated window list: 2 windows found
+2025-10-13 11:34:35 - Mouse position: 1078, 492
+2025-10-13 11:34:35 - Active window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0xa7042e
+2025-10-13 11:34:35 - Total clicks: 2
+2025-10-13 11:34:35 - Command received: CLICK
+2025-10-13 11:34:35 - CLICK command received
+2025-10-13 11:34:35 - Updated window list: 2 windows found
+2025-10-13 11:34:35 - Mouse position: 1043, 478
+2025-10-13 11:34:35 - Active window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0xa7042e
+2025-10-13 11:34:35 - Total clicks: 2
+2025-10-13 11:34:35 - Command received: CLICK
+2025-10-13 11:34:35 - CLICK command received
+2025-10-13 11:34:35 - Updated window list: 2 windows found
+2025-10-13 11:34:35 - Mouse position: 1001, 477
+2025-10-13 11:34:35 - Active window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0xa7042e
+2025-10-13 11:34:35 - Total clicks: 2
+2025-10-13 11:34:35 - Command received: CLICK
+2025-10-13 11:34:35 - CLICK command received
+2025-10-13 11:34:35 - Updated window list: 2 windows found
+2025-10-13 11:34:35 - Mouse position: 944, 494
+2025-10-13 11:34:35 - Active window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0xa7042e
+2025-10-13 11:34:35 - Total clicks: 2
+2025-10-13 11:34:35 - Command received: CLICK
+2025-10-13 11:34:35 - CLICK command received
+2025-10-13 11:34:35 - Updated window list: 2 windows found
+2025-10-13 11:34:35 - Mouse position: 899, 521
+2025-10-13 11:34:35 - Active window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:35 - Clicked window: 0xa7042e
+2025-10-13 11:34:35 - Total clicks: 2
+2025-10-13 11:34:35 - Command received: CLICK
+2025-10-13 11:34:35 - CLICK command received
+2025-10-13 11:34:35 - Updated window list: 2 windows found
+2025-10-13 11:34:35 - Mouse position: 870, 553
+2025-10-13 11:34:35 - Active window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0xa7042e
+2025-10-13 11:34:36 - Total clicks: 2
+2025-10-13 11:34:36 - Command received: CLICK
+2025-10-13 11:34:36 - CLICK command received
+2025-10-13 11:34:36 - Updated window list: 2 windows found
+2025-10-13 11:34:36 - Mouse position: 856, 576
+2025-10-13 11:34:36 - Active window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0xa7042e
+2025-10-13 11:34:36 - Total clicks: 2
+2025-10-13 11:34:36 - Command received: CLICK
+2025-10-13 11:34:36 - CLICK command received
+2025-10-13 11:34:36 - Updated window list: 2 windows found
+2025-10-13 11:34:36 - Mouse position: 858, 603
+2025-10-13 11:34:36 - Active window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0xa7042e
+2025-10-13 11:34:36 - Total clicks: 2
+2025-10-13 11:34:36 - Command received: CLICK
+2025-10-13 11:34:36 - CLICK command received
+2025-10-13 11:34:36 - Updated window list: 2 windows found
+2025-10-13 11:34:36 - Mouse position: 880, 639
+2025-10-13 11:34:36 - Active window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0xa7042e
+2025-10-13 11:34:36 - Total clicks: 2
+2025-10-13 11:34:36 - Command received: CLICK
+2025-10-13 11:34:36 - CLICK command received
+2025-10-13 11:34:36 - Updated window list: 2 windows found
+2025-10-13 11:34:36 - Mouse position: 908, 669
+2025-10-13 11:34:36 - Active window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0xa7042e
+2025-10-13 11:34:36 - Total clicks: 2
+2025-10-13 11:34:36 - Command received: CLICK
+2025-10-13 11:34:36 - CLICK command received
+2025-10-13 11:34:36 - Updated window list: 2 windows found
+2025-10-13 11:34:36 - Mouse position: 977, 699
+2025-10-13 11:34:36 - Active window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0xa7042e
+2025-10-13 11:34:36 - Total clicks: 2
+2025-10-13 11:34:36 - Command received: CLICK
+2025-10-13 11:34:36 - CLICK command received
+2025-10-13 11:34:36 - Updated window list: 2 windows found
+2025-10-13 11:34:36 - Mouse position: 1044, 701
+2025-10-13 11:34:36 - Active window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0xa7042e
+2025-10-13 11:34:36 - Total clicks: 2
+2025-10-13 11:34:36 - Command received: CLICK
+2025-10-13 11:34:36 - CLICK command received
+2025-10-13 11:34:36 - Updated window list: 2 windows found
+2025-10-13 11:34:36 - Mouse position: 1061, 683
+2025-10-13 11:34:36 - Active window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0xa7042e
+2025-10-13 11:34:36 - Total clicks: 2
+2025-10-13 11:34:36 - Command received: CLICK
+2025-10-13 11:34:36 - CLICK command received
+2025-10-13 11:34:36 - Updated window list: 2 windows found
+2025-10-13 11:34:36 - Mouse position: 1056, 622
+2025-10-13 11:34:36 - Active window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0xa7042e
+2025-10-13 11:34:36 - Total clicks: 2
+2025-10-13 11:34:36 - Command received: CLICK
+2025-10-13 11:34:36 - CLICK command received
+2025-10-13 11:34:36 - Updated window list: 2 windows found
+2025-10-13 11:34:36 - Mouse position: 1041, 577
+2025-10-13 11:34:36 - Active window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:36 - Clicked window: 0xa7042e
+2025-10-13 11:34:36 - Total clicks: 2
+2025-10-13 11:34:36 - Command received: CLICK
+2025-10-13 11:34:36 - CLICK command received
+2025-10-13 11:34:36 - Updated window list: 2 windows found
+2025-10-13 11:34:36 - Mouse position: 999, 536
+2025-10-13 11:34:36 - Active window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0xa7042e
+2025-10-13 11:34:37 - Total clicks: 2
+2025-10-13 11:34:37 - Command received: CLICK
+2025-10-13 11:34:37 - CLICK command received
+2025-10-13 11:34:37 - Updated window list: 2 windows found
+2025-10-13 11:34:37 - Mouse position: 952, 523
+2025-10-13 11:34:37 - Active window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0xa7042e
+2025-10-13 11:34:37 - Total clicks: 2
+2025-10-13 11:34:37 - Command received: CLICK
+2025-10-13 11:34:37 - CLICK command received
+2025-10-13 11:34:37 - Updated window list: 2 windows found
+2025-10-13 11:34:37 - Mouse position: 900, 529
+2025-10-13 11:34:37 - Active window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0xa7042e
+2025-10-13 11:34:37 - Total clicks: 2
+2025-10-13 11:34:37 - Command received: CLICK
+2025-10-13 11:34:37 - CLICK command received
+2025-10-13 11:34:37 - Updated window list: 2 windows found
+2025-10-13 11:34:37 - Mouse position: 858, 572
+2025-10-13 11:34:37 - Active window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0xa7042e
+2025-10-13 11:34:37 - Total clicks: 2
+2025-10-13 11:34:37 - Command received: CLICK
+2025-10-13 11:34:37 - CLICK command received
+2025-10-13 11:34:37 - Updated window list: 2 windows found
+2025-10-13 11:34:37 - Mouse position: 848, 626
+2025-10-13 11:34:37 - Active window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0xa7042e
+2025-10-13 11:34:37 - Total clicks: 2
+2025-10-13 11:34:37 - Command received: CLICK
+2025-10-13 11:34:37 - CLICK command received
+2025-10-13 11:34:37 - Updated window list: 2 windows found
+2025-10-13 11:34:37 - Mouse position: 867, 677
+2025-10-13 11:34:37 - Active window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0xa7042e
+2025-10-13 11:34:37 - Total clicks: 2
+2025-10-13 11:34:37 - Command received: CLICK
+2025-10-13 11:34:37 - CLICK command received
+2025-10-13 11:34:37 - Updated window list: 2 windows found
+2025-10-13 11:34:37 - Mouse position: 909, 701
+2025-10-13 11:34:37 - Active window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0xa7042e
+2025-10-13 11:34:37 - Total clicks: 2
+2025-10-13 11:34:37 - Command received: CLICK
+2025-10-13 11:34:37 - CLICK command received
+2025-10-13 11:34:37 - Updated window list: 2 windows found
+2025-10-13 11:34:37 - Mouse position: 974, 701
+2025-10-13 11:34:37 - Active window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0xa7042e
+2025-10-13 11:34:37 - Total clicks: 2
+2025-10-13 11:34:37 - Command received: CLICK
+2025-10-13 11:34:37 - CLICK command received
+2025-10-13 11:34:37 - Updated window list: 2 windows found
+2025-10-13 11:34:37 - Mouse position: 1014, 675
+2025-10-13 11:34:37 - Active window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0xa7042e
+2025-10-13 11:34:37 - Total clicks: 2
+2025-10-13 11:34:37 - Command received: CLICK
+2025-10-13 11:34:37 - CLICK command received
+2025-10-13 11:34:37 - Updated window list: 2 windows found
+2025-10-13 11:34:37 - Mouse position: 1033, 627
+2025-10-13 11:34:37 - Active window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:37 - Clicked window: 0xa7042e
+2025-10-13 11:34:37 - Total clicks: 2
+2025-10-13 11:34:38 - Command received: CLICK
+2025-10-13 11:34:38 - CLICK command received
+2025-10-13 11:34:38 - Updated window list: 2 windows found
+2025-10-13 11:34:38 - Mouse position: 1025, 581
+2025-10-13 11:34:38 - Active window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0xa7042e
+2025-10-13 11:34:38 - Total clicks: 2
+2025-10-13 11:34:38 - Command received: CLICK
+2025-10-13 11:34:38 - CLICK command received
+2025-10-13 11:34:38 - Updated window list: 2 windows found
+2025-10-13 11:34:38 - Mouse position: 975, 539
+2025-10-13 11:34:38 - Active window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0xa7042e
+2025-10-13 11:34:38 - Total clicks: 2
+2025-10-13 11:34:38 - Command received: CLICK
+2025-10-13 11:34:38 - CLICK command received
+2025-10-13 11:34:38 - Updated window list: 2 windows found
+2025-10-13 11:34:38 - Mouse position: 913, 521
+2025-10-13 11:34:38 - Active window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0xa7042e
+2025-10-13 11:34:38 - Total clicks: 2
+2025-10-13 11:34:38 - Command received: CLICK
+2025-10-13 11:34:38 - CLICK command received
+2025-10-13 11:34:38 - Updated window list: 2 windows found
+2025-10-13 11:34:38 - Mouse position: 861, 518
+2025-10-13 11:34:38 - Active window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0xa7042e
+2025-10-13 11:34:38 - Total clicks: 2
+2025-10-13 11:34:38 - Command received: CLICK
+2025-10-13 11:34:38 - CLICK command received
+2025-10-13 11:34:38 - Updated window list: 2 windows found
+2025-10-13 11:34:38 - Mouse position: 809, 532
+2025-10-13 11:34:38 - Active window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0xa7042e
+2025-10-13 11:34:38 - Total clicks: 2
+2025-10-13 11:34:38 - Command received: CLICK
+2025-10-13 11:34:38 - CLICK command received
+2025-10-13 11:34:38 - Updated window list: 2 windows found
+2025-10-13 11:34:38 - Mouse position: 788, 557
+2025-10-13 11:34:38 - Active window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0xa7042e
+2025-10-13 11:34:38 - Total clicks: 2
+2025-10-13 11:34:38 - Command received: CLICK
+2025-10-13 11:34:38 - CLICK command received
+2025-10-13 11:34:38 - Updated window list: 2 windows found
+2025-10-13 11:34:38 - Mouse position: 796, 584
+2025-10-13 11:34:38 - Active window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0xa7042e
+2025-10-13 11:34:38 - Total clicks: 2
+2025-10-13 11:34:38 - Command received: CLICK
+2025-10-13 11:34:38 - CLICK command received
+2025-10-13 11:34:38 - Updated window list: 2 windows found
+2025-10-13 11:34:38 - Mouse position: 855, 630
+2025-10-13 11:34:38 - Active window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0xa7042e
+2025-10-13 11:34:38 - Total clicks: 2
+2025-10-13 11:34:38 - Command received: CLICK
+2025-10-13 11:34:38 - CLICK command received
+2025-10-13 11:34:38 - Updated window list: 2 windows found
+2025-10-13 11:34:38 - Mouse position: 921, 646
+2025-10-13 11:34:38 - Active window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0xa7042e
+2025-10-13 11:34:38 - Total clicks: 2
+2025-10-13 11:34:38 - Command received: CLICK
+2025-10-13 11:34:38 - CLICK command received
+2025-10-13 11:34:38 - Updated window list: 2 windows found
+2025-10-13 11:34:38 - Mouse position: 1009, 645
+2025-10-13 11:34:38 - Active window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:38 - Clicked window: 0xa7042e
+2025-10-13 11:34:38 - Total clicks: 2
+2025-10-13 11:34:39 - Command received: CLICK
+2025-10-13 11:34:39 - CLICK command received
+2025-10-13 11:34:39 - Updated window list: 2 windows found
+2025-10-13 11:34:39 - Mouse position: 1049, 628
+2025-10-13 11:34:39 - Active window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0xa7042e
+2025-10-13 11:34:39 - Total clicks: 2
+2025-10-13 11:34:39 - Command received: CLICK
+2025-10-13 11:34:39 - CLICK command received
+2025-10-13 11:34:39 - Updated window list: 2 windows found
+2025-10-13 11:34:39 - Mouse position: 1063, 600
+2025-10-13 11:34:39 - Active window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0xa7042e
+2025-10-13 11:34:39 - Total clicks: 2
+2025-10-13 11:34:39 - Command received: CLICK
+2025-10-13 11:34:39 - CLICK command received
+2025-10-13 11:34:39 - Updated window list: 2 windows found
+2025-10-13 11:34:39 - Mouse position: 1048, 552
+2025-10-13 11:34:39 - Active window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0xa7042e
+2025-10-13 11:34:39 - Total clicks: 2
+2025-10-13 11:34:39 - Command received: CLICK
+2025-10-13 11:34:39 - CLICK command received
+2025-10-13 11:34:39 - Updated window list: 2 windows found
+2025-10-13 11:34:39 - Mouse position: 1011, 517
+2025-10-13 11:34:39 - Active window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0xa7042e
+2025-10-13 11:34:39 - Total clicks: 2
+2025-10-13 11:34:39 - Command received: CLICK
+2025-10-13 11:34:39 - CLICK command received
+2025-10-13 11:34:39 - Updated window list: 2 windows found
+2025-10-13 11:34:39 - Mouse position: 951, 504
+2025-10-13 11:34:39 - Active window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0xa7042e
+2025-10-13 11:34:39 - Total clicks: 2
+2025-10-13 11:34:39 - Command received: CLICK
+2025-10-13 11:34:39 - CLICK command received
+2025-10-13 11:34:39 - Updated window list: 2 windows found
+2025-10-13 11:34:39 - Mouse position: 895, 508
+2025-10-13 11:34:39 - Active window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0xa7042e
+2025-10-13 11:34:39 - Total clicks: 2
+2025-10-13 11:34:39 - Command received: CLICK
+2025-10-13 11:34:39 - CLICK command received
+2025-10-13 11:34:39 - Updated window list: 2 windows found
+2025-10-13 11:34:39 - Mouse position: 849, 531
+2025-10-13 11:34:39 - Active window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0xa7042e
+2025-10-13 11:34:39 - Total clicks: 2
+2025-10-13 11:34:39 - Command received: CLICK
+2025-10-13 11:34:39 - CLICK command received
+2025-10-13 11:34:39 - Updated window list: 2 windows found
+2025-10-13 11:34:39 - Mouse position: 806, 581
+2025-10-13 11:34:39 - Active window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0xa7042e
+2025-10-13 11:34:39 - Total clicks: 2
+2025-10-13 11:34:39 - Command received: CLICK
+2025-10-13 11:34:39 - CLICK command received
+2025-10-13 11:34:39 - Updated window list: 2 windows found
+2025-10-13 11:34:39 - Mouse position: 807, 636
+2025-10-13 11:34:39 - Active window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0xa7042e
+2025-10-13 11:34:39 - Total clicks: 2
+2025-10-13 11:34:39 - Command received: CLICK
+2025-10-13 11:34:39 - CLICK command received
+2025-10-13 11:34:39 - Updated window list: 2 windows found
+2025-10-13 11:34:39 - Mouse position: 834, 689
+2025-10-13 11:34:39 - Active window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:39 - Clicked window: 0xa7042e
+2025-10-13 11:34:39 - Total clicks: 2
+2025-10-13 11:34:40 - Command received: CLICK
+2025-10-13 11:34:40 - CLICK command received
+2025-10-13 11:34:40 - Updated window list: 2 windows found
+2025-10-13 11:34:40 - Mouse position: 879, 709
+2025-10-13 11:34:40 - Active window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0xa7042e
+2025-10-13 11:34:40 - Total clicks: 2
+2025-10-13 11:34:40 - Command received: CLICK
+2025-10-13 11:34:40 - CLICK command received
+2025-10-13 11:34:40 - Updated window list: 2 windows found
+2025-10-13 11:34:40 - Mouse position: 962, 708
+2025-10-13 11:34:40 - Active window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0xa7042e
+2025-10-13 11:34:40 - Total clicks: 2
+2025-10-13 11:34:40 - Command received: CLICK
+2025-10-13 11:34:40 - CLICK command received
+2025-10-13 11:34:40 - Updated window list: 2 windows found
+2025-10-13 11:34:40 - Mouse position: 1030, 669
+2025-10-13 11:34:40 - Active window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0xa7042e
+2025-10-13 11:34:40 - Total clicks: 2
+2025-10-13 11:34:40 - Command received: CLICK
+2025-10-13 11:34:40 - CLICK command received
+2025-10-13 11:34:40 - Updated window list: 2 windows found
+2025-10-13 11:34:40 - Mouse position: 1064, 624
+2025-10-13 11:34:40 - Active window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0xa7042e
+2025-10-13 11:34:40 - Total clicks: 2
+2025-10-13 11:34:40 - Command received: CLICK
+2025-10-13 11:34:40 - CLICK command received
+2025-10-13 11:34:40 - Updated window list: 2 windows found
+2025-10-13 11:34:40 - Mouse position: 1058, 568
+2025-10-13 11:34:40 - Active window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0xa7042e
+2025-10-13 11:34:40 - Total clicks: 2
+2025-10-13 11:34:40 - Command received: CLICK
+2025-10-13 11:34:40 - CLICK command received
+2025-10-13 11:34:40 - Updated window list: 2 windows found
+2025-10-13 11:34:40 - Mouse position: 1033, 524
+2025-10-13 11:34:40 - Active window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0xa7042e
+2025-10-13 11:34:40 - Total clicks: 2
+2025-10-13 11:34:40 - Command received: CLICK
+2025-10-13 11:34:40 - CLICK command received
+2025-10-13 11:34:40 - Updated window list: 2 windows found
+2025-10-13 11:34:40 - Mouse position: 982, 490
+2025-10-13 11:34:40 - Active window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0xa7042e
+2025-10-13 11:34:40 - Total clicks: 2
+2025-10-13 11:34:40 - Command received: CLICK
+2025-10-13 11:34:40 - CLICK command received
+2025-10-13 11:34:40 - Updated window list: 2 windows found
+2025-10-13 11:34:40 - Mouse position: 935, 482
+2025-10-13 11:34:40 - Active window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0xa7042e
+2025-10-13 11:34:40 - Total clicks: 2
+2025-10-13 11:34:40 - Command received: CLICK
+2025-10-13 11:34:40 - CLICK command received
+2025-10-13 11:34:40 - Updated window list: 2 windows found
+2025-10-13 11:34:40 - Mouse position: 863, 492
+2025-10-13 11:34:40 - Active window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0xa7042e
+2025-10-13 11:34:40 - Total clicks: 2
+2025-10-13 11:34:40 - Command received: CLICK
+2025-10-13 11:34:40 - CLICK command received
+2025-10-13 11:34:40 - Updated window list: 2 windows found
+2025-10-13 11:34:40 - Mouse position: 785, 530
+2025-10-13 11:34:40 - Active window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:40 - Clicked window: 0xa7042e
+2025-10-13 11:34:40 - Total clicks: 2
+2025-10-13 11:34:41 - Command received: CLICK
+2025-10-13 11:34:41 - CLICK command received
+2025-10-13 11:34:41 - Updated window list: 2 windows found
+2025-10-13 11:34:41 - Mouse position: 776, 576
+2025-10-13 11:34:41 - Active window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0xa7042e
+2025-10-13 11:34:41 - Total clicks: 2
+2025-10-13 11:34:41 - Command received: CLICK
+2025-10-13 11:34:41 - CLICK command received
+2025-10-13 11:34:41 - Updated window list: 2 windows found
+2025-10-13 11:34:41 - Mouse position: 811, 644
+2025-10-13 11:34:41 - Active window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0xa7042e
+2025-10-13 11:34:41 - Total clicks: 2
+2025-10-13 11:34:41 - Command received: CLICK
+2025-10-13 11:34:41 - CLICK command received
+2025-10-13 11:34:41 - Updated window list: 2 windows found
+2025-10-13 11:34:41 - Mouse position: 872, 681
+2025-10-13 11:34:41 - Active window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0xa7042e
+2025-10-13 11:34:41 - Total clicks: 2
+2025-10-13 11:34:41 - Command received: CLICK
+2025-10-13 11:34:41 - CLICK command received
+2025-10-13 11:34:41 - Updated window list: 2 windows found
+2025-10-13 11:34:41 - Mouse position: 941, 685
+2025-10-13 11:34:41 - Active window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0xa7042e
+2025-10-13 11:34:41 - Total clicks: 2
+2025-10-13 11:34:41 - Command received: CLICK
+2025-10-13 11:34:41 - CLICK command received
+2025-10-13 11:34:41 - Updated window list: 2 windows found
+2025-10-13 11:34:41 - Mouse position: 1005, 670
+2025-10-13 11:34:41 - Active window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0xa7042e
+2025-10-13 11:34:41 - Total clicks: 2
+2025-10-13 11:34:41 - Command received: CLICK
+2025-10-13 11:34:41 - CLICK command received
+2025-10-13 11:34:41 - Updated window list: 2 windows found
+2025-10-13 11:34:41 - Mouse position: 1046, 624
+2025-10-13 11:34:41 - Active window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0xa7042e
+2025-10-13 11:34:41 - Total clicks: 2
+2025-10-13 11:34:41 - Command received: CLICK
+2025-10-13 11:34:41 - CLICK command received
+2025-10-13 11:34:41 - Updated window list: 2 windows found
+2025-10-13 11:34:41 - Mouse position: 1033, 549
+2025-10-13 11:34:41 - Active window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0xa7042e
+2025-10-13 11:34:41 - Total clicks: 2
+2025-10-13 11:34:41 - Command received: CLICK
+2025-10-13 11:34:41 - CLICK command received
+2025-10-13 11:34:41 - Updated window list: 2 windows found
+2025-10-13 11:34:41 - Mouse position: 999, 487
+2025-10-13 11:34:41 - Active window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0xa7042e
+2025-10-13 11:34:41 - Total clicks: 2
+2025-10-13 11:34:41 - Command received: CLICK
+2025-10-13 11:34:41 - CLICK command received
+2025-10-13 11:34:41 - Updated window list: 2 windows found
+2025-10-13 11:34:41 - Mouse position: 964, 458
+2025-10-13 11:34:41 - Active window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0xa7042e
+2025-10-13 11:34:41 - Total clicks: 2
+2025-10-13 11:34:41 - Command received: CLICK
+2025-10-13 11:34:41 - CLICK command received
+2025-10-13 11:34:41 - Updated window list: 2 windows found
+2025-10-13 11:34:41 - Mouse position: 920, 453
+2025-10-13 11:34:41 - Active window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:41 - Clicked window: 0xa7042e
+2025-10-13 11:34:41 - Total clicks: 2
+2025-10-13 11:34:42 - Command received: CLICK
+2025-10-13 11:34:42 - CLICK command received
+2025-10-13 11:34:42 - Updated window list: 2 windows found
+2025-10-13 11:34:42 - Mouse position: 880, 479
+2025-10-13 11:34:42 - Active window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0xa7042e
+2025-10-13 11:34:42 - Total clicks: 2
+2025-10-13 11:34:42 - Command received: CLICK
+2025-10-13 11:34:42 - CLICK command received
+2025-10-13 11:34:42 - Updated window list: 2 windows found
+2025-10-13 11:34:42 - Mouse position: 867, 504
+2025-10-13 11:34:42 - Active window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0xa7042e
+2025-10-13 11:34:42 - Total clicks: 2
+2025-10-13 11:34:42 - Command received: CLICK
+2025-10-13 11:34:42 - CLICK command received
+2025-10-13 11:34:42 - Updated window list: 2 windows found
+2025-10-13 11:34:42 - Mouse position: 877, 526
+2025-10-13 11:34:42 - Active window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0xa7042e
+2025-10-13 11:34:42 - Total clicks: 2
+2025-10-13 11:34:42 - Command received: CLICK
+2025-10-13 11:34:42 - CLICK command received
+2025-10-13 11:34:42 - Updated window list: 2 windows found
+2025-10-13 11:34:42 - Mouse position: 912, 548
+2025-10-13 11:34:42 - Active window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0xa7042e
+2025-10-13 11:34:42 - Total clicks: 2
+2025-10-13 11:34:42 - Command received: CLICK
+2025-10-13 11:34:42 - CLICK command received
+2025-10-13 11:34:42 - Updated window list: 2 windows found
+2025-10-13 11:34:42 - Mouse position: 1007, 570
+2025-10-13 11:34:42 - Active window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0xa7042e
+2025-10-13 11:34:42 - Total clicks: 2
+2025-10-13 11:34:42 - Command received: CLICK
+2025-10-13 11:34:42 - CLICK command received
+2025-10-13 11:34:42 - Updated window list: 2 windows found
+2025-10-13 11:34:42 - Mouse position: 1069, 554
+2025-10-13 11:34:42 - Active window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0xa7042e
+2025-10-13 11:34:42 - Total clicks: 2
+2025-10-13 11:34:42 - Command received: CLICK
+2025-10-13 11:34:42 - CLICK command received
+2025-10-13 11:34:42 - Updated window list: 2 windows found
+2025-10-13 11:34:42 - Mouse position: 1087, 527
+2025-10-13 11:34:42 - Active window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0xa7042e
+2025-10-13 11:34:42 - Total clicks: 2
+2025-10-13 11:34:42 - Command received: CLICK
+2025-10-13 11:34:42 - CLICK command received
+2025-10-13 11:34:42 - Updated window list: 2 windows found
+2025-10-13 11:34:42 - Mouse position: 1067, 507
+2025-10-13 11:34:42 - Active window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0xa7042e
+2025-10-13 11:34:42 - Total clicks: 2
+2025-10-13 11:34:42 - Command received: CLICK
+2025-10-13 11:34:42 - CLICK command received
+2025-10-13 11:34:42 - Updated window list: 2 windows found
+2025-10-13 11:34:42 - Mouse position: 1018, 489
+2025-10-13 11:34:42 - Active window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0xa7042e
+2025-10-13 11:34:42 - Total clicks: 2
+2025-10-13 11:34:42 - Command received: CLICK
+2025-10-13 11:34:42 - CLICK command received
+2025-10-13 11:34:42 - Updated window list: 2 windows found
+2025-10-13 11:34:42 - Mouse position: 980, 484
+2025-10-13 11:34:42 - Active window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:42 - Clicked window: 0xa7042e
+2025-10-13 11:34:42 - Total clicks: 2
+2025-10-13 11:34:43 - Command received: CLICK
+2025-10-13 11:34:43 - CLICK command received
+2025-10-13 11:34:43 - Updated window list: 2 windows found
+2025-10-13 11:34:43 - Mouse position: 933, 484
+2025-10-13 11:34:43 - Active window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0xa7042e
+2025-10-13 11:34:43 - Total clicks: 2
+2025-10-13 11:34:43 - Command received: CLICK
+2025-10-13 11:34:43 - CLICK command received
+2025-10-13 11:34:43 - Updated window list: 2 windows found
+2025-10-13 11:34:43 - Mouse position: 910, 493
+2025-10-13 11:34:43 - Active window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0xa7042e
+2025-10-13 11:34:43 - Total clicks: 2
+2025-10-13 11:34:43 - Command received: CLICK
+2025-10-13 11:34:43 - CLICK command received
+2025-10-13 11:34:43 - Updated window list: 2 windows found
+2025-10-13 11:34:43 - Mouse position: 887, 519
+2025-10-13 11:34:43 - Active window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0xa7042e
+2025-10-13 11:34:43 - Total clicks: 2
+2025-10-13 11:34:43 - Command received: CLICK
+2025-10-13 11:34:43 - CLICK command received
+2025-10-13 11:34:43 - Updated window list: 2 windows found
+2025-10-13 11:34:43 - Mouse position: 880, 545
+2025-10-13 11:34:43 - Active window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0xa7042e
+2025-10-13 11:34:43 - Total clicks: 2
+2025-10-13 11:34:43 - Command received: CLICK
+2025-10-13 11:34:43 - CLICK command received
+2025-10-13 11:34:43 - Updated window list: 2 windows found
+2025-10-13 11:34:43 - Mouse position: 891, 556
+2025-10-13 11:34:43 - Active window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0xa7042e
+2025-10-13 11:34:43 - Total clicks: 2
+2025-10-13 11:34:43 - Command received: CLICK
+2025-10-13 11:34:43 - CLICK command received
+2025-10-13 11:34:43 - Updated window list: 2 windows found
+2025-10-13 11:34:43 - Mouse position: 965, 574
+2025-10-13 11:34:43 - Active window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0xa7042e
+2025-10-13 11:34:43 - Total clicks: 2
+2025-10-13 11:34:43 - Command received: CLICK
+2025-10-13 11:34:43 - CLICK command received
+2025-10-13 11:34:43 - Updated window list: 2 windows found
+2025-10-13 11:34:43 - Mouse position: 1071, 582
+2025-10-13 11:34:43 - Active window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0xa7042e
+2025-10-13 11:34:43 - Total clicks: 2
+2025-10-13 11:34:43 - Command received: CLICK
+2025-10-13 11:34:43 - CLICK command received
+2025-10-13 11:34:43 - Updated window list: 2 windows found
+2025-10-13 11:34:43 - Mouse position: 1127, 561
+2025-10-13 11:34:43 - Active window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0xa7042e
+2025-10-13 11:34:43 - Total clicks: 2
+2025-10-13 11:34:43 - Command received: CLICK
+2025-10-13 11:34:43 - CLICK command received
+2025-10-13 11:34:43 - Updated window list: 2 windows found
+2025-10-13 11:34:43 - Mouse position: 1127, 532
+2025-10-13 11:34:43 - Active window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:43 - Clicked window: 0xa7042e
+2025-10-13 11:34:43 - Total clicks: 2
+2025-10-13 11:34:43 - Command received: CLICK
+2025-10-13 11:34:43 - CLICK command received
+2025-10-13 11:34:43 - Updated window list: 2 windows found
+2025-10-13 11:34:43 - Mouse position: 1108, 515
+2025-10-13 11:34:43 - Active window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0xa7042e
+2025-10-13 11:34:44 - Total clicks: 2
+2025-10-13 11:34:44 - Command received: CLICK
+2025-10-13 11:34:44 - CLICK command received
+2025-10-13 11:34:44 - Updated window list: 2 windows found
+2025-10-13 11:34:44 - Mouse position: 1075, 505
+2025-10-13 11:34:44 - Active window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0xa7042e
+2025-10-13 11:34:44 - Total clicks: 2
+2025-10-13 11:34:44 - Command received: CLICK
+2025-10-13 11:34:44 - CLICK command received
+2025-10-13 11:34:44 - Updated window list: 2 windows found
+2025-10-13 11:34:44 - Mouse position: 1043, 510
+2025-10-13 11:34:44 - Active window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0xa7042e
+2025-10-13 11:34:44 - Total clicks: 2
+2025-10-13 11:34:44 - Command received: CLICK
+2025-10-13 11:34:44 - CLICK command received
+2025-10-13 11:34:44 - Updated window list: 2 windows found
+2025-10-13 11:34:44 - Mouse position: 993, 545
+2025-10-13 11:34:44 - Active window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0xa7042e
+2025-10-13 11:34:44 - Total clicks: 2
+2025-10-13 11:34:44 - Command received: CLICK
+2025-10-13 11:34:44 - CLICK command received
+2025-10-13 11:34:44 - Updated window list: 2 windows found
+2025-10-13 11:34:44 - Mouse position: 963, 585
+2025-10-13 11:34:44 - Active window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0xa7042e
+2025-10-13 11:34:44 - Total clicks: 2
+2025-10-13 11:34:44 - Command received: CLICK
+2025-10-13 11:34:44 - CLICK command received
+2025-10-13 11:34:44 - Updated window list: 2 windows found
+2025-10-13 11:34:44 - Mouse position: 959, 629
+2025-10-13 11:34:44 - Active window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0xa7042e
+2025-10-13 11:34:44 - Total clicks: 2
+2025-10-13 11:34:44 - Command received: CLICK
+2025-10-13 11:34:44 - CLICK command received
+2025-10-13 11:34:44 - Updated window list: 2 windows found
+2025-10-13 11:34:44 - Mouse position: 948, 671
+2025-10-13 11:34:44 - Active window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0xa7042e
+2025-10-13 11:34:44 - Total clicks: 2
+2025-10-13 11:34:44 - Command received: CLICK
+2025-10-13 11:34:44 - CLICK command received
+2025-10-13 11:34:44 - Updated window list: 2 windows found
+2025-10-13 11:34:44 - Mouse position: 918, 690
+2025-10-13 11:34:44 - Active window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0xa7042e
+2025-10-13 11:34:44 - Total clicks: 2
+2025-10-13 11:34:44 - Command received: CLICK
+2025-10-13 11:34:44 - CLICK command received
+2025-10-13 11:34:44 - Updated window list: 2 windows found
+2025-10-13 11:34:44 - Mouse position: 874, 690
+2025-10-13 11:34:44 - Active window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0xa7042e
+2025-10-13 11:34:44 - Total clicks: 2
+2025-10-13 11:34:44 - Command received: CLICK
+2025-10-13 11:34:44 - CLICK command received
+2025-10-13 11:34:44 - Updated window list: 2 windows found
+2025-10-13 11:34:44 - Mouse position: 847, 669
+2025-10-13 11:34:44 - Active window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:44 - Clicked window: 0xa7042e
+2025-10-13 11:34:44 - Total clicks: 2
+2025-10-13 11:34:44 - Command received: CLICK
+2025-10-13 11:34:44 - CLICK command received
+2025-10-13 11:34:44 - Updated window list: 2 windows found
+2025-10-13 11:34:44 - Mouse position: 843, 633
+2025-10-13 11:34:44 - Active window: 0x3c70ae2
+2025-10-13 11:34:45 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:45 - Clicked window: 0xa7042e
+2025-10-13 11:34:45 - Total clicks: 2
+2025-10-13 11:34:45 - Command received: CLICK
+2025-10-13 11:34:45 - CLICK command received
+2025-10-13 11:34:45 - Updated window list: 2 windows found
+2025-10-13 11:34:45 - Mouse position: 874, 578
+2025-10-13 11:34:45 - Active window: 0x3c70ae2
+2025-10-13 11:34:45 - Clicked window: 0x3c70ae2
+2025-10-13 11:34:45 - Clicked window: 0xa7042e
+2025-10-13 11:34:45 - Total clicks: 2
+2025-10-13 11:34:55 - Command received: EXIT
+2025-10-13 11:34:55 - EXIT command received
+2025-10-13 13:46:44 - === AHK Script Started ===
+2025-10-13 13:46:44 - Script dir: C:\project\pw_inject
+2025-10-13 13:46:44 - Command file: C:\project\pw_inject\ahk_command.txt
+2025-10-13 13:46:57 - Command received: KEY:Space
+2025-10-13 13:46:57 - KEY command received: Space x1
+2025-10-13 13:46:57 - Updated window list: 2 windows found
+2025-10-13 13:46:57 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:46:57 - Sent key to window: 0xa7042e x1
+2025-10-13 13:46:57 - Total keys sent to 2 windows
+2025-10-13 13:47:00 - Command received: KEY:Space
+2025-10-13 13:47:00 - KEY command received: Space x1
+2025-10-13 13:47:00 - Updated window list: 2 windows found
+2025-10-13 13:47:00 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:00 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:00 - Total keys sent to 2 windows
+2025-10-13 13:47:02 - Command received: KEY:Space
+2025-10-13 13:47:02 - KEY command received: Space x1
+2025-10-13 13:47:02 - Updated window list: 2 windows found
+2025-10-13 13:47:02 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:02 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:02 - Total keys sent to 2 windows
+2025-10-13 13:47:03 - Command received: KEY:Space
+2025-10-13 13:47:03 - KEY command received: Space x1
+2025-10-13 13:47:03 - Updated window list: 2 windows found
+2025-10-13 13:47:03 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:03 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:03 - Total keys sent to 2 windows
+2025-10-13 13:47:04 - Command received: KEY:Space
+2025-10-13 13:47:04 - KEY command received: Space x1
+2025-10-13 13:47:04 - Updated window list: 2 windows found
+2025-10-13 13:47:04 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:04 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:04 - Total keys sent to 2 windows
+2025-10-13 13:47:09 - Command received: KEY:Space
+2025-10-13 13:47:09 - KEY command received: Space x1
+2025-10-13 13:47:09 - Updated window list: 2 windows found
+2025-10-13 13:47:09 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:09 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:09 - Total keys sent to 2 windows
+2025-10-13 13:47:09 - Command received: KEY:Space
+2025-10-13 13:47:09 - KEY command received: Space x1
+2025-10-13 13:47:09 - Updated window list: 2 windows found
+2025-10-13 13:47:09 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:09 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:09 - Total keys sent to 2 windows
+2025-10-13 13:47:10 - Command received: KEY:Space
+2025-10-13 13:47:10 - KEY command received: Space x1
+2025-10-13 13:47:10 - Updated window list: 2 windows found
+2025-10-13 13:47:10 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:10 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:10 - Total keys sent to 2 windows
+2025-10-13 13:47:11 - Command received: KEY:Space
+2025-10-13 13:47:11 - KEY command received: Space x1
+2025-10-13 13:47:11 - Updated window list: 2 windows found
+2025-10-13 13:47:11 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:11 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:11 - Total keys sent to 2 windows
+2025-10-13 13:47:12 - Command received: KEY:Space
+2025-10-13 13:47:12 - KEY command received: Space x1
+2025-10-13 13:47:12 - Updated window list: 2 windows found
+2025-10-13 13:47:12 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:12 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:12 - Total keys sent to 2 windows
+2025-10-13 13:47:15 - Command received: KEY:Space
+2025-10-13 13:47:15 - KEY command received: Space x1
+2025-10-13 13:47:15 - Updated window list: 2 windows found
+2025-10-13 13:47:15 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:15 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:15 - Total keys sent to 2 windows
+2025-10-13 13:47:17 - Command received: CLICK
+2025-10-13 13:47:17 - CLICK command received
+2025-10-13 13:47:17 - Updated window list: 2 windows found
+2025-10-13 13:47:17 - Mouse position: 828, 622
+2025-10-13 13:47:17 - Active window: 0x3c70ae2
+2025-10-13 13:47:17 - Clicked window: 0x3c70ae2
+2025-10-13 13:47:17 - Clicked window: 0xa7042e
+2025-10-13 13:47:17 - Total clicks: 2
+2025-10-13 13:47:20 - Command received: CLICK
+2025-10-13 13:47:20 - CLICK command received
+2025-10-13 13:47:20 - Updated window list: 2 windows found
+2025-10-13 13:47:20 - Mouse position: 1083, 495
+2025-10-13 13:47:20 - Active window: 0x3c70ae2
+2025-10-13 13:47:20 - Clicked window: 0x3c70ae2
+2025-10-13 13:47:20 - Clicked window: 0xa7042e
+2025-10-13 13:47:20 - Total clicks: 2
+2025-10-13 13:47:23 - Command received: KEY:Space
+2025-10-13 13:47:23 - KEY command received: Space x1
+2025-10-13 13:47:23 - Updated window list: 2 windows found
+2025-10-13 13:47:23 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:23 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:23 - Total keys sent to 2 windows
+2025-10-13 13:47:26 - Command received: CLICK
+2025-10-13 13:47:26 - CLICK command received
+2025-10-13 13:47:26 - Updated window list: 2 windows found
+2025-10-13 13:47:26 - Mouse position: 883, 718
+2025-10-13 13:47:26 - Active window: 0x3c70ae2
+2025-10-13 13:47:26 - Clicked window: 0x3c70ae2
+2025-10-13 13:47:26 - Clicked window: 0xa7042e
+2025-10-13 13:47:26 - Total clicks: 2
+2025-10-13 13:47:28 - Command received: KEY:Space
+2025-10-13 13:47:28 - KEY command received: Space x1
+2025-10-13 13:47:28 - Updated window list: 2 windows found
+2025-10-13 13:47:28 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:28 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:28 - Total keys sent to 2 windows
+2025-10-13 13:47:30 - Command received: EXIT
+2025-10-13 13:47:30 - EXIT command received
+2025-10-13 13:47:35 - === AHK Script Started ===
+2025-10-13 13:47:35 - Script dir: C:\project\pw_inject
+2025-10-13 13:47:35 - Command file: C:\project\pw_inject\ahk_command.txt
+2025-10-13 13:47:38 - Command received: KEY:Space
+2025-10-13 13:47:38 - KEY command received: Space x1
+2025-10-13 13:47:38 - Updated window list: 2 windows found
+2025-10-13 13:47:38 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:38 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:38 - Total keys sent to 2 windows
+2025-10-13 13:47:38 - Command received: KEY:Space
+2025-10-13 13:47:38 - KEY command received: Space x1
+2025-10-13 13:47:38 - Updated window list: 2 windows found
+2025-10-13 13:47:38 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:38 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:38 - Total keys sent to 2 windows
+2025-10-13 13:47:39 - Command received: KEY:Space
+2025-10-13 13:47:39 - KEY command received: Space x1
+2025-10-13 13:47:39 - Updated window list: 2 windows found
+2025-10-13 13:47:39 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:39 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:39 - Total keys sent to 2 windows
+2025-10-13 13:47:40 - Command received: KEY:Space
+2025-10-13 13:47:40 - KEY command received: Space x1
+2025-10-13 13:47:40 - Updated window list: 2 windows found
+2025-10-13 13:47:40 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:40 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:40 - Total keys sent to 2 windows
+2025-10-13 13:47:41 - Command received: KEY:Space
+2025-10-13 13:47:41 - KEY command received: Space x1
+2025-10-13 13:47:41 - Updated window list: 2 windows found
+2025-10-13 13:47:41 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:41 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:41 - Total keys sent to 2 windows
+2025-10-13 13:47:41 - Command received: KEY:Space
+2025-10-13 13:47:41 - KEY command received: Space x1
+2025-10-13 13:47:41 - Updated window list: 2 windows found
+2025-10-13 13:47:41 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:41 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:41 - Total keys sent to 2 windows
+2025-10-13 13:47:42 - Command received: KEY:Space
+2025-10-13 13:47:42 - KEY command received: Space x1
+2025-10-13 13:47:42 - Updated window list: 2 windows found
+2025-10-13 13:47:42 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:42 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:42 - Total keys sent to 2 windows
+2025-10-13 13:47:43 - Command received: CLICK
+2025-10-13 13:47:43 - CLICK command received
+2025-10-13 13:47:43 - Updated window list: 2 windows found
+2025-10-13 13:47:43 - Mouse position: 216, 287
+2025-10-13 13:47:43 - Active window: 0x150834
+2025-10-13 13:47:43 - Clicked window: 0x3c70ae2
+2025-10-13 13:47:43 - Clicked window: 0xa7042e
+2025-10-13 13:47:43 - Total clicks: 2
+2025-10-13 13:47:47 - Command received: KEY:Space
+2025-10-13 13:47:47 - KEY command received: Space x1
+2025-10-13 13:47:47 - Updated window list: 2 windows found
+2025-10-13 13:47:47 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:47 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:47 - Total keys sent to 2 windows
+2025-10-13 13:47:49 - Command received: KEY:Space
+2025-10-13 13:47:49 - KEY command received: Space x1
+2025-10-13 13:47:49 - Updated window list: 2 windows found
+2025-10-13 13:47:49 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:49 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:49 - Total keys sent to 2 windows
+2025-10-13 13:47:49 - Command received: KEY:Space
+2025-10-13 13:47:49 - KEY command received: Space x1
+2025-10-13 13:47:49 - Updated window list: 2 windows found
+2025-10-13 13:47:49 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:49 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:49 - Total keys sent to 2 windows
+2025-10-13 13:47:50 - Command received: KEY:Space
+2025-10-13 13:47:50 - KEY command received: Space x1
+2025-10-13 13:47:50 - Updated window list: 2 windows found
+2025-10-13 13:47:50 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:50 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:50 - Total keys sent to 2 windows
+2025-10-13 13:47:50 - Command received: KEY:Space
+2025-10-13 13:47:50 - KEY command received: Space x1
+2025-10-13 13:47:50 - Updated window list: 2 windows found
+2025-10-13 13:47:50 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:50 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:50 - Total keys sent to 2 windows
+2025-10-13 13:47:54 - Command received: KEY:Space
+2025-10-13 13:47:54 - KEY command received: Space x1
+2025-10-13 13:47:54 - Updated window list: 2 windows found
+2025-10-13 13:47:55 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:47:55 - Sent key to window: 0xa7042e x1
+2025-10-13 13:47:55 - Total keys sent to 2 windows
+2025-10-13 13:48:04 - Command received: KEY:Space
+2025-10-13 13:48:04 - KEY command received: Space x1
+2025-10-13 13:48:04 - Updated window list: 2 windows found
+2025-10-13 13:48:04 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:04 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:04 - Total keys sent to 2 windows
+2025-10-13 13:48:07 - Command received: KEY:Space
+2025-10-13 13:48:07 - KEY command received: Space x1
+2025-10-13 13:48:07 - Updated window list: 2 windows found
+2025-10-13 13:48:07 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:07 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:07 - Total keys sent to 2 windows
+2025-10-13 13:48:10 - Command received: KEY:Space
+2025-10-13 13:48:10 - KEY command received: Space x1
+2025-10-13 13:48:10 - Updated window list: 2 windows found
+2025-10-13 13:48:10 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:10 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:10 - Total keys sent to 2 windows
+2025-10-13 13:48:11 - Command received: KEY:Space
+2025-10-13 13:48:11 - KEY command received: Space x1
+2025-10-13 13:48:11 - Updated window list: 2 windows found
+2025-10-13 13:48:11 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:11 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:11 - Total keys sent to 2 windows
+2025-10-13 13:48:13 - Command received: KEY:Space
+2025-10-13 13:48:13 - KEY command received: Space x1
+2025-10-13 13:48:13 - Updated window list: 2 windows found
+2025-10-13 13:48:13 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:13 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:13 - Total keys sent to 2 windows
+2025-10-13 13:48:13 - Command received: KEY:Space
+2025-10-13 13:48:13 - KEY command received: Space x1
+2025-10-13 13:48:13 - Updated window list: 2 windows found
+2025-10-13 13:48:13 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:13 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:13 - Total keys sent to 2 windows
+2025-10-13 13:48:14 - Command received: KEY:Space
+2025-10-13 13:48:14 - KEY command received: Space x1
+2025-10-13 13:48:14 - Updated window list: 2 windows found
+2025-10-13 13:48:14 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:14 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:14 - Total keys sent to 2 windows
+2025-10-13 13:48:15 - Command received: KEY:Space
+2025-10-13 13:48:15 - KEY command received: Space x1
+2025-10-13 13:48:15 - Updated window list: 2 windows found
+2025-10-13 13:48:15 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:15 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:15 - Total keys sent to 2 windows
+2025-10-13 13:48:15 - Command received: KEY:Space
+2025-10-13 13:48:15 - KEY command received: Space x1
+2025-10-13 13:48:15 - Updated window list: 2 windows found
+2025-10-13 13:48:15 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:15 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:15 - Total keys sent to 2 windows
+2025-10-13 13:48:15 - Command received: KEY:Space
+2025-10-13 13:48:15 - KEY command received: Space x1
+2025-10-13 13:48:15 - Updated window list: 2 windows found
+2025-10-13 13:48:15 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:15 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:15 - Total keys sent to 2 windows
+2025-10-13 13:48:15 - Command received: KEY:Space
+2025-10-13 13:48:15 - KEY command received: Space x1
+2025-10-13 13:48:15 - Updated window list: 2 windows found
+2025-10-13 13:48:15 - Sent key to window: 0x3c70ae2 x1
+2025-10-13 13:48:15 - Sent key to window: 0xa7042e x1
+2025-10-13 13:48:15 - Total keys sent to 2 windows
+2025-10-13 13:48:21 - Command received: EXIT
+2025-10-13 13:48:21 - EXIT command received

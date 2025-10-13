@@ -2,8 +2,8 @@
   "hwid": "238300919419878",
   "key": "238300919419878-202510-a1f1a62194b05d2137b4859a78bbee185503ed406f669abef73fcb9ab8e736d6",
   "window_position": {
-    "x": 0,
-    "y": 197
+    "x": 10,
+    "y": 185
   },
   "is_topmost": true,
   "hotkeys": {
@@ -11,9 +11,9 @@
     "show_all": "-",
     "show_active": "-",
     "show_loot": "-",
-    "show_players": "Shift+T",
+    "show_players": "-",
     "show_npcs": "-",
-    "ahk_click_mouse": "5",
+    "ahk_click_mouse": "7",
     "ahk_press_space": "Ctrl+6"
   }
 }

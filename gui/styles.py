@@ -93,7 +93,7 @@ def hotkey_to_full_format(short_hotkey: str) -> str:
         if char == 'Shift':
             result.append('Shift')
         elif char == 'Ctrl':
-            result.append('ctrl')
+            result.append('Ctrl')
         elif char == 'Alt':
             result.append('Alt')
         else:

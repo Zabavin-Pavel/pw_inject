@@ -327,7 +327,7 @@ class HotkeyRow(tk.Frame):
     def _normalize_key(self, keysym: str, char: str) -> str:
         """Нормализовать имя клавиши - ТОЛЬКО ЛЕВЫЕ модификаторы"""
         
-        # ТОЛЬКО левые модификаторы разрешены
+        # ТОЛЬКО левые модификаторы
         if keysym == 'Control_L':
             return 'Ctrl'
         elif keysym == 'Shift_L':
@@ -339,15 +339,19 @@ class HotkeyRow(tk.Frame):
         if keysym in ('Control_R', 'Shift_R', 'Alt_R', 'Win_L', 'Win_R'):
             return None
         
-        # Русские буквы -> английские
+        # Русские буквы -> английские (UPPERCASE)
         if char and char.lower() in self.ru_to_en:
             return self.ru_to_en[char.lower()].upper()
         
-        # Обычные клавиши
-        if len(keysym) == 1:
+        # Обычные буквы (UPPERCASE)
+        if len(keysym) == 1 and keysym.isalpha():
             return keysym.upper()
         
-        # F1-F12
+        # Цифры как есть
+        if len(keysym) == 1 and keysym.isdigit():
+            return keysym
+        
+        # F-клавиши
         if keysym.startswith('F') and len(keysym) <= 3:
             return keysym
         
