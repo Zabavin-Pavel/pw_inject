@@ -1,0 +1,109 @@
+# ─────────── Общие ───────────
+# ОС
+.DS_Store
+Thumbs.db
+
+# лог/временные
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# ─────────── Игнорируем явные файлы из запроса ───────────
+# Папка .qodo
+.qodo/
+
+# Конкретные лог/сессионные файлы
+ahk_log.txt
+bot_session.log
+
+# TODO: оставить (см. ниже исключение)
+# TODO.txt будет явно включён ниже
+
+# Спецификации/скрипты сборки
+build.spec
+*.spec
+
+# Исполняемые файлы
+*.exe
+*.dll   # если хотите исключать бинарные библиотеки
+*.so
+*.dylib
+
+# Файлы окружения/секреты
+.env
+.env.local
+.env.*.local
+*.secret
+credentials.json
+
+# ─────────── Пакеты / окружения / сборка ───────────
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# Python virtualenvs / pip artifacts
+venv/
+.env/           # иногда виртуальные окружения называются .env
+.venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# .NET / NuGet / Visual Studio
+packages/
+*.nupkg
+*.user
+*.suo
+*.vcxproj.user
+.vs/
+
+# Java
+target/
+*.class
+*.jar
+
+# Rust / Cargo
+target/
+
+# Go
+bin/
+pkg/
+
+# C/C++ build
+*.obj
+*.o
+*.exe
+*.out
+
+# ─────────── IDE / редакторы ───────────
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ─────────── Прочие артефакты тестов и анализа ───────────
+coverage/
+.coverage
+htmlcov/
+.cache/
+*.cover
+pytest_cache/
+
+# ─────────── Исключения / включения ───────────
+# Явно оставляем TODO.txt в репозитории
+!TODO.txt
+# Если TODO.txt может лежать в подпапках, включите также:
+!**/TODO.txt
+
+# ─────────── Полезные инструменты для отладки .gitignore ───────────
+# (не нужна в .gitignore; показана для справки)
+# git check-ignore -v путь/до/файла
