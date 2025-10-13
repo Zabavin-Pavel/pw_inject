@@ -1007,3 +1007,866 @@
 2025-10-13 13:48:21,403 - INFO - Settings saved
 2025-10-13 13:48:21,403 - INFO - === Завершение приложения ===
 2025-10-13 13:48:21,423 - INFO - === Завершение приложения ===
+2025-10-14 00:39:45,698 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 00:39:45,886 - INFO - === Запуск приложения ===
+2025-10-14 00:39:45,887 - INFO - Settings loaded
+2025-10-14 00:39:45,888 - INFO - AHK started (PID: 20500)
+2025-10-14 00:39:46,255 - ERROR - Fatal error: 'HotkeyManager' object has no attribute '_on_hotkey_pressed'
+Traceback (most recent call last):
+  File "c:\project\pw_inject\bot.py", line 81, in <module>
+    app = MainWindow(multibox_manager, settings_manager)
+  File "c:\project\pw_inject\gui\main_window.py", line 47, in __init__
+    self._create_ui()
+    ~~~~~~~~~~~~~~~^^
+  File "c:\project\pw_inject\gui\main_window.py", line 328, in _create_ui
+    self._setup_hotkey_flash()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\project\pw_inject\gui\main_window.py", line 333, in _setup_hotkey_flash
+    original_handler = self.hotkey_manager._on_hotkey_pressed
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'HotkeyManager' object has no attribute '_on_hotkey_pressed'
+2025-10-14 00:39:46,257 - INFO - === Завершение приложения ===
+2025-10-14 00:39:46,357 - INFO - AHK stopped gracefully
+2025-10-14 00:53:06,733 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 00:53:06,926 - INFO - === Запуск приложения ===
+2025-10-14 00:53:06,926 - INFO - Settings loaded
+2025-10-14 00:53:06,927 - INFO - AHK started (PID: 17180)
+2025-10-14 00:53:07,255 - INFO - Иконка трея создана
+2025-10-14 00:53:07,255 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 00:53:07,255 - INFO - Bound hotkey 'Ctrl+6' to action 'ahk_press_space'
+2025-10-14 00:53:07,255 - INFO - GUI инициализирован
+2025-10-14 00:53:07,367 - INFO - Settings saved
+2025-10-14 00:53:07,975 - INFO - License verification: SUCCESS
+2025-10-14 00:53:07,981 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 00:53:07,981 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 00:53:07,982 - INFO - Загружена иконка 5
+2025-10-14 00:53:07,984 - INFO - Загружена иконка 3
+2025-10-14 00:53:14,187 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:53:14,188 - INFO - Listener thread started
+2025-10-14 00:53:15,398 - INFO - Listener timeout - stopping
+2025-10-14 00:53:17,109 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:53:17,109 - INFO - Listener thread started
+2025-10-14 00:53:18,321 - INFO - Listener timeout - stopping
+2025-10-14 00:53:29,079 - INFO - AHK stopped gracefully
+2025-10-14 00:53:29,079 - INFO - All hotkeys unbound
+2025-10-14 00:53:29,080 - INFO - Hotkey manager stopped
+2025-10-14 00:53:29,080 - INFO - Settings saved
+2025-10-14 00:53:29,080 - INFO - === Завершение приложения ===
+2025-10-14 00:53:29,099 - INFO - === Завершение приложения ===
+2025-10-14 00:57:43,526 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 00:57:43,730 - INFO - === Запуск приложения ===
+2025-10-14 00:57:43,731 - INFO - Settings loaded
+2025-10-14 00:57:43,733 - INFO - AHK started (PID: 18580)
+2025-10-14 00:57:44,049 - INFO - Иконка трея создана
+2025-10-14 00:57:44,050 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 00:57:44,050 - INFO - Bound hotkey 'Ctrl+6' to action 'ahk_press_space'
+2025-10-14 00:57:44,050 - INFO - GUI инициализирован
+2025-10-14 00:57:44,163 - INFO - Settings saved
+2025-10-14 00:57:44,858 - INFO - License verification: SUCCESS
+2025-10-14 00:57:44,864 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 00:57:44,865 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 00:57:44,866 - INFO - Загружена иконка 5
+2025-10-14 00:57:44,867 - INFO - Загружена иконка 3
+2025-10-14 00:57:49,482 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:49,482 - INFO - Listener thread started
+2025-10-14 00:57:50,492 - INFO - Listener timeout - stopping
+2025-10-14 00:57:53,444 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:53,445 - INFO - Listener thread started
+2025-10-14 00:57:54,455 - INFO - Listener timeout - stopping
+2025-10-14 00:57:55,575 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:55,576 - INFO - Listener thread started
+2025-10-14 00:57:56,090 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,121 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,152 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,187 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,215 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,247 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,279 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,309 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,340 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,373 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,420 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,451 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,483 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,514 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,544 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,576 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,608 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,640 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,672 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,703 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,750 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,782 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,813 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,845 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,877 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,908 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,940 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:56,972 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,004 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,035 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,066 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,113 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,145 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,176 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,207 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,238 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,270 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,302 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,334 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,366 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,397 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,443 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,474 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,505 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,536 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:57,568 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:58,601 - INFO - Listener timeout - stopping
+2025-10-14 00:57:58,989 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:58,990 - INFO - Listener thread started
+2025-10-14 00:57:59,499 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,531 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,561 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,593 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,625 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,657 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,689 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,736 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,767 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,799 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,831 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,863 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,893 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,925 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,957 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:57:59,988 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,022 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,052 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,084 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,131 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,162 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,193 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,223 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,253 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,285 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,316 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,363 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,393 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,424 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,456 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,488 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,521 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,550 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,582 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,613 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,645 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,693 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,723 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,755 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,786 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,817 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,849 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,880 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,913 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,944 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:00,975 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,022 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,052 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,084 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,116 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,147 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,179 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,209 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,241 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,273 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,318 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,350 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,381 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,411 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,442 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,473 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,504 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,536 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,583 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,613 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,645 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,677 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,708 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,740 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,772 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,804 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,835 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,867 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,899 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,945 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:01,977 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,009 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,040 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,071 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,103 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,134 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,166 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,199 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,243 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,274 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,305 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,335 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,366 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,398 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,429 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,474 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,505 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,538 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:02,569 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:03,561 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,070 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,102 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,132 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,163 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,195 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,226 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,274 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,304 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,336 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,366 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,397 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,428 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,460 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,491 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,537 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,569 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,600 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,631 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,662 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,694 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,726 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,757 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,788 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,820 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,866 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,898 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,930 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,960 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:04,991 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,023 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,053 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,084 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,131 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,163 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,193 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,224 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,255 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,286 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,317 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,349 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,381 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,428 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,459 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,490 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,522 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,553 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,585 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,614 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,647 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,680 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,724 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,757 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,789 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,820 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,851 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,883 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,913 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,944 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:05,976 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:06,009 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:07,053 - INFO - Listener timeout - stopping
+2025-10-14 00:58:08,505 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:08,506 - INFO - Listener thread started
+2025-10-14 00:58:09,040 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:09,427 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:09,838 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:58:10,880 - INFO - Listener timeout - stopping
+2025-10-14 00:58:16,793 - INFO - Hotkey 'Ctrl+6' triggered for action: ahk_press_space
+2025-10-14 00:58:16,794 - INFO - Listener thread started
+2025-10-14 00:58:17,803 - INFO - Listener timeout - stopping
+2025-10-14 00:58:19,658 - INFO - Hotkey 'Ctrl+6' triggered for action: ahk_press_space
+2025-10-14 00:58:19,659 - INFO - Listener thread started
+2025-10-14 00:58:20,669 - INFO - Listener timeout - stopping
+2025-10-14 00:58:27,464 - INFO - Hotkey 'Ctrl+6' triggered for action: ahk_press_space
+2025-10-14 00:58:27,465 - INFO - Listener thread started
+2025-10-14 00:58:28,474 - INFO - Listener timeout - stopping
+2025-10-14 00:58:34,346 - INFO - Hotkey 'Ctrl+6' triggered for action: ahk_press_space
+2025-10-14 00:58:34,347 - INFO - Listener thread started
+2025-10-14 00:58:35,355 - INFO - Listener timeout - stopping
+2025-10-14 00:58:56,456 - INFO - AHK stopped gracefully
+2025-10-14 00:58:56,457 - INFO - All hotkeys unbound
+2025-10-14 00:58:56,457 - INFO - Hotkey manager stopped
+2025-10-14 00:58:56,458 - INFO - Settings saved
+2025-10-14 00:58:56,458 - INFO - === Завершение приложения ===
+2025-10-14 00:58:56,478 - INFO - === Завершение приложения ===
+2025-10-14 00:59:15,637 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 00:59:15,825 - INFO - === Запуск приложения ===
+2025-10-14 00:59:15,825 - INFO - Settings loaded
+2025-10-14 00:59:15,826 - INFO - AHK started (PID: 1752)
+2025-10-14 00:59:16,191 - INFO - Иконка трея создана
+2025-10-14 00:59:16,191 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 00:59:16,192 - INFO - Bound hotkey 'Ctrl+6' to action 'ahk_press_space'
+2025-10-14 00:59:16,192 - INFO - GUI инициализирован
+2025-10-14 00:59:16,296 - INFO - Settings saved
+2025-10-14 00:59:16,691 - INFO - License verification: SUCCESS
+2025-10-14 00:59:16,696 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 00:59:16,697 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 00:59:16,698 - INFO - Загружена иконка 5
+2025-10-14 00:59:16,699 - INFO - Загружена иконка 3
+2025-10-14 00:59:20,632 - INFO - Unbound hotkey 'Ctrl+6' from action 'ahk_press_space'
+2025-10-14 00:59:20,632 - INFO - Bound hotkey 'Shift+T' to action 'ahk_press_space'
+2025-10-14 00:59:20,633 - INFO - Settings saved
+2025-10-14 00:59:22,983 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 00:59:22,984 - INFO - Listener thread started
+2025-10-14 00:59:23,995 - INFO - Listener timeout - stopping
+2025-10-14 00:59:27,065 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:27,066 - INFO - Listener thread started
+2025-10-14 00:59:28,075 - INFO - Listener timeout - stopping
+2025-10-14 00:59:29,663 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 00:59:29,663 - INFO - Listener thread started
+2025-10-14 00:59:30,672 - INFO - Listener timeout - stopping
+2025-10-14 00:59:32,396 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 00:59:32,397 - INFO - Listener thread started
+2025-10-14 00:59:33,406 - INFO - Listener timeout - stopping
+2025-10-14 00:59:37,783 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 00:59:37,784 - INFO - Listener thread started
+2025-10-14 00:59:38,794 - INFO - Listener timeout - stopping
+2025-10-14 00:59:40,864 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 00:59:40,865 - INFO - Listener thread started
+2025-10-14 00:59:41,874 - INFO - Listener timeout - stopping
+2025-10-14 00:59:45,332 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 00:59:45,333 - INFO - Listener thread started
+2025-10-14 00:59:46,340 - INFO - Listener timeout - stopping
+2025-10-14 00:59:48,949 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 00:59:48,949 - INFO - Listener thread started
+2025-10-14 00:59:49,959 - INFO - Listener timeout - stopping
+2025-10-14 00:59:51,540 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:51,541 - INFO - Listener thread started
+2025-10-14 00:59:52,019 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:52,659 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,159 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,206 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,240 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,270 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,301 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,333 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,365 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,397 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,429 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,460 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,492 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,523 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,555 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,602 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,634 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,665 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,696 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,728 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,759 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,790 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,822 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,854 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,884 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,931 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,963 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:53,995 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,025 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,057 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,089 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,120 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,152 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,185 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,217 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,250 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,295 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,327 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,359 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,390 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,423 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,453 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,484 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,515 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,547 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,579 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,611 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,658 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,690 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,719 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,752 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,783 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,815 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,847 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,879 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,911 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,943 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:54,975 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:55,007 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:55,054 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:55,085 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:55,117 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:55,149 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:55,180 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:55,212 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:56,227 - INFO - Listener timeout - stopping
+2025-10-14 00:59:56,242 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:56,243 - INFO - Listener thread started
+2025-10-14 00:59:56,567 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:56,827 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:57,011 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:57,216 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 00:59:58,260 - INFO - Listener timeout - stopping
+2025-10-14 01:04:24,247 - INFO - AHK stopped gracefully
+2025-10-14 01:04:24,248 - INFO - All hotkeys unbound
+2025-10-14 01:04:24,248 - INFO - Hotkey manager stopped
+2025-10-14 01:04:24,248 - INFO - Settings saved
+2025-10-14 01:04:24,248 - INFO - === Завершение приложения ===
+2025-10-14 01:04:24,272 - INFO - === Завершение приложения ===
+2025-10-14 01:06:55,137 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 01:06:55,351 - INFO - === Запуск приложения ===
+2025-10-14 01:06:55,352 - INFO - Settings loaded
+2025-10-14 01:06:55,356 - INFO - AHK started (PID: 2692)
+2025-10-14 01:06:55,707 - INFO - Иконка трея создана
+2025-10-14 01:06:55,707 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 01:06:55,707 - INFO - Bound hotkey 'Shift+T' to action 'ahk_press_space'
+2025-10-14 01:06:55,707 - INFO - GUI инициализирован
+2025-10-14 01:06:55,810 - INFO - Settings saved
+2025-10-14 01:06:56,307 - INFO - License verification: SUCCESS
+2025-10-14 01:06:56,312 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 01:06:56,313 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 01:06:56,314 - INFO - Загружена иконка 5
+2025-10-14 01:06:56,316 - INFO - Загружена иконка 3
+2025-10-14 01:06:58,827 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 01:06:58,828 - INFO - Listener thread started
+2025-10-14 01:06:59,838 - INFO - Listener timeout - stopping
+2025-10-14 01:07:01,958 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 01:07:01,959 - INFO - Listener thread started
+2025-10-14 01:07:02,967 - INFO - Listener timeout - stopping
+2025-10-14 01:07:05,086 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 01:07:05,087 - INFO - Listener thread started
+2025-10-14 01:07:06,096 - INFO - Listener timeout - stopping
+2025-10-14 01:07:08,250 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 01:07:08,251 - INFO - Listener thread started
+2025-10-14 01:07:09,263 - INFO - Listener timeout - stopping
+2025-10-14 01:07:23,624 - INFO - AHK stopped gracefully
+2025-10-14 01:07:23,624 - INFO - All hotkeys unbound
+2025-10-14 01:07:23,625 - INFO - Hotkey manager stopped
+2025-10-14 01:07:23,625 - INFO - Settings saved
+2025-10-14 01:07:23,625 - INFO - === Завершение приложения ===
+2025-10-14 01:07:23,645 - INFO - === Завершение приложения ===
+2025-10-14 01:08:00,592 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 01:08:00,756 - INFO - === Запуск приложения ===
+2025-10-14 01:08:00,756 - INFO - Settings loaded
+2025-10-14 01:08:00,757 - INFO - AHK started (PID: 8820)
+2025-10-14 01:08:01,604 - INFO - Иконка трея создана
+2025-10-14 01:08:01,604 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 01:08:01,604 - INFO - Bound hotkey 'Shift+T' to action 'ahk_press_space'
+2025-10-14 01:08:01,605 - INFO - GUI инициализирован
+2025-10-14 01:08:01,711 - INFO - Settings saved
+2025-10-14 01:08:02,385 - INFO - License verification: SUCCESS
+2025-10-14 01:08:02,392 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 01:08:02,393 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 01:08:02,394 - INFO - Загружена иконка 5
+2025-10-14 01:08:02,396 - INFO - Загружена иконка 3
+2025-10-14 01:08:06,210 - INFO - Hotkey 'Shift+T' triggered for action: ahk_press_space
+2025-10-14 01:08:06,211 - INFO - Listener thread started
+2025-10-14 01:08:07,219 - INFO - Listener timeout - stopping
+2025-10-14 01:08:09,665 - INFO - Unbound hotkey 'Shift+T' from action 'ahk_press_space'
+2025-10-14 01:08:09,665 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-14 01:08:09,665 - INFO - Settings saved
+2025-10-14 01:08:11,061 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:11,062 - INFO - Listener thread started
+2025-10-14 01:08:12,072 - INFO - Listener timeout - stopping
+2025-10-14 01:08:12,337 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:12,338 - INFO - Listener thread started
+2025-10-14 01:08:13,350 - INFO - Listener timeout - stopping
+2025-10-14 01:08:15,041 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:15,042 - INFO - Listener thread started
+2025-10-14 01:08:16,049 - INFO - Listener timeout - stopping
+2025-10-14 01:08:16,762 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:16,763 - INFO - Listener thread started
+2025-10-14 01:08:17,774 - INFO - Listener timeout - stopping
+2025-10-14 01:08:20,529 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:20,530 - INFO - Listener thread started
+2025-10-14 01:08:21,202 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:21,876 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,175 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,686 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,716 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,748 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,779 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,810 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,843 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,888 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,920 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,951 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:22,983 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,013 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,044 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,076 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,108 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,139 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,172 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,216 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,248 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,279 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,311 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,342 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,374 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,405 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,437 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,469 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,515 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,547 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:23,579 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:24,236 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:24,528 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:25,578 - INFO - Listener timeout - stopping
+2025-10-14 01:08:26,093 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,094 - INFO - Listener thread started
+2025-10-14 01:08:26,599 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,629 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,660 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,707 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,738 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,770 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,801 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,832 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,864 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,896 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,928 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,960 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:26,992 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,037 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,069 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,099 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,130 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,160 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,194 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,223 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,254 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,301 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,331 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,363 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,395 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,427 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,457 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,488 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:27,521 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,161 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,668 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,698 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,730 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,761 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,793 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,839 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,870 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,902 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,933 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,965 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:28,997 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,029 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,059 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,090 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,137 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,169 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,200 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,231 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,263 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,295 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,326 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,358 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,390 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,422 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,453 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,501 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,531 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,561 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:29,592 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:30,215 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:30,805 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:31,851 - INFO - Listener timeout - stopping
+2025-10-14 01:08:35,935 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:35,936 - INFO - Listener thread started
+2025-10-14 01:08:36,406 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:37,451 - INFO - Listener timeout - stopping
+2025-10-14 01:08:40,213 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:40,214 - INFO - Listener thread started
+2025-10-14 01:08:40,743 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:41,780 - INFO - Listener timeout - stopping
+2025-10-14 01:08:41,788 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:41,789 - INFO - Listener thread started
+2025-10-14 01:08:42,799 - INFO - Listener timeout - stopping
+2025-10-14 01:08:42,969 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:42,970 - INFO - Listener thread started
+2025-10-14 01:08:43,981 - INFO - Listener timeout - stopping
+2025-10-14 01:08:52,495 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:08:52,496 - INFO - Listener thread started
+2025-10-14 01:08:53,505 - INFO - Listener timeout - stopping
+2025-10-14 01:08:53,985 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:53,986 - INFO - Listener thread started
+2025-10-14 01:08:54,995 - INFO - Listener timeout - stopping
+2025-10-14 01:08:56,957 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:56,958 - INFO - Listener thread started
+2025-10-14 01:08:57,968 - INFO - Listener timeout - stopping
+2025-10-14 01:08:58,564 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:08:58,565 - INFO - Listener thread started
+2025-10-14 01:08:59,574 - INFO - Listener timeout - stopping
+2025-10-14 01:09:01,967 - INFO - AHK stopped gracefully
+2025-10-14 01:09:01,967 - INFO - All hotkeys unbound
+2025-10-14 01:09:01,967 - INFO - Hotkey manager stopped
+2025-10-14 01:09:01,967 - INFO - Settings saved
+2025-10-14 01:09:01,968 - INFO - === Завершение приложения ===
+2025-10-14 01:09:01,985 - INFO - === Завершение приложения ===
+2025-10-14 01:12:42,502 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 01:12:42,696 - INFO - === Запуск приложения ===
+2025-10-14 01:12:42,697 - INFO - Settings loaded
+2025-10-14 01:12:42,701 - INFO - AHK started (PID: 2684)
+2025-10-14 01:12:43,510 - INFO - Иконка трея создана
+2025-10-14 01:12:43,510 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 01:12:43,510 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-14 01:12:43,511 - INFO - GUI инициализирован
+2025-10-14 01:12:43,626 - INFO - Settings saved
+2025-10-14 01:12:44,221 - INFO - License verification: SUCCESS
+2025-10-14 01:12:44,228 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 01:12:44,229 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 01:12:44,230 - INFO - Загружена иконка 5
+2025-10-14 01:12:44,231 - INFO - Загружена иконка 3
+2025-10-14 01:12:48,496 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:12:48,497 - INFO - Listener thread started
+2025-10-14 01:12:49,507 - INFO - Listener timeout - stopping
+2025-10-14 01:12:52,404 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:12:52,404 - INFO - Listener thread started
+2025-10-14 01:12:53,415 - INFO - Listener timeout - stopping
+2025-10-14 01:12:54,794 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:54,794 - INFO - Listener thread started
+2025-10-14 01:12:55,804 - INFO - Listener timeout - stopping
+2025-10-14 01:12:55,915 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:55,915 - INFO - Listener thread started
+2025-10-14 01:12:56,415 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:56,461 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:56,492 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:56,524 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:56,556 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:56,585 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:56,616 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:56,648 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:56,679 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:57,323 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:57,890 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:58,754 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:12:59,411 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:13:00,460 - INFO - Listener timeout - stopping
+2025-10-14 01:13:01,864 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:13:01,864 - INFO - Listener thread started
+2025-10-14 01:13:02,875 - INFO - Listener timeout - stopping
+2025-10-14 01:13:06,741 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:13:06,741 - INFO - Listener thread started
+2025-10-14 01:13:07,751 - INFO - Listener timeout - stopping
+2025-10-14 01:13:08,241 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:13:08,241 - INFO - Listener thread started
+2025-10-14 01:13:09,212 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:13:10,262 - INFO - Listener timeout - stopping
+2025-10-14 01:13:15,159 - INFO - AHK stopped gracefully
+2025-10-14 01:13:15,159 - INFO - All hotkeys unbound
+2025-10-14 01:13:15,159 - INFO - Hotkey manager stopped
+2025-10-14 01:13:15,159 - INFO - Settings saved
+2025-10-14 01:13:15,160 - INFO - === Завершение приложения ===
+2025-10-14 01:13:15,181 - INFO - === Завершение приложения ===
+2025-10-14 01:14:08,030 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 01:14:08,200 - INFO - === Запуск приложения ===
+2025-10-14 01:14:08,200 - INFO - Settings loaded
+2025-10-14 01:14:08,204 - INFO - AHK started (PID: 13388)
+2025-10-14 01:14:09,066 - INFO - Иконка трея создана
+2025-10-14 01:14:09,067 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 01:14:09,067 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-14 01:14:09,067 - INFO - GUI инициализирован
+2025-10-14 01:14:09,170 - INFO - Settings saved
+2025-10-14 01:14:09,988 - INFO - License verification: SUCCESS
+2025-10-14 01:14:09,995 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 01:14:09,996 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 01:14:09,997 - INFO - Загружена иконка 5
+2025-10-14 01:14:09,998 - INFO - Загружена иконка 3
+2025-10-14 01:14:13,406 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:14:13,406 - INFO - Listener thread started
+2025-10-14 01:14:14,417 - INFO - Listener timeout - stopping
+2025-10-14 01:14:16,865 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:14:16,865 - INFO - Listener thread started
+2025-10-14 01:14:17,876 - INFO - Listener timeout - stopping
+2025-10-14 01:14:19,349 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:14:19,349 - INFO - Listener thread started
+2025-10-14 01:14:20,359 - INFO - Listener timeout - stopping
+2025-10-14 01:14:20,915 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:14:20,915 - INFO - Listener thread started
+2025-10-14 01:14:21,927 - INFO - Listener timeout - stopping
+2025-10-14 01:14:23,423 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:14:23,423 - INFO - Listener thread started
+2025-10-14 01:14:23,792 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:14:24,208 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:14:25,016 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:14:26,050 - INFO - Listener timeout - stopping
+2025-10-14 01:14:27,341 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:14:27,341 - INFO - Listener thread started
+2025-10-14 01:14:28,353 - INFO - Listener timeout - stopping
+2025-10-14 01:14:29,889 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:14:29,889 - INFO - Listener thread started
+2025-10-14 01:14:30,897 - INFO - Listener timeout - stopping
+2025-10-14 01:14:31,064 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:14:31,064 - INFO - Listener thread started
+2025-10-14 01:14:32,075 - INFO - Listener timeout - stopping
+2025-10-14 01:14:52,332 - INFO - Interrupted by user
+2025-10-14 01:14:52,333 - INFO - === Завершение приложения ===
+2025-10-14 01:14:52,385 - INFO - AHK stopped gracefully
+2025-10-14 01:21:13,495 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 01:21:13,715 - INFO - === Запуск приложения ===
+2025-10-14 01:21:13,715 - INFO - Settings loaded
+2025-10-14 01:21:13,719 - INFO - AHK started (PID: 7784)
+2025-10-14 01:21:14,530 - INFO - Иконка трея создана
+2025-10-14 01:21:14,530 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 01:21:14,530 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-14 01:21:14,530 - INFO - GUI инициализирован
+2025-10-14 01:21:14,634 - INFO - Refreshing AHK window list
+2025-10-14 01:21:14,687 - INFO - Settings saved
+2025-10-14 01:21:15,397 - INFO - License verification: SUCCESS
+2025-10-14 01:21:15,402 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 01:21:15,403 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 01:21:15,404 - INFO - Загружена иконка 5
+2025-10-14 01:21:15,406 - INFO - Загружена иконка 3
+2025-10-14 01:21:19,142 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:21:19,142 - INFO - Listener thread started
+2025-10-14 01:21:20,155 - INFO - Listener timeout - stopping
+2025-10-14 01:21:31,640 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:21:31,641 - INFO - Listener thread started
+2025-10-14 01:21:32,651 - INFO - Listener timeout - stopping
+2025-10-14 01:21:33,103 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:21:33,104 - INFO - Listener thread started
+2025-10-14 01:21:34,044 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:21:35,075 - INFO - Listener timeout - stopping
+2025-10-14 01:21:36,232 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:21:36,232 - INFO - Listener thread started
+2025-10-14 01:21:36,737 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:21:36,768 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:21:37,446 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:21:37,866 - INFO - Hotkey '7' triggered for action: ahk_click_mouse
+2025-10-14 01:21:38,911 - INFO - Listener timeout - stopping
+2025-10-14 01:21:43,914 - INFO - AHK stopped gracefully
+2025-10-14 01:21:43,914 - INFO - All hotkeys unbound
+2025-10-14 01:21:43,914 - INFO - Hotkey manager stopped
+2025-10-14 01:21:43,914 - INFO - Settings saved
+2025-10-14 01:21:43,915 - INFO - === Завершение приложения ===
+2025-10-14 01:21:43,928 - INFO - === Завершение приложения ===
+2025-10-14 01:23:42,047 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 01:23:42,242 - INFO - === Запуск приложения ===
+2025-10-14 01:23:42,243 - INFO - Settings loaded
+2025-10-14 01:23:42,244 - INFO - AHK started (PID: 10016)
+2025-10-14 01:23:43,064 - INFO - Иконка трея создана
+2025-10-14 01:23:43,065 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 01:23:43,065 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-14 01:23:43,065 - INFO - GUI инициализирован
+2025-10-14 01:23:43,168 - INFO - Refreshing AHK window list
+2025-10-14 01:23:43,222 - INFO - Settings saved
+2025-10-14 01:23:43,792 - INFO - License verification: SUCCESS
+2025-10-14 01:23:43,797 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 01:23:43,798 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 01:23:43,799 - INFO - Загружена иконка 5
+2025-10-14 01:23:43,800 - INFO - Загружена иконка 3
+2025-10-14 01:23:55,902 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:23:55,902 - INFO - Listener thread started
+2025-10-14 01:23:56,912 - INFO - Listener timeout - stopping
+2025-10-14 01:23:58,793 - INFO - Hotkey '6' triggered for action: ahk_press_space
+2025-10-14 01:23:58,793 - INFO - Listener thread started
+2025-10-14 01:23:59,802 - INFO - Listener timeout - stopping
+2025-10-14 01:24:07,696 - INFO - AHK stopped gracefully
+2025-10-14 01:24:07,696 - INFO - All hotkeys unbound
+2025-10-14 01:24:07,696 - INFO - Hotkey manager stopped
+2025-10-14 01:24:07,697 - INFO - Settings saved
+2025-10-14 01:24:07,697 - INFO - === Завершение приложения ===
+2025-10-14 01:24:07,715 - INFO - === Завершение приложения ===
+2025-10-14 01:26:26,262 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 01:26:26,449 - INFO - === Запуск приложения ===
+2025-10-14 01:26:26,449 - INFO - Settings loaded
+2025-10-14 01:26:26,453 - INFO - AHK started (PID: 2344)
+2025-10-14 01:26:27,284 - INFO - Иконка трея создана
+2025-10-14 01:26:27,285 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 01:26:27,285 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-14 01:26:27,285 - INFO - GUI инициализирован
+2025-10-14 01:26:27,386 - INFO - Refreshing AHK window list
+2025-10-14 01:26:27,439 - INFO - Settings saved
+2025-10-14 01:26:27,735 - INFO - License verification: SUCCESS
+2025-10-14 01:26:27,741 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 01:26:27,742 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 01:26:27,743 - INFO - Загружена иконка 5
+2025-10-14 01:26:27,744 - INFO - Загружена иконка 3
+2025-10-14 01:27:02,725 - INFO - AHK stopped gracefully
+2025-10-14 01:27:02,726 - INFO - All hotkeys unbound
+2025-10-14 01:27:02,726 - INFO - Hotkey manager stopped
+2025-10-14 01:27:02,726 - INFO - Settings saved
+2025-10-14 01:27:02,726 - INFO - === Завершение приложения ===
+2025-10-14 01:27:02,749 - INFO - === Завершение приложения ===
+2025-10-14 01:28:53,895 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 01:28:54,077 - INFO - === Запуск приложения ===
+2025-10-14 01:28:54,077 - INFO - Settings loaded
+2025-10-14 01:28:54,081 - INFO - AHK started (PID: 600)
+2025-10-14 01:28:54,906 - INFO - Иконка трея создана
+2025-10-14 01:28:54,906 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 01:28:54,906 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-14 01:28:54,906 - INFO - GUI инициализирован
+2025-10-14 01:28:55,020 - INFO - Refreshing AHK window list
+2025-10-14 01:28:55,074 - INFO - Settings saved
+2025-10-14 01:28:55,953 - INFO - License verification: SUCCESS
+2025-10-14 01:28:55,958 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 01:28:55,960 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 01:28:55,961 - INFO - Загружена иконка 5
+2025-10-14 01:28:55,962 - INFO - Загружена иконка 3
+2025-10-14 01:29:11,702 - INFO - AHK stopped gracefully
+2025-10-14 01:29:11,702 - INFO - All hotkeys unbound
+2025-10-14 01:29:11,702 - INFO - Hotkey manager stopped
+2025-10-14 01:29:11,703 - INFO - Settings saved
+2025-10-14 01:29:11,703 - INFO - === Завершение приложения ===
+2025-10-14 01:29:11,722 - INFO - === Завершение приложения ===
+2025-10-14 01:30:55,459 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 01:30:55,650 - INFO - === Запуск приложения ===
+2025-10-14 01:30:55,650 - INFO - Settings loaded
+2025-10-14 01:30:55,655 - INFO - AHK started (PID: 22124)
+2025-10-14 01:30:56,475 - INFO - Иконка трея создана
+2025-10-14 01:30:56,475 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 01:30:56,475 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-14 01:30:56,475 - INFO - GUI инициализирован
+2025-10-14 01:30:56,576 - INFO - Refreshing AHK window list
+2025-10-14 01:30:56,629 - INFO - Settings saved
+2025-10-14 01:30:57,149 - INFO - License verification: SUCCESS
+2025-10-14 01:30:57,154 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 01:30:57,155 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 01:30:57,156 - INFO - Загружена иконка 5
+2025-10-14 01:30:57,157 - INFO - Загружена иконка 3
+2025-10-14 01:35:28,879 - INFO - AHK stopped gracefully
+2025-10-14 01:35:28,879 - INFO - All hotkeys unbound
+2025-10-14 01:35:28,879 - INFO - Hotkey manager stopped
+2025-10-14 01:35:28,880 - INFO - Settings saved
+2025-10-14 01:35:28,880 - INFO - === Завершение приложения ===
+2025-10-14 01:35:28,905 - INFO - === Завершение приложения ===
+2025-10-14 01:35:41,366 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 01:35:41,554 - INFO - === Запуск приложения ===
+2025-10-14 01:35:41,555 - INFO - Settings loaded
+2025-10-14 01:35:41,558 - INFO - AHK started (PID: 20672)
+2025-10-14 01:35:42,396 - INFO - Иконка трея создана
+2025-10-14 01:35:42,397 - INFO - Bound hotkey '7' to action 'ahk_click_mouse'
+2025-10-14 01:35:42,397 - INFO - Bound hotkey '6' to action 'ahk_press_space'
+2025-10-14 01:35:42,397 - INFO - GUI инициализирован
+2025-10-14 01:35:42,501 - INFO - Refreshing AHK window list
+2025-10-14 01:35:42,554 - INFO - Settings saved
+2025-10-14 01:35:43,146 - INFO - License verification: SUCCESS
+2025-10-14 01:35:43,153 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 01:35:43,154 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 01:35:43,155 - INFO - Загружена иконка 5
+2025-10-14 01:35:43,156 - INFO - Загружена иконка 3
+2025-10-14 01:35:51,607 - INFO - AHK stopped gracefully
+2025-10-14 01:35:51,607 - INFO - All hotkeys unbound
+2025-10-14 01:35:51,608 - INFO - Hotkey manager stopped
+2025-10-14 01:35:51,608 - INFO - Settings saved
+2025-10-14 01:35:51,608 - INFO - === Завершение приложения ===
+2025-10-14 01:35:51,628 - INFO - === Завершение приложения ===

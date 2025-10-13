@@ -34,7 +34,7 @@ class AHKManager:
             logging.error(f"AHK not found: {self.ahk_exe}")
             return False
         
-        # НОВОЕ: Удаляем старый файл команд перед запуском
+        # Удаляем старый файл команд перед запуском
         if self.command_file.exists():
             try:
                 self.command_file.unlink()
@@ -47,6 +47,10 @@ class AHKManager:
                 creationflags=subprocess.CREATE_NO_WINDOW
             )
             logging.info(f"AHK started (PID: {self.process.pid})")
+            
+            # Даём AHK время на инициализацию
+            time.sleep(0.5)
+            
             return True
         except Exception as e:
             logging.error(f"Failed to start AHK: {e}")
@@ -57,7 +61,7 @@ class AHKManager:
         Отправить команду в AHK
         
         Args:
-            command: команда (CLICK, SPACE, KEY:F1, EXIT)
+            command: команда (CLICK, REFRESH, KEY:F1, EXIT)
         """
         if not self.process or self.process.poll() is not None:
             logging.warning("AHK not running, restarting...")
@@ -65,11 +69,20 @@ class AHKManager:
             time.sleep(0.5)
         
         try:
+            # Ждём пока файл освободится
+            max_wait = 0.5
+            wait_step = 0.05
+            waited = 0
+            
+            while self.command_file.exists() and waited < max_wait:
+                time.sleep(wait_step)
+                waited += wait_step
+            
             # Записываем команду в файл
             self.command_file.write_text(command, encoding='utf-8')
             
-            # НОВОЕ: Небольшая задержка чтобы AHK успел прочитать
-            time.sleep(0.1)
+            # Небольшая задержка
+            time.sleep(0.05)
             
             return True
         except Exception as e:
@@ -88,6 +101,14 @@ class AHKManager:
             key: клавиша (Space, F1, Ctrl+S, и т.д.)
         """
         return self.send_command(f"KEY:{key}")
+    
+    def refresh_windows(self):
+        """
+        НОВОЕ: Обновить список окон в AHK
+        Вызывается при Refresh бота
+        """
+        logging.info("Refreshing AHK window list")
+        return self.send_command("REFRESH")
     
     def stop(self):
         """Остановить AHK процесс"""

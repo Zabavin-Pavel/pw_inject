@@ -29,8 +29,11 @@ class MainWindow:
         
         # Менеджеры
         self.action_manager = ActionManager(self.app_state)
-        self.hotkey_manager = HotkeyManager(self.action_manager)
-
+        self.hotkey_manager = HotkeyManager(
+            self.action_manager,
+            on_hotkey_executed=self._on_hotkey_flash
+        )
+        
         # Верификация (состояние)
         self.verified = False
         
@@ -324,8 +327,10 @@ class MainWindow:
         )
         self.hotkey_panel.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
-        # После создания hotkey_panel переопределить callback хоткеев
-        self._setup_hotkey_flash()
+    def _on_hotkey_flash(self, action_id: str):
+        """Callback для мигания UI при срабатывании хоткея"""
+        # Вызываем в главном потоке GUI
+        self.root.after(0, lambda: self.hotkey_panel.flash_action(action_id))
 
     def _setup_hotkey_flash(self):
         """Настроить мигание при вызове хоткеев"""
@@ -432,6 +437,9 @@ class MainWindow:
         """Обработчик кнопки Refresh"""
         # Мигнуть кнопкой
         self._flash_refresh_button()
+        
+        # === НОВОЕ: Обновить список окон в AHK ===
+        self.ahk_manager.refresh_windows()
         
         # === ШАГ 1: ВЕРИФИКАЦИЯ (если ещё не пройдена) ===
         if not self.verified:
