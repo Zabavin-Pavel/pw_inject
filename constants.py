@@ -28,18 +28,30 @@ CLASS_NAMES_DEBUG = {
     CLASS_MYSTIC: "Мистик",
 }
 
-CUBE = {
-    50: {
-        (1430, -1430, 2),
-        (-800, 480, 2),
+# Точки подземелья для автоматической телепортации
+DUNGEON_POINTS = [
+    {
+        "name": "SO Boss",
+        "trigger": (1430, -1430),
+        "target": (-800, 480, 2),
+        "radius": 50,
+        "check_loot": True,
+        "mode": "party"  # party или solo
     },
-    60: {
-        (-840, 440, 2),
-        (1200, -129, 2),
+    {
+        "name": "GO Boss", 
+        "trigger": (-840, 440),
+        "target": (1200, -129, 2),
+        "radius": 50,
+        "check_loot": True,
+        "mode": "party"
     },
-}
-
-FROST = {
-    1: ()
-}
-
+    {
+        "name": "test point", 
+        "trigger": (474, -2789),
+        "target": (410, -2740, 700),
+        "radius": 50,
+        "check_loot": False,
+        "mode": "solo"
+    },
+]

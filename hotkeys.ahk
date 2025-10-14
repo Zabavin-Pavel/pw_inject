@@ -7,7 +7,6 @@ SetControlDelay -1
 SetBatchLines -1
 
 ; Получаем путь к command_file из аргументов командной строки
-; Если аргумент не передан - используем текущую папку
 if (A_Args.Length() > 0) {
     command_file := A_Args[1]
 } else {
@@ -76,6 +75,28 @@ SendKeyToAll(key, repeat_count := 1) {
     }
 }
 
+; НОВОЕ: Отправить клавишу конкретному окну по PID
+SendKeyToPID(key, target_pid) {
+    global element_windows
+    
+    if (element_windows.Length() = 0) {
+        return
+    }
+    
+    for index, window_id in element_windows {
+        if WinExist("ahk_id " . window_id) {
+            WinGet, window_pid, PID, ahk_id %window_id%
+            
+            if (window_pid = target_pid) {
+                CoordMode, Mouse, Screen
+                ControlClick, x140 y120, ahk_id %window_id%, , L, NA
+                ControlSend, , {%key%}, ahk_id %window_id%
+                return
+            }
+        }
+    }
+}
+
 ; === ИНИЦИАЛИЗАЦИЯ ===
 if FileExist(command_file) {
     FileDelete, %command_file%
@@ -103,6 +124,15 @@ CheckCommand:
         }
         else if (command = "EXIT") {
             ExitApp
+        }
+        else if (InStr(command, "KEY_PID:") = 1) {
+            ; НОВОЕ: Формат KEY_PID:W:12345
+            parts := StrSplit(command, ":")
+            if (parts.Length() = 3) {
+                key := parts[2]
+                pid := parts[3]
+                SendKeyToPID(key, pid)
+            }
         }
         else if (InStr(command, "KEY:") = 1) {
             key := SubStr(command, 5)

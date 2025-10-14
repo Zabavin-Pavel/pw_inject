@@ -112,6 +112,10 @@ class AHKManager:
     def send_key(self, key: str):
         """Отправить клавишу во все окна"""
         return self.send_command(f"KEY:{key}")
+
+    def send_key_to_pid(self, key: str, pid: int):
+        """Отправить клавишу конкретному окну по PID"""
+        return self.send_command(f"KEY_PID:{key}:{pid}")
     
     def refresh_windows(self):
         """Обновить список окон в AHK"""

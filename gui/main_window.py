@@ -21,7 +21,11 @@ from keygen import PERMISSION_NONE, PERMISSION_TRY, PERMISSION_PRO, PERMISSION_D
 from ahk_manager import AHKManager
 
 # Константа для интервала toggle экшенов
-TOGGLE_ACTION_INTERVAL = 500  # 0.5 секунды в миллисекундах
+TOGGLE_ACTION_INTERVALS = {
+    'follow': 500,      # 0.5 секунды
+    'attack': 500,      # 0.5 секунды  
+    'teleport': 1000,   # 1 секунду
+}
 
 class MainWindow:
     """Главное окно - координатор"""
@@ -72,27 +76,13 @@ class MainWindow:
         self._start_active_window_polling()
 
         self.on_refresh()
+        
+        # НОВОЕ: Передаем зависимости в multibox_manager
+        self.manager.set_ahk_manager(self.ahk_manager)
+        self.manager.set_app_state(self.app_state)
     
     def _register_actions(self):
         """Зарегистрировать все действия с уровнями доступа"""
-        # Quick действия с хоткеями (БЕЗ иконок) - В НАЧАЛЕ
-        self.action_manager.register(
-            'ahk_click_mouse',
-            label='LKM',  # ПЕРЕИМЕНОВАНО
-            type='quick',
-            callback=self.ahk_manager.click_at_mouse,
-            has_hotkey=True,
-            required_permission=PERMISSION_TRY
-        )
-
-        self.action_manager.register(
-            'ahk_press_space',
-            label='SPACE',  # ПЕРЕИМЕНОВАНО
-            type='quick',
-            callback=lambda: self.ahk_manager.send_key("Space"),
-            has_hotkey=True,
-            required_permission=PERMISSION_TRY
-        )
         
         # Toggle действия с иконками (без хоткеев)
         self.action_manager.register(
@@ -123,6 +113,25 @@ class MainWindow:
             icon='🌀',
             has_hotkey=False,
             required_permission=PERMISSION_DEV
+        )
+        
+        # Quick действия с хоткеями (БЕЗ иконок) - В НАЧАЛЕ
+        self.action_manager.register(
+            'ahk_click_mouse',
+            label='Ckick LBM',  # ПЕРЕИМЕНОВАНО
+            type='quick',
+            callback=self.ahk_manager.click_at_mouse,
+            has_hotkey=True,
+            required_permission=PERMISSION_TRY
+        )
+
+        self.action_manager.register(
+            'ahk_press_space',
+            label='Press space',  # ПЕРЕИМЕНОВАНО
+            type='quick',
+            callback=lambda: self.ahk_manager.send_key("Space"),
+            has_hotkey=True,
+            required_permission=PERMISSION_TRY
         )
         
         # DEV экшены - В КОНЦЕ
@@ -555,7 +564,10 @@ class MainWindow:
     # ============================================
     
     def _start_action_loop(self, action_id: str, callback):
-        """НОВОЕ: Запустить циклический вызов callback для toggle экшена"""
+        """Запустить циклический вызов callback для toggle экшена"""
+        # ИЗМЕНЕНО: разные интервалы для разных экшенов
+        interval = TOGGLE_ACTION_INTERVALS.get(action_id, 500)
+        
         def loop():
             if self.app_state.is_action_active(action_id):
                 try:
@@ -563,8 +575,8 @@ class MainWindow:
                 except Exception as e:
                     logging.error(f"Error in {action_id} loop: {e}")
                 
-                # Повторить через TOGGLE_ACTION_INTERVAL
-                self.action_timers[action_id] = self.root.after(TOGGLE_ACTION_INTERVAL, loop)
+                # Повторить через соответствующий интервал
+                self.action_timers[action_id] = self.root.after(interval, loop)
         
         loop()
     
@@ -625,19 +637,26 @@ class MainWindow:
             logging.debug(f"Attack: {success_count} targets set")
     
     def toggle_teleport(self):
-        """Toggle: Телепорт (в будущем - автоматические переходы)"""
+        """Toggle: Телепорт (автоматические переходы по точкам)"""
         is_active = self.app_state.is_action_active('teleport')
         
         if is_active:
-            print("Teleport: STARTED (будет реализовано позже)")
-            # TODO: Реализовать автоматические переходы по координатам
+            print("Teleport: STARTED")
+            self._start_action_loop('teleport', self._teleport_loop_callback)
         else:
             print("Teleport: STOPPED")
+            self._stop_action_loop('teleport')
         
         self.hotkey_panel.update_display()
     
+    def _teleport_loop_callback(self):
+        """Callback для Teleport loop (каждые 5 секунд)"""
+        status = self.manager.check_teleport_conditions()
+        print(f"[Teleport] {status}")
+    
+    # ОБНОВИТЬ: action_tp_to_target теперь использует типовую функцию
     def action_tp_to_target(self):
-        """Action: Телепортировать к таргету (ПОСЛЕДНЕЕ АКТИВНОЕ ОКНО)"""
+        """Action: Телепортировать к таргету (ОБНОВЛЕНО)"""
         active_char = self.app_state.last_active_character
         
         if not active_char:
@@ -648,10 +667,11 @@ class MainWindow:
         
         if not success:
             char_name = active_char.char_base.char_name
-            print(f"[TP to TARGET] {char_name}: Неудача (нет таргета или ошибка записи)\n")
+            print(f"[TP to TARGET] {char_name}: Неудача (нет таргета или ошибка)\n")
 
+    # ОБНОВИТЬ: action_tp_to_lider теперь использует типовую функцию
     def action_tp_to_lider(self):
-        """НОВОЕ: Action: Телепортировать группу к лидеру"""
+        """Action: Телепортировать группу к лидеру (ОБНОВЛЕНО)"""
         tp_count = self.manager.tp_to_leader()
         
         if tp_count > 0:
