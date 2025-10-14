@@ -6,19 +6,26 @@ import logging
 from pathlib import Path
 import socket
 
-# Настройка логирования
+# Определяем рабочую директорию
+if getattr(sys, 'frozen', False):
+    # Если упакован - логи ВНУТРИ временной папки
+    WORK_DIR = Path(sys._MEIPASS)
+else:
+    # Если из исходников - текущая папка
+    WORK_DIR = Path(__file__).parent
+
+# Настройка логирования (ВНУТРИ)
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('bot_session.log', encoding='utf-8'),
+        logging.FileHandler(WORK_DIR / 'bot_session.log', encoding='utf-8'),
         logging.StreamHandler()
     ]
 )
 
-# Проверка блокировки (single instance)
-LOCK_FILE = Path("bot.lock")
-LOCK_SOCKET = None
+# Файл блокировки - тоже внутри
+LOCK_FILE = WORK_DIR / "bot.lock"
 
 def check_single_instance():
     """Проверить что запущен только один экземпляр"""

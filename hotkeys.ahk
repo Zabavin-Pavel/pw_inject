@@ -1,19 +1,22 @@
-; hotkeys.ahk - ФИНАЛЬНАЯ ВЕРСИЯ БЕЗ ЛОГИРОВАНИЯ
+; hotkeys.ahk - принимает путь к command_file как аргумент
+#NoTrayIcon
 #SingleInstance Force
 #NoEnv
 #Persistent
 SetControlDelay -1
 SetBatchLines -1
 
-if A_IsCompiled
-    script_dir := A_ScriptDir
-else
-    script_dir := A_ScriptDir
+; Получаем путь к command_file из аргументов командной строки
+; Если аргумент не передан - используем текущую папку
+if (A_Args.Length() > 0) {
+    command_file := A_Args[1]
+} else {
+    command_file := A_ScriptDir . "\ahk_command.txt"
+}
 
 global element_windows := []
-global command_file := script_dir . "\ahk_command.txt"
 
-; Обновить список окон (вызывается только по команде REFRESH)
+; Обновить список окон
 UpdateWindowList() {
     global element_windows
     element_windows := []
@@ -38,10 +41,8 @@ ClickAtMouse() {
     MouseGetPos, xpos, ypos
     WinGet, active_id, ID, A
     
-    ; Сначала кликаем в активном окне
     Click, x%xpos% y%ypos%
     
-    ; ИСПРАВЛЕНО: Пропускаем активное окно в цикле
     for index, window_id in element_windows {
         if (window_id != active_id) && WinExist("ahk_id " . window_id) {
             CoordMode, Mouse, Screen
@@ -50,7 +51,7 @@ ClickAtMouse() {
     }
 }
 
-; Отправить клавишу во все окна (С КОСТЫЛЁМ - КЛИК ПО 140,120)
+; Отправить клавишу во все окна
 SendKeyToAll(key, repeat_count := 1) {
     global element_windows
     
@@ -58,7 +59,6 @@ SendKeyToAll(key, repeat_count := 1) {
         return
     }
     
-    ; === КОСТЫЛЬ: Сначала кликаем по (140, 120) во всех окнах ===
     for index, window_id in element_windows {
         if WinExist("ahk_id " . window_id) {
             CoordMode, Mouse, Screen
@@ -66,7 +66,6 @@ SendKeyToAll(key, repeat_count := 1) {
         }
     }
     
-    ; === Отправляем клавиши ===
     for index, window_id in element_windows {
         if WinExist("ahk_id " . window_id) {
             Loop, %repeat_count%
@@ -82,14 +81,12 @@ if FileExist(command_file) {
     FileDelete, %command_file%
 }
 
-; Начальное обновление списка окон
 UpdateWindowList()
 
 SetTimer, CheckCommand, 50
 return
 
 CheckCommand:
-    global command_file
     if FileExist(command_file) {
         FileRead, command, %command_file%
         FileDelete, %command_file%

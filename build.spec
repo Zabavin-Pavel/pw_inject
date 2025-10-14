@@ -8,8 +8,7 @@ a = Analysis(
     binaries=[],
     datas=[
         ('assets', 'assets'),
-        ('hotkeys.exe', '.'),
-        ('settings.json', '.'),  # НОВОЕ: запаковываем дефолтный settings.json
+        ('hotkeys.exe', '.'),  # Включаем hotkeys.exe
     ],
     hiddenimports=['pystray._win32'],
     hookspath=[],
@@ -47,5 +46,4 @@ exe = EXE(
     icon='assets/icon.png'
 )
 
-# ВАЖНО: license.ini НЕ запаковывается - должен быть рядом с .exe
-# После компиляции создайте license.ini вручную рядом с xvocmuk.exe
+# ВАЖНО: После компиляции скопируйте hotkeys.ahk рядом с xvocmuk.exe

@@ -7,19 +7,38 @@ import time
 import atexit
 import logging
 from pathlib import Path
+import shutil
 
 class AHKManager:
     """Управляет постоянным AHK процессом"""
     
     def __init__(self):
-        # Определяем путь к папке
+        # Определяем пути
         if getattr(sys, 'frozen', False):
-            self.base_path = Path(sys.executable).parent
+            # Если упакован в EXE
+            temp_dir = Path(sys._MEIPASS)
+            
+            # AppData папка для хранения hotkeys.exe
+            appdata_dir = Path.home() / "AppData" / "Local" / "xvocmuk"
+            appdata_dir.mkdir(parents=True, exist_ok=True)
+            
+            # hotkeys.exe в AppData (скрыто, но постоянно)
+            self.ahk_exe = appdata_dir / "hotkeys.exe"
+            
+            # Копируем из ресурсов в AppData (ВСЕГДА перезаписываем - обновление)
+            bundled_ahk = temp_dir / "hotkeys.exe"
+            if bundled_ahk.exists():
+                shutil.copy(bundled_ahk, self.ahk_exe)
+                logging.info(f"Deployed hotkeys.exe to {self.ahk_exe}")
+            
+            # ahk_command.txt - ВНУТРИ временной папки
+            self.command_file = temp_dir / "ahk_command.txt"
         else:
-            self.base_path = Path(__file__).parent
+            # Если из исходников
+            base_path = Path(__file__).parent
+            self.ahk_exe = base_path / "hotkeys.exe"
+            self.command_file = base_path / "ahk_command.txt"
         
-        self.ahk_exe = self.base_path / "hotkeys.exe"
-        self.command_file = self.base_path / "ahk_command.txt"
         self.process = None
         
         # Запускаем AHK при создании
@@ -42,11 +61,13 @@ class AHKManager:
                 pass
         
         try:
+            # ВАЖНО: Передаем путь к command_file как аргумент
             self.process = subprocess.Popen(
-                [str(self.ahk_exe)],
+                [str(self.ahk_exe), str(self.command_file)],
                 creationflags=subprocess.CREATE_NO_WINDOW
             )
             logging.info(f"AHK started (PID: {self.process.pid})")
+            logging.info(f"Command file: {self.command_file}")
             
             # Даём AHK время на инициализацию
             time.sleep(0.5)
@@ -57,12 +78,7 @@ class AHKManager:
             return False
     
     def send_command(self, command: str):
-        """
-        Отправить команду в AHK
-        
-        Args:
-            command: команда (CLICK, REFRESH, KEY:F1, EXIT)
-        """
+        """Отправить команду в AHK"""
         if not self.process or self.process.poll() is not None:
             logging.warning("AHK not running, restarting...")
             self.start()
@@ -94,19 +110,11 @@ class AHKManager:
         return self.send_command("CLICK")
     
     def send_key(self, key: str):
-        """
-        Отправить клавишу во все окна
-        
-        Args:
-            key: клавиша (Space, F1, Ctrl+S, и т.д.)
-        """
+        """Отправить клавишу во все окна"""
         return self.send_command(f"KEY:{key}")
     
     def refresh_windows(self):
-        """
-        НОВОЕ: Обновить список окон в AHK
-        Вызывается при Refresh бота
-        """
+        """Обновить список окон в AHK"""
         logging.info("Refreshing AHK window list")
         return self.send_command("REFRESH")
     
@@ -114,14 +122,10 @@ class AHKManager:
         """Остановить AHK процесс"""
         if self.process and self.process.poll() is None:
             try:
-                # Посылаем команду EXIT
                 self.send_command("EXIT")
-                
-                # Ждём завершения
                 self.process.wait(timeout=2)
                 logging.info("AHK stopped gracefully")
             except subprocess.TimeoutExpired:
-                # Если не остановился - убиваем
                 self.process.kill()
                 logging.warning("AHK killed forcefully")
             except Exception as e:

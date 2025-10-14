@@ -10,13 +10,14 @@ class SettingsManager:
     """Менеджер настроек приложения (UI, хоткеи, позиция окна)"""
     
     def __init__(self, settings_file="settings.json"):
-        # Определяем путь к settings.json
+        # settings.json в AppData (скрыто от пользователя, но сохраняется)
         if getattr(sys, 'frozen', False):
-            # Если запущен из EXE - settings.json внутри EXE (temporary folder)
-            self.settings_file = Path(sys._MEIPASS) / settings_file
+            # Папка: C:\Users\USERNAME\AppData\Local\xvocmuk\
+            appdata_dir = Path.home() / "AppData" / "Local" / "xvocmuk"
+            appdata_dir.mkdir(parents=True, exist_ok=True)  # Создать если нет
+            self.settings_file = appdata_dir / settings_file
             self.is_frozen = True
         else:
-            # Если запущен из исходников - рядом с bot.py
             self.settings_file = Path(settings_file)
             self.is_frozen = False
         
@@ -55,18 +56,7 @@ class SettingsManager:
         }
     
     def save(self):
-        """
-        Сохранить настройки в файл
-        
-        ВАЖНО: Если приложение запущено из EXE (frozen),
-        settings.json находится внутри временной папки и не сохраняется.
-        Настройки восстанавливаются из дефолтных при каждом запуске.
-        """
-        if self.is_frozen:
-            # Внутри EXE - не сохраняем (временная папка)
-            logging.debug("Settings not saved (running from EXE)")
-            return
-        
+        """Сохранить настройки в файл"""
         try:
             with open(self.settings_file, 'w', encoding='utf-8') as f:
                 json.dump(self.settings, f, indent=2, ensure_ascii=False)

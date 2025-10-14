@@ -1,6 +1,8 @@
 """
 Стили и константы для GUI
 """
+import sys
+from pathlib import Path
 
 # Цвета (оранжевая тема)
 COLOR_BG = "#1a1a1a"
@@ -16,10 +18,10 @@ COLOR_SELECTED = "#ffa050"      # Светло-оранжевый для выд�
 WINDOW_WIDTH = 370
 WINDOW_HEIGHT = 400
 
-# Шрифты (УМЕНЬШЕНЫ)
-FONT_MAIN = ("Segoe UI", 10)       # Было 14
-FONT_TITLE = ("Segoe UI", 12, "bold")  # Было 13
-FONT_HOTKEY = ("Segoe UI", 10)     # Было 13
+# Шрифты
+FONT_MAIN = ("Segoe UI", 10)
+FONT_TITLE = ("Segoe UI", 12, "bold")
+FONT_HOTKEY = ("Segoe UI", 10)
 
 # Размеры иконок
 ICON_SIZE = 20
@@ -29,10 +31,18 @@ ICON_SIZE_BUTTON = 24
 CHARACTERS_PANEL_WIDTH = 150
 HOTKEY_ACTION_WIDTH = 160
 
-# Пути
-ASSETS_PATH = "assets"
+# Пути к ресурсам
+if getattr(sys, 'frozen', False):
+    # Упакованное приложение - ресурсы внутри EXE
+    ASSETS_PATH = str(Path(sys._MEIPASS) / "assets")
+else:
+    # Исходники
+    ASSETS_PATH = "assets"
+
 ICONS_PATH = f"{ASSETS_PATH}/class_icons"
 TRAY_ICON_PATH = f"{ASSETS_PATH}/icon.png"
+
+# Файлы настроек
 SETTINGS_FILE = "settings.json"
 LOG_FILE = "bot_session.log"
 

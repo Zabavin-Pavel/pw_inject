@@ -20,6 +20,10 @@
 
 ElementClient.exe+5D11C3
 
+pyinstaller build.spec --clean
+pyinstaller build.spec --clean
+pyinstaller build.spec --clean
+pyinstaller build.spec --clean
 
 
 
