@@ -19,9 +19,10 @@ class LicenseManager:
         Проверить талон и ключ, выбрать наивысший уровень доступа
         
         Логика:
-        1. Проверить талон (если есть)
-        2. Проверить основной ключ (если есть)
-        3. Выбрать наивысший уровень доступа
+        1. Перечитать license.ini (чтобы подхватить изменения)
+        2. Проверить талон (если есть)
+        3. Проверить основной ключ (если есть)
+        4. Выбрать наивысший уровень доступа
         
         Args:
             license_config: объект LicenseConfig для чтения license.ini
@@ -31,10 +32,14 @@ class LicenseManager:
             - success: True если хотя бы один ключ валиден
             - permission_level: "none" / "try" / "pro" / "dev"
         """
+        # НОВОЕ: Перечитываем файл перед проверкой
+        license_config.reload()
+        
         current_mac = get_mac_address()
         
-        # Обновляем hwid в license.ini
-        license_config.set_hwid(current_mac)
+        # Обновляем hwid в license.ini (только если изменился)
+        if license_config.get_hwid() != current_mac:
+            license_config.set_hwid(current_mac)
         
         # Читаем ключи из license.ini
         key = license_config.get_key()

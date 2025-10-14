@@ -6,7 +6,7 @@ import hashlib
 import requests
 from datetime import datetime
 
-SECRET_KEY = b'XQC'
+SECRET_KEY = b'OWL'
 
 # Уровни доступа
 PERMISSION_NONE = "none"
@@ -45,21 +45,28 @@ def generate_license(mac_address: str, expiry_date: str, permission: str = PERMI
         permission: Уровень доступа ("try", "pro", "dev")
     
     Returns:
-        Лицензионный ключ в формате "MAC-DDMMYY-PERMISSION-SIGNATURE"
+        Лицензионный ключ в формате "PERMISSION-DDMMYY-SIGNATURE[:15]"
+        Пример: "DEV-311025-15fc811bcc"
     """
     if permission not in [PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV]:
         raise ValueError(f"Invalid permission: {permission}")
     
+    # Генерируем signature на основе MAC-DDMMYY-PERMISSION
     data = f'{mac_address}-{expiry_date}-{permission}'
     signature = hmac.new(SECRET_KEY, data.encode(), hashlib.sha256).hexdigest()
-    return f'{data}-{signature}'
+    
+    # Берём только первые 10 символов signature
+    short_signature = signature[:15]
+    
+    # Формат: PERMISSION-DDMMYY-SIGNATURE (без MAC!)
+    return f'{permission.upper()}-{expiry_date}-{short_signature}'
 
 def verify_license(license_key: str, current_mac: str) -> tuple[bool, str, str]:
     """
     Проверить лицензионный ключ
     
     Args:
-        license_key: Лицензионный ключ
+        license_key: Лицензионный ключ в формате "PERMISSION-DDMMYY-SIGNATURE"
         current_mac: Текущий MAC адрес
     
     Returns:
@@ -68,28 +75,28 @@ def verify_license(license_key: str, current_mac: str) -> tuple[bool, str, str]:
     try:
         parts = license_key.split('-')
         
-        if len(parts) != 4:
-            return False, PERMISSION_NONE, "Invalid license format"
+        if len(parts) != 3:
+            return False, PERMISSION_NONE, "Invalid license format (expected 3 parts)"
         
-        mac, expiry, permission, signature = parts
+        permission, expiry, signature = parts
         
-        # Проверка MAC адреса
-        if mac != current_mac:
-            return False, PERMISSION_NONE, f"MAC mismatch (expected {mac}, got {current_mac})"
+        # Нормализуем permission (из uppercase в lowercase)
+        permission = permission.lower()
         
         # Проверка уровня доступа
         if permission not in [PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV]:
             return False, PERMISSION_NONE, f"Invalid permission: {permission}"
         
-        # Проверка подписи
+        # Проверка подписи (генерируем на основе ТЕКУЩЕГО MAC!)
+        data = f'{current_mac}-{expiry}-{permission}'
         expected_signature = hmac.new(
             SECRET_KEY, 
-            f'{mac}-{expiry}-{permission}'.encode(), 
+            data.encode(), 
             hashlib.sha256
-        ).hexdigest()
+        ).hexdigest()[:15]  # Берём первые 15 символов
         
         if signature != expected_signature:
-            return False, PERMISSION_NONE, "Invalid signature"
+            return False, PERMISSION_NONE, f"Invalid signature (expected {expected_signature}, got {signature})"
         
         # Проверка срока действия
         current_date = get_current_date()
@@ -162,7 +169,8 @@ if __name__ == '__main__':
     ticket = generate_license('238300919419878', tomorrow, PERMISSION_PRO)
     print(f'Ticket (expires {tomorrow}): {ticket}')
     
-    print("\n=== Проверка первого ключа ===")
+    print("\n=== Проверка ключа ===")
     test_key = generate_license('238300919419878', EXPIRY, PERMISSION_PRO)
+    print(f"Generated key: {test_key}")
     success, perm, msg = verify_license(test_key, '238300919419878')
     print(f"Результат: {success}, Уровень: {perm}, Сообщение: {msg}")

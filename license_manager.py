@@ -27,6 +27,11 @@ class LicenseConfig:
             logging.error(f"Failed to load license.ini: {e}")
             self._create_default()
     
+    def reload(self):
+        """Перечитать license.ini с диска (для обновления ключа без перезапуска)"""
+        self._load()
+        logging.info("license.ini reloaded from disk")
+
     def _create_default(self):
         """Создать дефолтный license.ini"""
         self.config['License'] = {

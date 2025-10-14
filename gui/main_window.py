@@ -44,17 +44,23 @@ class MainWindow:
         from ahk_manager import AHKManager
         self.ahk_manager = AHKManager()
         
-        # Верификация (состояние)
-        self.verified = False
-        
-        # Tray icon
-        self.tray_icon = None
-        
-        # Таймеры для toggle действий
-        self.action_timers = {}
-        
         # Регистрируем действия (ПОСЛЕ создания ahk_manager!)
         self._register_actions()
+        
+        # Создать UI
+        self._create_ui()
+        
+        # Загрузить хоткеи из настроек
+        self._load_hotkeys()
+        
+        # Создать tray icon
+        self._create_tray_icon()
+        
+        # Применить topmost из настроек
+        self.is_topmost = self.settings_manager.is_topmost()
+        self.root.attributes('-topmost', self.is_topmost)
+
+        self.on_refresh()  # Задержка 500ms для инициализации UI
     
     def _register_actions(self):
         """Зарегистрировать все действия с уровнями доступа"""

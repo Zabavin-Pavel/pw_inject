@@ -2918,3 +2918,302 @@ Traceback (most recent call last):
 AttributeError: 'MainWindow' object has no attribute 'root'
 2025-10-14 05:30:38,291 - INFO - === Завершение приложения ===
 2025-10-14 05:30:38,342 - INFO - AHK stopped gracefully
+2025-10-14 05:35:22,416 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:35:22,590 - INFO - === Запуск приложения ===
+2025-10-14 05:35:22,590 - INFO - Settings loaded from settings.json
+2025-10-14 05:35:22,591 - INFO - license.ini loaded
+2025-10-14 05:35:22,665 - INFO - AHK started (PID: 17508)
+2025-10-14 05:35:23,364 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:35:23,365 - INFO - Иконка трея создана
+2025-10-14 05:35:23,365 - INFO - GUI инициализирован
+2025-10-14 05:35:28,941 - INFO - AHK stopped gracefully
+2025-10-14 05:35:28,941 - INFO - All hotkeys unbound
+2025-10-14 05:35:28,941 - INFO - Hotkey manager stopped
+2025-10-14 05:35:28,942 - INFO - Settings saved
+2025-10-14 05:35:28,942 - INFO - === Завершение приложения ===
+2025-10-14 05:35:28,953 - INFO - === Завершение приложения ===
+2025-10-14 05:36:11,686 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:36:11,828 - INFO - === Запуск приложения ===
+2025-10-14 05:36:11,829 - INFO - Settings loaded from settings.json
+2025-10-14 05:36:11,829 - INFO - license.ini loaded
+2025-10-14 05:36:11,917 - INFO - AHK started (PID: 20228)
+2025-10-14 05:36:12,608 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:36:12,609 - INFO - Иконка трея создана
+2025-10-14 05:36:12,609 - INFO - GUI инициализирован
+2025-10-14 05:36:16,379 - INFO - Refreshing AHK window list
+2025-10-14 05:36:16,432 - INFO - license.ini saved
+2025-10-14 05:36:16,842 - INFO - ✅ Ticket valid: pro
+2025-10-14 05:36:17,301 - INFO - ✅ Key valid: pro
+2025-10-14 05:36:17,302 - INFO - 🎯 Best permission level: pro
+2025-10-14 05:36:17,302 - INFO - 🔐 Verification: True, Permission: pro
+2025-10-14 05:36:17,302 - INFO - 🔄 Permission changed: none → pro
+2025-10-14 05:36:17,323 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 05:36:17,324 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 05:36:17,325 - INFO - Загружена иконка 5
+2025-10-14 05:36:17,326 - INFO - Загружена иконка 8
+2025-10-14 05:36:24,588 - INFO - AHK stopped gracefully
+2025-10-14 05:36:24,589 - INFO - All hotkeys unbound
+2025-10-14 05:36:24,589 - INFO - Hotkey manager stopped
+2025-10-14 05:36:24,589 - INFO - Settings saved
+2025-10-14 05:36:24,589 - INFO - === Завершение приложения ===
+2025-10-14 05:36:24,611 - INFO - === Завершение приложения ===
+2025-10-14 05:36:49,168 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:36:49,324 - INFO - === Запуск приложения ===
+2025-10-14 05:36:49,324 - INFO - Settings loaded from settings.json
+2025-10-14 05:36:49,325 - INFO - license.ini loaded
+2025-10-14 05:36:49,414 - INFO - AHK started (PID: 18444)
+2025-10-14 05:36:50,111 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:36:50,111 - INFO - Иконка трея создана
+2025-10-14 05:36:50,112 - INFO - GUI инициализирован
+2025-10-14 05:36:51,841 - INFO - Refreshing AHK window list
+2025-10-14 05:36:51,893 - INFO - license.ini saved
+2025-10-14 05:36:52,456 - INFO - ✅ Key valid: pro
+2025-10-14 05:36:52,457 - INFO - 🎯 Best permission level: pro
+2025-10-14 05:36:52,457 - INFO - 🔐 Verification: True, Permission: pro
+2025-10-14 05:36:52,457 - INFO - 🔄 Permission changed: none → pro
+2025-10-14 05:36:52,478 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 05:36:52,479 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 05:36:52,480 - INFO - Загружена иконка 5
+2025-10-14 05:36:52,481 - INFO - Загружена иконка 8
+2025-10-14 05:36:56,828 - INFO - Refreshing AHK window list
+2025-10-14 05:36:56,879 - INFO - license.ini saved
+2025-10-14 05:36:57,322 - INFO - ✅ Key valid: pro
+2025-10-14 05:36:57,322 - INFO - 🎯 Best permission level: pro
+2025-10-14 05:36:57,322 - INFO - 🔐 Verification: True, Permission: pro
+2025-10-14 05:36:58,223 - INFO - Refreshing AHK window list
+2025-10-14 05:36:58,275 - INFO - license.ini saved
+2025-10-14 05:36:58,620 - INFO - ✅ Key valid: pro
+2025-10-14 05:36:58,620 - INFO - 🎯 Best permission level: pro
+2025-10-14 05:36:58,620 - INFO - 🔐 Verification: True, Permission: pro
+2025-10-14 05:37:01,713 - INFO - Activated window for character apathique (HWND: 3672958)
+2025-10-14 05:37:02,239 - INFO - Activated window for character KABAN (HWND: 9110844)
+2025-10-14 05:37:02,964 - INFO - Activated window for character apathique (HWND: 3672958)
+2025-10-14 05:37:21,647 - INFO - AHK stopped gracefully
+2025-10-14 05:37:21,647 - INFO - All hotkeys unbound
+2025-10-14 05:37:21,647 - INFO - Hotkey manager stopped
+2025-10-14 05:37:21,648 - INFO - Settings saved
+2025-10-14 05:37:21,648 - INFO - === Завершение приложения ===
+2025-10-14 05:37:21,668 - INFO - === Завершение приложения ===
+2025-10-14 05:37:56,089 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:37:56,255 - INFO - === Запуск приложения ===
+2025-10-14 05:37:56,256 - INFO - Settings loaded from settings.json
+2025-10-14 05:37:56,256 - INFO - license.ini loaded
+2025-10-14 05:37:56,342 - INFO - AHK started (PID: 13484)
+2025-10-14 05:37:57,044 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:37:57,045 - INFO - Иконка трея создана
+2025-10-14 05:37:57,045 - INFO - GUI инициализирован
+2025-10-14 05:37:58,321 - INFO - Refreshing AHK window list
+2025-10-14 05:37:58,373 - INFO - license.ini saved
+2025-10-14 05:37:58,843 - INFO - ✅ Key valid: try
+2025-10-14 05:37:58,843 - INFO - 🎯 Best permission level: try
+2025-10-14 05:37:58,843 - INFO - 🔐 Verification: True, Permission: try
+2025-10-14 05:37:58,843 - INFO - 🔄 Permission changed: none → try
+2025-10-14 05:37:58,860 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 05:37:58,861 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 05:37:58,862 - INFO - Загружена иконка 5
+2025-10-14 05:37:58,863 - INFO - Загружена иконка 8
+2025-10-14 05:38:06,038 - INFO - Refreshing AHK window list
+2025-10-14 05:38:06,089 - INFO - license.ini saved
+2025-10-14 05:38:06,599 - INFO - ✅ Key valid: try
+2025-10-14 05:38:06,599 - INFO - 🎯 Best permission level: try
+2025-10-14 05:38:06,599 - INFO - 🔐 Verification: True, Permission: try
+2025-10-14 05:38:08,295 - INFO - AHK stopped gracefully
+2025-10-14 05:38:08,295 - INFO - All hotkeys unbound
+2025-10-14 05:38:08,295 - INFO - Hotkey manager stopped
+2025-10-14 05:38:08,295 - INFO - Settings saved
+2025-10-14 05:38:08,296 - INFO - === Завершение приложения ===
+2025-10-14 05:38:08,316 - INFO - === Завершение приложения ===
+2025-10-14 05:38:12,173 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:38:12,322 - INFO - === Запуск приложения ===
+2025-10-14 05:38:12,322 - INFO - Settings loaded from settings.json
+2025-10-14 05:38:12,323 - INFO - license.ini loaded
+2025-10-14 05:38:12,415 - INFO - AHK started (PID: 19168)
+2025-10-14 05:38:13,110 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:38:13,111 - INFO - Иконка трея создана
+2025-10-14 05:38:13,111 - INFO - GUI инициализирован
+2025-10-14 05:38:14,516 - INFO - Refreshing AHK window list
+2025-10-14 05:38:14,568 - INFO - license.ini saved
+2025-10-14 05:38:15,083 - INFO - ✅ Key valid: pro
+2025-10-14 05:38:15,084 - INFO - 🎯 Best permission level: pro
+2025-10-14 05:38:15,084 - INFO - 🔐 Verification: True, Permission: pro
+2025-10-14 05:38:15,084 - INFO - 🔄 Permission changed: none → pro
+2025-10-14 05:38:15,105 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 05:38:15,106 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 05:38:15,107 - INFO - Загружена иконка 5
+2025-10-14 05:38:15,108 - INFO - Загружена иконка 8
+2025-10-14 05:38:18,566 - INFO - AHK stopped gracefully
+2025-10-14 05:38:18,566 - INFO - All hotkeys unbound
+2025-10-14 05:38:18,566 - INFO - Hotkey manager stopped
+2025-10-14 05:38:18,567 - INFO - Settings saved
+2025-10-14 05:38:18,567 - INFO - === Завершение приложения ===
+2025-10-14 05:38:18,589 - INFO - === Завершение приложения ===
+2025-10-14 05:38:27,698 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:38:27,843 - INFO - === Запуск приложения ===
+2025-10-14 05:38:27,844 - INFO - Settings loaded from settings.json
+2025-10-14 05:38:27,845 - INFO - license.ini loaded
+2025-10-14 05:38:27,934 - INFO - AHK started (PID: 2512)
+2025-10-14 05:38:28,631 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:38:28,631 - INFO - Иконка трея создана
+2025-10-14 05:38:28,632 - INFO - GUI инициализирован
+2025-10-14 05:38:29,602 - INFO - Refreshing AHK window list
+2025-10-14 05:38:29,654 - INFO - license.ini saved
+2025-10-14 05:38:30,041 - INFO - ✅ Key valid: try
+2025-10-14 05:38:30,041 - INFO - 🎯 Best permission level: try
+2025-10-14 05:38:30,041 - INFO - 🔐 Verification: True, Permission: try
+2025-10-14 05:38:30,041 - INFO - 🔄 Permission changed: none → try
+2025-10-14 05:38:30,058 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 05:38:30,059 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 05:38:30,060 - INFO - Загружена иконка 5
+2025-10-14 05:38:30,061 - INFO - Загружена иконка 8
+2025-10-14 05:38:34,079 - INFO - AHK stopped gracefully
+2025-10-14 05:38:34,080 - INFO - All hotkeys unbound
+2025-10-14 05:38:34,080 - INFO - Hotkey manager stopped
+2025-10-14 05:38:34,080 - INFO - Settings saved
+2025-10-14 05:38:34,080 - INFO - === Завершение приложения ===
+2025-10-14 05:38:34,101 - INFO - === Завершение приложения ===
+2025-10-14 05:46:02,544 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:46:02,722 - INFO - === Запуск приложения ===
+2025-10-14 05:46:02,722 - INFO - Settings loaded from settings.json
+2025-10-14 05:46:02,723 - INFO - license.ini loaded
+2025-10-14 05:46:02,812 - INFO - AHK started (PID: 18896)
+2025-10-14 05:46:03,514 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:46:03,514 - INFO - Иконка трея создана
+2025-10-14 05:46:03,515 - INFO - GUI инициализирован
+2025-10-14 05:46:04,024 - INFO - Refreshing AHK window list
+2025-10-14 05:46:04,076 - INFO - license.ini loaded
+2025-10-14 05:46:04,076 - INFO - license.ini reloaded from disk
+2025-10-14 05:46:04,519 - INFO - ✅ Key valid: try
+2025-10-14 05:46:04,519 - INFO - 🎯 Best permission level: try
+2025-10-14 05:46:04,519 - INFO - 🔐 Verification: True, Permission: try
+2025-10-14 05:46:04,519 - INFO - 🔄 Permission changed: none → try
+2025-10-14 05:46:04,537 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 05:46:04,537 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 05:46:04,538 - INFO - Загружена иконка 5
+2025-10-14 05:46:04,539 - INFO - Загружена иконка 8
+2025-10-14 05:46:07,235 - INFO - AHK stopped gracefully
+2025-10-14 05:46:07,236 - INFO - All hotkeys unbound
+2025-10-14 05:46:07,236 - INFO - Hotkey manager stopped
+2025-10-14 05:46:07,236 - INFO - Settings saved
+2025-10-14 05:46:07,236 - INFO - === Завершение приложения ===
+2025-10-14 05:46:07,256 - INFO - === Завершение приложения ===
+2025-10-14 05:46:29,335 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:46:29,481 - INFO - === Запуск приложения ===
+2025-10-14 05:46:29,481 - INFO - Settings loaded from settings.json
+2025-10-14 05:46:29,482 - INFO - license.ini loaded
+2025-10-14 05:46:29,574 - INFO - AHK started (PID: 19568)
+2025-10-14 05:46:30,266 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:46:30,267 - INFO - Иконка трея создана
+2025-10-14 05:46:30,268 - INFO - Refreshing AHK window list
+2025-10-14 05:46:30,319 - INFO - license.ini loaded
+2025-10-14 05:46:30,319 - INFO - license.ini reloaded from disk
+2025-10-14 05:46:30,761 - INFO - ✅ Key valid: try
+2025-10-14 05:46:30,762 - INFO - 🎯 Best permission level: try
+2025-10-14 05:46:30,762 - INFO - 🔐 Verification: True, Permission: try
+2025-10-14 05:46:30,762 - INFO - 🔄 Permission changed: none → try
+2025-10-14 05:46:30,779 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 05:46:30,780 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 05:46:30,780 - INFO - Загружена иконка 5
+2025-10-14 05:46:30,782 - INFO - Загружена иконка 8
+2025-10-14 05:46:30,782 - INFO - GUI инициализирован
+2025-10-14 05:46:33,372 - INFO - Refreshing AHK window list
+2025-10-14 05:46:33,423 - INFO - license.ini loaded
+2025-10-14 05:46:33,423 - INFO - license.ini reloaded from disk
+2025-10-14 05:46:33,798 - INFO - ✅ Key valid: try
+2025-10-14 05:46:33,798 - INFO - 🎯 Best permission level: try
+2025-10-14 05:46:33,799 - INFO - 🔐 Verification: True, Permission: try
+2025-10-14 05:46:40,685 - INFO - Refreshing AHK window list
+2025-10-14 05:46:40,737 - INFO - license.ini loaded
+2025-10-14 05:46:40,737 - INFO - license.ini reloaded from disk
+2025-10-14 05:46:40,738 - WARNING - ❌ Key invalid: Invalid signature
+2025-10-14 05:46:40,738 - WARNING - ❌ No valid license found
+2025-10-14 05:46:40,738 - INFO - 🔐 Verification: False, Permission: none
+2025-10-14 05:46:40,738 - INFO - 🔄 Permission changed: try → none
+2025-10-14 05:46:40,743 - WARNING - ❌ No valid license - access denied
+2025-10-14 05:46:50,654 - INFO - AHK stopped gracefully
+2025-10-14 05:46:50,654 - INFO - All hotkeys unbound
+2025-10-14 05:46:50,654 - INFO - Hotkey manager stopped
+2025-10-14 05:46:50,654 - INFO - Settings saved
+2025-10-14 05:46:50,655 - INFO - === Завершение приложения ===
+2025-10-14 05:46:50,666 - INFO - === Завершение приложения ===
+2025-10-14 05:46:55,117 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:46:55,258 - INFO - === Запуск приложения ===
+2025-10-14 05:46:55,259 - INFO - Settings loaded from settings.json
+2025-10-14 05:46:55,259 - INFO - license.ini loaded
+2025-10-14 05:46:55,348 - INFO - AHK started (PID: 13344)
+2025-10-14 05:46:56,048 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:46:56,049 - INFO - Иконка трея создана
+2025-10-14 05:46:56,050 - INFO - Refreshing AHK window list
+2025-10-14 05:46:56,101 - INFO - license.ini loaded
+2025-10-14 05:46:56,101 - INFO - license.ini reloaded from disk
+2025-10-14 05:46:56,102 - WARNING - ❌ Key invalid: Invalid signature
+2025-10-14 05:46:56,102 - WARNING - ❌ No valid license found
+2025-10-14 05:46:56,102 - INFO - 🔐 Verification: False, Permission: none
+2025-10-14 05:46:56,103 - WARNING - ❌ No valid license - access denied
+2025-10-14 05:46:56,103 - INFO - GUI инициализирован
+2025-10-14 05:47:12,061 - INFO - Refreshing AHK window list
+2025-10-14 05:47:12,113 - INFO - license.ini loaded
+2025-10-14 05:47:12,113 - INFO - license.ini reloaded from disk
+2025-10-14 05:47:12,553 - INFO - ✅ Key valid: dev
+2025-10-14 05:47:12,553 - INFO - 🎯 Best permission level: dev
+2025-10-14 05:47:12,553 - INFO - 🔐 Verification: True, Permission: dev
+2025-10-14 05:47:12,554 - INFO - 🔄 Permission changed: none → dev
+2025-10-14 05:47:12,581 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 05:47:12,582 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 05:47:12,582 - INFO - Загружена иконка 5
+2025-10-14 05:47:12,583 - INFO - Загружена иконка 8
+2025-10-14 05:47:23,623 - INFO - AHK stopped gracefully
+2025-10-14 05:47:23,623 - INFO - All hotkeys unbound
+2025-10-14 05:47:23,623 - INFO - Hotkey manager stopped
+2025-10-14 05:47:23,624 - INFO - Settings saved
+2025-10-14 05:47:23,624 - INFO - === Завершение приложения ===
+2025-10-14 05:47:23,651 - INFO - === Завершение приложения ===
+2025-10-14 05:55:57,366 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:55:57,532 - INFO - === Запуск приложения ===
+2025-10-14 05:55:57,532 - INFO - Settings loaded from settings.json
+2025-10-14 05:55:57,532 - INFO - license.ini loaded
+2025-10-14 05:55:57,604 - INFO - AHK started (PID: 4668)
+2025-10-14 05:55:58,300 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:55:58,301 - INFO - Иконка трея создана
+2025-10-14 05:55:58,302 - INFO - Refreshing AHK window list
+2025-10-14 05:55:58,353 - INFO - license.ini loaded
+2025-10-14 05:55:58,353 - INFO - license.ini reloaded from disk
+2025-10-14 05:55:58,990 - INFO - ✅ Key valid: dev
+2025-10-14 05:55:58,990 - INFO - 🎯 Best permission level: dev
+2025-10-14 05:55:58,991 - INFO - 🔐 Verification: True, Permission: dev
+2025-10-14 05:55:58,991 - INFO - 🔄 Permission changed: none → dev
+2025-10-14 05:55:59,018 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 05:55:59,019 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 05:55:59,020 - INFO - Загружена иконка 5
+2025-10-14 05:55:59,021 - INFO - Загружена иконка 8
+2025-10-14 05:55:59,022 - INFO - GUI инициализирован
+2025-10-14 05:56:21,026 - INFO - AHK stopped gracefully
+2025-10-14 05:56:21,027 - INFO - All hotkeys unbound
+2025-10-14 05:56:21,027 - INFO - Hotkey manager stopped
+2025-10-14 05:56:21,027 - INFO - Settings saved
+2025-10-14 05:56:21,028 - INFO - === Завершение приложения ===
+2025-10-14 05:56:21,053 - INFO - === Завершение приложения ===
+2025-10-14 05:57:03,878 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:57:04,064 - INFO - === Запуск приложения ===
+2025-10-14 05:57:04,065 - INFO - Settings loaded from settings.json
+2025-10-14 05:57:04,065 - INFO - license.ini loaded
+2025-10-14 05:57:04,149 - INFO - AHK started (PID: 12740)
+2025-10-14 05:57:04,841 - INFO - Bound hotkey 'Shift+Y' to action 'ahk_press_space'
+2025-10-14 05:57:04,842 - INFO - Иконка трея создана
+2025-10-14 05:57:04,843 - INFO - Refreshing AHK window list
+2025-10-14 05:57:04,894 - INFO - license.ini loaded
+2025-10-14 05:57:04,895 - INFO - license.ini reloaded from disk
+2025-10-14 05:57:05,389 - INFO - ✅ Key valid: dev
+2025-10-14 05:57:05,390 - INFO - 🎯 Best permission level: dev
+2025-10-14 05:57:05,390 - INFO - 🔐 Verification: True, Permission: dev
+2025-10-14 05:57:05,390 - INFO - 🔄 Permission changed: none → dev
+2025-10-14 05:57:05,416 - INFO - Attached to PID 18744, module base: 0x7ff786ca0000
+2025-10-14 05:57:05,416 - INFO - Attached to PID 14464, module base: 0x7ff786ca0000
+2025-10-14 05:57:05,417 - INFO - Загружена иконка 5
+2025-10-14 05:57:05,418 - INFO - Загружена иконка 8
+2025-10-14 05:57:05,419 - INFO - GUI инициализирован
+2025-10-14 05:57:08,047 - INFO - AHK stopped gracefully
+2025-10-14 05:57:08,047 - INFO - All hotkeys unbound
+2025-10-14 05:57:08,047 - INFO - Hotkey manager stopped
+2025-10-14 05:57:08,048 - INFO - Settings saved
+2025-10-14 05:57:08,048 - INFO - === Завершение приложения ===
+2025-10-14 05:57:08,073 - INFO - === Завершение приложения ===
