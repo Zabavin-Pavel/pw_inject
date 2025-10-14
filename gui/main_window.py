@@ -1,5 +1,5 @@
 """
-Главное окно приложения
+Главное окно приложения - ОБНОВЛЕНО
 """
 import tkinter as tk
 from PIL import Image, ImageTk
@@ -8,6 +8,9 @@ import sys
 import pystray
 from pystray import MenuItem as item
 import threading
+import ctypes
+from ctypes import wintypes
+import math
 
 from gui.styles import *
 from gui.character_panel import CharacterPanel
@@ -17,6 +20,9 @@ from license_manager import LicenseConfig
 from keygen import PERMISSION_NONE, PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
 from ahk_manager import AHKManager
 
+# Константа для интервала toggle экшенов
+TOGGLE_ACTION_INTERVAL = 500  # 0.5 секунды в миллисекундах
+
 class MainWindow:
     """Главное окно - координатор"""
     
@@ -24,10 +30,10 @@ class MainWindow:
         self.manager = multibox_manager
         self.settings_manager = settings_manager
         
-        # НОВОЕ: Менеджер лицензий (license.ini)
+        # Менеджер лицензий (license.ini)
         self.license_config = LicenseConfig()
         
-        # НОВОЕ: Предыдущий уровень доступа (для оптимизации UI)
+        # Предыдущий уровень доступа (для оптимизации UI)
         self.prev_permission_level = PERMISSION_NONE
         
         # Состояние приложения
@@ -40,11 +46,13 @@ class MainWindow:
             on_hotkey_executed=self._on_hotkey_flash
         )
         
-        # ВАЖНО: Создаём AHK менеджер ДО регистрации действий
-        from ahk_manager import AHKManager
+        # AHK менеджер
         self.ahk_manager = AHKManager()
         
-        # Регистрируем действия (ПОСЛЕ создания ahk_manager!)
+        # НОВОЕ: Таймеры для toggle экшенов
+        self.action_timers = {}
+        
+        # Регистрируем действия
         self._register_actions()
         
         # Создать UI
@@ -59,11 +67,33 @@ class MainWindow:
         # Применить topmost из настроек
         self.is_topmost = self.settings_manager.is_topmost()
         self.root.attributes('-topmost', self.is_topmost)
+        
+        # НОВОЕ: Запустить polling активного окна
+        self._start_active_window_polling()
 
-        self.on_refresh()  # Задержка 500ms для инициализации UI
+        self.on_refresh()
     
     def _register_actions(self):
         """Зарегистрировать все действия с уровнями доступа"""
+        # Quick действия с хоткеями (БЕЗ иконок) - В НАЧАЛЕ
+        self.action_manager.register(
+            'ahk_click_mouse',
+            label='LKM',  # ПЕРЕИМЕНОВАНО
+            type='quick',
+            callback=self.ahk_manager.click_at_mouse,
+            has_hotkey=True,
+            required_permission=PERMISSION_TRY
+        )
+
+        self.action_manager.register(
+            'ahk_press_space',
+            label='SPACE',  # ПЕРЕИМЕНОВАНО
+            type='quick',
+            callback=lambda: self.ahk_manager.send_key("Space"),
+            has_hotkey=True,
+            required_permission=PERMISSION_TRY
+        )
+        
         # Toggle действия с иконками (без хоткеев)
         self.action_manager.register(
             'follow',
@@ -72,7 +102,7 @@ class MainWindow:
             callback=self.toggle_follow,
             icon='👣',
             has_hotkey=False,
-            required_permission=PERMISSION_TRY  # TRY
+            required_permission=PERMISSION_TRY
         )
         
         self.action_manager.register(
@@ -82,7 +112,7 @@ class MainWindow:
             callback=self.toggle_attack,
             icon='⚔️',
             has_hotkey=False,
-            required_permission=PERMISSION_PRO  # PRO
+            required_permission=PERMISSION_PRO
         )
         
         self.action_manager.register(
@@ -92,81 +122,44 @@ class MainWindow:
             callback=self.toggle_teleport,
             icon='🌀',
             has_hotkey=False,
-            required_permission=PERMISSION_DEV  # DEV
+            required_permission=PERMISSION_DEV
         )
         
-        # Quick действия с хоткеями (без иконок)
+        # DEV экшены - В КОНЦЕ
         self.action_manager.register(
-            'teleport_to_target',
-            label='Teleport to Target',
+            'tp_to_target',  # ПЕРЕИМЕНОВАНО
+            label='TP to TARGET',
             type='quick',
-            callback=self.action_teleport_to_target,
+            callback=self.action_tp_to_target,
             has_hotkey=True,
-            required_permission=PERMISSION_PRO  # PRO
-        )
-        
-        self.action_manager.register(
-            'show_all',
-            label='Show All Characters',
-            type='quick',
-            callback=self.action_show_all,
-            has_hotkey=True,
-            required_permission=PERMISSION_TRY  # TRY
+            required_permission=PERMISSION_PRO
         )
         
         self.action_manager.register(
-            'show_active',
-            label='Show Active Characters',
+            'tp_to_lider',  # НОВОЕ
+            label='TP to LIDER',
             type='quick',
-            callback=self.action_show_active,
+            callback=self.action_tp_to_lider,
             has_hotkey=True,
-            required_permission=PERMISSION_TRY  # TRY
+            required_permission=PERMISSION_DEV
         )
         
         self.action_manager.register(
-            'show_loot',
-            label='Show Nearby Loot',
+            'tp_to_so',  # НОВОЕ
+            label='TP to SO',
             type='quick',
-            callback=self.action_show_loot,
+            callback=self.action_tp_to_so,
             has_hotkey=True,
-            required_permission=PERMISSION_PRO  # PRO
+            required_permission=PERMISSION_DEV
         )
         
         self.action_manager.register(
-            'show_players',
-            label='Show Nearby Players',
+            'tp_to_go',  # НОВОЕ
+            label='TP to GO',
             type='quick',
-            callback=self.action_show_players,
+            callback=self.action_tp_to_go,
             has_hotkey=True,
-            required_permission=PERMISSION_PRO  # PRO
-        )
-        
-        self.action_manager.register(
-            'show_npcs',
-            label='Show Nearby NPC',
-            type='quick',
-            callback=self.action_show_npcs,
-            has_hotkey=True,
-            required_permission=PERMISSION_DEV  # DEV
-        )
-    
-        # AHK экшены
-        self.action_manager.register(
-            'ahk_click_mouse',
-            label='AHK: Click at Mouse',
-            type='quick',
-            callback=self.ahk_manager.click_at_mouse,
-            has_hotkey=True,
-            required_permission=PERMISSION_TRY  # TRY
-        )
-
-        self.action_manager.register(
-            'ahk_press_space',
-            label='AHK: Press Space',
-            type='quick',
-            callback=lambda: self.ahk_manager.send_key("Space"),
-            has_hotkey=True,
-            required_permission=PERMISSION_TRY  # TRY
+            required_permission=PERMISSION_DEV
         )
 
     def _create_ui(self):
@@ -561,18 +554,22 @@ class MainWindow:
     # ДЕЙСТВИЯ (CALLBACKS)
     # ============================================
     
-    def _start_action_loop(self, action_id: str, message: str):
-        """Запустить циклический вывод сообщения (раз в секунду)"""
+    def _start_action_loop(self, action_id: str, callback):
+        """НОВОЕ: Запустить циклический вызов callback для toggle экшена"""
         def loop():
             if self.app_state.is_action_active(action_id):
-                print(message)
-                # TODO: Здесь будет работа с памятью и логика бота
-                self.action_timers[action_id] = self.root.after(1000, loop)
+                try:
+                    callback()
+                except Exception as e:
+                    logging.error(f"Error in {action_id} loop: {e}")
+                
+                # Повторить через TOGGLE_ACTION_INTERVAL
+                self.action_timers[action_id] = self.root.after(TOGGLE_ACTION_INTERVAL, loop)
         
         loop()
     
     def _stop_action_loop(self, action_id: str):
-        """Остановить циклический вывод"""
+        """НОВОЕ: Остановить циклический вызов"""
         if action_id in self.action_timers:
             timer_id = self.action_timers[action_id]
             if timer_id:
@@ -583,116 +580,172 @@ class MainWindow:
             self.action_timers[action_id] = None
     
     def toggle_follow(self):
-        """Toggle: Следование"""
+        """Toggle: Следование (синхронизация полета)"""
         is_active = self.app_state.is_action_active('follow')
         
         if is_active:
             print("Follow: STARTED")
-            self._start_action_loop('follow', "СЛЕДУЮ")
+            self._start_action_loop('follow', self._follow_loop_callback)
         else:
             print("Follow: STOPPED")
             self._stop_action_loop('follow')
+            
+            # Разморозить всех при остановке
+            for char in self.manager.get_all_characters():
+                if char.fly_freeze_info and char.fly_freeze_info['active']:
+                    char.memory.unfreeze_address(char.fly_freeze_info)
+                    char.fly_freeze_info = None
+                    char.char_base.set_fly_speed_z(0)
         
         self.hotkey_panel.update_display()
     
+    def _follow_loop_callback(self):
+        """Callback для Follow loop"""
+        active_corrections = self.manager.follow_leader()
+        if active_corrections > 0:
+            logging.debug(f"Follow: {active_corrections} active corrections")
+
     def toggle_attack(self):
-        """Toggle: Атака"""
+        """Toggle: Атака (копирование таргета лидера)"""
         is_active = self.app_state.is_action_active('attack')
         
         if is_active:
             print("Attack: STARTED")
-            self._start_action_loop('attack', "АТАКУЮ")
+            self._start_action_loop('attack', self._attack_loop_callback)
         else:
             print("Attack: STOPPED")
             self._stop_action_loop('attack')
         
         self.hotkey_panel.update_display()
+
+    def _attack_loop_callback(self):
+        """Callback для Attack loop"""
+        success_count = self.manager.set_attack_target()
+        if success_count > 0:
+            logging.debug(f"Attack: {success_count} targets set")
     
     def toggle_teleport(self):
-        """Toggle: Телепорт"""
+        """Toggle: Телепорт (в будущем - автоматические переходы)"""
         is_active = self.app_state.is_action_active('teleport')
         
         if is_active:
-            print("Teleport: STARTED")
-            self._start_action_loop('teleport', "ТЕЛЕПОРТИРУЮСЬ")
+            print("Teleport: STARTED (будет реализовано позже)")
+            # TODO: Реализовать автоматические переходы по координатам
         else:
             print("Teleport: STOPPED")
-            self._stop_action_loop('teleport')
         
         self.hotkey_panel.update_display()
     
-    def action_teleport_to_target(self):
-        """Action: Телепортировать к таргету"""
-        selected = self.app_state.selected_character
+    def action_tp_to_target(self):
+        """Action: Телепортировать к таргету (ПОСЛЕДНЕЕ АКТИВНОЕ ОКНО)"""
+        active_char = self.app_state.last_active_character
         
-        if not selected:
-            print("\n[Teleport to Target] Нет выбранного персонажа")
+        if not active_char:
+            print("\n[TP to TARGET] Нет последнего активного окна")
             return
         
-        success = self.manager.action_teleport_to_target(selected)
+        success = self.manager.action_teleport_to_target(active_char)
         
         if not success:
-            char_name = selected.char_base.char_name
-            print(f"[Teleport to Target] {char_name}: Неудача (нет таргета или ошибка записи)\n")
+            char_name = active_char.char_base.char_name
+            print(f"[TP to TARGET] {char_name}: Неудача (нет таргета или ошибка записи)\n")
 
-    def action_show_all(self):
-        """Action: Показать всех персонажей"""
-        characters = self.manager.get_all_characters()
+    def action_tp_to_lider(self):
+        """НОВОЕ: Action: Телепортировать группу к лидеру"""
+        tp_count = self.manager.tp_to_leader()
         
-        print("\n=== Все персонажи ===")
-        for char in characters:
-            name = char.char_base.char_name
-            char_id = char.char_base.char_id
-            char_class = char.char_base.char_class
-            print(f"  {name} (ID:{char_id}, Class:{char_class})")
-        print(f"Всего: {len(characters)}\n")
-    
-    def action_show_active(self):
-        """Action: Показать активных персонажей"""
-        active_chars = list(self.app_state.active_characters)
-        
-        print("\n=== Активные персонажи ===")
-        for char in active_chars:
-            name = char.char_base.char_name
-            print(f"  {name}")
-        print(f"Всего активных: {len(active_chars)}\n")
-    
-    def action_show_loot(self):
-        """Action: Показать лут вокруг"""
-        selected = self.app_state.selected_character
-        
-        if selected:
-            loot_ids = self.manager.get_nearby_loot(selected)
+        if tp_count > 0:
+            print(f"\n[TP to LIDER] Телепортировано: {tp_count} персонажей\n")
         else:
-            loot_ids = self.manager.get_nearby_loot()
+            print("\n[TP to LIDER] Никто не был телепортирован\n")
+
+    def action_tp_to_so(self):
+        """НОВОЕ: Action: TP to SO (только последнее активное окно)"""
+        active_char = self.app_state.last_active_character
         
-        print("\n=== Лут вокруг ===")
-        for loot_id in loot_ids:
-            print(f"  Лут ID: {loot_id}")
-        print(f"Всего предметов: {len(loot_ids)}\n")
-    
-    def action_show_players(self):
-        """Action: Показать игроков вокруг"""
-        selected = self.app_state.selected_character
+        if not active_char:
+            print("\n[TP to SO] Нет последнего активного окна")
+            return
         
-        if selected:
-            player_ids = self.manager.get_nearby_players(selected)
+        # Триггер: (1430, -1430, 2) +- 50
+        # Назначение: (-800, 480, 2)
+        trigger_coords = (1430, -1430, 2)
+        target_coords = (-800, 480, 2)
+        radius = 50
+        
+        # Проверяем позицию
+        active_char.char_base.refresh()
+        char_x = active_char.char_base.char_pos_x
+        char_y = active_char.char_base.char_pos_y
+        
+        if char_x is None or char_y is None:
+            print(f"[TP to SO] Не удалось прочитать позицию персонажа")
+            return
+        
+        # Проверяем расстояние до триггера (по X и Y)
+        dx = abs(char_x - trigger_coords[0])
+        dy = abs(char_y - trigger_coords[1])
+        
+        if dx <= radius and dy <= radius:
+            # В зоне триггера - телепортируем
+            success = active_char.char_base.set_position(
+                target_coords[0], 
+                target_coords[1], 
+                target_coords[2]
+            )
+            
+            if success:
+                char_name = active_char.char_base.char_name
+                print(f"\n✅ [TP to SO] {char_name}: Телепорт выполнен\n")
+            else:
+                print(f"\n[TP to SO] Ошибка записи координат\n")
         else:
-            player_ids = self.manager.get_nearby_players()
+            char_name = active_char.char_base.char_name
+            print(f"\n[TP to SO] {char_name} не в зоне триггера (dx={dx:.1f}, dy={dy:.1f})\n")
+
+    def action_tp_to_go(self):
+        """НОВОЕ: Action: TP to GO (только последнее активное окно)"""
+        active_char = self.app_state.last_active_character
         
-        print("\n=== Окружающие игроки ===")
-        for player_id in player_ids:
-            print(f"  Игрок ID: {player_id}")
-        print(f"Всего игроков: {len(player_ids)}\n")
-    
-    def action_show_npcs(self):
-        """Action: Показать NPC вокруг"""
-        npc_ids = self.manager.get_nearby_npcs()
+        if not active_char:
+            print("\n[TP to GO] Нет последнего активного окна")
+            return
         
-        print("\n=== Окружающие NPC ===")
-        for npc_id in npc_ids:
-            print(f"  NPC ID: {npc_id}")
-        print(f"Всего NPC: {len(npc_ids)}\n")
+        # Триггер: (-840, 440, 2) +- 50
+        # Назначение: (1200, -129, 2)
+        trigger_coords = (-840, 440, 2)
+        target_coords = (1200, -129, 2)
+        radius = 50
+        
+        # Проверяем позицию
+        active_char.char_base.refresh()
+        char_x = active_char.char_base.char_pos_x
+        char_y = active_char.char_base.char_pos_y
+        
+        if char_x is None or char_y is None:
+            print(f"[TP to GO] Не удалось прочитать позицию персонажа")
+            return
+        
+        # Проверяем расстояние до триггера (по X и Y)
+        dx = abs(char_x - trigger_coords[0])
+        dy = abs(char_y - trigger_coords[1])
+        
+        if dx <= radius and dy <= radius:
+            # В зоне триггера - телепортируем
+            success = active_char.char_base.set_position(
+                target_coords[0], 
+                target_coords[1], 
+                target_coords[2]
+            )
+            
+            if success:
+                char_name = active_char.char_base.char_name
+                print(f"\n✅ [TP to GO] {char_name}: Телепорт выполнен\n")
+            else:
+                print(f"\n[TP to GO] Ошибка записи координат\n")
+        else:
+            char_name = active_char.char_base.char_name
+            print(f"\n[TP to GO] {char_name} не в зоне триггера (dx={dx:.1f}, dy={dy:.1f})\n")       
     
     def run(self):
         """Запустить главный цикл"""
@@ -725,3 +778,36 @@ class MainWindow:
                 pass
         
         threading.Thread(target=listener, daemon=True).start()
+
+
+    def _start_active_window_polling(self):
+        """НОВОЕ: Запустить мониторинг активного окна ElementClient.exe"""
+        def poll():
+            try:
+                # Получаем активное окно
+                user32 = ctypes.windll.user32
+                hwnd = user32.GetForegroundWindow()
+                
+                if hwnd:
+                    # Получаем PID окна
+                    process_id = wintypes.DWORD()
+                    user32.GetWindowThreadProcessId(hwnd, ctypes.byref(process_id))
+                    pid = process_id.value
+                    
+                    # Проверяем что это один из наших персонажей
+                    if pid in self.manager.characters:
+                        character = self.manager.characters[pid]
+                        
+                        # Обновляем last_active_character
+                        if character.is_valid():
+                            self.app_state.set_last_active_character(character)
+                            logging.debug(f"Active window: {character.char_base.char_name}")
+            
+            except Exception as e:
+                logging.error(f"Error in active window polling: {e}")
+            
+            # Повторить через 500ms
+            self.root.after(500, poll)
+        
+        # Запустить первый раз
+        self.root.after(500, poll)

@@ -10,10 +10,13 @@ class AppState:
         self.selected_character = None  # Character или None (оранжевая подсветка)
         self.active_characters = set()  # {Character, ...} (цветные иконки)
         
+        # НОВОЕ: Последнее активное окно
+        self.last_active_character = None  # Character последнего активного окна ElementClient.exe
+        
         # Верификация
         self.verified = False
         
-        # НОВОЕ: Уровень доступа (кэшируется при refresh)
+        # Уровень доступа (кэшируется при refresh)
         self.permission_level = "none"  # "none" / "try" / "pro" / "dev"
         
         # Активные toggle-действия
@@ -34,6 +37,10 @@ class AppState:
         """Проверить активен ли персонаж"""
         return character in self.active_characters
     
+    def set_last_active_character(self, character):
+        """НОВОЕ: Установить последнее активное окно"""
+        self.last_active_character = character
+    
     def toggle_action(self, action_id):
         """Переключить toggle-действие"""
         if action_id in self.active_toggle_actions:
@@ -47,7 +54,7 @@ class AppState:
     
     def has_permission(self, required_permission: str) -> bool:
         """
-        НОВОЕ: Проверить есть ли доступ к функции
+        Проверить есть ли доступ к функции
         
         Args:
             required_permission: требуемый уровень ("try", "pro", "dev")
