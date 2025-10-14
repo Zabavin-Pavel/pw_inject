@@ -14,6 +14,9 @@ class Character:
         # Поведение создаётся автоматически когда узнаем класс
         self.behavior = None
         self._update_behavior()
+        
+        # НОВОЕ: Информация о заморозке fly_speed_z для Follow
+        self.fly_freeze_info = None
     
     def _update_behavior(self):
         """Обновить поведение на основе класса из памяти"""

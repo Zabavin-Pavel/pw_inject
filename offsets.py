@@ -27,6 +27,11 @@ OFFSETS = {
     "char_pos_x": "float:char_base +0xA00",
     "char_pos_y": "float:char_base +0x9F8",
     "char_pos_z": "float:char_base +0x9FC",
+
+    # Полет
+    "fly_speed": "float:char_base +0x74C",
+    "fly_speed_z": "float:char_base +0x12A8",
+    "fly_status": "int32:char_base +0x9DC",
     
     # Группа
     "party_ptr": "ptr:char_base +0xAA0",

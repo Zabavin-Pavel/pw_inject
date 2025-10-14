@@ -38,6 +38,11 @@ class CharBase:
         self.char_pos_x = resolve_offset(self.memory, OFFSETS["char_pos_x"], self.cache)
         self.char_pos_y = resolve_offset(self.memory, OFFSETS["char_pos_y"], self.cache)
         self.char_pos_z = resolve_offset(self.memory, OFFSETS["char_pos_z"], self.cache)
+        
+        # НОВОЕ: Полет
+        self.fly_speed = resolve_offset(self.memory, OFFSETS["fly_speed"], self.cache)
+        self.fly_speed_z = resolve_offset(self.memory, OFFSETS["fly_speed_z"], self.cache)
+        self.fly_status = resolve_offset(self.memory, OFFSETS["fly_status"], self.cache)
     
     def is_valid(self):
         """Проверка валидности данных"""
@@ -67,10 +72,6 @@ class CharBase:
         # Это триггерит обновление позиции
         self.memory.write_float(char_base + 0xA20, z)  # Копия Z (или что-то связанное)
         self.memory.write_float(char_base + 0xA24, z)  # Еще одна копия
-        
-        # Можно попробовать записать что-то в A08, A0C тоже
-        # self.memory.write_float(char_base + 0xA08, 0.0)
-        # self.memory.write_float(char_base + 0xA0C, 0.0)
         
         return True
     
@@ -111,41 +112,31 @@ class CharBase:
         
         return (x, y, z)
     
-    # def get_movepoint_position(self):
-    #     """Получить координаты точки куда кликнули"""
-    #     # Получаем selection_origin
-    #     selection_origin = resolve_offset(self.memory, OFFSETS["selection_origin"], self.cache)
-    #     if selection_origin:
-    #         self.cache["selection_origin"] = selection_origin
-        
-    #     # Получаем selection_ptr
-    #     selection_ptr = resolve_offset(self.memory, OFFSETS["selection_ptr"], self.cache)
-    #     if not selection_ptr:
-    #         return None
-        
-    #     self.cache["selection_ptr"] = selection_ptr
-        
-    #     # Получаем movepoint_ptr
-    #     movepoint_ptr = resolve_offset(self.memory, OFFSETS["movepoint_ptr"], self.cache)
-    #     if not movepoint_ptr:
-    #         return None
-        
-    #     self.cache["movepoint_ptr"] = movepoint_ptr
-        
-    #     # Читаем координаты
-    #     x = resolve_offset(self.memory, OFFSETS["movepoint_x"], self.cache)
-    #     y = resolve_offset(self.memory, OFFSETS["movepoint_y"], self.cache)
-    #     z = resolve_offset(self.memory, OFFSETS["movepoint_z"], self.cache)
-        
-    #     if x is None or y is None or z is None:
-    #         return None
-        
-    #     return (x, y, z)
-
-
     def refresh(self):
         """Обновить все данные"""
         self._update()
+    
+    def set_target_id(self, target_id):
+        """НОВОЕ: Записать target_id (для Attack)"""
+        if "char_base" not in self.cache:
+            self._update()
+        
+        if "char_base" not in self.cache:
+            return False
+        
+        char_base = self.cache["char_base"]
+        return self.memory.write_uint(char_base + 0x7B4, target_id)
+    
+    def set_fly_speed_z(self, value):
+        """НОВОЕ: Записать fly_speed_z (для Follow)"""
+        if "char_base" not in self.cache:
+            self._update()
+        
+        if "char_base" not in self.cache:
+            return False
+        
+        char_base = self.cache["char_base"]
+        return self.memory.write_float(char_base + 0x12A8, value)
 
 
 class WorldManager:

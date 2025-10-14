@@ -329,13 +329,23 @@ class Memory:
         if freeze_info['thread']:
             freeze_info['thread'].join(timeout=1)
 
-
-
-
-
-
-
-
+    def write_uint(self, address, value):
+        """Записать 4-байтовое беззнаковое целое число"""
+        try:
+            buffer = ctypes.c_uint32(value)
+            bytes_written = ctypes.c_size_t()
+            
+            result = self.kernel32.WriteProcessMemory(
+                self.process_handle,
+                ctypes.c_void_p(address),
+                ctypes.byref(buffer),
+                4,
+                ctypes.byref(bytes_written)
+            )
+            
+            return result and bytes_written.value == 4
+        except:
+            return False
 
     def write_uint64(self, address, value):
         """Записать 8-байтовое целое число"""
@@ -354,7 +364,6 @@ class Memory:
             return result and bytes_written.value == 8
         except:
             return False
-
 
     def allocate_memory(self, size):
         """Выделить память в процессе"""
@@ -556,19 +565,3 @@ class Memory:
         shellcode.extend([0xC3])
         
         return shellcode
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
