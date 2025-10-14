@@ -7,7 +7,7 @@
   "hotkeys": {
     "ahk_click_mouse": "-",
     "ahk_press_space": "-",
-    "tp_to_target": "-",
+    "tp_to_target": "7",
     "tp_to_lider": "-",
     "tp_to_so": "-",
     "tp_to_go": "-"

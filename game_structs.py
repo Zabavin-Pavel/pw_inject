@@ -54,7 +54,7 @@ class CharBase:
         return (self.char_pos_x, self.char_pos_y, self.char_pos_z)
     
     def set_position(self, x, y, z):
-        """Записать координаты с триггером обновления"""
+        """Записать координаты (БЕЗ проверок - быстро)"""
         if "char_base" not in self.cache:
             self._update()
         
@@ -63,15 +63,10 @@ class CharBase:
         
         char_base = self.cache["char_base"]
         
-        # Основные координаты
+        # Записываем координаты
         self.memory.write_float(char_base + 0xA00, x)  # X
         self.memory.write_float(char_base + 0x9F8, y)  # Y
         self.memory.write_float(char_base + 0x9FC, z)  # Z
-        
-        # ВАЖНО: Записываем в те же адреса что и функция движения
-        # Это триггерит обновление позиции
-        self.memory.write_float(char_base + 0xA20, z)  # Копия Z (или что-то связанное)
-        self.memory.write_float(char_base + 0xA24, z)  # Еще одна копия
         
         return True
     
@@ -117,7 +112,7 @@ class CharBase:
         self._update()
     
     def set_target_id(self, target_id):
-        """НОВОЕ: Записать target_id (для Attack)"""
+        """Записать target_id (для Attack)"""
         if "char_base" not in self.cache:
             self._update()
         
@@ -128,7 +123,7 @@ class CharBase:
         return self.memory.write_uint(char_base + 0x7B4, target_id)
     
     def set_fly_speed_z(self, value):
-        """НОВОЕ: Записать fly_speed_z (для Follow)"""
+        """Записать fly_speed_z (для Follow)"""
         if "char_base" not in self.cache:
             self._update()
         
@@ -157,8 +152,29 @@ class WorldManager:
         if world_base:
             self.cache["world_base"] = world_base
     
+    def has_any_loot(self):
+        """
+        БЫСТРАЯ проверка: есть ли вообще лут (БЕЗ фильтрации по расстоянию)
+        
+        Returns:
+            bool: True если есть хотя бы один предмет лута
+        """
+        # Получаем loot_count (очень быстро)
+        loot_count = resolve_offset(self.memory, OFFSETS["loot_count"], self.cache)
+        
+        return loot_count is not None and loot_count > 0
+    
     def get_loot_nearby(self, char_position, max_distance=50):
-        """Получить лут вокруг персонажа"""
+        """
+        Получить лут вокруг персонажа (с фильтрацией по расстоянию)
+        
+        Args:
+            char_position: (x, y, z) координаты персонажа
+            max_distance: максимальное расстояние в метрах
+        
+        Returns:
+            list: список предметов лута поблизости
+        """
         char_x, char_y, _ = char_position
         
         # Получаем контейнер
