@@ -40,6 +40,10 @@ class MainWindow:
             on_hotkey_executed=self._on_hotkey_flash
         )
         
+        # ВАЖНО: Создаём AHK менеджер ДО регистрации действий
+        from ahk_manager import AHKManager
+        self.ahk_manager = AHKManager()
+        
         # Верификация (состояние)
         self.verified = False
         
@@ -49,30 +53,8 @@ class MainWindow:
         # Таймеры для toggle действий
         self.action_timers = {}
         
-        # Регистрируем действия
+        # Регистрируем действия (ПОСЛЕ создания ahk_manager!)
         self._register_actions()
-        
-        # Создаём UI
-        self._create_ui()
-        
-        # Создаём tray icon
-        self._create_tray_icon()
-        
-        # Загружаем хоткеи из настроек
-        self._load_hotkeys()
-        
-        # ОБНОВИТЬ UI ХОТКЕЕВ ПОСЛЕ ЗАГРУЗКИ
-        self.root.after(100, lambda: self.hotkey_panel.update_hotkey_display())
-        
-        # Применить topmost из настроек
-        if self.settings_manager.is_topmost():
-            self.root.attributes('-topmost', True)
-            self.is_topmost = True
-        else:
-            self.is_topmost = False
-        
-        # Автоматический refresh при запуске
-        self.root.after(100, self.on_refresh)
     
     def _register_actions(self):
         """Зарегистрировать все действия с уровнями доступа"""

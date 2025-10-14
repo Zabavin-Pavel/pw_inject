@@ -2901,3 +2901,20 @@ Traceback (most recent call last):
              ^^^^^^^^^^^^^^^^
 AttributeError: 'MainWindow' object has no attribute 'ahk_manager'
 2025-10-14 05:27:11,594 - INFO - === Завершение приложения ===
+2025-10-14 05:30:37,544 - INFO - Первый экземпляр - запуск приложения
+2025-10-14 05:30:37,716 - INFO - === Запуск приложения ===
+2025-10-14 05:30:37,716 - INFO - Settings loaded from settings.json
+2025-10-14 05:30:37,717 - INFO - license.ini loaded
+2025-10-14 05:30:37,789 - INFO - AHK started (PID: 5544)
+2025-10-14 05:30:38,289 - INFO - GUI инициализирован
+2025-10-14 05:30:38,290 - ERROR - Fatal error: 'MainWindow' object has no attribute 'root'
+Traceback (most recent call last):
+  File "c:\project\pw_inject\bot.py", line 89, in <module>
+    app.run()
+    ~~~~~~~^^
+  File "c:\project\pw_inject\gui\main_window.py", line 693, in run
+    self.root.mainloop()
+    ^^^^^^^^^
+AttributeError: 'MainWindow' object has no attribute 'root'
+2025-10-14 05:30:38,291 - INFO - === Завершение приложения ===
+2025-10-14 05:30:38,342 - INFO - AHK stopped gracefully
