@@ -9,6 +9,7 @@ a = Analysis(
     datas=[
         ('assets', 'assets'),
         ('hotkeys.exe', '.'),
+        ('settings.json', '.'),  # НОВОЕ: запаковываем дефолтный settings.json
     ],
     hiddenimports=['pystray._win32'],
     hookspath=[],
@@ -45,3 +46,6 @@ exe = EXE(
     entitlements_file=None,
     icon='assets/icon.png'
 )
+
+# ВАЖНО: license.ini НЕ запаковывается - должен быть рядом с .exe
+# После компиляции создайте license.ini вручную рядом с xvocmuk.exe

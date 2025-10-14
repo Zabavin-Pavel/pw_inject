@@ -13,7 +13,8 @@ from gui.styles import *
 from gui.character_panel import CharacterPanel
 from gui.hotkey_panel import HotkeyPanel
 from core import AppState, ActionManager, HotkeyManager, LicenseManager
-from keygen import get_mac_address
+from license_manager import LicenseConfig
+from keygen import PERMISSION_NONE, PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
 from ahk_manager import AHKManager
 
 class MainWindow:
@@ -22,7 +23,12 @@ class MainWindow:
     def __init__(self, multibox_manager, settings_manager):
         self.manager = multibox_manager
         self.settings_manager = settings_manager
-        self.ahk_manager = AHKManager()
+        
+        # НОВОЕ: Менеджер лицензий (license.ini)
+        self.license_config = LicenseConfig()
+        
+        # НОВОЕ: Предыдущий уровень доступа (для оптимизации UI)
+        self.prev_permission_level = PERMISSION_NONE
         
         # Состояние приложения
         self.app_state = AppState()
@@ -69,7 +75,7 @@ class MainWindow:
         self.root.after(100, self.on_refresh)
     
     def _register_actions(self):
-        """Зарегистрировать все действия"""
+        """Зарегистрировать все действия с уровнями доступа"""
         # Toggle действия с иконками (без хоткеев)
         self.action_manager.register(
             'follow',
@@ -77,7 +83,8 @@ class MainWindow:
             type='toggle',
             callback=self.toggle_follow,
             icon='👣',
-            has_hotkey=False
+            has_hotkey=False,
+            required_permission=PERMISSION_TRY  # TRY
         )
         
         self.action_manager.register(
@@ -86,7 +93,8 @@ class MainWindow:
             type='toggle',
             callback=self.toggle_attack,
             icon='⚔️',
-            has_hotkey=False
+            has_hotkey=False,
+            required_permission=PERMISSION_PRO  # PRO
         )
         
         self.action_manager.register(
@@ -95,7 +103,8 @@ class MainWindow:
             type='toggle',
             callback=self.toggle_teleport,
             icon='🌀',
-            has_hotkey=False
+            has_hotkey=False,
+            required_permission=PERMISSION_DEV  # DEV
         )
         
         # Quick действия с хоткеями (без иконок)
@@ -104,16 +113,17 @@ class MainWindow:
             label='Teleport to Target',
             type='quick',
             callback=self.action_teleport_to_target,
-            has_hotkey=True
+            has_hotkey=True,
+            required_permission=PERMISSION_PRO  # PRO
         )
         
-        # Quick действия с хоткеями (без иконок)
         self.action_manager.register(
             'show_all',
             label='Show All Characters',
             type='quick',
             callback=self.action_show_all,
-            has_hotkey=True
+            has_hotkey=True,
+            required_permission=PERMISSION_TRY  # TRY
         )
         
         self.action_manager.register(
@@ -121,7 +131,8 @@ class MainWindow:
             label='Show Active Characters',
             type='quick',
             callback=self.action_show_active,
-            has_hotkey=True
+            has_hotkey=True,
+            required_permission=PERMISSION_TRY  # TRY
         )
         
         self.action_manager.register(
@@ -129,7 +140,8 @@ class MainWindow:
             label='Show Nearby Loot',
             type='quick',
             callback=self.action_show_loot,
-            has_hotkey=True
+            has_hotkey=True,
+            required_permission=PERMISSION_PRO  # PRO
         )
         
         self.action_manager.register(
@@ -137,7 +149,8 @@ class MainWindow:
             label='Show Nearby Players',
             type='quick',
             callback=self.action_show_players,
-            has_hotkey=True
+            has_hotkey=True,
+            required_permission=PERMISSION_PRO  # PRO
         )
         
         self.action_manager.register(
@@ -145,7 +158,8 @@ class MainWindow:
             label='Show Nearby NPC',
             type='quick',
             callback=self.action_show_npcs,
-            has_hotkey=True
+            has_hotkey=True,
+            required_permission=PERMISSION_DEV  # DEV
         )
     
         # AHK экшены
@@ -154,7 +168,8 @@ class MainWindow:
             label='AHK: Click at Mouse',
             type='quick',
             callback=self.ahk_manager.click_at_mouse,
-            has_hotkey=True
+            has_hotkey=True,
+            required_permission=PERMISSION_TRY  # TRY
         )
 
         self.action_manager.register(
@@ -162,7 +177,8 @@ class MainWindow:
             label='AHK: Press Space',
             type='quick',
             callback=lambda: self.ahk_manager.send_key("Space"),
-            has_hotkey=True
+            has_hotkey=True,
+            required_permission=PERMISSION_TRY  # TRY
         )
 
     def _create_ui(self):
@@ -309,16 +325,16 @@ class MainWindow:
         self.character_panel.pack(fill=tk.BOTH, expand=True, padx=0, pady=0)
         
         # Правая панель: хоткеи + иконки действий (С РАМКОЙ)
-        right_container = tk.Frame(
+        self.right_container = tk.Frame(
             content_frame,
             bg=COLOR_BG,
             highlightthickness=1,
             highlightbackground=COLOR_BORDER
         )
-        right_container.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
+        self.right_container.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
         
         self.hotkey_panel = HotkeyPanel(
-            right_container,
+            self.right_container,
             self.app_state,
             self.action_manager,
             self.hotkey_manager,
@@ -434,40 +450,65 @@ class MainWindow:
         self.root.after(200, lambda: self.refresh_btn.configure(fg=COLOR_TEXT))
     
     def on_refresh(self):
-        """Обработчик кнопки Refresh"""
+        """Обработчик кнопки Refresh - С ВЕРИФИКАЦИЕЙ ПРИ КАЖДОМ ВЫЗОВЕ"""
         # Мигнуть кнопкой
         self._flash_refresh_button()
         
-        # === НОВОЕ: Обновить список окон в AHK ===
+        # Обновить список окон в AHK
         self.ahk_manager.refresh_windows()
         
-        # === ШАГ 1: ВЕРИФИКАЦИЯ (если ещё не пройдена) ===
-        if not self.verified:
-            # Получаем текущий MAC адрес
-            current_mac = get_mac_address()
+        # === ШАГ 1: ВЕРИФИКАЦИЯ (КАЖДЫЙ РАЗ!) ===
+        success, permission_level = LicenseManager.verify_best_license(self.license_config)
+        
+        # Обновляем состояние приложения
+        self.verified = success
+        self.app_state.permission_level = permission_level
+        
+        logging.info(f"🔐 Verification: {success}, Permission: {permission_level}")
+        
+        # === ОПТИМИЗАЦИЯ: Обновлять UI только если уровень изменился ===
+        permission_changed = (permission_level != self.prev_permission_level)
+        
+        if permission_changed:
+            logging.info(f"🔄 Permission changed: {self.prev_permission_level} → {permission_level}")
+            self.prev_permission_level = permission_level
             
-            # Обновляем hwid в settings
-            self.settings_manager.set_hwid(current_mac)
-            
-            # Получаем ключ из settings
-            license_key = self.settings_manager.get_license_key()
-            
-            # Проверяем лицензию
-            if LicenseManager.verify_from_settings(current_mac, license_key):
-                self.verified = True
-            else:
-                # Очистить список персонажей
-                self.character_panel.set_characters([])
-                return
+            # Пересоздать hotkey panel (показать/скрыть экшены)
+            self._rebuild_hotkey_panel()
         
         # === ШАГ 2: ЗАГРУЗКА ПЕРСОНАЖЕЙ (если верификация OK) ===
-        # Обновляем список персонажей
-        self.manager.refresh_characters()
-        characters = self.manager.get_valid_characters()
-        
-        # Отображаем персонажей
-        self.character_panel.set_characters(characters)
+        if self.verified and permission_level != PERMISSION_NONE:
+            # Обновляем список персонажей
+            self.manager.refresh_characters()
+            characters = self.manager.get_valid_characters()
+            
+            # Отображаем персонажей
+            self.character_panel.set_characters(characters)
+        else:
+            # Нет доступа - очистить всё
+            self.character_panel.set_characters([])
+            
+            logging.warning("❌ No valid license - access denied")
     
+    def _rebuild_hotkey_panel(self):
+        """Пересоздать hotkey panel (для обновления видимости экшенов)"""
+        # Удаляем старый hotkey_panel
+        self.hotkey_panel.destroy()
+        
+        # Создаём новый hotkey_panel
+        self.hotkey_panel = HotkeyPanel(
+            self.right_container,
+            self.app_state,
+            self.action_manager,
+            self.hotkey_manager,
+            self.settings_manager,
+            on_action_executed=self.on_action_executed
+        )
+        self.hotkey_panel.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        
+        # Обновить отображение хоткеев
+        self.root.after(100, lambda: self.hotkey_panel.update_hotkey_display())
+
     def on_character_selected(self, character):
         """Обработчик клика по никнейму персонажа - toggle выбора"""
         # Если этот персонаж уже выбран - снять выбор

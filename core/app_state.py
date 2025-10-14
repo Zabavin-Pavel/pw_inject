@@ -13,6 +13,9 @@ class AppState:
         # Верификация
         self.verified = False
         
+        # НОВОЕ: Уровень доступа (кэшируется при refresh)
+        self.permission_level = "none"  # "none" / "try" / "pro" / "dev"
+        
         # Активные toggle-действия
         self.active_toggle_actions = set()  # {'follow', 'attack', ...}
     
@@ -41,3 +44,26 @@ class AppState:
     def is_action_active(self, action_id):
         """Проверить активно ли действие"""
         return action_id in self.active_toggle_actions
+    
+    def has_permission(self, required_permission: str) -> bool:
+        """
+        НОВОЕ: Проверить есть ли доступ к функции
+        
+        Args:
+            required_permission: требуемый уровень ("try", "pro", "dev")
+        
+        Returns:
+            True если текущий уровень >= требуемого
+        """
+        # Иерархия уровней
+        PERMISSION_HIERARCHY = {
+            "none": 0,
+            "try": 1,
+            "pro": 2,
+            "dev": 3,
+        }
+        
+        current_level = PERMISSION_HIERARCHY.get(self.permission_level, 0)
+        required_level = PERMISSION_HIERARCHY.get(required_permission, 0)
+        
+        return current_level >= required_level
