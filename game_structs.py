@@ -2,6 +2,7 @@
 Игровые структуры для чтения/записи данных из памяти
 """
 from offsets import OFFSETS, resolve_offset
+import logging
 
 
 class CharBase:
@@ -10,6 +11,7 @@ class CharBase:
     def __init__(self, memory):
         self.memory = memory
         self.cache = {}
+        self._previous_char_id = None  # НОВОЕ: для отслеживания смены персонажа
         self._update()
     
     def _update(self):
@@ -23,11 +25,23 @@ class CharBase:
         if char_base:
             self.cache["char_base"] = char_base
         
-        # Читаем данные
-        self.char_id = resolve_offset(self.memory, OFFSETS["char_id"], self.cache)
+        # Читаем char_id СРАЗУ для проверки смены персонажа
+        new_char_id = resolve_offset(self.memory, OFFSETS["char_id"], self.cache)
+        
+        # КРИТИЧНО: Проверяем смену персонажа
+        if self._previous_char_id is not None and new_char_id != self._previous_char_id:
+            # Персонаж сменился! Очищаем кеш указателей (но не базовые адреса)
+            old_id = self._previous_char_id
+            logging.warning(f"🔄 Character changed: {old_id} → {new_char_id}")
+            self._invalidate_cache()
+        
+        # Обновляем предыдущий ID
+        self._previous_char_id = new_char_id
+        
+        # Читаем все данные
+        self.char_id = new_char_id
         self.char_class = resolve_offset(self.memory, OFFSETS["char_class"], self.cache)
         self.char_name = resolve_offset(self.memory, OFFSETS["char_name"], self.cache)
-        self.char_level = resolve_offset(self.memory, OFFSETS["char_level"], self.cache)
         self.target_id = resolve_offset(self.memory, OFFSETS["target_id"], self.cache)
         
         # HP/MP
@@ -39,10 +53,27 @@ class CharBase:
         self.char_pos_y = resolve_offset(self.memory, OFFSETS["char_pos_y"], self.cache)
         self.char_pos_z = resolve_offset(self.memory, OFFSETS["char_pos_z"], self.cache)
         
-        # НОВОЕ: Полет
+        # Полет
         self.fly_speed = resolve_offset(self.memory, OFFSETS["fly_speed"], self.cache)
         self.fly_speed_z = resolve_offset(self.memory, OFFSETS["fly_speed_z"], self.cache)
         self.fly_status = resolve_offset(self.memory, OFFSETS["fly_status"], self.cache)
+    
+    def _invalidate_cache(self):
+        """Очистить кеш указателей (кроме базовых адресов)"""
+        # Сохраняем базовые адреса (они не меняются при смене персонажа)
+        char_origin = self.cache.get("char_origin")
+        char_base = self.cache.get("char_base")
+        
+        # Очищаем весь кеш
+        self.cache.clear()
+        
+        # Восстанавливаем базовые адреса
+        if char_origin:
+            self.cache["char_origin"] = char_origin
+        if char_base:
+            self.cache["char_base"] = char_base
+        
+        logging.info("🔄 CharBase cache invalidated (character changed)")
     
     def is_valid(self):
         """Проверка валидности данных"""
@@ -73,9 +104,9 @@ class CharBase:
     def get_target_position(self):
         """Получить координаты таргета"""
         # Обновляем target_id
-        self.char_target_id = resolve_offset(self.memory, OFFSETS["target_id"], self.cache)
+        self.target_id = resolve_offset(self.memory, OFFSETS["target_id"], self.cache)
         
-        if not self.char_target_id or self.char_target_id == 0:
+        if not self.target_id or self.target_id == 0:
             return None
         
         # Получаем selection_origin

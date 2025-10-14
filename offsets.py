@@ -17,7 +17,6 @@ OFFSETS = {
     "char_id": "int32:char_base +0x6A8",
     "char_class": "int32:char_base +0x9D0",
     "char_name": "str:char_base +0x9C8",
-    "char_level": "int32:char_base +0x6B4",
     
     # HP/MP
     "char_hp": "int32:char_base +0x6BC",
@@ -69,33 +68,11 @@ OFFSETS = {
     "target_pos_y": "float:target_ptr +0xF4",
     "target_pos_z": "float:target_ptr +0xF8",
 
-    # Movepoint (точка куда кликнули)
-    "movepoint_ptr": "ptr:selection_ptr +0x10",
-    "movepoint_x": "float:movepoint_ptr +0xFC",  # Те же оффсеты!
-    "movepoint_y": "float:movepoint_ptr +0xF4",
-    "movepoint_z": "float:movepoint_ptr +0xF8",
-
     # ========================================
     # GAME INFO
     # ========================================
     "location_origin": "static:ElementClient.exe +0x0149AE10 +0x1000",
     "location_id": "int32:location_origin -> +0x0 -> +0x50 -> +0x268 -> +0x128 -> +0x10",
-    
-    "teleport_origin": "static:ElementClient.exe +0x0142CDD8 +0x1000",
-    "teleport_id": "int32:teleport_origin -> +0x550 -> +0x3D8 -> +0x138",
-
-    # ========================================
-    # MOVEMENT FUNCTIONS
-    # ========================================
-    "func_click_handler": 0x5D1D89,      # Первая функция - обработчик кадров
-    "func_redirect_1": 0x12FA8,          # Редирект 1
-    "func_action_dispatcher": 0x5D2320,  # Диспетчер действий (switch case)
-    "func_redirect_2": 0x5600,           # Редирект 2
-    "func_move": 0x5D1190,               # Конечная функция движения
-
-    # Координаты мыши
-    "mouse_coord_x": 0x146F4B8,          # Координата X мыши
-    "mouse_coord_y": 0x146F4BC,          # Координата Y мыши
 }
 
 
@@ -396,9 +373,6 @@ def main():
         char_name = resolve_offset(memory, OFFSETS["char_name"], cache)
         print(f"Name: '{char_name}'")
         
-        char_level = resolve_offset(memory, OFFSETS["char_level"], cache)
-        print(f"Level: {char_level}")
-        
         target_id = resolve_offset(memory, OFFSETS["target_id"], cache)
         print(f"Target ID: {target_id}")
         
@@ -549,14 +523,6 @@ def main():
         location_id = resolve_offset(memory, OFFSETS["location_id"], cache)
         print(f"Location ID: {location_id}")
         
-        teleport_origin = resolve_offset(memory, OFFSETS["teleport_origin"], cache)
-        if teleport_origin:
-            cache["teleport_origin"] = teleport_origin
-            print(f"✅ teleport_origin: {hex(teleport_origin)}")
-        
-        teleport_id = resolve_offset(memory, OFFSETS["teleport_id"], cache)
-        print(f"Teleport ID: {teleport_id}")
-
         # ========================================
         # SELECTION MANAGER TEST
         # ========================================

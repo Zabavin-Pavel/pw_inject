@@ -82,15 +82,35 @@ class MultiboxManager:
                 self.world_manager = None
                 self._main_pid = None
         
-        # Проверяем существующие персонажи
+        # НОВОЕ: Проверяем смену персонажа для существующих процессов
         to_recreate = []
-        for pid, char in self.characters.items():
+        for pid, char in list(self.characters.items()):
+            # Обновляем данные
+            char.char_base.refresh()
+            
+            # Проверяем валидность
             if not char.char_base.is_valid():
                 to_recreate.append(pid)
+                continue
+            
+            # Проверяем смену персонажа (если char_id изменился)
+            # CharBase уже очистил свой кеш в _update(), но нам нужно пересоздать Character
+            # для обновления behavior и прочего
+            if char.char_base._previous_char_id != char.char_base.char_id:
+                logging.info(f"🔄 Character changed in PID {pid}, recreating...")
+                to_recreate.append(pid)
         
-        # Пересоздаём невалидные
+        # Пересоздаём персонажей (смена персонажа или невалидность)
         for pid in to_recreate:
-            pass
+            old_char = self.characters[pid]
+            
+            # Пересоздаём Character с новым CharBase
+            char_base = CharBase(old_char.memory)
+            new_char = Character(pid, old_char.memory, char_base)
+            
+            self.characters[pid] = new_char
+            
+            logging.info(f"✅ Character recreated for PID {pid}: {char_base.char_name}")
         
         # Добавляем новые процессы
         for pid in current_pids - existing_pids:
@@ -104,6 +124,8 @@ class MultiboxManager:
                 if self._main_pid is None:
                     self._main_pid = pid
                     self.world_manager = WorldManager(mem)
+                
+                logging.info(f"✅ New character added: {char_base.char_name} (PID: {pid})")
     
     def refresh_characters(self):
         """Алиас для refresh()"""
@@ -176,7 +198,7 @@ class MultiboxManager:
         return leader, largest_group
 
     # ===================================================
-    # ТИПОВЫЕ ФУНКЦИИ ТЕЛЕПОРТАЦИИ (ОПТИМИЗИРОВАНО)
+    # ТИПОВЫЕ ФУНКЦИИ ТЕЛЕПОРТАЦИИ (УПРОЩЕНО)
     # ===================================================
     
     def teleport_character(self, character, target_x, target_y, target_z, send_space=False):
@@ -189,53 +211,51 @@ class MultiboxManager:
             send_space: нужно ли нажать space после телепорта
         
         Returns:
-            bool: успех записи координат
+            bool: всегда True (проверок нет)
         """
         if not character or not character.is_valid():
             return False
         
-        # Записываем координаты
-        success = character.char_base.set_position(target_x, target_y, target_z)
+        # Записываем координаты (БЕЗ ПРОВЕРОК)
+        character.char_base.set_position(target_x, target_y, target_z)
         
-        if not success:
-            return False
-        
-        # Нажимаем space если нужно
+        # Нажимаем space если нужно (ОДИНОЧНЫЙ)
         if send_space and self.ahk_manager:
             self.ahk_manager.send_key_to_pid("space", character.pid)
         
         return True
     
-    def teleport_group(self, characters, target_x, target_y, target_z):
+    def teleport_group(self, characters, target_x, target_y, target_z, send_space=False):
         """
-        Телепортировать группу персонажей (БЫСТРО, space для всех)
+        Телепортировать группу персонажей (БЫСТРО, БЕЗ ПРОВЕРОК)
         
         Args:
             characters: список персонажей
             target_x, target_y, target_z: целевые координаты
+            send_space: нужно ли нажать space после телепорта
         
         Returns:
-            int: количество успешных телепортов
+            int: количество телепортированных персонажей
         """
         if not characters:
             return 0
         
         success_count = 0
         
-        # Записываем координаты всем
+        # Записываем координаты всем (БЕЗ ПРОВЕРОК)
         for char in characters:
             if char.is_valid():
-                if char.char_base.set_position(target_x, target_y, target_z):
-                    success_count += 1
+                char.char_base.set_position(target_x, target_y, target_z)
+                success_count += 1
         
-        # Нажимаем space ВСЕМ СРАЗУ
-        if success_count > 0 and self.ahk_manager:
+        # Нажимаем space ВСЕМ СРАЗУ если нужно (МАССОВЫЙ)
+        if send_space and success_count > 0 and self.ahk_manager:
             self.ahk_manager.send_key("space")
         
         return success_count
     
     # ===================================================
-    # ЭКШЕНЫ (ОБНОВЛЕНО)
+    # ЭКШЕНЫ (ОПТИМИЗИРОВАНО)
     # ===================================================
     
     def action_teleport_to_target(self, character):
@@ -252,18 +272,20 @@ class MultiboxManager:
         
         target_x, target_y, target_z = target_pos
         
-        # Телепортируем с +2 к Z (БЕЗ space)
-        return self.teleport_character(
+        # Телепортируем с +2 к Z (БЕЗ space, БЕЗ проверок)
+        self.teleport_character(
             character, 
             target_x, 
             target_y, 
             target_z + 2,
             send_space=False
         )
+        
+        return True
     
     def tp_to_leader(self):
         """
-        Телепортировать всех членов группы к лидеру (С space для всех)
+        Телепортировать всех членов группы к лидеру (С МАССОВЫМ SPACE)
         """
         leader, group = self.get_leader_and_group()
         
@@ -305,8 +327,14 @@ class MultiboxManager:
             if distance <= 300:
                 members_to_tp.append(member)
         
-        # Телепортируем группу (С space)
-        return self.teleport_group(members_to_tp, leader_x, leader_y, leader_z + 0.5)
+        # Телепортируем группу (С МАССОВЫМ SPACE)
+        return self.teleport_group(
+            members_to_tp, 
+            leader_x, 
+            leader_y, 
+            leader_z + 0.5,
+            send_space=True
+        )
     
     def tp_to_point(self, point_name):
         """
@@ -346,9 +374,15 @@ class MultiboxManager:
         dy = abs(char_y - trigger_y)
         
         if dx <= radius and dy <= radius:
-            # В зоне триггера - телепортируем (С space)
+            # В зоне триггера - телепортируем (С ОДИНОЧНЫМ SPACE)
             target_x, target_y, target_z = point["target"]
-            return self.teleport_character(active_char, target_x, target_y, target_z, send_space=True)
+            return self.teleport_character(
+                active_char, 
+                target_x, 
+                target_y, 
+                target_z,
+                send_space=True
+            )
         else:
             char_name = active_char.char_base.char_name
             logging.info(f"TP to {point_name}: {char_name} not in trigger zone (dx={dx:.1f}, dy={dy:.1f})")
@@ -363,124 +397,164 @@ class MultiboxManager:
         Проверить условия телепортации (ОПТИМИЗИРОВАНО)
         Вызывается каждую секунду из toggle loop
         
+        Логика:
+        1. Если активное окно = лидер → проверяем PARTY + SOLO точки
+        2. Если активное окно НЕ лидер (или нет группы) → только SOLO точки
+        
         Returns:
             str: статус проверки
         """
         if not self.world_manager or not self.app_state:
-            return "❌ WorldManager or AppState not initialized"
+            return "❌ Not initialized"
         
         active_char = self.app_state.last_active_character
+        
+        if not active_char:
+            return "❌ No active window"
+        
         leader, group = self.get_leader_and_group()
         
-        # Проверяем является ли активное окно лидером
+        # Определяем является ли активное окно лидером
         is_leader = (active_char == leader)
         
         # === ПРОВЕРКА ВСЕХ ТОЧЕК ===
         for point in DUNGEON_POINTS:
-            point_name = point["name"]
             mode = point["mode"]
-            trigger_x, trigger_y = point["trigger"]
-            radius = point["radius"]
             
-            # === SOLO ТОЧКИ (любое активное окно) ===
+            # SOLO точки - доступны всем
             if mode == "solo":
-                if not active_char:
-                    continue
-                
-                active_char.char_base.refresh()
-                char_x = active_char.char_base.char_pos_x
-                char_y = active_char.char_base.char_pos_y
+                result = self._check_solo_point(active_char, point)
+                if result:
+                    return result
+            
+            # PARTY точки - только для лидера
+            elif mode == "party" and is_leader:
+                result = self._check_party_point(leader, group, point)
+                if result:
+                    return result
+        
+        return "⏳ No trigger points active"
+
+    def _check_solo_point(self, character, point):
+        """Проверить SOLO точку для персонажа"""
+        point_name = point["name"]
+        trigger_x, trigger_y = point["trigger"]
+        radius = point["radius"]
+        
+        # Проверяем позицию
+        character.char_base.refresh()
+        char_x = character.char_base.char_pos_x
+        char_y = character.char_base.char_pos_y
+        
+        if char_x is None or char_y is None:
+            return None
+        
+        # Проверка триггера
+        dx = abs(char_x - trigger_x)
+        dy = abs(char_y - trigger_y)
+        
+        if dx <= radius and dy <= radius:
+            # В триггере - проверяем лут если нужно
+            if point.get("check_loot", False):
+                # БЫСТРАЯ проверка: есть ли вообще лут?
+                if self.world_manager.has_any_loot():
+                    # Да, есть - проверяем расстояние
+                    loot_items = self.world_manager.get_loot_nearby(
+                        (char_x, char_y, character.char_base.char_pos_z),
+                        LOOT_CHECK_RADIUS
+                    )
+                    
+                    if loot_items and len(loot_items) > 0:
+                        return f"⏳ {point_name} (SOLO) - Waiting for loot ({len(loot_items)} items)"
+            
+            # Телепортируем (С ОДИНОЧНЫМ SPACE)
+            target_x, target_y, target_z = point["target"]
+            self.teleport_character(
+                character, 
+                target_x, 
+                target_y, 
+                target_z,
+                send_space=True
+            )
+            
+            char_name = character.char_base.char_name
+            logging.info(f"✅ {point_name} (SOLO): {char_name} teleported")
+            return f"✅ {point_name} (SOLO) - Teleported"
+        
+        return None
+
+    def _check_party_point(self, leader, group, point):
+        """Проверить PARTY точку для группы"""
+        point_name = point["name"]
+        trigger_x, trigger_y = point["trigger"]
+        radius = point["radius"]
+        
+        # Проверяем позицию лидера
+        leader.char_base.refresh()
+        leader_x = leader.char_base.char_pos_x
+        leader_y = leader.char_base.char_pos_y
+        leader_z = leader.char_base.char_pos_z
+        
+        if leader_x is None or leader_y is None or leader_z is None:
+            return None
+        
+        # Проверка триггера лидера
+        dx = abs(leader_x - trigger_x)
+        dy = abs(leader_y - trigger_y)
+        
+        if dx <= radius and dy <= radius:
+            # Проверяем сколько персонажей в триггере
+            chars_in_trigger = []
+            
+            for char in group:
+                char.char_base.refresh()
+                char_x = char.char_base.char_pos_x
+                char_y = char.char_base.char_pos_y
                 
                 if char_x is None or char_y is None:
                     continue
                 
-                # Проверка триггера
-                dx = abs(char_x - trigger_x)
-                dy = abs(char_y - trigger_y)
+                char_dx = abs(char_x - trigger_x)
+                char_dy = abs(char_y - trigger_y)
                 
-                if dx <= radius and dy <= radius:
-                    # В триггере - проверяем лут если нужно
-                    if point.get("check_loot", False):
-                        if self.world_manager.has_any_loot():
-                            loot_items = self.world_manager.get_loot_nearby(
-                                (char_x, char_y, active_char.char_base.char_pos_z),
-                                LOOT_CHECK_RADIUS
-                            )
-                            
-                            if loot_items and len(loot_items) > 0:
-                                return f"⏳ {point_name} (SOLO) - Waiting for loot ({len(loot_items)} items)"
-                    
-                    # Телепортируем
-                    target_x, target_y, target_z = point["target"]
-                    success = self.teleport_character(active_char, target_x, target_y, target_z, send_space=True)
-                    
-                    if success:
-                        char_name = active_char.char_base.char_name
-                        logging.info(f"✅ {point_name} (SOLO): {char_name} teleported")
-                        return f"✅ {point_name} (SOLO) - Teleported"
+                if char_dx <= radius and char_dy <= radius:
+                    chars_in_trigger.append(char)
             
-            # === PARTY ТОЧКИ (только если активное окно = лидер) ===
-            elif mode == "party":
-                if not is_leader or not group:
-                    continue
-                
-                leader.char_base.refresh()
-                leader_x = leader.char_base.char_pos_x
-                leader_y = leader.char_base.char_pos_y
-                leader_z = leader.char_base.char_pos_z
-                
-                if leader_x is None or leader_y is None or leader_z is None:
-                    continue
-                
-                # Проверка триггера лидера
-                dx = abs(leader_x - trigger_x)
-                dy = abs(leader_y - trigger_y)
-                
-                if dx <= radius and dy <= radius:
-                    # Проверяем сколько персонажей в триггере
-                    chars_in_trigger = []
+            total_chars = len(group)
+            ready_chars = len(chars_in_trigger)
+            
+            # Не все в радиусе
+            if ready_chars < total_chars:
+                return f"⏳ {point_name} (PARTY) - {ready_chars}/{total_chars} ready"
+            
+            # Все в радиусе - проверяем лут если нужно
+            if point.get("check_loot", False):
+                # БЫСТРАЯ проверка: есть ли вообще лут?
+                if self.world_manager.has_any_loot():
+                    # Да, есть - проверяем расстояние
+                    loot_items = self.world_manager.get_loot_nearby(
+                        (leader_x, leader_y, leader_z),
+                        LOOT_CHECK_RADIUS
+                    )
                     
-                    for char in group:
-                        char.char_base.refresh()
-                        char_x = char.char_base.char_pos_x
-                        char_y = char.char_base.char_pos_y
-                        
-                        if char_x is None or char_y is None:
-                            continue
-                        
-                        char_dx = abs(char_x - trigger_x)
-                        char_dy = abs(char_y - trigger_y)
-                        
-                        if char_dx <= radius and char_dy <= radius:
-                            chars_in_trigger.append(char)
-                    
-                    total_chars = len(group)
-                    ready_chars = len(chars_in_trigger)
-                    
-                    # Не все в радиусе
-                    if ready_chars < total_chars:
-                        return f"⏳ {point_name} (PARTY) - {ready_chars}/{total_chars} ready"
-                    
-                    # Все в радиусе - проверяем лут если нужно
-                    if point.get("check_loot", False):
-                        if self.world_manager.has_any_loot():
-                            loot_items = self.world_manager.get_loot_nearby(
-                                (leader_x, leader_y, leader_z),
-                                LOOT_CHECK_RADIUS
-                            )
-                            
-                            if loot_items and len(loot_items) > 0:
-                                return f"⏳ {point_name} (PARTY) - {ready_chars}/{total_chars} ready, {len(loot_items)} loot items"
-                    
-                    # ВСЕ УСЛОВИЯ ВЫПОЛНЕНЫ - телепортируем группу
-                    target_x, target_y, target_z = point["target"]
-                    success_count = self.teleport_group(chars_in_trigger, target_x, target_y, target_z)
-                    
-                    if success_count > 0:
-                        logging.info(f"✅ {point_name} (PARTY): {success_count}/{total_chars} teleported")
-                        return f"✅ {point_name} (PARTY) - Teleported {success_count}/{total_chars}"
+                    if loot_items and len(loot_items) > 0:
+                        return f"⏳ {point_name} (PARTY) - {ready_chars}/{total_chars} ready, {len(loot_items)} loot items"
+            
+            # ВСЕ УСЛОВИЯ ВЫПОЛНЕНЫ - телепортируем группу (С МАССОВЫМ SPACE)
+            target_x, target_y, target_z = point["target"]
+            success_count = self.teleport_group(
+                chars_in_trigger, 
+                target_x, 
+                target_y, 
+                target_z,
+                send_space=True
+            )
+            
+            if success_count > 0:
+                logging.info(f"✅ {point_name} (PARTY): {success_count}/{total_chars} teleported")
+                return f"✅ {point_name} (PARTY) - Teleported {success_count}/{total_chars}"
         
-        return "⏳ No trigger points active"
+        return None
     
     # ===================================================
     # FOLLOW И ATTACK (БЕЗ ИЗМЕНЕНИЙ)

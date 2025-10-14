@@ -656,22 +656,19 @@ class MainWindow:
     
     # ОБНОВИТЬ: action_tp_to_target теперь использует типовую функцию
     def action_tp_to_target(self):
-        """Action: Телепортировать к таргету (ОБНОВЛЕНО)"""
+        """Action: Телепортировать к таргету (БЕЗ space, БЕЗ проверок)"""
         active_char = self.app_state.last_active_character
         
         if not active_char:
             print("\n[TP to TARGET] Нет последнего активного окна")
             return
         
-        success = self.manager.action_teleport_to_target(active_char)
-        
-        if not success:
-            char_name = active_char.char_base.char_name
-            print(f"[TP to TARGET] {char_name}: Неудача (нет таргета или ошибка)\n")
+        # Вызываем БЕЗ проверок
+        self.manager.action_teleport_to_target(active_char)
 
     # ОБНОВИТЬ: action_tp_to_lider теперь использует типовую функцию
     def action_tp_to_lider(self):
-        """Action: Телепортировать группу к лидеру (ОБНОВЛЕНО)"""
+        """Action: Телепортировать группу к лидеру (С МАССОВЫМ SPACE)"""
         tp_count = self.manager.tp_to_leader()
         
         if tp_count > 0:
@@ -680,92 +677,12 @@ class MainWindow:
             print("\n[TP to LIDER] Никто не был телепортирован\n")
 
     def action_tp_to_so(self):
-        """НОВОЕ: Action: TP to SO (только последнее активное окно)"""
-        active_char = self.app_state.last_active_character
-        
-        if not active_char:
-            print("\n[TP to SO] Нет последнего активного окна")
-            return
-        
-        # Триггер: (1430, -1430, 2) +- 50
-        # Назначение: (-800, 480, 2)
-        trigger_coords = (1430, -1430, 2)
-        target_coords = (-800, 480, 2)
-        radius = 50
-        
-        # Проверяем позицию
-        active_char.char_base.refresh()
-        char_x = active_char.char_base.char_pos_x
-        char_y = active_char.char_base.char_pos_y
-        
-        if char_x is None or char_y is None:
-            print(f"[TP to SO] Не удалось прочитать позицию персонажа")
-            return
-        
-        # Проверяем расстояние до триггера (по X и Y)
-        dx = abs(char_x - trigger_coords[0])
-        dy = abs(char_y - trigger_coords[1])
-        
-        if dx <= radius and dy <= radius:
-            # В зоне триггера - телепортируем
-            success = active_char.char_base.set_position(
-                target_coords[0], 
-                target_coords[1], 
-                target_coords[2]
-            )
-            
-            if success:
-                char_name = active_char.char_base.char_name
-                print(f"\n✅ [TP to SO] {char_name}: Телепорт выполнен\n")
-            else:
-                print(f"\n[TP to SO] Ошибка записи координат\n")
-        else:
-            char_name = active_char.char_base.char_name
-            print(f"\n[TP to SO] {char_name} не в зоне триггера (dx={dx:.1f}, dy={dy:.1f})\n")
+        """Action: TP to SO (только последнее активное окно, С ОДИНОЧНЫМ SPACE)"""
+        self.manager.tp_to_point("SO Boss")
 
     def action_tp_to_go(self):
-        """НОВОЕ: Action: TP to GO (только последнее активное окно)"""
-        active_char = self.app_state.last_active_character
-        
-        if not active_char:
-            print("\n[TP to GO] Нет последнего активного окна")
-            return
-        
-        # Триггер: (-840, 440, 2) +- 50
-        # Назначение: (1200, -129, 2)
-        trigger_coords = (-840, 440, 2)
-        target_coords = (1200, -129, 2)
-        radius = 50
-        
-        # Проверяем позицию
-        active_char.char_base.refresh()
-        char_x = active_char.char_base.char_pos_x
-        char_y = active_char.char_base.char_pos_y
-        
-        if char_x is None or char_y is None:
-            print(f"[TP to GO] Не удалось прочитать позицию персонажа")
-            return
-        
-        # Проверяем расстояние до триггера (по X и Y)
-        dx = abs(char_x - trigger_coords[0])
-        dy = abs(char_y - trigger_coords[1])
-        
-        if dx <= radius and dy <= radius:
-            # В зоне триггера - телепортируем
-            success = active_char.char_base.set_position(
-                target_coords[0], 
-                target_coords[1], 
-                target_coords[2]
-            )
-            
-            if success:
-                char_name = active_char.char_base.char_name
-                print(f"\n✅ [TP to GO] {char_name}: Телепорт выполнен\n")
-            else:
-                print(f"\n[TP to GO] Ошибка записи координат\n")
-        else:
-            char_name = active_char.char_base.char_name
-            print(f"\n[TP to GO] {char_name} не в зоне триггера (dx={dx:.1f}, dy={dy:.1f})\n")       
+        """Action: TP to GO (только последнее активное окно, С ОДИНОЧНЫМ SPACE)"""
+        self.manager.tp_to_point("GO Boss")  
     
     def run(self):
         """Запустить главный цикл"""

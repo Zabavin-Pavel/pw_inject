@@ -28,6 +28,9 @@ CLASS_NAMES_DEBUG = {
     CLASS_MYSTIC: "Мистик",
 }
 
+# Радиус проверки лута (метры)
+LOOT_CHECK_RADIUS = 50
+
 # Точки подземелья для автоматической телепортации
 DUNGEON_POINTS = [
     {
