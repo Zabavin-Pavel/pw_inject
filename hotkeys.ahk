@@ -75,7 +75,7 @@ SendKeyToAll(key, repeat_count := 1) {
     }
 }
 
-; НОВОЕ: Отправить клавишу конкретному окну по PID
+; Отправить клавишу конкретному окну по PID
 SendKeyToPID(key, target_pid) {
     global element_windows
     
@@ -93,6 +93,50 @@ SendKeyToPID(key, target_pid) {
                 ControlSend, , {%key%}, ahk_id %window_id%
                 return
             }
+        }
+    }
+}
+
+; НОВОЕ: Headhunter - Tab + ЛКМ по координатам 100, 100
+Headhunter(target_pid) {
+    global element_windows
+    
+    if (element_windows.Length() = 0) {
+        return
+    }
+    
+    for index, window_id in element_windows {
+        if WinExist("ahk_id " . window_id) {
+            WinGet, window_pid, PID, ahk_id %window_id%
+            
+            if (window_pid = target_pid) {
+                ; Отправляем Tab
+                ControlSend, , {Tab}, ahk_id %window_id%
+                Sleep, 50
+                ; ЛКМ по координатам 100, 100
+                ControlClick, x100 y100, ahk_id %window_id%, , L, NA
+                return
+            }
+        }
+    }
+}
+
+; НОВОЕ: Follow Lider - ЛКМ + ПКМ по координатам 100, 100
+FollowLider() {
+    global element_windows
+    
+    if (element_windows.Length() = 0) {
+        return
+    }
+    
+    for index, window_id in element_windows {
+        if WinExist("ahk_id " . window_id) {
+            CoordMode, Mouse, Screen
+            ; ЛКМ по координатам 100, 100
+            ControlClick, x100 y100, ahk_id %window_id%, , L, NA
+            Sleep, 50
+            ; ПКМ по координатам 100, 100
+            ControlClick, x100 y100, ahk_id %window_id%, , R, NA
         }
     }
 }
@@ -125,8 +169,19 @@ CheckCommand:
         else if (command = "EXIT") {
             ExitApp
         }
+        else if (InStr(command, "HEADHUNTER:") = 1) {
+            ; НОВОЕ: Формат HEADHUNTER:12345
+            parts := StrSplit(command, ":")
+            if (parts.Length() = 2) {
+                pid := parts[2]
+                Headhunter(pid)
+            }
+        }
+        else if (command = "FOLLOW_LIDER") {
+            FollowLider()
+        }
         else if (InStr(command, "KEY_PID:") = 1) {
-            ; НОВОЕ: Формат KEY_PID:W:12345
+            ; Формат KEY_PID:W:12345
             parts := StrSplit(command, ":")
             if (parts.Length() = 3) {
                 key := parts[2]

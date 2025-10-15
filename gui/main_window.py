@@ -19,12 +19,21 @@ from core import AppState, ActionManager, HotkeyManager, LicenseManager
 from license_manager import LicenseConfig
 from keygen import PERMISSION_NONE, PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
 from ahk_manager import AHKManager
+from actions import (
+    register_toggle_actions,
+    register_try_actions,
+    register_pro_actions,
+    register_dev_actions,
+    follow_loop_callback,
+    attack_loop_callback,
+    headhunter_loop_callback
+)
 
 # Константа для интервала toggle экшенов
 TOGGLE_ACTION_INTERVALS = {
     'follow': 500,      # 0.5 секунды
     'attack': 500,      # 0.5 секунды  
-    'teleport': 1000,   # 1 секунду
+    'headhunter': 200,  # 0.2 секунды (НОВОЕ)
 }
 
 class MainWindow:
@@ -82,145 +91,34 @@ class MainWindow:
         self.manager.set_app_state(self.app_state)
     
     def _register_actions(self):
-        """Зарегистрировать все действия с уровнями доступа"""
+        """Зарегистрировать все действия"""
         
-        # Toggle действия с иконками (без хоткеев)
-        self.action_manager.register(
-            'follow',
-            label='Follow',
-            type='toggle',
-            callback=self.toggle_follow,
-            icon='👣',
-            has_hotkey=False,
-            required_permission=PERMISSION_TRY
+        # Toggle действия (Follow, Attack, Headhunter)
+        register_toggle_actions(
+            self.action_manager,
+            self.manager,
+            self.ahk_manager,
+            self.app_state
         )
         
-        self.action_manager.register(
-            'attack',
-            label='Attack',
-            type='toggle',
-            callback=self.toggle_attack,
-            icon='⚔️',
-            has_hotkey=False,
-            required_permission=PERMISSION_PRO
+        # TRY уровень (LBM, SPACE, FOLLOW_LIDER)
+        register_try_actions(
+            self.action_manager,
+            self.ahk_manager
         )
         
-        self.action_manager.register(
-            'teleport',
-            label='Teleport',
-            type='toggle',
-            callback=self.toggle_teleport,
-            icon='☠',
-            has_hotkey=False,
-            required_permission=PERMISSION_DEV
+        # PRO уровень (TARGET, NEXT >>, <- LONG, LONG ->, FINAL ->)
+        register_pro_actions(
+            self.action_manager,
+            self.manager,
+            self.app_state
         )
         
-        # Quick действия с хоткеями (БЕЗ иконок) - В НАЧАЛЕ
-        self.action_manager.register(
-            'ahk_click_mouse',
-            label='LBM      [TRY]',  # ПЕРЕИМЕНОВАНО
-            type='quick',
-            callback=self.ahk_manager.click_at_mouse,
-            has_hotkey=True,
-            required_permission=PERMISSION_TRY
-        )
-
-        self.action_manager.register(
-            'ahk_press_space',
-            label='SPACE    [TRY]',  # ПЕРЕИМЕНОВАНО
-            type='quick',
-            callback=lambda: self.ahk_manager.send_key("Space"),
-            has_hotkey=True,
-            required_permission=PERMISSION_TRY
-        )
-
-        self.action_manager.register(
-            'ahk_press_follow',
-            label='FOLLOW   [TRY]',  # ПЕРЕИМЕНОВАНО
-            type='quick',
-            callback=lambda: self.ahk_manager.send_key("Space"),
-            has_hotkey=True,
-            required_permission=PERMISSION_TRY
-        )
-        
-        self.action_manager.register(
-            'namename',  # НОВОЕ
-            label='--------------',
-            type='quick',
-            callback=lambda: 0,
-            required_permission=PERMISSION_PRO
-        )
-        
-        # DEV экшены - В КОНЦЕ
-        self.action_manager.register(
-            'tp_to_target',  # ПЕРЕИМЕНОВАНО
-            label='TARGET   [PRO]',
-            type='quick',
-            callback=self.action_tp_to_target,
-            has_hotkey=True,
-            required_permission=PERMISSION_PRO
-        )
-        
-        self.action_manager.register(
-            'tp_to_lider',  # НОВОЕ
-            label='NEXT >>  [PRO]',
-            type='quick',
-            callback=self.action_tp_to_lider,
-            has_hotkey=True,
-            required_permission='TEST'
-        )
-        
-        self.action_manager.register(
-            'tp_to_lider1',  # НОВОЕ
-            label='<- LONG  [PRO]',
-            type='quick',
-            callback=self.action_tp_to_lider,
-            has_hotkey=True,
-            required_permission='TEST'
-        )
-        
-        self.action_manager.register(
-            'tp_to_lider2',  # НОВОЕ
-            label='LONG ->  [PRO]',
-            type='quick',
-            callback=self.action_tp_to_lider,
-            has_hotkey=True,
-            required_permission='TEST'
-        )
-        
-        self.action_manager.register(
-            'tp_to_lider3',  # НОВОЕ
-            label='LAST >>  [PRO]',
-            type='quick',
-            callback=self.action_tp_to_lider,
-            has_hotkey=True,
-            required_permission='TEST'
-        )
-        
-        self.action_manager.register(
-            'namenamename',  # НОВОЕ
-            label='--------------',
-            type='quick',
-            callback=lambda: 0,
-            required_permission=PERMISSION_DEV
-        )
-
-        self.action_manager.register(
-            'tp_to_so',  # НОВОЕ
-            label='Act SO   [DEV]',
-            type='quick',
-            callback=self.action_tp_to_so,
-            has_hotkey=True,
-            required_permission=PERMISSION_DEV
-        )
-        
-        self.action_manager.register(
-            'tp_to_go',  # НОВОЕ
-            label='Act GO   [DEV]',
-            type='quick',
-            callback=self.action_tp_to_go,
-            has_hotkey=True,
-            required_permission=PERMISSION_DEV
+        # DEV уровень (ACT SO, ACT GO)
+        register_dev_actions(
+            self.action_manager,
+            self.manager,
+            self.app_state
         )
 
     def _create_ui(self):
@@ -617,7 +515,6 @@ class MainWindow:
     
     def _start_action_loop(self, action_id: str, callback):
         """Запустить циклический вызов callback для toggle экшена"""
-        # ИЗМЕНЕНО: разные интервалы для разных экшенов
         interval = TOGGLE_ACTION_INTERVALS.get(action_id, 500)
         
         def loop():
@@ -633,7 +530,7 @@ class MainWindow:
         loop()
     
     def _stop_action_loop(self, action_id: str):
-        """НОВОЕ: Остановить циклический вызов"""
+        """Остановить циклический вызов"""
         if action_id in self.action_timers:
             timer_id = self.action_timers[action_id]
             if timer_id:
@@ -649,17 +546,10 @@ class MainWindow:
         
         if is_active:
             print("Follow: STARTED")
-            self._start_action_loop('follow', self._follow_loop_callback)
+            self._start_action_loop('follow', lambda: follow_loop_callback(self.manager))
         else:
             print("Follow: STOPPED")
             self._stop_action_loop('follow')
-            
-            # Разморозить всех при остановке
-            for char in self.manager.get_all_characters():
-                if char.fly_freeze_info and char.fly_freeze_info['active']:
-                    char.memory.unfreeze_address(char.fly_freeze_info)
-                    char.fly_freeze_info = None
-                    char.char_base.set_fly_speed_z(0)
         
         self.hotkey_panel.update_display()
     
@@ -675,7 +565,7 @@ class MainWindow:
         
         if is_active:
             print("Attack: STARTED")
-            self._start_action_loop('attack', self._attack_loop_callback)
+            self._start_action_loop('attack', lambda: attack_loop_callback(self.manager))
         else:
             print("Attack: STOPPED")
             self._stop_action_loop('attack')
@@ -688,53 +578,18 @@ class MainWindow:
         if success_count > 0:
             logging.debug(f"Attack: {success_count} targets set")
     
-    def toggle_teleport(self):
-        """Toggle: Телепорт (автоматические переходы по точкам)"""
-        is_active = self.app_state.is_action_active('teleport')
+    def toggle_headhunter(self):
+        """Toggle: Headhunter (Tab + ЛКМ по 100, 100)"""
+        is_active = self.app_state.is_action_active('headhunter')
         
         if is_active:
-            print("Teleport: STARTED")
-            self._start_action_loop('teleport', self._teleport_loop_callback)
+            print("Headhunter: STARTED")
+            self._start_action_loop('headhunter', lambda: headhunter_loop_callback(self.ahk_manager, self.app_state))
         else:
-            print("Teleport: STOPPED")
-            self._stop_action_loop('teleport')
+            print("Headhunter: STOPPED")
+            self._stop_action_loop('headhunter')
         
         self.hotkey_panel.update_display()
-    
-    def _teleport_loop_callback(self):
-        """Callback для Teleport loop (каждые 5 секунд)"""
-        status = self.manager.check_teleport_conditions()
-        print(f"[Teleport] {status}")
-    
-    # ОБНОВИТЬ: action_tp_to_target теперь использует типовую функцию
-    def action_tp_to_target(self):
-        """Action: Телепортировать к таргету (БЕЗ space, БЕЗ проверок)"""
-        active_char = self.app_state.last_active_character
-        
-        if not active_char:
-            print("\n[TP to TARGET] Нет последнего активного окна")
-            return
-        
-        # Вызываем БЕЗ проверок
-        self.manager.action_teleport_to_target(active_char)
-
-    # ОБНОВИТЬ: action_tp_to_lider теперь использует типовую функцию
-    def action_tp_to_lider(self):
-        """Action: Телепортировать группу к лидеру (С МАССОВЫМ SPACE)"""
-        tp_count = self.manager.tp_to_leader()
-        
-        if tp_count > 0:
-            print(f"\n[TP to LIDER] Телепортировано: {tp_count} персонажей\n")
-        else:
-            print("\n[TP to LIDER] Никто не был телепортирован\n")
-
-    def action_tp_to_so(self):
-        """Action: TP to SO (только последнее активное окно, С ОДИНОЧНЫМ SPACE)"""
-        self.manager.tp_to_point("SO Boss")
-
-    def action_tp_to_go(self):
-        """Action: TP to GO (только последнее активное окно, С ОДИНОЧНЫМ SPACE)"""
-        self.manager.tp_to_point("GO Boss")  
     
     def run(self):
         """Запустить главный цикл"""

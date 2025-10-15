@@ -117,6 +117,14 @@ class AHKManager:
         """Отправить клавишу конкретному окну по PID"""
         return self.send_command(f"KEY_PID:{key}:{pid}")
     
+    def headhunter(self, pid: int):
+        """Выполнить Headhunter для конкретного окна по PID"""
+        return self.send_command(f"HEADHUNTER:{pid}")
+    
+    def follow_lider(self):
+        """Выполнить Follow Lider для всех окон"""
+        return self.send_command("FOLLOW_LIDER")
+    
     def refresh_windows(self):
         """Обновить список окон в AHK"""
         logging.info("Refreshing AHK window list")

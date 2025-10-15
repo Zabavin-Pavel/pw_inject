@@ -31,6 +31,14 @@ CLASS_NAMES_DEBUG = {
 # Радиус проверки лута (метры)
 LOOT_CHECK_RADIUS = 50
 
+LONG_LEFT_POINT = (-100, 200, 250)    # <- LONG
+LONG_RIGHT_POINT = (100, 200, 250)    # LONG ->
+FINAL_POINT = (0, 300, 260)           # FINAL ->
+
+# НОВОЕ: Специальные точки для SO/GO
+SO_POINT = (-50, -50, 230)            # SO Boss
+GO_POINT = (50, 50, 230)              # GO Boss
+
 # Точки подземелья для автоматической телепортации
 DUNGEON_POINTS = [
     {

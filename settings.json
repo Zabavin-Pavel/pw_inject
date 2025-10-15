@@ -7,10 +7,15 @@
   "hotkeys": {
     "ahk_click_mouse": "-",
     "ahk_press_space": "-",
+    "ahk_follow_lider": "-",
+    "separator_pro": "-",
     "tp_to_target": "7",
-    "tp_to_lider": "Shift+F",
+    "tp_next": "-",
+    "tp_long_left": "-",
+    "tp_long_right": "-",
+    "tp_final": "-",
+    "separator_dev": "-",
     "tp_to_so": "-",
-    "tp_to_go": "-",
-    "namenamename": "-"
+    "tp_to_go": "-"
   }
 }
