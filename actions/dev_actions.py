@@ -17,11 +17,12 @@ def register_dev_actions(action_manager, multibox_manager, app_state):
     # === РАЗДЕЛИТЕЛЬ ===
     action_manager.register(
         'separator_dev',
-        label='-------------',
+        label='',  # Пустая строка - визуал через SeparatorRow
         type='quick',
         callback=lambda: None,
-        has_hotkey=False,
-        required_permission=PERMISSION_DEV
+        has_hotkey=True,  # Чтобы попал в get_hotkey_actions()
+        required_permission=PERMISSION_DEV,
+        is_separator=True  # НОВОЕ - это разделитель
     )
     
     # === ACT SO ===
@@ -50,7 +51,7 @@ def register_dev_actions(action_manager, multibox_manager, app_state):
     
     action_manager.register(
         'tp_to_so',
-        label='Act SO       [DEV]',
+        label='QB SO    [DEV]',
         type='quick',
         callback=action_tp_to_so,
         has_hotkey=True,
@@ -83,7 +84,7 @@ def register_dev_actions(action_manager, multibox_manager, app_state):
     
     action_manager.register(
         'tp_to_go',
-        label='Act GO       [DEV]',
+        label='QB GO    [DEV]',
         type='quick',
         callback=action_tp_to_go,
         has_hotkey=True,

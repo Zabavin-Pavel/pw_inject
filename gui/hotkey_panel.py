@@ -19,6 +19,7 @@ class HotkeyPanel(tk.Frame):
         
         self.icon_buttons = {}    # {action_id: IconButton}
         self.hotkey_rows = {}     # {action_id: HotkeyRow}
+        self.separator_rows = {}  # {action_id: SeparatorRow}
         
         self._setup_ui()
     
@@ -54,16 +55,28 @@ class HotkeyPanel(tk.Frame):
         # Создать строки для действий с хоткеями
         hotkey_actions = self.action_manager.get_hotkey_actions()
         for action in hotkey_actions:
-            row = HotkeyRow(
-                self.hotkeys_container,
-                action,
-                self.hotkey_manager,
-                self.settings_manager,
-                lambda aid=action.id: self._on_hotkey_action_executed(aid),
-                on_hotkey_changed=self._on_hotkey_changed
-            )
-            row.pack(fill=tk.X, pady=2)
-            self.hotkey_rows[action.id] = row
+            # НОВОЕ: Проверяем является ли это разделителем
+            if action.is_separator:
+                # Создаём разделитель
+                separator = SeparatorRow(
+                    self.hotkeys_container,
+                    padding_top=5,    # Отступ сверху
+                    padding_bottom=5   # Отступ снизу
+                )
+                separator.pack(fill=tk.X, pady=0)
+                self.separator_rows[action.id] = separator
+            else:
+                # Создаём обычную строку хоткея
+                row = HotkeyRow(
+                    self.hotkeys_container,
+                    action,
+                    self.hotkey_manager,
+                    self.settings_manager,
+                    lambda aid=action.id: self._on_hotkey_action_executed(aid),
+                    on_hotkey_changed=self._on_hotkey_changed
+                )
+                row.pack(fill=tk.X, pady=2)
+                self.hotkey_rows[action.id] = row
     
     def _on_icon_clicked(self, action_id: str):
         """Клик по иконке действия"""
@@ -105,6 +118,64 @@ class HotkeyPanel(tk.Frame):
             self.hotkey_rows[action_id].flash_text()
 
 
+class SeparatorRow(tk.Frame):
+    """Визуальный разделитель - прерывистая линия"""
+    
+    def __init__(self, parent, padding_top=10, padding_bottom=5, dash_length=10, gap_length=0):
+        """
+        Args:
+            parent: родительский виджет
+            padding_top: отступ сверху (px)
+            padding_bottom: отступ снизу (px)
+            dash_length: длина штриха (px)
+            gap_length: длина промежутка (px)
+        """
+        super().__init__(parent, bg=COLOR_BG, height=padding_top + padding_bottom + 1)
+        self.pack_propagate(False)  # Фиксируем высоту
+        
+        self.padding_top = padding_top
+        self.padding_bottom = padding_bottom
+        self.dash_length = dash_length
+        self.gap_length = gap_length
+        
+        # Создаём Canvas для рисования прерывистой линии
+        self.canvas = tk.Canvas(
+            self,
+            bg=COLOR_BG,
+            height=1,
+            highlightthickness=0
+        )
+        self.canvas.pack(fill=tk.X, padx=20, pady=(padding_top, padding_bottom))
+        
+        # Рисуем линию после отрисовки
+        self.canvas.bind('<Configure>', self._draw_dashed_line)
+    
+    def _draw_dashed_line(self, event=None):
+        """Нарисовать прерывистую линию"""
+        # Очищаем предыдущую линию
+        self.canvas.delete('all')
+        
+        # Получаем ширину canvas
+        width = self.canvas.winfo_width()
+        
+        if width <= 1:
+            return
+        
+        # Рисуем прерывистые линии
+        x = 0
+        while x < width:
+            # Рисуем штрих
+            x_end = min(x + self.dash_length, width)
+            self.canvas.create_line(
+                x, 0,
+                x_end, 0,
+                fill=COLOR_BORDER,
+                width=1
+            )
+            # Перемещаемся на длину штриха + промежуток
+            x += self.dash_length + self.gap_length
+
+
 class IconButton(tk.Label):
     """Кнопка-иконка для toggle действия"""
     
@@ -112,7 +183,7 @@ class IconButton(tk.Label):
         super().__init__(
             parent,
             text=action.icon,
-            font=("Segoe UI", 17),  # Размер иконок (пункт 4)
+            font=("Segoe UI", 17),
             bg=COLOR_BG,
             fg=COLOR_TEXT,
             cursor="hand2"
@@ -140,12 +211,6 @@ class IconButton(tk.Label):
             self.configure(fg=COLOR_TEXT)
 
 
-"""
-Обновления для gui/hotkey_panel.py - только класс HotkeyRow
-"""
-
-# === ИЗМЕНЕНИЯ В КЛАССЕ HotkeyRow ===
-
 class HotkeyRow(tk.Frame):
     """Строка с названием действия и полем хоткея"""
     
@@ -161,7 +226,6 @@ class HotkeyRow(tk.Frame):
         self.recording = False
         self.pressed_keys = set()
         
-        # НОВОЕ: Переменная для отслеживания анимации
         self.is_flashing = False
         self.flash_job = None
         
@@ -199,7 +263,7 @@ class HotkeyRow(tk.Frame):
         
         self.hotkey_entry = tk.Entry(
             self,
-            width=8,  # ИЗМЕНЕНО: было 10, теперь 6
+            width=8,
             font=FONT_HOTKEY,
             bg=COLOR_BG_LIGHT,
             fg=COLOR_TEXT_BRIGHT,
@@ -213,7 +277,6 @@ class HotkeyRow(tk.Frame):
         )
         self.hotkey_entry.pack(side=tk.RIGHT, padx=(10, 0))
         
-        # ИЗМЕНЕНО: Отображать в коротком формате
         display_hotkey = hotkey_to_short_format(current_hotkey) if current_hotkey else "-"
         self.hotkey_entry.insert(0, display_hotkey)
         
@@ -231,7 +294,6 @@ class HotkeyRow(tk.Frame):
         
         current_hotkey = self.hotkey_manager.get_hotkey_for_action(self.action.id)
         
-        # ИЗМЕНЕНО: Отображать в коротком формате
         display_hotkey = hotkey_to_short_format(current_hotkey) if current_hotkey else "-"
         
         self.hotkey_entry.delete(0, tk.END)
@@ -247,7 +309,6 @@ class HotkeyRow(tk.Frame):
         self.recording = True
         self.pressed_keys.clear()
         
-        # ВАЖНО: Включить режим записи в HotkeyManager
         self.hotkey_manager.set_recording_mode(True)
         
         self.hotkey_entry.configure(
@@ -262,7 +323,6 @@ class HotkeyRow(tk.Frame):
         self.recording = False
         self.pressed_keys.clear()
         
-        # ВАЖНО: Выключить режим записи в HotkeyManager
         self.hotkey_manager.set_recording_mode(False)
         
         self.hotkey_entry.configure(
@@ -327,7 +387,6 @@ class HotkeyRow(tk.Frame):
     def _normalize_key(self, keysym: str, char: str) -> str:
         """Нормализовать имя клавиши - ТОЛЬКО ЛЕВЫЕ модификаторы"""
         
-        # ТОЛЬКО левые модификаторы
         if keysym == 'Control_L':
             return 'Ctrl'
         elif keysym == 'Shift_L':
@@ -335,42 +394,31 @@ class HotkeyRow(tk.Frame):
         elif keysym == 'Alt_L':
             return 'Alt'
         
-        # Игнорируем правые модификаторы и Win
         if keysym in ('Control_R', 'Shift_R', 'Alt_R', 'Win_L', 'Win_R'):
             return None
         
-        # РАСШИРЕННЫЙ shift_number_map - все возможные раскладки
         shift_number_map = {
-            # Английская раскладка
             '!': '1', '@': '2', '#': '3', '$': '4', '%': '5',
             '^': '6', '&': '7', '*': '8', '(': '9', ')': '0',
-            # Русская раскладка
             '№': '3', ';': '4', ':': '6', '?': '7',
-            # Дополнительно
             '"': '2',
         }
         
-        # Shift+цифра: char будет символ из shift_number_map
         if char and char in shift_number_map:
             return shift_number_map[char]
         
-        # Обычные цифры (без Shift) - ТОЛЬКО keysym
         if keysym.isdigit():
             return keysym
         
-        # Русские буквы -> английские (UPPERCASE)
         if char and char.lower() in self.ru_to_en:
             return self.ru_to_en[char.lower()].upper()
         
-        # Обычные буквы (UPPERCASE)
         if len(keysym) == 1 and keysym.isalpha():
             return keysym.upper()
         
-        # F-клавиши
         if keysym.startswith('F') and len(keysym) <= 3:
             return keysym
         
-        # Специальные клавиши
         special_keys = {
             'space': 'Space',
             'Return': 'Return',
@@ -397,10 +445,8 @@ class HotkeyRow(tk.Frame):
             else:
                 keys.append(key)
         
-        # Модификаторы в правильном порядке
         modifiers.sort(key=lambda x: modifiers_order.index(x))
         
-        # Обычные клавиши - берём только последнюю нажатую
         if len(keys) > 1:
             keys = [keys[-1]]
         
@@ -411,7 +457,6 @@ class HotkeyRow(tk.Frame):
         """Обновить отображение в поле"""
         hotkey = self._build_hotkey_string()
         
-        # ИЗМЕНЕНО: Отображать в коротком формате
         if hotkey:
             display_hotkey = hotkey_to_short_format(hotkey)
         else:
@@ -423,28 +468,22 @@ class HotkeyRow(tk.Frame):
     def _save_hotkey(self, hotkey: str):
         """Сохранить хоткей"""
         try:
-            # ВАЖНО: Проверяем, занят ли хоткей другим действием
             existing_action = self.hotkey_manager.bindings.get(hotkey)
             if existing_action and existing_action != self.action.id:
-                # Освобождаем у старого действия
                 old_hotkeys = self.settings_manager.get_hotkeys()
                 old_hotkeys[existing_action] = "-"
                 self.settings_manager.set_hotkeys(old_hotkeys)
                 
-                # Обновляем UI старого действия (если нужно)
                 self.on_hotkey_changed()
             
-            # Привязываем к HotkeyManager
             self.hotkey_manager.bind(hotkey, self.action.id)
             
-            # Сохраняем в settings
             hotkeys = self.settings_manager.get_hotkeys()
             hotkeys[self.action.id] = hotkey
             self.settings_manager.set_hotkeys(hotkeys)
             
             self.flash_border()
             
-            # Уведомляем об изменении
             self.on_hotkey_changed()
             
         except Exception as e:
@@ -479,18 +518,3 @@ class HotkeyRow(tk.Frame):
             )
         
         self.after(150, reset)
-
-
-# === ДОПОЛНЕНИЕ: Метод в HotkeyPanel для обновления всех хоткеев ===
-
-# Добавить в класс HotkeyPanel:
-
-def update_hotkey_display(self):
-    """Обновить отображение всех хоткеев"""
-    for action_id, row in self.hotkey_rows.items():
-        row.refresh_hotkey_display()
-
-def flash_action(self, action_id: str):
-    """Мигнуть текстом действия при срабатывании хоткея"""
-    if action_id in self.hotkey_rows:
-        self.hotkey_rows[action_id].flash_text()

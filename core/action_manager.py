@@ -14,7 +14,8 @@ class Action:
     callback: Callable               # Функция для выполнения
     icon: Optional[str] = None       # Иконка (если есть)
     has_hotkey: bool = True          # Есть ли поле хоткея
-    required_permission: str = "try"  # НОВОЕ: Требуемый уровень доступа
+    required_permission: str = "try"  # Требуемый уровень доступа
+    is_separator: bool = False       # НОВОЕ: Это разделитель (для визуального оформления)
 
 class ActionManager:
     """Менеджер действий"""
@@ -24,7 +25,8 @@ class ActionManager:
         self.actions = {}  # {action_id: Action}
     
     def register(self, action_id: str, label: str, type: str, callback: Callable, 
-                 icon: str = None, has_hotkey: bool = True, required_permission: str = "try"):
+                 icon: str = None, has_hotkey: bool = True, required_permission: str = "try",
+                 is_separator: bool = False):
         """
         Зарегистрировать действие
         
@@ -35,7 +37,8 @@ class ActionManager:
             callback: Функция для выполнения
             icon: Иконка (если None - только хоткей)
             has_hotkey: Есть ли поле для хоткея
-            required_permission: НОВОЕ: Требуемый уровень доступа ("try", "pro", "dev")
+            required_permission: Требуемый уровень доступа ("try", "pro", "dev")
+            is_separator: НОВОЕ - это визуальный разделитель
         """
         action = Action(
             id=action_id,
@@ -44,7 +47,8 @@ class ActionManager:
             callback=callback,
             icon=icon,
             has_hotkey=has_hotkey,
-            required_permission=required_permission
+            required_permission=required_permission,
+            is_separator=is_separator
         )
         
         self.actions[action_id] = action
@@ -57,7 +61,7 @@ class ActionManager:
         
         action = self.actions[action_id]
         
-        # НОВОЕ: Проверка прав доступа
+        # Проверка прав доступа
         if not self.app_state.has_permission(action.required_permission):
             logging.warning(f"Access denied to action '{action_id}': requires {action.required_permission}, current: {self.app_state.permission_level}")
             return
@@ -84,7 +88,7 @@ class ActionManager:
         return self.actions.get(action_id)
     
     def is_action_accessible(self, action_id: str) -> bool:
-        """НОВОЕ: Проверить доступно ли действие для текущего уровня"""
+        """Проверить доступно ли действие для текущего уровня"""
         action = self.actions.get(action_id)
         if not action:
             return False

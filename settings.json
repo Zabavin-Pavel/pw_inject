@@ -7,7 +7,7 @@
   "hotkeys": {
     "ahk_click_mouse": "-",
     "ahk_press_space": "-",
-    "ahk_follow_lider": "-",
+    "ahk_follow_lider": "Shift+T",
     "separator_pro": "-",
     "tp_to_target": "7",
     "tp_next": "-",
