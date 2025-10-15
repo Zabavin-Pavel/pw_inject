@@ -154,7 +154,7 @@ class MultiboxManager:
         Returns:
             (leader: Character, members: list[Character]) или (None, [])
         """
-        from offsets import resolve_offset, OFFSETS
+        from game.offsets import resolve_offset, OFFSETS
         
         groups = {}  # {leader_id: [char1, char2, ...]}
         

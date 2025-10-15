@@ -171,7 +171,7 @@ class CharacterRow(tk.Frame):
         # Добавить огненную иконку для особых персонажей
         if any(keyword in char_name.lower() for keyword in ['fire', 'flame', 'inn', 'rin']):
             display_name = f"🔥{char_name}"
-        display_name = '123451234512345'
+
         if len(display_name) > MAX_NAME_LENGTH:
             display_name = display_name[:MAX_NAME_LENGTH-3] + "..."
         self.name_label = tk.Label(
