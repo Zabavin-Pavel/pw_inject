@@ -16,7 +16,7 @@ COLOR_SELECTED = "#ffa050"      # Светло-оранжевый для выд�
 
 # Размеры окна
 WINDOW_WIDTH = 370
-WINDOW_HEIGHT = 465
+WINDOW_HEIGHT = 430
 
 # Шрифты
 FONT_MAIN = ("Consolas", 12)

@@ -3,7 +3,7 @@ PRO уровень - продвинутые действия с телепорт
 """
 import logging
 from core.keygen import PERMISSION_PRO
-from config.constants import DUNGEON_POINTS, LONG_LEFT_POINT, LONG_RIGHT_POINT, FINAL_POINT
+from config.constants import DUNGEON_POINTS, LONG_LEFT_POINT, LONG_RIGHT_POINT, EXIT_POINT
 
 def register_pro_actions(action_manager, multibox_manager, app_state):
     """
@@ -126,7 +126,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state):
     
     action_manager.register(
         'tp_long_left',
-        label='<- LONG  [PRO]',
+        label='LONG <-  [PRO]',
         type='quick',
         callback=action_long_left,
         has_hotkey=True,
@@ -147,16 +147,16 @@ def register_pro_actions(action_manager, multibox_manager, app_state):
         required_permission=PERMISSION_PRO
     )
     
-    # === FINAL -> ===
-    def action_final():
-        """Телепортировать к точке FINAL (party)"""
-        _tp_to_special_point("FINAL", FINAL_POINT, "party", multibox_manager, app_state)
+    # === EXIT -> ===
+    def action_exit():
+        """Телепортировать к точке EXIT (party)"""
+        _tp_to_special_point("EXIT", EXIT_POINT, "party", multibox_manager, app_state)
     
     action_manager.register(
-        'tp_final',
-        label='FINAL -> [PRO]',
+        'tp_exit',
+        label='EXIT >>  [PRO]',
         type='quick',
-        callback=action_final,
+        callback=action_exit,
         has_hotkey=True,
         required_permission=PERMISSION_PRO
     )

@@ -1,5 +1,6 @@
 """
-Менеджер настроек приложения (БЕЗ лицензий)
+Менеджер настроек приложения
+ОБНОВЛЕНО: Все файлы (settings.json) в AppData
 """
 import json
 import logging
@@ -10,32 +11,36 @@ class SettingsManager:
     """Менеджер настроек приложения (UI, хоткеи, позиция окна)"""
     
     def __init__(self, settings_file="settings.json"):
-        # settings.json в AppData (скрыто от пользователя, но сохраняется)
-        if getattr(sys, 'frozen', False):
-            # Папка: C:\Users\USERNAME\AppData\Local\xvocmuk\
-            appdata_dir = Path.home() / "AppData" / "Local" / "xvocmuk"
-            appdata_dir.mkdir(parents=True, exist_ok=True)  # Создать если нет
-            self.settings_file = appdata_dir / settings_file
-            self.is_frozen = True
-        else:
-            self.settings_file = Path(settings_file)
-            self.is_frozen = False
+        # AppData папка (всегда - и для dev и для prod)
+        # C:\Users\USERNAME\AppData\Local\xvocmuk\
+        self.appdata_dir = Path.home() / "AppData" / "Local" / "xvocmuk"
+        self.appdata_dir.mkdir(parents=True, exist_ok=True)
+        
+        # settings.json ВСЕГДА в AppData
+        self.settings_file = self.appdata_dir / settings_file
+        
+        # Флаг режима (для отладки)
+        self.is_frozen = getattr(sys, 'frozen', False)
+        
+        logging.info(f"📁 Settings file: {self.settings_file}")
         
         self.settings = self._load_settings()
     
     def _load_settings(self):
         """Загрузить настройки из файла"""
         if not self.settings_file.exists():
-            logging.info("Settings file not found, using default")
-            return self._get_default_settings()
+            logging.info("⚠️ Settings file not found, creating default")
+            default_settings = self._get_default_settings()
+            self._save_settings(default_settings)
+            return default_settings
         
         try:
             with open(self.settings_file, 'r', encoding='utf-8') as f:
                 settings = json.load(f)
-                logging.info(f"Settings loaded from {self.settings_file}")
+                logging.info(f"✅ Settings loaded from {self.settings_file}")
                 return settings
         except Exception as e:
-            logging.error(f"Failed to load settings: {e}")
+            logging.error(f"❌ Failed to load settings: {e}")
             return self._get_default_settings()
     
     def _get_default_settings(self):
@@ -44,25 +49,36 @@ class SettingsManager:
             "window_position": {"x": 100, "y": 100},
             "is_topmost": False,
             "hotkeys": {
-                "teleport_to_target": "-",
-                "show_all": "-",
-                "show_active": "-",
-                "show_loot": "-",
-                "show_players": "-",
-                "show_npcs": "-",
+                # TRY
                 "ahk_click_mouse": "-",
-                "ahk_press_space": "-"
+                "ahk_press_space": "-",
+                "ahk_follow_lider": "-",
+                # PRO
+                "separator_pro": "-",
+                "tp_to_target": "-",
+                "tp_next": "-",
+                "tp_long_left": "-",
+                "tp_long_right": "-",
+                "tp_exit": "-",
+                # DEV
+                "separator_dev": "-",
+                "tp_to_so": "-",
+                "tp_to_go": "-",
             }
         }
     
-    def save(self):
-        """Сохранить настройки в файл"""
+    def _save_settings(self, settings):
+        """Сохранить настройки напрямую (внутренний метод)"""
         try:
             with open(self.settings_file, 'w', encoding='utf-8') as f:
-                json.dump(self.settings, f, indent=2, ensure_ascii=False)
-            logging.info("Settings saved")
+                json.dump(settings, f, indent=2, ensure_ascii=False)
         except Exception as e:
-            logging.error(f"Failed to save settings: {e}")
+            logging.error(f"❌ Failed to save settings: {e}")
+    
+    def save(self):
+        """Сохранить текущие настройки в файл"""
+        self._save_settings(self.settings)
+        logging.info("✅ Settings saved")
     
     def get_hotkeys(self) -> dict:
         """Получить хоткеи"""
