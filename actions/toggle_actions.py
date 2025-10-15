@@ -2,7 +2,7 @@
 Toggle действия (Follow, Attack, Headhunter)
 """
 import logging
-from keygen import PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
+from core.keygen import PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
 
 def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_state):
     """

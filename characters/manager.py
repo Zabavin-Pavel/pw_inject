@@ -4,11 +4,11 @@
 import ctypes
 import logging
 import math
-from win32_api import TH32CS_SNAPPROCESS, PROCESSENTRY32
-from memory import Memory
-from game_structs import CharBase, WorldManager
-from character import Character
-from constants import DUNGEON_POINTS, LOOT_CHECK_RADIUS
+from game.memory import Memory
+from game.structs import CharBase, WorldManager
+from characters.character import Character
+from config.constants import DUNGEON_POINTS, LOOT_CHECK_RADIUS
+from game.win32_api import TH32CS_SNAPPROCESS, PROCESSENTRY32
 
 
 class MultiboxManager:

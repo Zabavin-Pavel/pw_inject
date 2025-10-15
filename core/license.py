@@ -3,7 +3,7 @@
 Работает с license.ini
 """
 import logging
-from keygen import (
+from core.keygen import (
     verify_license, 
     get_mac_address, 
     compare_permissions,

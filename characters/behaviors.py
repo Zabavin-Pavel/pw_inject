@@ -2,7 +2,7 @@
 Поведения классов персонажей
 """
 from abc import ABC, abstractmethod
-from constants import *
+from config.constants import *
 
 class BaseBehavior(ABC):
     """Базовое поведение для всех классов"""

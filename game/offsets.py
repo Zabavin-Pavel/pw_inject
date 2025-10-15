@@ -79,9 +79,9 @@ OFFSETS = {
 
 import ctypes
 from collections import Counter
-from memory import Memory
-from win32_api import TH32CS_SNAPPROCESS, PROCESSENTRY32
-from constants import CLASS_NAMES_DEBUG
+from game.memory import Memory
+from game.win32_api import TH32CS_SNAPPROCESS, PROCESSENTRY32
+from config.constants import CLASS_NAMES_DEBUG
 
 
 def get_first_pid(process_name="ElementClient.exe"):

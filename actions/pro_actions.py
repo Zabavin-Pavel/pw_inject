@@ -2,8 +2,8 @@
 PRO уровень - продвинутые действия с телепортацией
 """
 import logging
-from keygen import PERMISSION_PRO
-from constants import DUNGEON_POINTS, LONG_LEFT_POINT, LONG_RIGHT_POINT, FINAL_POINT
+from core.keygen import PERMISSION_PRO
+from config.constants import DUNGEON_POINTS, LONG_LEFT_POINT, LONG_RIGHT_POINT, FINAL_POINT
 
 def register_pro_actions(action_manager, multibox_manager, app_state):
     """

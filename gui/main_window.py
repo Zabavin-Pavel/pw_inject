@@ -16,9 +16,10 @@ from gui.styles import *
 from gui.character_panel import CharacterPanel
 from gui.hotkey_panel import HotkeyPanel
 from core import AppState, ActionManager, HotkeyManager, LicenseManager
-from license_manager import LicenseConfig
-from keygen import PERMISSION_NONE, PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
-from ahk_manager import AHKManager
+from ahk.manager import AHKManager
+from core.license_manager import LicenseConfig
+from core.keygen import PERMISSION_NONE, PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
+from ahk.manager import AHKManager
 from actions import (
     register_toggle_actions,
     register_try_actions,

@@ -1,7 +1,7 @@
 """
 Игровой персонаж
 """
-from behaviors import create_behavior
+from characters.behaviors import create_behavior
 
 class Character:
     """Обёртка над персонажем с поведением"""

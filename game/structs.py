@@ -1,7 +1,7 @@
 """
 Игровые структуры для чтения/записи данных из памяти
 """
-from offsets import OFFSETS, resolve_offset
+from game.offsets import OFFSETS, resolve_offset
 import logging
 
 

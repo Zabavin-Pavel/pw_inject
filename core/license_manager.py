@@ -4,7 +4,7 @@
 import configparser
 import logging
 from pathlib import Path
-from keygen import get_mac_address
+from core.keygen import get_mac_address
 
 class LicenseConfig:
     """Управление файлом license.ini"""

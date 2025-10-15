@@ -1,8 +1,8 @@
 """
 DEV уровень - продвинутые действия для разработки
 """
-from keygen import PERMISSION_DEV
-from constants import SO_POINT, GO_POINT
+from core.keygen import PERMISSION_DEV
+from config.constants import SO_POINT, GO_POINT
 
 def register_dev_actions(action_manager, multibox_manager, app_state):
     """

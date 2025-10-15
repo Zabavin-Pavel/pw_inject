@@ -74,8 +74,8 @@ if __name__ == '__main__':
             sys.exit(0)
         
         # Импорты (после проверки блокировки)
-        from multibox_manager import MultiboxManager
-        from settings_manager import SettingsManager
+        from characters.manager import MultiboxManager
+        from config.settings import SettingsManager
         from gui import MainWindow
         
         logging.info("=== Запуск приложения ===")

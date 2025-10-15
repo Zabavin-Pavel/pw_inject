@@ -1,7 +1,7 @@
 """
 TRY уровень - базовые действия
 """
-from keygen import PERMISSION_TRY
+from core.keygen import PERMISSION_TRY
 
 def register_try_actions(action_manager, ahk_manager):
     """

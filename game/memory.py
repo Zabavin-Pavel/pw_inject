@@ -5,7 +5,7 @@
 import ctypes
 from ctypes import wintypes
 import logging
-from win32_api import *
+from game.win32_api import *
 
 class Memory:
     """Управление памятью процесса"""
