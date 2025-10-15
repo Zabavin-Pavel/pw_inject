@@ -103,17 +103,75 @@ class HotkeyPanel(tk.Frame):
     
     def update_display(self):
         """Обновить отображение всех действий"""
-        # ОТЛАДКА
-        actions = self.action_manager.get_hotkey_actions()
-        logging.info(f"HotkeyPanel.update_display(): {len(actions)} actions")
+        # === ШАГ 1: ОБНОВИТЬ ИКОНКИ ===
+        icon_actions = self.action_manager.get_icon_actions()
+        logging.info(f"HotkeyPanel.update_display(): {len(icon_actions)} icons")
         
-        # Очистить все строки
-        for widget in self.winfo_children():
+        # Очистить старые иконки
+        for btn_id, btn in list(self.icon_buttons.items()):
+            btn.destroy()
+        self.icon_buttons.clear()
+        
+        # Очистить контейнер иконок (spacers и кнопки)
+        for widget in self.icons_container.winfo_children():
             widget.destroy()
-    
+        
+        # Пересоздать иконки с новыми правами доступа
+        spacer_left = tk.Frame(self.icons_container, bg=COLOR_BG)
+        spacer_left.pack(side=tk.LEFT, expand=True)
+        
+        for action in icon_actions:
+            btn = IconButton(
+                self.icons_container,
+                action,
+                self.app_state,
+                lambda aid=action.id: self._on_icon_clicked(aid)
+            )
+            btn.pack(side=tk.LEFT, padx=8)
+            self.icon_buttons[action.id] = btn
+        
+        spacer_right = tk.Frame(self.icons_container, bg=COLOR_BG)
+        spacer_right.pack(side=tk.LEFT, expand=True)
+        
+        # === ШАГ 2: ОБНОВИТЬ ХОТКЕИ ===
+        hotkey_actions = self.action_manager.get_hotkey_actions()
+        logging.info(f"HotkeyPanel.update_display(): {len(hotkey_actions)} hotkey actions")
+        
+        # Очистить старые строки
+        for row_id, row in list(self.hotkey_rows.items()):
+            row.destroy()
+        for sep_id, sep in list(self.separator_rows.items()):
+            sep.destroy()
+        
+        self.hotkey_rows.clear()
+        self.separator_rows.clear()
+        
+        # Пересоздать все строки (get_hotkey_actions уже фильтрует по правам)
+        for action in hotkey_actions:
+            # Проверяем является ли это разделителем
+            if action.is_separator:
+                separator = SeparatorRow(
+                    self.hotkeys_container,
+                    padding_top=5,
+                    padding_bottom=5
+                )
+                separator.pack(fill=tk.X, pady=0)
+                self.separator_rows[action.id] = separator
+            else:
+                row = HotkeyRow(
+                    self.hotkeys_container,
+                    action,
+                    self.hotkey_manager,
+                    self.settings_manager,
+                    lambda aid=action.id: self._on_hotkey_action_executed(aid),
+                    on_hotkey_changed=self._on_hotkey_changed
+                )
+                row.pack(fill=tk.X, pady=2)
+                self.hotkey_rows[action.id] = row
+
     def update_hotkey_display(self):
-        """Обновить отображение ВСЕХ хоткеев в UI"""
-        for action_id, row in self.hotkey_rows.items():
+        """Обновить отображение хоткеев (перезагрузить из настроек)"""
+        for row in self.hotkey_rows.values():
             row.refresh_hotkey_display()
     
     def flash_action(self, action_id: str):
