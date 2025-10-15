@@ -8,7 +8,7 @@ from pathlib import Path
 COLOR_BG = "#1a1a1a"
 COLOR_BG_LIGHT = "#2b2b2b"
 COLOR_TEXT = "#b0b0b0"
-COLOR_TEXT_BRIGHT = "#ffffff"
+COLOR_TEXT_BRIGHT = "#b0b0b0"
 COLOR_ACCENT = "#ff8c42"        # Оранжевый основной
 COLOR_ACCENT_HOVER = "#ffa050"  # Светло-оранжевый при наведении
 COLOR_BORDER = "#3a3a3a"
@@ -16,20 +16,20 @@ COLOR_SELECTED = "#ffa050"      # Светло-оранжевый для выд�
 
 # Размеры окна
 WINDOW_WIDTH = 370
-WINDOW_HEIGHT = 400
+WINDOW_HEIGHT = 465
 
 # Шрифты
-FONT_MAIN = ("Segoe UI", 10)
-FONT_TITLE = ("Segoe UI", 12, "bold")
-FONT_HOTKEY = ("Segoe UI", 10)
+FONT_MAIN = ("Consolas", 12)
+FONT_TITLE = ("Consolas", 21, "bold")
+FONT_HOTKEY = ("semibold", 9, "bold")
 
 # Размеры иконок
-ICON_SIZE = 20
+ICON_SIZE = 15
 ICON_SIZE_BUTTON = 24
 
 # Ширина панелей
-CHARACTERS_PANEL_WIDTH = 150
-HOTKEY_ACTION_WIDTH = 160
+CHARACTERS_PANEL_WIDTH = 140
+HOTKEY_ACTION_WIDTH = 170
 
 # Пути к ресурсам
 if getattr(sys, 'frozen', False):
@@ -47,8 +47,8 @@ SETTINGS_FILE = "settings.json"
 LOG_FILE = "bot_session.log"
 
 # Максимальная длина имени
-MAX_NAME_LENGTH = 15
-MAX_ACTION_LENGTH = 18
+MAX_NAME_LENGTH = 13
+MAX_ACTION_LENGTH = 22
 
 # Файл блокировки
 LOCK_FILE = "bot.lock"

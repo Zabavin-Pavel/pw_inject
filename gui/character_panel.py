@@ -174,15 +174,14 @@ class CharacterRow(tk.Frame):
         
         if len(display_name) > MAX_NAME_LENGTH:
             display_name = display_name[:MAX_NAME_LENGTH-3] + "..."
-        
         self.name_label = tk.Label(
             self,
             text=display_name,
-            font=FONT_MAIN,
+            font=("Segoe UI", 10, "bold"),
             bg=COLOR_BG,
             fg=COLOR_TEXT,
             cursor="hand2",
-            anchor="w"
+            anchor="w",
         )
         self.name_label.pack(side=tk.LEFT, fill=tk.X, expand=True)
         self.name_label.bind("<Button-1>", lambda e: self._on_name_click())

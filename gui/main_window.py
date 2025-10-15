@@ -110,7 +110,7 @@ class MainWindow:
             label='Teleport',
             type='toggle',
             callback=self.toggle_teleport,
-            icon='🌀',
+            icon='☠',
             has_hotkey=False,
             required_permission=PERMISSION_DEV
         )
@@ -118,7 +118,7 @@ class MainWindow:
         # Quick действия с хоткеями (БЕЗ иконок) - В НАЧАЛЕ
         self.action_manager.register(
             'ahk_click_mouse',
-            label='Ckick LBM',  # ПЕРЕИМЕНОВАНО
+            label='LBM      [TRY]',  # ПЕРЕИМЕНОВАНО
             type='quick',
             callback=self.ahk_manager.click_at_mouse,
             has_hotkey=True,
@@ -127,17 +127,34 @@ class MainWindow:
 
         self.action_manager.register(
             'ahk_press_space',
-            label='Press space',  # ПЕРЕИМЕНОВАНО
+            label='SPACE    [TRY]',  # ПЕРЕИМЕНОВАНО
+            type='quick',
+            callback=lambda: self.ahk_manager.send_key("Space"),
+            has_hotkey=True,
+            required_permission=PERMISSION_TRY
+        )
+
+        self.action_manager.register(
+            'ahk_press_follow',
+            label='FOLLOW   [TRY]',  # ПЕРЕИМЕНОВАНО
             type='quick',
             callback=lambda: self.ahk_manager.send_key("Space"),
             has_hotkey=True,
             required_permission=PERMISSION_TRY
         )
         
+        self.action_manager.register(
+            'namename',  # НОВОЕ
+            label='--------------',
+            type='quick',
+            callback=lambda: 0,
+            required_permission=PERMISSION_PRO
+        )
+        
         # DEV экшены - В КОНЦЕ
         self.action_manager.register(
             'tp_to_target',  # ПЕРЕИМЕНОВАНО
-            label='TP to TARGET',
+            label='TARGET   [PRO]',
             type='quick',
             callback=self.action_tp_to_target,
             has_hotkey=True,
@@ -146,16 +163,51 @@ class MainWindow:
         
         self.action_manager.register(
             'tp_to_lider',  # НОВОЕ
-            label='TP to LIDER',
+            label='NEXT >>  [PRO]',
             type='quick',
             callback=self.action_tp_to_lider,
             has_hotkey=True,
-            required_permission=PERMISSION_DEV
+            required_permission='TEST'
         )
         
         self.action_manager.register(
+            'tp_to_lider1',  # НОВОЕ
+            label='<- LONG  [PRO]',
+            type='quick',
+            callback=self.action_tp_to_lider,
+            has_hotkey=True,
+            required_permission='TEST'
+        )
+        
+        self.action_manager.register(
+            'tp_to_lider2',  # НОВОЕ
+            label='LONG ->  [PRO]',
+            type='quick',
+            callback=self.action_tp_to_lider,
+            has_hotkey=True,
+            required_permission='TEST'
+        )
+        
+        self.action_manager.register(
+            'tp_to_lider3',  # НОВОЕ
+            label='LAST >>  [PRO]',
+            type='quick',
+            callback=self.action_tp_to_lider,
+            has_hotkey=True,
+            required_permission='TEST'
+        )
+        
+        self.action_manager.register(
+            'namenamename',  # НОВОЕ
+            label='--------------',
+            type='quick',
+            callback=lambda: 0,
+            required_permission=PERMISSION_DEV
+        )
+
+        self.action_manager.register(
             'tp_to_so',  # НОВОЕ
-            label='TP to SO',
+            label='Act SO   [DEV]',
             type='quick',
             callback=self.action_tp_to_so,
             has_hotkey=True,
@@ -164,7 +216,7 @@ class MainWindow:
         
         self.action_manager.register(
             'tp_to_go',  # НОВОЕ
-            label='TP to GO',
+            label='Act GO   [DEV]',
             type='quick',
             callback=self.action_tp_to_go,
             has_hotkey=True,

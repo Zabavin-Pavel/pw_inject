@@ -1,15 +1,16 @@
 {
   "window_position": {
-    "x": -505,
-    "y": 257
+    "x": -619,
+    "y": 214
   },
   "is_topmost": true,
   "hotkeys": {
     "ahk_click_mouse": "-",
     "ahk_press_space": "-",
     "tp_to_target": "7",
-    "tp_to_lider": "-",
+    "tp_to_lider": "Shift+F",
     "tp_to_so": "-",
-    "tp_to_go": "-"
+    "tp_to_go": "-",
+    "namenamename": "-"
   }
 }
