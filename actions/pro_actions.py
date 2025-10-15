@@ -1,11 +1,12 @@
 """
 PRO уровень - продвинутые действия с телепортацией
+ОБНОВЛЕНО: упрощен NEXT, добавлены лимиты
 """
 import logging
 from core.keygen import PERMISSION_PRO
 from config.constants import DUNGEON_POINTS, LONG_LEFT_POINT, LONG_RIGHT_POINT, EXIT_POINT
 
-def register_pro_actions(action_manager, multibox_manager, app_state):
+def register_pro_actions(action_manager, multibox_manager, app_state, action_limiter):
     """
     Зарегистрировать действия уровня PRO
     
@@ -13,17 +14,18 @@ def register_pro_actions(action_manager, multibox_manager, app_state):
         action_manager: менеджер действий
         multibox_manager: менеджер мультибокса
         app_state: состояние приложения
+        action_limiter: система лимитов (НОВОЕ)
     """
     
     # === РАЗДЕЛИТЕЛЬ ===
     action_manager.register(
         'separator_pro',
-        label='',  # Пустая строка - визуал через SeparatorRow
+        label='',
         type='quick',
         callback=lambda: None,
-        has_hotkey=True,  # Чтобы попал в get_hotkey_actions()
+        has_hotkey=True,
         required_permission=PERMISSION_PRO,
-        is_separator=True  # НОВОЕ - это разделитель
+        is_separator=True
     )
     
     # === TARGET ===
@@ -35,7 +37,6 @@ def register_pro_actions(action_manager, multibox_manager, app_state):
             print("\n[TP to TARGET] Нет последнего активного окна")
             return
         
-        # Вызываем БЕЗ проверок
         multibox_manager.action_teleport_to_target(active_char)
     
     action_manager.register(
@@ -47,64 +48,102 @@ def register_pro_actions(action_manager, multibox_manager, app_state):
         required_permission=PERMISSION_PRO
     )
     
-    # === NEXT >> ===
+    # === NEXT >> (УПРОЩЕНО) ===
     def action_next():
         """
-        Телепортировать группу на следующую точку
+        Телепортировать группу на следующую точку (УПРОЩЕНО)
         
-        Логика:
-        1. Проверяем активное окно ИЛИ лидера
-        2. Если в триггере любой точки - телепортируем ВСЮ группу
-        3. БЕЗ проверки лута, БЕЗ проверки что все в радиусе
+        Новая логика:
+        1. Берем активного персонажа
+        2. Если нет пати - одиночный прыжок
+        3. Если есть пати - групповой с проверкой локации
         """
-        leader, group = multibox_manager.get_leader_and_group()
+        # ПРОВЕРКА ЛИМИТА (быстро, из кеша)
+        if not action_limiter.can_use('tp_next'):
+            print("\n[NEXT >>] ⛔ Лимит использований достигнут")
+            return
+        
+        # Берем активного персонажа
         active_char = app_state.last_active_character
         
-        # Определяем кто проверяется на триггер
-        trigger_char = active_char if active_char else leader
-        
-        if not trigger_char:
-            print("\n[NEXT >>] Нет активного окна и нет лидера")
+        if not active_char:
+            print("\n[NEXT >>] Нет активного окна")
             return
         
-        # Получаем позицию персонажа для проверки триггера
-        trigger_char.char_base.refresh()
-        char_x = trigger_char.char_base.char_pos_x
-        char_y = trigger_char.char_base.char_pos_y
+        # Обновляем данные
+        active_char.char_base.refresh()
+        char_x = active_char.char_base.char_pos_x
+        char_y = active_char.char_base.char_pos_y
+        char_location = active_char.char_base.location_id
         
-        if char_x is None or char_y is None:
-            print("\n[NEXT >>] Не удалось получить координаты")
+        if char_x is None or char_y is None or char_location is None:
+            print("\n[NEXT >>] Не удалось получить координаты/локацию")
             return
         
-        # Проверяем все точки
+        # Проверяем триггеры всех точек
         for point in DUNGEON_POINTS:
             trigger_x, trigger_y = point["trigger"]
             radius = point["radius"]
             
-            # Проверка триггера
             dx = abs(char_x - trigger_x)
             dy = abs(char_y - trigger_y)
             
             if dx <= radius and dy <= radius:
-                # В триггере! Телепортируем всю группу
+                # В триггере! Телепортируем
                 target_x, target_y, target_z = point["target"]
                 
-                # Получаем всех персонажей группы (или всех если нет группы)
-                chars_to_tp = group if group else multibox_manager.get_all_characters()
-                
-                # Телепортируем (С МАССОВЫМ SPACE)
-                success_count = multibox_manager.teleport_group(
-                    chars_to_tp,
-                    target_x,
-                    target_y,
-                    target_z,
-                    send_space=True
+                # Проверяем есть ли пати
+                from game.offsets import resolve_offset, OFFSETS
+                party_ptr = resolve_offset(
+                    active_char.memory, 
+                    OFFSETS["party_ptr"], 
+                    active_char.char_base.cache
                 )
                 
-                if success_count > 0:
-                    print(f"\n[NEXT >>] {point['name']}: телепортировано {success_count} персонажей\n")
+                if not party_ptr or party_ptr == 0:
+                    # НЕТ ПАТИ - одиночный телепорт
+                    success = multibox_manager.teleport_character(
+                        active_char,
+                        target_x,
+                        target_y,
+                        target_z,
+                        send_space=True
+                    )
+                    
+                    if success:
+                        print(f"\n[NEXT >>] {point['name']}: телепортирован {active_char.char_base.char_name}\n")
+                        # Записываем использование
+                        action_limiter.record_usage('tp_next')
+                    else:
+                        print(f"\n[NEXT >>] {point['name']}: ошибка телепортации\n")
                 else:
-                    print(f"\n[NEXT >>] {point['name']}: никто не был телепортирован\n")
+                    # ЕСТЬ ПАТИ - групповой телепорт с проверкой локации
+                    _, group = multibox_manager.get_leader_and_group()
+                    
+                    # Фильтруем по локации
+                    chars_to_tp = []
+                    for member in group:
+                        member.char_base.refresh()
+                        member_location = member.char_base.location_id
+                        
+                        if member_location == char_location:
+                            chars_to_tp.append(member)
+                    
+                    if chars_to_tp:
+                        success_count = multibox_manager.teleport_group(
+                            chars_to_tp,
+                            target_x,
+                            target_y,
+                            target_z,
+                            send_space=True
+                        )
+                        
+                        if success_count > 0:
+                            print(f"\n[NEXT >>] {point['name']}: телепортировано {success_count} персонажей\n")
+                            # Записываем использование
+                            action_limiter.record_usage('tp_next')
+                        else:
+                            print(f"\n[NEXT >>] {point['name']}: никто не был телепортирован\n")
                 
                 return
         
@@ -122,7 +161,15 @@ def register_pro_actions(action_manager, multibox_manager, app_state):
     # === <- LONG ===
     def action_long_left():
         """Телепортировать к точке LONG LEFT (solo)"""
+        # ПРОВЕРКА ЛИМИТА
+        if not action_limiter.can_use('tp_long_left'):
+            print("\n[LONG <-] ⛔ Лимит использований достигнут")
+            return
+        
         _tp_to_special_point("LONG LEFT", LONG_LEFT_POINT, "solo", multibox_manager, app_state)
+        
+        # Записываем использование
+        action_limiter.record_usage('tp_long_left')
     
     action_manager.register(
         'tp_long_left',
@@ -136,7 +183,15 @@ def register_pro_actions(action_manager, multibox_manager, app_state):
     # === LONG -> ===
     def action_long_right():
         """Телепортировать к точке LONG RIGHT (solo)"""
+        # ПРОВЕРКА ЛИМИТА
+        if not action_limiter.can_use('tp_long_right'):
+            print("\n[LONG ->] ⛔ Лимит использований достигнут")
+            return
+        
         _tp_to_special_point("LONG RIGHT", LONG_RIGHT_POINT, "solo", multibox_manager, app_state)
+        
+        # Записываем использование
+        action_limiter.record_usage('tp_long_right')
     
     action_manager.register(
         'tp_long_right',
@@ -150,7 +205,15 @@ def register_pro_actions(action_manager, multibox_manager, app_state):
     # === EXIT -> ===
     def action_exit():
         """Телепортировать к точке EXIT (party)"""
+        # ПРОВЕРКА ЛИМИТА
+        if not action_limiter.can_use('tp_exit'):
+            print("\n[EXIT >>] ⛔ Лимит использований достигнут")
+            return
+        
         _tp_to_special_point("EXIT", EXIT_POINT, "party", multibox_manager, app_state)
+        
+        # Записываем использование
+        action_limiter.record_usage('tp_exit')
     
     action_manager.register(
         'tp_exit',

@@ -1,5 +1,5 @@
 """
-Управление несколькими игровыми процессами - ОПТИМИЗИРОВАНО
+Управление несколькими игровыми процессами - ПОЛНОСТЬЮ ОБНОВЛЕНО
 """
 import ctypes
 import logging
@@ -9,6 +9,7 @@ from game.structs import CharBase, WorldManager
 from characters.character import Character
 from config.constants import DUNGEON_POINTS, LOOT_CHECK_RADIUS
 from game.win32_api import TH32CS_SNAPPROCESS, PROCESSENTRY32
+from game.offsets import resolve_offset, OFFSETS
 
 
 class MultiboxManager:
@@ -25,6 +26,7 @@ class MultiboxManager:
         # Зависимости (устанавливаются из GUI)
         self.ahk_manager = None
         self.app_state = None
+        self.action_limiter = None  # НОВОЕ: система лимитов
     
     def set_ahk_manager(self, ahk_manager):
         """Установить AHK менеджер"""
@@ -33,6 +35,10 @@ class MultiboxManager:
     def set_app_state(self, app_state):
         """Установить app_state"""
         self.app_state = app_state
+    
+    def set_action_limiter(self, action_limiter):
+        """Установить action_limiter"""
+        self.action_limiter = action_limiter
     
     def _get_all_pids(self, process_name="ElementClient.exe"):
         """Получить список всех PID процесса"""
@@ -77,39 +83,32 @@ class MultiboxManager:
             char.memory.close()
             del self.characters[pid]
             
-            # Если это был главный - сбрасываем WorldManager
             if pid == self._main_pid:
                 self.world_manager = None
                 self._main_pid = None
         
-        # НОВОЕ: Проверяем смену персонажа для существующих процессов
+        # Проверяем смену персонажа для существующих процессов
         to_recreate = []
         for pid, char in list(self.characters.items()):
-            # Обновляем данные
             char.char_base.refresh()
             
-            # Проверяем валидность
             if not char.char_base.is_valid():
                 to_recreate.append(pid)
                 continue
             
-            # Проверяем смену персонажа (если char_id изменился)
-            # CharBase уже очистил свой кеш в _update(), но нам нужно пересоздать Character
-            # для обновления behavior и прочего
             if char.char_base._previous_char_id != char.char_base.char_id:
                 logging.info(f"🔄 Character changed in PID {pid}, recreating...")
                 to_recreate.append(pid)
+            else:
+                # НОВОЕ: Обновляем fly trigger кеш (только если персонаж не менялся)
+                char.update_fly_trigger_cache()
         
         # Пересоздаём персонажей (смена персонажа или невалидность)
         for pid in to_recreate:
             old_char = self.characters[pid]
-            
-            # Пересоздаём Character с новым CharBase
             char_base = CharBase(old_char.memory)
             new_char = Character(pid, old_char.memory, char_base)
-            
             self.characters[pid] = new_char
-            
             logging.info(f"✅ Character recreated for PID {pid}: {char_base.char_name}")
         
         # Добавляем новые процессы
@@ -117,15 +116,22 @@ class MultiboxManager:
             mem = Memory()
             if mem.attach_by_pid(pid):
                 char_base = CharBase(mem)
+                logging.info(f"DEBUG PID={pid}: char_origin={hex(char_base.cache.get('char_origin', 0))}, char_base={hex(char_base.cache.get('char_base', 0))}")
                 char = Character(pid, mem, char_base)
                 self.characters[pid] = char
                 
-                # Первый процесс становится главным (для WorldManager)
                 if self._main_pid is None:
                     self._main_pid = pid
                     self.world_manager = WorldManager(mem)
                 
-                logging.info(f"✅ New character added: {char_base.char_name} (PID: {pid})")
+                char_name = char_base.char_name if char_base.char_name else "???"
+                logging.info(f"✅ New character added: PID={pid}, Name={repr(char_name)}")
+
+
+        
+        # НОВОЕ: Обновляем мапу pid↔char_id в AppState
+        if self.app_state:
+            self.app_state.update_pid_char_id_map(self.get_all_characters())
     
     def refresh_characters(self):
         """Алиас для refresh()"""
@@ -144,61 +150,68 @@ class MultiboxManager:
         return self.get_all_characters()
     
     # ===================================================
-    # LEADER AND GROUP
+    # НОВАЯ УПРОЩЕННАЯ ЛОГИКА GET_LEADER_AND_GROUP
     # ===================================================
-
+    
     def get_leader_and_group(self):
         """
-        Найти группу с максимальным числом наших персонажей
+        НОВАЯ ЛОГИКА: Взять последнего активного персонажа
+        - Если он в пати → вернуть всех членов группы через оффсеты
+        - Иначе → вернуть только его
         
         Returns:
-            (leader: Character, members: list[Character]) или (None, [])
+            (leader: Character, members: list[Character])
+            - leader: последний активный персонаж (или None)
+            - members: [leader] если без пати, или вся группа если в пати
         """
-        from game.offsets import resolve_offset, OFFSETS
+        # Берем последнего активного персонажа
+        leader = self.app_state.last_active_character if self.app_state else None
         
-        groups = {}  # {leader_id: [char1, char2, ...]}
-        
-        for char in self.get_all_characters():
-            char.char_base.refresh()
-            
-            party_ptr = resolve_offset(char.memory, OFFSETS["party_ptr"], char.char_base.cache)
-            
-            if not party_ptr or party_ptr == 0:
-                continue
-            
-            char.char_base.cache["party_ptr"] = party_ptr
-            
-            party_leader_id = resolve_offset(char.memory, OFFSETS["party_leader_id"], char.char_base.cache)
-            
-            if not party_leader_id:
-                continue
-            
-            if party_leader_id not in groups:
-                groups[party_leader_id] = []
-            
-            groups[party_leader_id].append(char)
-        
-        if not groups:
+        if not leader or not leader.is_valid():
             return None, []
         
-        # Самая большая группа
-        largest_group_leader_id = max(groups.keys(), key=lambda lid: len(groups[lid]))
-        largest_group = groups[largest_group_leader_id]
+        # Обновляем данные лидера
+        leader.char_base.refresh()
         
-        # Находим лидера среди наших персонажей
-        leader = None
-        for char in largest_group:
-            if char.char_base.char_id == largest_group_leader_id:
-                leader = char
-                break
+        # Проверяем есть ли пати
+        party_ptr = resolve_offset(leader.memory, OFFSETS["party_ptr"], leader.char_base.cache)
         
-        if not leader:
-            return None, []
+        if not party_ptr or party_ptr == 0:
+            # Нет пати - возвращаем только лидера
+            return leader, [leader]
         
-        return leader, largest_group
-
+        # Есть пати - получаем всех членов группы
+        leader.char_base.cache["party_ptr"] = party_ptr
+        
+        party_members = resolve_offset(leader.memory, OFFSETS["party_members"], leader.char_base.cache)
+        
+        if not party_members:
+            return leader, [leader]
+        
+        # Собираем наших персонажей из группы
+        group_chars = []
+        
+        for member in party_members:
+            member_id = member.get('id')
+            if not member_id:
+                continue
+            
+            # Ищем персонажа по char_id через мапу
+            if self.app_state:
+                member_pid = self.app_state.get_pid_by_char_id(member_id)
+                if member_pid and member_pid in self.characters:
+                    char = self.characters[member_pid]
+                    if char.is_valid():
+                        group_chars.append(char)
+        
+        # Если не нашли никого - возвращаем только лидера
+        if not group_chars:
+            return leader, [leader]
+        
+        return leader, group_chars
+    
     # ===================================================
-    # ТИПОВЫЕ ФУНКЦИИ ТЕЛЕПОРТАЦИИ (УПРОЩЕНО)
+    # ТИПОВЫЕ ФУНКЦИИ ТЕЛЕПОРТАЦИИ (С ПРОВЕРКОЙ ЛИЦЕНЗИИ)
     # ===================================================
     
     def teleport_character(self, character, target_x, target_y, target_z, send_space=False):
@@ -222,6 +235,9 @@ class MultiboxManager:
         # Нажимаем space если нужно (ОДИНОЧНЫЙ)
         if send_space and self.ahk_manager:
             self.ahk_manager.send_key_to_pid("space", character.pid)
+        
+        # НОВОЕ: Проверка лицензии в конце
+        self._check_license_expiry()
         
         return True
     
@@ -252,7 +268,28 @@ class MultiboxManager:
         if send_space and success_count > 0 and self.ahk_manager:
             self.ahk_manager.send_key("space")
         
+        # НОВОЕ: Проверка лицензии в конце
+        self._check_license_expiry()
+        
         return success_count
+    
+    def _check_license_expiry(self):
+        """
+        Проверка истечения лицензии
+        Если срок истек - запускает принудительный refresh GUI
+        """
+        try:
+            from core.license_manager import LicenseManager
+            from datetime import datetime
+            
+            # Предполагаем что license_config доступен через GUI
+            # Это быстрая проверка, не должна замедлять телепорт
+            
+            # TODO: Реализовать интеграцию с LicenseManager
+            # Пока заглушка
+            
+        except Exception as e:
+            logging.debug(f"License check skipped: {e}")
     
     # ===================================================
     # ЭКШЕНЫ (ОПТИМИЗИРОВАНО)
@@ -387,184 +424,123 @@ class MultiboxManager:
             char_name = active_char.char_base.char_name
             logging.info(f"TP to {point_name}: {char_name} not in trigger zone (dx={dx:.1f}, dy={dy:.1f})")
             return False
-    
+
     # ===================================================
-    # TELEPORT TOGGLE - ОПТИМИЗИРОВАННАЯ ЛОГИКА
+    # FOLLOW (ИСПРАВЛЕНО)
+    # Работает только для окон в пати, в одной локации, с лидером
     # ===================================================
     
-    def check_teleport_conditions(self):
+    def follow_leader(self):
         """
-        Проверить условия телепортации (ОПТИМИЗИРОВАНО)
-        Вызывается каждую секунду из toggle loop
+        Синхронизация полета группы (ИСПРАВЛЕНО)
         
         Логика:
-        1. Если активное окно = лидер → проверяем PARTY + SOLO точки
-        2. Если активное окно НЕ лидер (или нет группы) → только SOLO точки
+        1. Только для окон в пати
+        2. Только если есть лидер среди наших окон
+        3. Только для окон в той же локации что и лидер
+        4. Лидера НЕ трогаем (не морозим, не меняем fly_trigger)
+        5. Используем fly_trigger для управления полетом (если найдены оба состояния)
         
         Returns:
-            str: статус проверки
+            int: количество активных корректировок
         """
-        if not self.world_manager or not self.app_state:
-            return "❌ Not initialized"
-        
-        active_char = self.app_state.last_active_character
-        
-        if not active_char:
-            return "❌ No active window"
-        
         leader, group = self.get_leader_and_group()
         
-        # Определяем является ли активное окно лидером
-        is_leader = (active_char == leader)
+        if not leader or len(group) <= 1:
+            return 0
         
-        # === ПРОВЕРКА ВСЕХ ТОЧЕК ===
-        for point in DUNGEON_POINTS:
-            mode = point["mode"]
-            
-            # SOLO точки - доступны всем
-            if mode == "solo":
-                result = self._check_solo_point(active_char, point)
-                if result:
-                    return result
-            
-            # PARTY точки - только для лидера
-            elif mode == "party" and is_leader:
-                result = self._check_party_point(leader, group, point)
-                if result:
-                    return result
-        
-        return "⏳ No trigger points active"
-
-    def _check_solo_point(self, character, point):
-        """Проверить SOLO точку для персонажа"""
-        point_name = point["name"]
-        trigger_x, trigger_y = point["trigger"]
-        radius = point["radius"]
-        
-        # Проверяем позицию
-        character.char_base.refresh()
-        char_x = character.char_base.char_pos_x
-        char_y = character.char_base.char_pos_y
-        
-        if char_x is None or char_y is None:
-            return None
-        
-        # Проверка триггера
-        dx = abs(char_x - trigger_x)
-        dy = abs(char_y - trigger_y)
-        
-        if dx <= radius and dy <= radius:
-            # В триггере - проверяем лут если нужно
-            if point.get("check_loot", False):
-                # БЫСТРАЯ проверка: есть ли вообще лут?
-                if self.world_manager.has_any_loot():
-                    # Да, есть - проверяем расстояние
-                    loot_items = self.world_manager.get_loot_nearby(
-                        (char_x, char_y, character.char_base.char_pos_z),
-                        LOOT_CHECK_RADIUS
-                    )
-                    
-                    if loot_items and len(loot_items) > 0:
-                        return f"⏳ {point_name} (SOLO) - Waiting for loot ({len(loot_items)} items)"
-            
-            # Телепортируем (С ОДИНОЧНЫМ SPACE)
-            target_x, target_y, target_z = point["target"]
-            self.teleport_character(
-                character, 
-                target_x, 
-                target_y, 
-                target_z,
-                send_space=True
-            )
-            
-            char_name = character.char_base.char_name
-            logging.info(f"✅ {point_name} (SOLO): {char_name} teleported")
-            return f"✅ {point_name} (SOLO) - Teleported"
-        
-        return None
-
-    def _check_party_point(self, leader, group, point):
-        """Проверить PARTY точку для группы"""
-        point_name = point["name"]
-        trigger_x, trigger_y = point["trigger"]
-        radius = point["radius"]
-        
-        # Проверяем позицию лидера
+        # Обновляем данные лидера
         leader.char_base.refresh()
-        leader_x = leader.char_base.char_pos_x
-        leader_y = leader.char_base.char_pos_y
+        
         leader_z = leader.char_base.char_pos_z
+        leader_fly_status = leader.char_base.fly_status
+        leader_location = leader.char_base.location_id
         
-        if leader_x is None or leader_y is None or leader_z is None:
-            return None
+        if leader_z is None or leader_fly_status is None or leader_location is None:
+            return 0
         
-        # Проверка триггера лидера
-        dx = abs(leader_x - trigger_x)
-        dy = abs(leader_y - trigger_y)
+        active_corrections = 0
         
-        if dx <= radius and dy <= radius:
-            # Проверяем сколько персонажей в триггере
-            chars_in_trigger = []
+        for member in group:
+            # Пропускаем лидера
+            if member.char_base.char_id == leader.char_base.char_id:
+                continue
             
-            for char in group:
-                char.char_base.refresh()
-                char_x = char.char_base.char_pos_x
-                char_y = char.char_base.char_pos_y
+            member.char_base.refresh()
+            
+            # Проверка локации (КРИТИЧНО!)
+            member_location = member.char_base.location_id
+            if member_location != leader_location:
+                # Окно в другой локации - пропускаем
+                continue
+            
+            member_z = member.char_base.char_pos_z
+            member_fly_status = member.char_base.fly_status
+            
+            if member_z is None or member_fly_status is None:
+                continue
+            
+            # Разница по высоте
+            z_diff = abs(member_z - leader_z)
+            
+            # УПРАВЛЕНИЕ ПОЛЕТОМ (если найдены оба состояния)
+            if member.can_control_flight():
+                # Лидер летит, а член не летит
+                if leader_fly_status == 1 and member_fly_status != 1:
+                    member.set_flight_state(True)
+                    logging.debug(f"✈️ {member.char_base.char_name} взлетает")
                 
-                if char_x is None or char_y is None:
-                    continue
-                
-                char_dx = abs(char_x - trigger_x)
-                char_dy = abs(char_y - trigger_y)
-                
-                if char_dx <= radius and char_dy <= radius:
-                    chars_in_trigger.append(char)
+                # Лидер не летит, а член летит
+                elif leader_fly_status != 1 and member_fly_status == 1:
+                    member.set_flight_state(False)
+                    logging.debug(f"🚶 {member.char_base.char_name} приземляется")
             
-            total_chars = len(group)
-            ready_chars = len(chars_in_trigger)
-            
-            # Не все в радиусе
-            if ready_chars < total_chars:
-                return f"⏳ {point_name} (PARTY) - {ready_chars}/{total_chars} ready"
-            
-            # Все в радиусе - проверяем лут если нужно
-            if point.get("check_loot", False):
-                # БЫСТРАЯ проверка: есть ли вообще лут?
-                if self.world_manager.has_any_loot():
-                    # Да, есть - проверяем расстояние
-                    loot_items = self.world_manager.get_loot_nearby(
-                        (leader_x, leader_y, leader_z),
-                        LOOT_CHECK_RADIUS
-                    )
-                    
-                    if loot_items and len(loot_items) > 0:
-                        return f"⏳ {point_name} (PARTY) - {ready_chars}/{total_chars} ready, {len(loot_items)} loot items"
-            
-            # ВСЕ УСЛОВИЯ ВЫПОЛНЕНЫ - телепортируем группу (С МАССОВЫМ SPACE)
-            target_x, target_y, target_z = point["target"]
-            success_count = self.teleport_group(
-                chars_in_trigger, 
-                target_x, 
-                target_y, 
-                target_z,
-                send_space=True
-            )
-            
-            if success_count > 0:
-                logging.info(f"✅ {point_name} (PARTY): {success_count}/{total_chars} teleported")
-                return f"✅ {point_name} (PARTY) - Teleported {success_count}/{total_chars}"
+            # РЕГУЛИРОВАНИЕ ВЫСОТЫ
+            if leader_fly_status == 1:  # Лидер летит
+                if z_diff > 1.0:  # Разница больше 1м
+                    # Заморозить высоту на уровне лидера
+                    if not member.fly_freeze_info or not member.fly_freeze_info.get('active'):
+                        # Морозим
+                        freeze_info = member.memory.freeze_address(
+                            member.char_base.cache["char_base"] + 0x9FC,  # char_pos_z
+                            leader_z
+                        )
+                        
+                        if freeze_info:
+                            member.fly_freeze_info = freeze_info
+                            member.char_base.set_fly_speed_z(0)
+                            active_corrections += 1
+                            logging.debug(f"❄️ {member.char_base.char_name} заморожен на высоте {leader_z:.1f}")
+                else:
+                    # Высота в пределах нормы - разморозить если был заморожен
+                    if member.fly_freeze_info and member.fly_freeze_info.get('active'):
+                        member.memory.unfreeze_address(member.fly_freeze_info)
+                        member.fly_freeze_info = None
+                        member.char_base.set_fly_speed_z(0)
+                        logging.debug(f"🔓 {member.char_base.char_name} разморожен")
+            else:
+                # Лидер не летит - разморозить всех
+                if member.fly_freeze_info and member.fly_freeze_info.get('active'):
+                    member.memory.unfreeze_address(member.fly_freeze_info)
+                    member.fly_freeze_info = None
+                    member.char_base.set_fly_speed_z(0)
         
-        return None
+        return active_corrections
     
     # ===================================================
-    # FOLLOW И ATTACK (БЕЗ ИЗМЕНЕНИЙ)
+    # ATTACK (ИСПРАВЛЕНО)
     # ===================================================
-
+    
     def set_attack_target(self):
-        """Установить таргет лидера всем членам группы"""
+        """
+        Установить таргет лидера всем членам группы (ИСПРАВЛЕНО)
+        
+        Returns:
+            int: количество успешных установок
+        """
         leader, group = self.get_leader_and_group()
         
-        if not leader:
+        if not leader or len(group) <= 1:
             return 0
         
         leader.char_base.refresh()
@@ -576,102 +552,12 @@ class MultiboxManager:
         success_count = 0
         
         for member in group:
+            # Пропускаем лидера
             if member.char_base.char_id == leader.char_base.char_id:
                 continue
             
+            # Устанавливаем target_id
             if member.char_base.set_target_id(leader_target_id):
                 success_count += 1
         
         return success_count
-
-    def follow_leader(self):
-        """Синхронизация полета членов группы с лидером"""
-        leader, group = self.get_leader_and_group()
-        
-        if not leader:
-            return 0
-        
-        leader.char_base.refresh()
-        leader_fly_status = leader.char_base.fly_status
-        
-        if leader_fly_status != 2:
-            # Лидер не в полете - разморозить всех
-            for member in group:
-                if member.char_base.char_id == leader.char_base.char_id:
-                    continue
-                
-                if member.fly_freeze_info and member.fly_freeze_info['active']:
-                    member.memory.unfreeze_address(member.fly_freeze_info)
-                    member.fly_freeze_info = None
-                    member.char_base.set_fly_speed_z(0)
-            
-            return 0
-        
-        leader_z = leader.char_base.char_pos_z
-        leader_fly_speed = leader.char_base.fly_speed
-        
-        if leader_z is None or leader_fly_speed is None:
-            return 0
-        
-        active_corrections = 0
-        
-        for member in group:
-            if member.char_base.char_id == leader.char_base.char_id:
-                continue
-            
-            member.char_base.refresh()
-            member_z = member.char_base.char_pos_z
-            
-            if member_z is None:
-                continue
-            
-            z_diff = member_z - leader_z
-            
-            if z_diff < -1:
-                # Подниматься
-                target_fly_speed_z = leader_fly_speed
-                
-                if member.fly_freeze_info and member.fly_freeze_info['active']:
-                    if member.fly_freeze_info['value'] != target_fly_speed_z:
-                        member.memory.unfreeze_address(member.fly_freeze_info)
-                        member.fly_freeze_info = None
-                
-                if not member.fly_freeze_info or not member.fly_freeze_info['active']:
-                    member.char_base.set_fly_speed_z(target_fly_speed_z)
-                    member.fly_freeze_info = member.memory.freeze_address(
-                        member.char_base.cache["char_base"] + 0x12A8,
-                        target_fly_speed_z,
-                        'float',
-                        0.1
-                    )
-                
-                active_corrections += 1
-            
-            elif z_diff > 1:
-                # Опускаться
-                target_fly_speed_z = -leader_fly_speed
-                
-                if member.fly_freeze_info and member.fly_freeze_info['active']:
-                    if member.fly_freeze_info['value'] != target_fly_speed_z:
-                        member.memory.unfreeze_address(member.fly_freeze_info)
-                        member.fly_freeze_info = None
-                
-                if not member.fly_freeze_info or not member.fly_freeze_info['active']:
-                    member.char_base.set_fly_speed_z(target_fly_speed_z)
-                    member.fly_freeze_info = member.memory.freeze_address(
-                        member.char_base.cache["char_base"] + 0x12A8,
-                        target_fly_speed_z,
-                        'float',
-                        0.1
-                    )
-                
-                active_corrections += 1
-            
-            else:
-                # Разморозить
-                if member.fly_freeze_info and member.fly_freeze_info['active']:
-                    member.memory.unfreeze_address(member.fly_freeze_info)
-                    member.fly_freeze_info = None
-                    member.char_base.set_fly_speed_z(0)
-        
-        return active_corrections

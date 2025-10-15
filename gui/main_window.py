@@ -1,5 +1,6 @@
 """
 Главное окно приложения - ОБНОВЛЕНО
+Добавлена интеграция с ActionLimiter
 """
 import tkinter as tk
 from PIL import Image, ImageTk
@@ -11,6 +12,7 @@ import threading
 import ctypes
 from ctypes import wintypes
 import math
+from pathlib import Path
 
 from gui.styles import *
 from gui.character_panel import CharacterPanel
@@ -19,6 +21,7 @@ from core import AppState, ActionManager, HotkeyManager, LicenseManager
 from ahk.manager import AHKManager
 from core.license_manager import LicenseConfig
 from core.keygen import PERMISSION_NONE, PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
+from core.action_limiter import ActionLimiter  # НОВОЕ
 from ahk.manager import AHKManager
 from actions import (
     register_toggle_actions,
@@ -34,7 +37,7 @@ from actions import (
 TOGGLE_ACTION_INTERVALS = {
     'follow': 500,      # 0.5 секунды
     'attack': 500,      # 0.5 секунды  
-    'headhunter': 200,  # 0.2 секунды (НОВОЕ)
+    'headhunter': 200,  # 0.2 секунды
 }
 
 class MainWindow:
@@ -53,6 +56,11 @@ class MainWindow:
         # Состояние приложения
         self.app_state = AppState()
         
+        # НОВОЕ: ActionLimiter
+        appdata_dir = Path.home() / "AppData" / "Local" / "xvocmuk"
+        action_log_file = appdata_dir / "action_usage.log"
+        self.action_limiter = ActionLimiter(action_log_file)
+        
         # Менеджеры
         self.action_manager = ActionManager(self.app_state)
         self.hotkey_manager = HotkeyManager(
@@ -63,10 +71,10 @@ class MainWindow:
         # AHK менеджер
         self.ahk_manager = AHKManager()
         
-        # НОВОЕ: Таймеры для toggle экшенов
+        # Таймеры для toggle экшенов
         self.action_timers = {}
         
-        # Регистрируем действия
+        # Регистрируем действия (ОБНОВЛЕНО - передаем action_limiter)
         self._register_actions()
         
         # Создать UI
@@ -82,17 +90,18 @@ class MainWindow:
         self.is_topmost = self.settings_manager.is_topmost()
         self.root.attributes('-topmost', self.is_topmost)
         
-        # НОВОЕ: Запустить polling активного окна
+        # Запустить polling активного окна
         self._start_active_window_polling()
 
         self.on_refresh()
         
-        # НОВОЕ: Передаем зависимости в multibox_manager
+        # Передаем зависимости в multibox_manager
         self.manager.set_ahk_manager(self.ahk_manager)
         self.manager.set_app_state(self.app_state)
+        self.manager.set_action_limiter(self.action_limiter)  # НОВОЕ
     
     def _register_actions(self):
-        """Зарегистрировать все действия"""
+        """Зарегистрировать все действия (ОБНОВЛЕНО)"""
         
         # Toggle действия (Follow, Attack, Headhunter)
         register_toggle_actions(
@@ -108,18 +117,20 @@ class MainWindow:
             self.ahk_manager
         )
         
-        # PRO уровень (TARGET, NEXT >>, <- LONG, LONG ->, FINAL ->)
+        # PRO уровень (TARGET, NEXT >>, <- LONG, LONG ->, FINAL ->) - ПЕРЕДАЕМ action_limiter
         register_pro_actions(
             self.action_manager,
             self.manager,
-            self.app_state
+            self.app_state,
+            self.action_limiter
         )
         
-        # DEV уровень (ACT SO, ACT GO)
+        # DEV уровень (ACT SO, ACT GO) - ПЕРЕДАЕМ action_limiter
         register_dev_actions(
             self.action_manager,
             self.manager,
-            self.app_state
+            self.app_state,
+            self.action_limiter
         )
 
     def _create_ui(self):
@@ -283,6 +294,9 @@ class MainWindow:
             on_action_executed=self.on_action_executed
         )
         self.hotkey_panel.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+                
+        # ОТЛАДКА
+        logging.info(f"📋 HotkeyPanel created, actions count: {len(self.action_manager.get_hotkey_actions())}")
 
     def _on_hotkey_flash(self, action_id: str):
         """Callback для мигания UI при срабатывании хоткея"""
@@ -395,41 +409,43 @@ class MainWindow:
         # Мигнуть кнопкой
         self._flash_refresh_button()
         
-        # Обновить список окон в AHK
+        # Обновить список окон в AHK (no-op теперь)
         self.ahk_manager.refresh_windows()
         
-        # === ШАГ 1: ВЕРИФИКАЦИЯ (КАЖДЫЙ РАЗ!) ===
-        success, permission_level = LicenseManager.verify_best_license(self.license_config)
+        # === ШАГ 1: ВЕРИФИКАЦИЯ (КАЖДЫЙ РАЗ!)
+        from core.license import LicenseManager
         
-        # Обновляем состояние приложения
-        self.verified = success
-        self.app_state.permission_level = permission_level
+        # Верификация
+        success, new_permission = LicenseManager.verify_best_license(self.license_config)
         
-        logging.info(f"🔐 Verification: {success}, Permission: {permission_level}")
-        
-        # === ОПТИМИЗАЦИЯ: Обновлять UI только если уровень изменился ===
-        permission_changed = (permission_level != self.prev_permission_level)
-        
-        if permission_changed:
-            logging.info(f"🔄 Permission changed: {self.prev_permission_level} → {permission_level}")
-            self.prev_permission_level = permission_level
+        if success:
+            self.app_state.verified = True
+            old_permission = self.app_state.permission_level
+            self.app_state.permission_level = new_permission
             
-            # Пересоздать hotkey panel (показать/скрыть экшены)
-            self._rebuild_hotkey_panel()
-        
-        # === ШАГ 2: ЗАГРУЗКА ПЕРСОНАЖЕЙ (если верификация OK) ===
-        if self.verified and permission_level != PERMISSION_NONE:
-            # Обновляем список персонажей
-            self.manager.refresh_characters()
-            characters = self.manager.get_valid_characters()
-            
-            # Отображаем персонажей
-            self.character_panel.set_characters(characters)
+            # Обновляем UI только если уровень изменился
+            if new_permission != old_permission:
+                self.prev_permission_level = new_permission
+                self.hotkey_panel.update_display()
+                logging.info(f"🔑 Permission level updated: {new_permission}")
+
+                for action in self.action_manager.get_hotkey_actions():
+                    logging.info(f"  - {action.id} ({action.required_permission})")
         else:
-            # Нет доступа - очистить всё
-            self.character_panel.set_characters([])
+            self.app_state.verified = False
+            self.app_state.permission_level = "none"
             
-            logging.warning("❌ No valid license - access denied")
+            if self.prev_permission_level != "none":
+                self.prev_permission_level = "none"
+                self.hotkey_panel.update_display()
+        
+        # === ШАГ 2: ОБНОВИТЬ ПЕРСОНАЖЕЙ
+        self.manager.refresh()
+        
+        # === ШАГ 3: ОБНОВИТЬ GUI
+        self.character_panel.set_characters(self.manager.get_all_characters())
+        
+        logging.info("🔄 Refresh completed")
     
     def _rebuild_hotkey_panel(self):
         """Пересоздать hotkey panel (для обновления видимости экшенов)"""
@@ -446,7 +462,9 @@ class MainWindow:
             on_action_executed=self.on_action_executed
         )
         self.hotkey_panel.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
-        
+                
+        # ОТЛАДКА
+        logging.info(f"📋 HotkeyPanel created, actions count: {len(self.action_manager.get_hotkey_actions())}")
         # Обновить отображение хоткеев
         self.root.after(100, lambda: self.hotkey_panel.update_hotkey_display())
 

@@ -31,6 +31,7 @@ OFFSETS = {
     "fly_speed": "float:char_base +0x74C",
     "fly_speed_z": "float:char_base +0x12A8",
     "fly_status": "int32:char_base +0x9DC",
+    "fly_trigger": "int32:char_base +0xA58",
     
     # Группа
     "party_ptr": "ptr:char_base +0xAA0",

@@ -5,6 +5,7 @@ from core.app_state import AppState
 from core.action_manager import ActionManager, Action
 from core.hotkey_manager import HotkeyManager
 from core.license import LicenseManager
+from core.action_limiter import ActionLimiter
 
 __all__ = [
     'AppState',
@@ -12,4 +13,5 @@ __all__ = [
     'Action',
     'HotkeyManager',
     'LicenseManager',
+    'ActionLimiter',
 ]

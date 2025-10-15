@@ -1,5 +1,6 @@
 """
-Состояние приложения
+Состояние приложения - ОБНОВЛЕНО
+Добавлена мапа pid↔char_id
 """
 
 class AppState:
@@ -10,8 +11,12 @@ class AppState:
         self.selected_character = None  # Character или None (оранжевая подсветка)
         self.active_characters = set()  # {Character, ...} (цветные иконки)
         
-        # НОВОЕ: Последнее активное окно
+        # Последнее активное окно
         self.last_active_character = None  # Character последнего активного окна ElementClient.exe
+        
+        # НОВОЕ: Мапа pid ↔ char_id (обновляется при refresh)
+        self.pid_to_char_id = {}  # {pid: char_id}
+        self.char_id_to_pid = {}  # {char_id: pid}
         
         # Верификация
         self.verified = False
@@ -38,8 +43,35 @@ class AppState:
         return character in self.active_characters
     
     def set_last_active_character(self, character):
-        """НОВОЕ: Установить последнее активное окно"""
+        """Установить последнее активное окно"""
         self.last_active_character = character
+    
+    def update_pid_char_id_map(self, characters):
+        """
+        Обновить мапу pid ↔ char_id
+        
+        Args:
+            characters: список Character объектов
+        """
+        self.pid_to_char_id.clear()
+        self.char_id_to_pid.clear()
+        
+        for char in characters:
+            if char.is_valid():
+                pid = char.pid
+                char_id = char.char_base.char_id
+                
+                if pid and char_id:
+                    self.pid_to_char_id[pid] = char_id
+                    self.char_id_to_pid[char_id] = pid
+    
+    def get_char_id_by_pid(self, pid):
+        """Получить char_id по PID"""
+        return self.pid_to_char_id.get(pid)
+    
+    def get_pid_by_char_id(self, char_id):
+        """Получить PID по char_id"""
+        return self.char_id_to_pid.get(char_id)
     
     def toggle_action(self, action_id):
         """Переключить toggle-действие"""

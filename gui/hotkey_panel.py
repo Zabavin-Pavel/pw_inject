@@ -102,10 +102,14 @@ class HotkeyPanel(tk.Frame):
         self.update_hotkey_display()
     
     def update_display(self):
-        """Обновить отображение всех элементов"""
-        # Обновить иконки
-        for btn in self.icon_buttons.values():
-            btn.update_display()
+        """Обновить отображение всех действий"""
+        # ОТЛАДКА
+        actions = self.action_manager.get_hotkey_actions()
+        logging.info(f"HotkeyPanel.update_display(): {len(actions)} actions")
+        
+        # Очистить все строки
+        for widget in self.winfo_children():
+            widget.destroy()
     
     def update_hotkey_display(self):
         """Обновить отображение ВСЕХ хоткеев в UI"""

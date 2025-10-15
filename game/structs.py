@@ -1,5 +1,6 @@
 """
-Игровые структуры для чтения/записи данных из памяти
+Игровые структуры для чтения/записи данных из памяти - ОБНОВЛЕНО
+Добавлено: location_id, fly_trigger
 """
 from game.offsets import OFFSETS, resolve_offset
 import logging
@@ -11,11 +12,14 @@ class CharBase:
     def __init__(self, memory):
         self.memory = memory
         self.cache = {}
-        self._previous_char_id = None  # НОВОЕ: для отслеживания смены персонажа
+        self._previous_char_id = None  # для отслеживания смены персонажа
         self._update()
     
     def _update(self):
         """Обновить данные из памяти"""
+        # ОТЛАДКА
+        logging.info(f"DEBUG _update: module_base={hex(self.memory.module_base)}")
+
         # Получаем базовые адреса
         char_origin = resolve_offset(self.memory, OFFSETS["char_origin"], self.cache)
         if char_origin:
@@ -30,7 +34,7 @@ class CharBase:
         
         # КРИТИЧНО: Проверяем смену персонажа
         if self._previous_char_id is not None and new_char_id != self._previous_char_id:
-            # Персонаж сменился! Очищаем кеш указателей (но не базовые адреса)
+            # Персонаж сменился! Очищаем кеш указателей
             old_id = self._previous_char_id
             logging.warning(f"🔄 Character changed: {old_id} → {new_char_id}")
             self._invalidate_cache()
@@ -40,7 +44,15 @@ class CharBase:
         
         # Читаем все данные
         self.char_id = new_char_id
+        
+        # ОТЛАДКА - покажем что читается
+        char_base_addr = self.cache.get("char_base", 0)
+        logging.info(f"DEBUG: Trying to read from char_base={hex(char_base_addr)}")
+        logging.info(f"  char_id at +0x6A8 = {new_char_id}")
+        
         self.char_class = resolve_offset(self.memory, OFFSETS["char_class"], self.cache)
+        logging.info(f"  char_class at +0x9D0 = {self.char_class}")
+        
         self.char_name = resolve_offset(self.memory, OFFSETS["char_name"], self.cache)
         self.target_id = resolve_offset(self.memory, OFFSETS["target_id"], self.cache)
         
@@ -57,6 +69,9 @@ class CharBase:
         self.fly_speed = resolve_offset(self.memory, OFFSETS["fly_speed"], self.cache)
         self.fly_speed_z = resolve_offset(self.memory, OFFSETS["fly_speed_z"], self.cache)
         self.fly_status = resolve_offset(self.memory, OFFSETS["fly_status"], self.cache)
+        
+        # НОВОЕ: Location ID
+        self.location_id = resolve_offset(self.memory, OFFSETS["location_id"], self.cache)
     
     def _invalidate_cache(self):
         """Очистить кеш указателей (кроме базовых адресов)"""
@@ -190,64 +205,41 @@ class WorldManager:
         Returns:
             bool: True если есть хотя бы один предмет лута
         """
-        # Получаем loot_count (очень быстро)
         loot_count = resolve_offset(self.memory, OFFSETS["loot_count"], self.cache)
-        
         return loot_count is not None and loot_count > 0
     
-    def get_loot_nearby(self, char_position, max_distance=50):
+    def get_loot_nearby(self, char_position, max_distance):
         """
-        Получить лут вокруг персонажа (с фильтрацией по расстоянию)
+        Получить лут в радиусе от персонажа
         
         Args:
             char_position: (x, y, z) координаты персонажа
             max_distance: максимальное расстояние в метрах
         
         Returns:
-            list: список предметов лута поблизости
+            list: список предметов лута [{x, y}, ...]
         """
-        char_x, char_y, _ = char_position
+        import math
         
-        # Получаем контейнер
-        loot_container = resolve_offset(self.memory, OFFSETS["loot_container"], self.cache)
-        if loot_container:
-            self.cache["loot_container"] = loot_container
+        loot_items = resolve_offset(self.memory, OFFSETS["loot_items"], self.cache)
         
-        # Получаем все предметы
-        loot_items_raw = resolve_offset(self.memory, OFFSETS["loot_items"], self.cache)
+        if not loot_items:
+            return []
         
-        # Фильтруем по расстоянию
-        loot_items = []
-        if loot_items_raw:
-            for item in loot_items_raw:
-                loot_x = item.get('x')
-                loot_y = item.get('y')
-                
-                if loot_x is not None and loot_y is not None:
-                    dx = abs(loot_x - char_x)
-                    dy = abs(loot_y - char_y)
-                    
-                    if dx <= max_distance and dy <= max_distance:
-                        loot_items.append(item)
+        char_x, char_y, char_z = char_position
+        nearby = []
         
-        return loot_items
-    
-    def get_people_nearby(self, char_position=None, max_distance=None):
-        """Получить людей вокруг"""
-        # Получаем контейнер
-        people_container = resolve_offset(self.memory, OFFSETS["people_container"], self.cache)
-        if people_container:
-            self.cache["people_container"] = people_container
+        for item in loot_items:
+            item_x = item.get('x')
+            item_y = item.get('y')
+            
+            if item_x is None or item_y is None:
+                continue
+            
+            # Расстояние в 2D (игнорируем Z)
+            distance = math.sqrt((item_x - char_x)**2 + (item_y - char_y)**2)
+            
+            if distance <= max_distance:
+                nearby.append(item)
         
-        # Получаем всех людей
-        people_items_raw = resolve_offset(self.memory, OFFSETS["people_items"], self.cache)
-        
-        # Фильтруем
-        people_items = []
-        if people_items_raw:
-            for item in people_items_raw:
-                people_id = item.get('id')
-                if people_id is not None and people_id > 1:
-                    people_items.append(item)
-        
-        return people_items
+        return nearby
