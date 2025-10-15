@@ -43,9 +43,9 @@ GO_POINT = (50, 50, 230)              # GO Boss
 DUNGEON_POINTS = [
     {
         "name": "0 FROST",
-        "trigger": (200, 290),
+        "trigger": (-210, 282),
         "target": (-210, 183, 255),
-        "radius": 50,
+        "radius": 30,
         "check_loot": True,
         "mode": "party"  # party или solo
     },
@@ -53,7 +53,7 @@ DUNGEON_POINTS = [
         "name": "1 GUARD",
         "trigger": (-210, 183),
         "target": (-313, 187, 261),
-        "radius": 50,
+        "radius": 30,
         "check_loot": True,
         "mode": "party"  # party или solo
     },
@@ -61,7 +61,7 @@ DUNGEON_POINTS = [
         "name": "2 GUARD", 
         "trigger": (-313, 187),
         "target": (-309, 106, 261),
-        "radius": 50,
+        "radius": 30,
         "check_loot": True,
         "mode": "party"
     },
@@ -69,7 +69,7 @@ DUNGEON_POINTS = [
         "name": "3 GUARD", 
         "trigger": (-309, 106),
         "target": (-160, 267, 250),
-        "radius": 50,
+        "radius": 30,
         "check_loot": True,
         "mode": "party"
     },
@@ -77,7 +77,7 @@ DUNGEON_POINTS = [
         "name": "4 BOSS 1", 
         "trigger": (-160, 267),
         "target": (-50, 267, 232),
-        "radius": 50,
+        "radius": 30,
         "check_loot": True,
         "mode": "party"
     },
