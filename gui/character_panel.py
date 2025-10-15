@@ -48,7 +48,7 @@ class CharacterPanel(tk.Frame):
                 self.on_character_selected,
                 on_icon_clicked=self._on_icon_clicked
             )
-            row.pack(fill=tk.X, padx=5, pady=2)
+            row.pack(fill=tk.X, padx=2, pady=0)
             self.character_rows[character] = row
     
     def update_display(self):
@@ -161,7 +161,7 @@ class CharacterRow(tk.Frame):
                 bg=COLOR_BG,
                 cursor="hand2"
             )
-            self.icon_label.pack(side=tk.LEFT, padx=(5, 5))
+            self.icon_label.pack(side=tk.LEFT, padx=(2, 0))
             self.icon_label.bind("<Button-1>", lambda e: self._on_icon_click())
         
         # Имя персонажа (кликабельное для toggle выбора)
@@ -171,13 +171,13 @@ class CharacterRow(tk.Frame):
         # Добавить огненную иконку для особых персонажей
         if any(keyword in char_name.lower() for keyword in ['fire', 'flame', 'inn', 'rin']):
             display_name = f"🔥{char_name}"
-        
+        display_name = '123451234512345'
         if len(display_name) > MAX_NAME_LENGTH:
             display_name = display_name[:MAX_NAME_LENGTH-3] + "..."
         self.name_label = tk.Label(
             self,
             text=display_name,
-            font=("Segoe UI", 10, "bold"),
+            font=("Segoe UI", 9, "bold"),
             bg=COLOR_BG,
             fg=COLOR_TEXT,
             cursor="hand2",

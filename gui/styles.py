@@ -15,21 +15,20 @@ COLOR_BORDER = "#3a3a3a"
 COLOR_SELECTED = "#ffa050"      # Светло-оранжевый для выделения
 
 # Размеры окна
-WINDOW_WIDTH = 370
-WINDOW_HEIGHT = 430
-
+WINDOW_WIDTH = 320
+WINDOW_HEIGHT = 360
 # Шрифты
-FONT_MAIN = ("Consolas", 12)
-FONT_TITLE = ("Consolas", 21, "bold")
-FONT_HOTKEY = ("semibold", 9, "bold")
+FONT_MAIN = ("Consolas", 9)
+FONT_TITLE = ("Consolas", 14, "bold")
+FONT_HOTKEY = ("semibold", 8, "bold")
 
 # Размеры иконок
 ICON_SIZE = 15
 ICON_SIZE_BUTTON = 24
 
 # Ширина панелей
-CHARACTERS_PANEL_WIDTH = 140
-HOTKEY_ACTION_WIDTH = 170
+CHARACTERS_PANEL_WIDTH = 110
+HOTKEY_ACTION_WIDTH = 150
 
 # Пути к ресурсам
 if getattr(sys, 'frozen', False):

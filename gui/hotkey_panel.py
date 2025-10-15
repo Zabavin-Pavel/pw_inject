@@ -27,7 +27,7 @@ class HotkeyPanel(tk.Frame):
         """Создать UI"""
         # === Верхняя часть: иконки действий (toggle) ===
         self.icons_container = tk.Frame(self, bg=COLOR_BG)
-        self.icons_container.pack(fill=tk.X, padx=0, pady=(10, 15))
+        self.icons_container.pack(fill=tk.X, padx=0, pady=(5, 5))
         
         # Центрирование иконок
         spacer_left = tk.Frame(self.icons_container, bg=COLOR_BG)
@@ -50,7 +50,7 @@ class HotkeyPanel(tk.Frame):
         
         # === Нижняя часть: хоткеи ===
         self.hotkeys_container = tk.Frame(self, bg=COLOR_BG)
-        self.hotkeys_container.pack(fill=tk.BOTH, expand=True, padx=0, pady=(0, 10))
+        self.hotkeys_container.pack(fill=tk.BOTH, expand=True, padx=0, pady=(0, 0))
         
         # Создать строки для действий с хоткеями
         hotkey_actions = self.action_manager.get_hotkey_actions()
@@ -183,7 +183,7 @@ class IconButton(tk.Label):
         super().__init__(
             parent,
             text=action.icon,
-            font=("Segoe UI", 17),
+            font=("Segoe UI", 15),
             bg=COLOR_BG,
             fg=COLOR_TEXT,
             cursor="hand2"

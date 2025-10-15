@@ -170,7 +170,7 @@ class MainWindow:
         self.close_btn = tk.Label(
             self.title_bar,
             text="✕",
-            font=("Segoe UI", 15, "bold"),  # Жирнее
+            font=("Segoe UI", 14, "bold"),  # Жирнее
             bg=COLOR_BG,
             fg=COLOR_TEXT,
             cursor="hand2",
@@ -187,7 +187,7 @@ class MainWindow:
         self.minimize_btn = tk.Label(
             self.title_bar,
             text="−",
-            font=("Segoe UI", 15, "bold"),  # Жирнее
+            font=("Segoe UI", 14, "bold"),  # Жирнее
             bg=COLOR_BG,
             fg=COLOR_TEXT,
             cursor="hand2",
@@ -204,7 +204,7 @@ class MainWindow:
         self.pin_btn = tk.Label(
             self.title_bar,
             text="📌",
-            font=("Segoe UI", 13),  # Увеличен размер
+            font=("Segoe UI", 10),  # Увеличен размер
             bg=COLOR_BG,
             fg=COLOR_TEXT if not self.settings_manager.is_topmost() else COLOR_ACCENT,
             cursor="hand2",
@@ -223,7 +223,7 @@ class MainWindow:
         self.refresh_btn = tk.Label(
             self.title_bar,
             text="⟳",
-            font=("Segoe UI", 15, "bold"),  # Жирнее и крупнее
+            font=("Segoe UI", 13, "bold"),  # Жирнее и крупнее
             bg=COLOR_BG,
             fg=COLOR_TEXT,
             cursor="hand2",
@@ -244,7 +244,7 @@ class MainWindow:
         
         # === MAIN CONTENT ===
         content_frame = tk.Frame(self.root, bg=COLOR_BG)
-        content_frame.pack(fill=tk.BOTH, expand=True, padx=5, pady=0)
+        content_frame.pack(fill=tk.BOTH, expand=True, padx=5, pady=(0, 5))  # ← pady=(0, 5)
         
         # Левая панель: персонажи (ФИКСИРОВАННАЯ ШИРИНА + РАМКА)
         left_container = tk.Frame(
@@ -254,7 +254,7 @@ class MainWindow:
             highlightthickness=1,
             highlightbackground=COLOR_BORDER
         )
-        left_container.pack(side=tk.LEFT, fill=tk.Y, expand=False, padx=(0, 10))
+        left_container.pack(side=tk.LEFT, fill=tk.Y, expand=False, padx=0)  # ← padx=0 вместо padx=(0, 10)
         left_container.pack_propagate(False)
         
         self.character_panel = CharacterPanel(
