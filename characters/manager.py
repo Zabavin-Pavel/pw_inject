@@ -323,6 +323,9 @@ class MultiboxManager:
         Returns:
             (leader, group): лидер и список участников группы, или (None, [])
         """
+        # ИМПОРТ В НАЧАЛЕ!
+        from game.offsets import resolve_offset, OFFSETS
+        
         print("\n🔍 get_leader_and_group() вызван")
         print(f"   Всего окон: {len(self.characters)}")
         
@@ -340,8 +343,8 @@ class MultiboxManager:
             
             char_name = char.char_base.char_name
             char_id = char.char_base.char_id
-            # ДОЛЖНО БЫТЬ (как в attack):
-            # print(123123123123)
+            
+            # Читаем party_ptr
             party_ptr = resolve_offset(
                 char.memory, 
                 OFFSETS["party_ptr"], 
@@ -359,13 +362,7 @@ class MultiboxManager:
             print(f"   ID: {char_id}")
             print(f"   party_ptr: {hex(party_ptr) if party_ptr else 'NULL'}")
             
-            if not party_ptr or party_ptr == 0:
-                print(f"   ❌ Нет party_ptr")
-                continue
-            
             # Читаем данные группы
-            from game.offsets import resolve_offset, OFFSETS
-            
             party_leader_id = resolve_offset(char.memory, OFFSETS["party_leader_id"], char.char_base.cache)
             party_count = resolve_offset(char.memory, OFFSETS["party_count"], char.char_base.cache)
             
@@ -413,7 +410,7 @@ class MultiboxManager:
         print(f"✅ Группа: {len(valid_chars)} участников")
         
         return leader, valid_chars
-    
+        
     # ===================================================
     # ТИПОВЫЕ ФУНКЦИИ ТЕЛЕПОРТАЦИИ (С ПРОВЕРКОЙ ЛИЦЕНЗИИ)
     # ===================================================
