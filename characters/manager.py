@@ -11,27 +11,29 @@ from config.constants import DUNGEON_POINTS, LOOT_CHECK_RADIUS
 from game.win32_api import TH32CS_SNAPPROCESS, PROCESSENTRY32
 from game.offsets import resolve_offset, OFFSETS
 
-
-def __init__(self):
-    self.characters = {}
-    self.kernel32 = ctypes.windll.kernel32
+class MultiboxManager:
+    """Управление группой персонажей"""
     
-    # WorldManager для первого процесса
-    self.world_manager = None
-    self._main_pid = None
-    
-    # Зависимости
-    self.ahk_manager = None
-    self.app_state = None
-    self.action_limiter = None
-    
-    # НОВОЕ: Кеш группы (обновляется Attack каждые 500ms)
-    self.party_cache = {
-        'timestamp': None,  # время последнего обновления
-        'leader': None,  # Character объект лидера
-        'members': [],  # список Character объектов в группе
-        'member_info': {}  # {char_id: {'pid': ..., 'location_id': ..., 'name': ...}}
-    }
+    def __init__(self):
+        self.characters = {}
+        self.kernel32 = ctypes.windll.kernel32
+        
+        # WorldManager для первого процесса
+        self.world_manager = None
+        self._main_pid = None
+        
+        # Зависимости
+        self.ahk_manager = None
+        self.app_state = None
+        self.action_limiter = None
+        
+        # НОВОЕ: Кеш группы (обновляется Attack каждые 500ms)
+        self.party_cache = {
+            'timestamp': None,  # время последнего обновления
+            'leader': None,  # Character объект лидера
+            'members': [],  # список Character объектов в группе
+            'member_info': {}  # {char_id: {'pid': ..., 'location_id': ..., 'name': ...}}
+        }
 
     def _update_party_cache(self):
         """
@@ -598,136 +600,56 @@ def __init__(self):
     
     def follow_leader(self):
         """
-        ДИАГНОСТИЧЕСКАЯ ВЕРСИЯ: Проверка заморозки HP
-        
-        Выводим:
-        - fly_status лидера
-        - разницу по Z для каждого окна
-        - каждое условие отдельно
+        Диагностика: читаем fly_speed_z без записи
         """
-        leader, group = self.get_leader_and_group()
+        cache = self._get_party_cache()
         
-        print("\n" + "="*60)
-        print("FOLLOW TICK")
+        leader = cache['leader']
+        members = cache['members']
         
-        if not leader:
-            print("❌ Лидер не найден")
+        if not leader or len(members) <= 1:
             return 0
-        
-        if len(group) <= 1:
-            print("❌ Группа пустая или только лидер")
-            return 0
-        
-        print(f"✅ Лидер: {leader.char_base.char_name}")
-        print(f"✅ Участников в группе: {len(group)}")
         
         leader.char_base.refresh()
         
-        leader_fly_status = leader.char_base.fly_status
-        print(f"\n🔍 FLY_STATUS ЛИДЕРА: {leader_fly_status}")
-        
-        # Первая проверка: fly_status == 2
-        if leader_fly_status != 2:
-            print(f"❌ fly_status != 2, выход из follow")
+        if leader.char_base.fly_status != 2:
             return 0
-        
-        print("✅ fly_status == 2, продолжаем")
         
         leader_z = leader.char_base.char_pos_z
         leader_location = leader.char_base.location_id
         
-        print(f"📍 Лидер Z: {leader_z:.2f}, Location: {leader_location}")
-        
         if leader_z is None or leader_location is None:
-            print("❌ leader_z или leader_location == None")
             return 0
         
-        active_corrections = 0
+        print(f"\n[FOLLOW] Лидер Z={leader_z:.1f}")
         
-        for i, member in enumerate(group):
-            print(f"\n--- Участник #{i+1} ---")
-            
+        for member in members:
             # Пропускаем лидера
             if member.char_base.char_id == leader.char_base.char_id:
-                print("⏭️ Это лидер, пропускаем")
                 continue
             
             member.char_base.refresh()
             
-            print(f"👤 Имя: {member.char_base.char_name}")
-            print(f"🆔 ID: {member.char_base.char_id}")
-            
             # Проверка локации
-            member_location = member.char_base.location_id
-            print(f"📍 Location: {member_location} (лидер: {leader_location})")
-            
-            if member_location != leader_location:
-                print("❌ Разные локации, пропускаем")
+            if member.char_base.location_id != leader_location:
                 continue
-            
-            print("✅ Та же локация")
             
             member_z = member.char_base.char_pos_z
-            member_hp = member.char_base.char_hp
-            
-            print(f"📍 Z: {member_z:.2f} (лидер: {leader_z:.2f})")
-            print(f"❤️ HP: {member_hp}")
             
             if member_z is None:
-                print("❌ member_z == None")
                 continue
             
-            if member_hp is None:
-                print("❌ member_hp == None")
-                continue
+            # Читаем fly_speed_z напрямую
+            char_base_addr = member.char_base.cache.get("char_base")
+            fly_speed_z_address = char_base_addr + 0x12A8
+            current_fly_speed_z = member.memory.read_float(fly_speed_z_address)
             
-            # Разница по высоте
             z_diff = member_z - leader_z
-            print(f"📏 Разница по Z: {z_diff:.2f} м")
             
-            # Если разница > 1 метр
-            if abs(z_diff) > 1.0:
-                print(f"✅ |z_diff| > 1.0, пытаемся заморозить HP")
-                
-                # Проверяем есть ли уже заморозка
-                has_freeze = hasattr(member, 'hp_freeze') and member.hp_freeze and member.hp_freeze.get('active')
-                print(f"🔍 Уже заморожен: {has_freeze}")
-                
-                if not has_freeze:
-                    target_hp = member_hp * 2
-                    print(f"❄️ МОРОЗИМ HP: {member_hp} → {target_hp}")
-                    
-                    char_base_addr = member.char_base.cache.get("char_base")
-                    hp_offset = 0x6BC
-                    hp_address = char_base_addr + hp_offset
-                    
-                    print(f"   Адрес char_base: {hex(char_base_addr)}")
-                    print(f"   Адрес HP: {hex(hp_address)}")
-                    
-                    freeze_info = member.memory.freeze_address(hp_address, target_hp)
-                    
-                    if freeze_info:
-                        member.hp_freeze = freeze_info
-                        active_corrections += 1
-                        print(f"✅ HP успешно заморожен!")
-                    else:
-                        print(f"❌ Не удалось заморозить HP")
-                else:
-                    print("⏭️ Уже заморожен, пропускаем")
-            else:
-                print(f"❌ |z_diff| <= 1.0, не морозим")
-                
-                # Размораживаем HP если был заморожен
-                if hasattr(member, 'hp_freeze') and member.hp_freeze and member.hp_freeze.get('active'):
-                    print(f"🔓 РАЗМОРАЖИВАЕМ HP")
-                    member.memory.unfreeze_address(member.hp_freeze)
-                    member.hp_freeze = None
-                    print(f"✅ HP разморожен")
+            # Компактный вывод: 1 строка
+            print(f"  {member.char_base.char_name}: Z={member_z:.1f} (diff={z_diff:+.1f}м), fly_speed_z={current_fly_speed_z:.2f}")
         
-        print(f"\n📊 Активных корректировок: {active_corrections}")
-        print("="*60 + "\n")
-        
-        return active_corrections
+        return 0
             
     # ===================================================
     # ATTACK (ИСПРАВЛЕНО)

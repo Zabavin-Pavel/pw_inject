@@ -210,7 +210,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
             print("\n[EXIT >>] ⛔ Лимит использований достигнут")
             return
         
-        _tp_to_special_point("EXIT", EXIT_POINT, "party", multibox_manager, app_state)
+        _tp_to_special_point("EXIT", EXIT_POINT, "solo", multibox_manager, app_state)
         
         # Записываем использование
         action_limiter.record_usage('tp_exit')

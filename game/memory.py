@@ -6,6 +6,8 @@ import ctypes
 from ctypes import wintypes
 import logging
 from game.win32_api import *
+import threading  # ДОБАВИТЬ!
+import time        # ДОБАВИТЬ!
 
 class Memory:
     """Управление памятью процесса"""
@@ -279,42 +281,38 @@ class Memory:
             self.pid = None
             self.module_base = None
 
-    def freeze_address(self, address, value, value_type='int32', interval=0.01):
+    def freeze_address(self, address, value):
         """
-        Заморозить адрес - постоянно записывать значение
-        
-        Args:
-            address: адрес для заморозки
-            value: значение для записи
-            value_type: тип данных ('int32', 'float', 'byte')
-            interval: интервал обновления в секундах
-        
-        Returns:
-            dict: информация о заморозке для последующей разморозки
+        Заморозить значение по адресу (ДИАГНОСТИКА)
         """
-        import threading
-        import time
+        print(f"🔧 freeze_address called: address={hex(address)}, value={value}")
         
+        # Создаем инфо о заморозке
         freeze_info = {
-            'active': True,
-            'thread': None,
             'address': address,
             'value': value,
-            'type': value_type
+            'active': True,
+            'stop_event': threading.Event()
         }
         
+        # Функция потока заморозки
         def freeze_loop():
-            while freeze_info['active']:
-                if value_type == 'int32':
-                    self.write_int(address, value)
-                elif value_type == 'float':
-                    self.write_float(address, value)
-                elif value_type == 'byte':
-                    self.write_byte(address, value)
-                time.sleep(interval)
+            print(f"🔧 Freeze thread started for {hex(address)}")
+            count = 0
+            while not freeze_info['stop_event'].is_set():
+                # Записываем значение
+                self.write_int(address, value)
+                count += 1
+                if count % 10 == 0:  # Каждые 10 итераций
+                    print(f"🔧 Freeze active: {hex(address)} = {value}, iterations={count}")
+                time.sleep(0.05)  # 50ms между записями
+            print(f"🔧 Freeze thread stopped for {hex(address)}")
         
-        freeze_info['thread'] = threading.Thread(target=freeze_loop, daemon=True)
-        freeze_info['thread'].start()
+        # Запускаем поток
+        thread = threading.Thread(target=freeze_loop, daemon=True)
+        freeze_info['thread'] = thread
+        thread.start()
+        print(f"🔧 Freeze thread launched!")
         
         return freeze_info
 

@@ -15,30 +15,32 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
     
     # === FOLLOW (TRY) - ИСПРАВЛЕНО ===
     def toggle_follow():
-        """Toggle: Следование (ТЕСТ ЗАМОРОЗКИ)"""
+        """Toggle: Следование"""
         is_active = app_state.is_action_active('follow')
         
-        print(f"🔍 toggle_follow called, is_active={is_active}")
-        
         if is_active:
-            print("Follow: STARTED (ТЕСТ ЗАМОРОЗКИ)")
-            print("🔍 Starting action loop...")
-            # КРИТИЧНО: Запускаем loop через main_window!
+            print("Follow: STARTED")
             main_window._start_action_loop('follow', lambda: follow_loop_callback(multibox_manager))
-            print("🔍 Action loop started!")
         else:
             print("Follow: STOPPED")
-            print("🔍 Stopping action loop...")
-            # КРИТИЧНО: Останавливаем loop через main_window!
             main_window._stop_action_loop('follow')
-            print("🔍 Action loop stopped!")
+
+        # """Toggle: Следование с заморозкой"""
+        # is_active = app_state.is_action_active('follow')
+        
+        # if is_active:
+        #     print("Follow: STARTED")
+        #     main_window._start_action_loop('follow', lambda: follow_loop_callback(multibox_manager))
+        # else:
+        #     print("Follow: STOPPED")
+        #     main_window._stop_action_loop('follow')
             
-            # Разморозить всех при остановке
-            for char in multibox_manager.get_all_characters():
-                # Размораживаем HP
-                if hasattr(char, 'hp_freeze') and char.hp_freeze and char.hp_freeze['active']:
-                    char.memory.unfreeze_address(char.hp_freeze)
-                    char.hp_freeze = None
+        #     # Размораживаем всех
+        #     for char in multibox_manager.get_all_characters():
+        #         if hasattr(char, 'fly_freeze_info') and char.fly_freeze_info and char.fly_freeze_info.get('active'):
+        #             char.memory.unfreeze_address(char.fly_freeze_info)
+        #             char.fly_freeze_info = None
+        #             char.char_base.set_fly_speed_z(0)
     
     action_manager.register(
         'follow',
