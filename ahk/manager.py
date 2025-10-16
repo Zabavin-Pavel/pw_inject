@@ -83,9 +83,13 @@ class AHKManager:
         """Follow - клик во всех окнах кроме активного"""
         return self.send_command("FOLLOW")
     
-    def headhunter(self):
+    def start_headhunter(self):
         """Headhunter - Tab + клик в активном окне"""
-        return self.send_command("HEADHUNTER")
+        return self.send_command("HEADHUNTER_START")
+    
+    def stop_headhunter(self):
+        """Headhunter - Tab + клик в активном окне"""
+        return self.send_command("HEADHUNTER_STOP")
     
     def send_key(self, key: str):
         """
