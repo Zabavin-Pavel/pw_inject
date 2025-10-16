@@ -50,32 +50,7 @@ def register_try_actions(action_manager, ahk_manager, app_state):
         - Получает PIDs группы через app_state
         - Передает PIDs в AHK
         """
-        # Получаем активного персонажа (лидера)
-        leader = app_state.last_active_character
-        
-        if not leader:
-            print("FOLLOW_LIDER: Нет активного окна")
-            return
-        
-        # Получаем группу (всех кроме лидера)
-        group_pids = []
-        
-        # Проходим по всем персонажам
-        for pid, char_id in app_state.char_map.items():
-            # Пропускаем лидера
-            if pid == leader.pid:
-                continue
-            
-            # Добавляем в список
-            group_pids.append(pid)
-        
-        if not group_pids:
-            print("FOLLOW_LIDER: Нет членов группы")
-            return
-        
-        # ИСПРАВЛЕНО: передаем PIDs в AHK
-        ahk_manager.follow_lider(group_pids)
-        print(f"FOLLOW_LIDER: Отправлено {len(group_pids)} персонажам")
+        ahk_manager.follow_lider()
     
     action_manager.register(
         'ahk_follow_lider',

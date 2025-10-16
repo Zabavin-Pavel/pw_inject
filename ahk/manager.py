@@ -79,7 +79,7 @@ class AHKManager:
         """Отправить Space во все окна"""
         return self.send_command("SPACE")
     
-    def follow(self):
+    def follow_lider(self):
         """Follow - клик во всех окнах кроме активного"""
         return self.send_command("FOLLOW")
     

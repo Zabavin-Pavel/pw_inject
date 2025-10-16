@@ -17,6 +17,11 @@ pyinstaller build.spec --clean
 
 
 
+ЗАДОНАТИТЬ
+ЗАРЕГАТЬ
+ЗАБАТНИК
+
+
 
 
 

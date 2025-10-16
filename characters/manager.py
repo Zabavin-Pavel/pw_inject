@@ -341,6 +341,7 @@ class MultiboxManager:
             char_name = char.char_base.char_name
             char_id = char.char_base.char_id
             # ДОЛЖНО БЫТЬ (как в attack):
+            # print(123123123123)
             party_ptr = resolve_offset(
                 char.memory, 
                 OFFSETS["party_ptr"], 
@@ -437,7 +438,7 @@ class MultiboxManager:
         
         # Нажимаем space если нужно (ОДИНОЧНЫЙ)
         if send_space and self.ahk_manager:
-            self.ahk_manager.send_key_to_pid("space", character.pid)
+            self.ahk_manager.send_key("Space")
         
         # НОВОЕ: Проверка лицензии в конце
         self._check_license_expiry()
