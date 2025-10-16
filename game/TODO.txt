@@ -21,7 +21,7 @@ pyinstaller build.spec --clean
 ЗАРЕГАТЬ
 ЗАБАТНИК
 
-
+fly_speed_z_address = char_base_addr + 0x12A8 в менеджере оффсет ...
 
 
 

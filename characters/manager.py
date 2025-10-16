@@ -691,7 +691,7 @@ class MultiboxManager:
             z_diff = member_z - leader_z
             
             # Если разница > 1м
-            if abs(z_diff) > 2.0:
+            if abs(z_diff) > 1.5:
                 # Вычисляем значение
                 target_speed_z = member_fly_speed if z_diff < 0 else -member_fly_speed
                 
