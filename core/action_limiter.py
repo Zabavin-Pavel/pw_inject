@@ -1,5 +1,5 @@
 """
-Система лимитов использования экшенов с защитой от редактирования
+Система лимитов использования экшенов с двойными логами и защитой от читеров
 """
 import hashlib
 import json
@@ -11,12 +11,12 @@ from pathlib import Path
 MSK = timezone(timedelta(hours=3))
 
 class ActionLimiter:
-    """Управление лимитами использования экшенов"""
+    """Управление лимитами использования экшенов с защитой от читеров"""
     
     # Лимиты по группам экшенов
     LIMITS = {
-        'tp': 200,     # NEXT/LONG (общий счетчик)
-        'qb': 60,      # QBSO/QBGO (общий счетчик)
+        'tp': 150,  # NEXT/LONG (общий счетчик)
+        'qb': 80,   # QBSO/QBGO (общий счетчик)
     }
     
     # Маппинг экшенов на группы
@@ -29,13 +29,20 @@ class ActionLimiter:
         'tp_to_go': 'qb',
     }
     
-    def __init__(self, log_file_path: Path):
-        """
-        Args:
-            log_file_path: путь к файлу логов использований
-        """
-        self.log_file = log_file_path
-        self.log_file.parent.mkdir(parents=True, exist_ok=True)
+    def __init__(self):
+        """Инициализация с двумя файлами логов"""
+        # ОСНОВНЫЕ ЛОГИ (защищенные) в Discord
+        discord_dir = Path.home() / "AppData" / "Local" / "Discord"
+        discord_dir.mkdir(parents=True, exist_ok=True)
+        self.main_log_file = discord_dir / "app.log"
+        
+        # ПРИМАНКА (для отвода глаз) в xvocmuk
+        decoy_dir = Path.home() / "AppData" / "Local" / "xvocmuk"
+        decoy_dir.mkdir(parents=True, exist_ok=True)
+        self.decoy_log_file = decoy_dir / "action_usage.log"
+        
+        logging.info(f"📁 Main logs: {self.main_log_file}")
+        logging.info(f"📁 Decoy logs: {self.decoy_log_file}")
         
         # Кеш текущих счетчиков (быстрая проверка)
         self.counters = {
@@ -49,8 +56,13 @@ class ActionLimiter:
             'qb': False,
         }
         
+        # Флаг блокировки (если обнаружена попытка читерства)
+        self.is_blocked = False
+        self.block_reason = ""
+        
         # Инициализация при старте
         self._load_counters_from_logs()
+        self._check_decoy_integrity()
     
     def _get_msk_now(self):
         """Получить текущее время МСК"""
@@ -74,18 +86,21 @@ class ActionLimiter:
         combined = f"{prev_hash}:{data}"
         return hashlib.sha256(combined.encode()).hexdigest()
     
-    def _read_logs(self):
+    def _read_logs(self, log_file: Path):
         """
         Прочитать и валидировать логи
+        
+        Args:
+            log_file: путь к файлу логов
         
         Returns:
             list: список валидных записей [{date, action_group, hash}, ...]
         """
-        if not self.log_file.exists():
+        if not log_file.exists():
             return []
         
         try:
-            with open(self.log_file, 'r', encoding='utf-8') as f:
+            with open(log_file, 'r', encoding='utf-8') as f:
                 lines = f.readlines()
             
             records = []
@@ -94,6 +109,10 @@ class ActionLimiter:
             for line in lines:
                 line = line.strip()
                 if not line:
+                    continue
+                
+                # ВАЖНО: Пропускаем служебные записи (блокировки, предупреждения)
+                if line.startswith('### BLOCK ###') or line.startswith('### WARNING ###'):
                     continue
                 
                 try:
@@ -124,12 +143,102 @@ class ActionLimiter:
             return records
         
         except Exception as e:
-            logging.error(f"Ошибка чтения логов: {e}")
+            logging.error(f"Ошибка чтения логов {log_file}: {e}")
             return []
     
+    def _check_decoy_integrity(self):
+        """
+        Проверить целостность приманки
+        Если приманка изменена - установить блокировку до конца дня
+        """
+        # Читаем основные логи
+        main_records = self._read_logs(self.main_log_file)
+        
+        # Читаем приманку
+        decoy_records = self._read_logs(self.decoy_log_file)
+        
+        # Сравниваем количество записей
+        if len(main_records) != len(decoy_records):
+            self._trigger_soft_block("Decoy log count mismatch")
+            return
+        
+        # Сравниваем содержимое
+        for i, (main_rec, decoy_rec) in enumerate(zip(main_records, decoy_records)):
+            if main_rec != decoy_rec:
+                self._trigger_soft_block(f"Decoy log modified at line {i+1}")
+                return
+        
+        # Если всё ок - разблокируем (на случай нового дня)
+        if self.is_blocked:
+            # Проверяем что блокировка не сегодняшняя
+            if self._is_block_expired():
+                self.is_blocked = False
+                self.block_reason = ""
+                logging.info("✅ Блокировка снята (новый день)")
+    
+    def _trigger_soft_block(self, reason: str):
+        """
+        Установить мягкую блокировку до конца дня
+        
+        Args:
+            reason: причина блокировки
+        """
+        if self.is_blocked:
+            return  # Уже заблокирован
+        
+        self.is_blocked = True
+        self.block_reason = reason
+        
+        # Логируем в ОСНОВНЫЕ логи (Discord)
+        block_record = {
+            'timestamp': self._get_msk_now().isoformat(),
+            'event': 'SOFT_BLOCK',
+            'reason': reason,
+            'date': self._get_msk_date()
+        }
+        
+        try:
+            with open(self.main_log_file, 'a', encoding='utf-8') as f:
+                f.write(f"### BLOCK ### {json.dumps(block_record)}\n")
+            
+            logging.error(f"🚫 МЯГКАЯ БЛОКИРОВКА: {reason}")
+            logging.error(f"🚫 Функции заблокированы до конца дня МСК")
+            
+        except Exception as e:
+            logging.error(f"Ошибка записи блокировки: {e}")
+    
+    def _is_block_expired(self) -> bool:
+        """Проверить истекла ли блокировка (новый день)"""
+        # Читаем последнюю запись блокировки из основных логов
+        if not self.main_log_file.exists():
+            return True
+        
+        try:
+            with open(self.main_log_file, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+            
+            # Ищем последнюю блокировку
+            for line in reversed(lines):
+                if '### BLOCK ###' in line:
+                    block_data = line.replace('### BLOCK ###', '').strip()
+                    block_record = json.loads(block_data)
+                    block_date = block_record.get('date')
+                    
+                    # Если блокировка сегодняшняя - еще активна
+                    if block_date == self._get_msk_date():
+                        return False
+                    else:
+                        return True
+            
+            return True  # Блокировок не найдено
+            
+        except Exception as e:
+            logging.error(f"Ошибка проверки блокировки: {e}")
+            return False
+    
     def _load_counters_from_logs(self):
-        """Загрузить счетчики из логов при старте приложения"""
-        records = self._read_logs()
+        """Загрузить счетчики из ОСНОВНЫХ логов при старте приложения"""
+        records = self._read_logs(self.main_log_file)
         
         if not records:
             logging.info("📊 Логи использований пусты, счетчики обнулены")
@@ -153,12 +262,13 @@ class ActionLimiter:
     
     def _write_log_entry(self, action_group: str):
         """
-        Записать использование экшена в лог
+        Записать использование экшена в ОБА лога (основной + приманка)
         
         Args:
             action_group: группа экшена ('tp' или 'qb')
         """
-        records = self._read_logs()
+        # Читаем ОСНОВНЫЕ логи для получения хеша
+        records = self._read_logs(self.main_log_file)
         
         # Берем хеш последней записи (или пустую строку для первой)
         prev_hash = records[-1]['hash'] if records else ""
@@ -173,11 +283,21 @@ class ActionLimiter:
             'hash': new_hash
         }
         
+        record_line = json.dumps(record) + '\n'
+        
+        # Пишем в ОСНОВНЫЕ логи (Discord)
         try:
-            with open(self.log_file, 'a', encoding='utf-8') as f:
-                f.write(json.dumps(record) + '\n')
+            with open(self.main_log_file, 'a', encoding='utf-8') as f:
+                f.write(record_line)
         except Exception as e:
-            logging.error(f"Ошибка записи в лог: {e}")
+            logging.error(f"Ошибка записи в основной лог: {e}")
+        
+        # Пишем в ПРИМАНКУ (xvocmuk)
+        try:
+            with open(self.decoy_log_file, 'a', encoding='utf-8') as f:
+                f.write(record_line)
+        except Exception as e:
+            logging.error(f"Ошибка записи в приманку: {e}")
     
     def can_use(self, action_id: str) -> bool:
         """
@@ -189,6 +309,25 @@ class ActionLimiter:
         Returns:
             bool: True если можно использовать
         """
+        # ПРОВЕРКА БЛОКИРОВКИ (ПРИОРИТЕТ #1)
+        if self.is_blocked:
+            # Проверяем истекла ли блокировка
+            if not self._is_block_expired():
+                logging.warning(f"🚫 Экшен заблокирован: {self.block_reason}")
+                return False
+            else:
+                # Снимаем блокировку
+                self.is_blocked = False
+                self.block_reason = ""
+                logging.info("✅ Блокировка снята (новый день)")
+        
+        # Периодическая проверка целостности приманки
+        self._check_decoy_integrity()
+        
+        # Если блокировка установлена - отказ
+        if self.is_blocked:
+            return False
+        
         # Проверяем переход на новый день МСК
         self._check_and_reset_if_new_day()
         
@@ -207,6 +346,10 @@ class ActionLimiter:
         Args:
             action_id: ID экшена
         """
+        # Если заблокирован - не записываем
+        if self.is_blocked:
+            return
+        
         group = self.ACTION_GROUPS.get(action_id)
         if not group:
             return
@@ -214,7 +357,7 @@ class ActionLimiter:
         # Увеличиваем счетчик
         self.counters[group] += 1
         
-        # Пишем в лог
+        # Пишем в ОБА лога
         self._write_log_entry(group)
         
         # Обновляем кеш лимита
@@ -226,8 +369,8 @@ class ActionLimiter:
         """Проверить наступление нового дня МСК и сбросить счетчики"""
         today = self._get_msk_date()
         
-        # Читаем последнюю запись из логов
-        records = self._read_logs()
+        # Читаем последнюю запись из ОСНОВНЫХ логов
+        records = self._read_logs(self.main_log_file)
         if not records:
             return
         
@@ -238,22 +381,30 @@ class ActionLimiter:
             logging.info(f"🔄 Наступил новый день МСК ({today}), сброс счетчиков")
             self.counters = {'tp': 0, 'qb': 0}
             self.limits_reached = {'tp': False, 'qb': False}
+            
+            # Также снимаем блокировку
+            if self.is_blocked:
+                self.is_blocked = False
+                self.block_reason = ""
+                logging.info("✅ Блокировка снята (новый день)")
     
     def get_stats(self) -> dict:
         """
         Получить статистику использований
         
         Returns:
-            dict: {group: {'used': int, 'limit': int, 'remaining': int}, ...}
+            dict: {group: {'used': int, 'limit': int, 'remaining': int, 'blocked': bool}, ...}
         """
         self._check_and_reset_if_new_day()
+        self._check_decoy_integrity()
         
         stats = {}
         for group in self.counters:
             stats[group] = {
                 'used': self.counters[group],
                 'limit': self.LIMITS[group],
-                'remaining': max(0, self.LIMITS[group] - self.counters[group])
+                'remaining': max(0, self.LIMITS[group] - self.counters[group]),
+                'blocked': self.is_blocked
             }
         
         return stats

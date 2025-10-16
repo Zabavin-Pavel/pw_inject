@@ -56,9 +56,7 @@ class MainWindow:
         self.app_state = AppState()
         
         # НОВОЕ: ActionLimiter
-        appdata_dir = Path.home() / "AppData" / "Local" / "xvocmuk"
-        action_log_file = appdata_dir / "action_usage.log"
-        self.action_limiter = ActionLimiter(action_log_file)
+        self.action_limiter = ActionLimiter()
         
         # Менеджеры
         self.action_manager = ActionManager(self.app_state)

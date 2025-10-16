@@ -108,7 +108,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
                 # В триггере! Проверяем location_id активного окна
                 required_location = point.get("location_id")
                 
-                if required_location and char_location != required_location:
+                if required_location and char_location not in required_location:
                     print(f"\n[NEXT >>] {point['name']}: ⛔ Неверная локация {char_location} (нужна {required_location})\n")
                     return
                 
