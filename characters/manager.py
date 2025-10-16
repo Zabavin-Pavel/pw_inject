@@ -34,6 +34,41 @@ class MultiboxManager:
             'members': [],  # список Character объектов в группе
             'member_info': {}  # {char_id: {'pid': ..., 'location_id': ..., 'name': ...}}
         }
+    
+        # НОВОЕ: Единый поток заморозки для Follow
+        self.freeze_thread = None
+        self.freeze_stop_event = None
+        self.freeze_targets = {}  # {pid: {'address': ..., 'value': ...}}
+
+    def start_follow_freeze(self):
+        """Запустить единый поток заморозки для Follow"""
+        if self.freeze_thread and self.freeze_thread.is_alive():
+            return
+        
+        import threading
+        import time
+        
+        self.freeze_stop_event = threading.Event()
+        self.freeze_targets = {}
+        
+        def freeze_loop():
+            while not self.freeze_stop_event.is_set():
+                for pid, target in list(self.freeze_targets.items()):
+                    if pid in self.characters:
+                        char = self.characters[pid]
+                        char.memory.write_float(target['address'], target['value'])
+                
+                time.sleep(0.05)
+        
+        self.freeze_thread = threading.Thread(target=freeze_loop, daemon=True)
+        self.freeze_thread.start()
+
+    def stop_follow_freeze(self):
+        """Остановить поток заморозки"""
+        if self.freeze_stop_event:
+            self.freeze_stop_event.set()
+        self.freeze_targets = {}
+        self.freeze_thread = None
 
     def _update_party_cache(self):
         """
@@ -599,9 +634,7 @@ class MultiboxManager:
     # ===================================================
     
     def follow_leader(self):
-        """
-        Диагностика: читаем fly_speed_z без записи
-        """
+        """Follow с единым потоком заморозки"""
         cache = self._get_party_cache()
         
         leader = cache['leader']
@@ -612,7 +645,18 @@ class MultiboxManager:
         
         leader.char_base.refresh()
         
+        # Проверка: fly_status == 2
         if leader.char_base.fly_status != 2:
+            # НОВОЕ: Размораживаем всех и ставим 0
+            for member in members:
+                if member.char_base.char_id == leader.char_base.char_id:
+                    continue
+                
+                if member.pid in self.freeze_targets:
+                    del self.freeze_targets[member.pid]
+                
+                member.char_base.set_fly_speed_z(0)
+            
             return 0
         
         leader_z = leader.char_base.char_pos_z
@@ -620,8 +664,6 @@ class MultiboxManager:
         
         if leader_z is None or leader_location is None:
             return 0
-        
-        print(f"\n[FOLLOW] Лидер Z={leader_z:.1f}")
         
         for member in members:
             # Пропускаем лидера
@@ -632,24 +674,41 @@ class MultiboxManager:
             
             # Проверка локации
             if member.char_base.location_id != leader_location:
+                # Убираем из заморозки
+                if member.pid in self.freeze_targets:
+                    del self.freeze_targets[member.pid]
                 continue
             
             member_z = member.char_base.char_pos_z
+            member_fly_speed = member.char_base.fly_speed
             
-            if member_z is None:
+            if member_z is None or member_fly_speed is None:
                 continue
-            
-            # Читаем fly_speed_z напрямую
-            char_base_addr = member.char_base.cache.get("char_base")
-            fly_speed_z_address = char_base_addr + 0x12A8
-            current_fly_speed_z = member.memory.read_float(fly_speed_z_address)
             
             z_diff = member_z - leader_z
             
-            # Компактный вывод: 1 строка
-            print(f"  {member.char_base.char_name}: Z={member_z:.1f} (diff={z_diff:+.1f}м), fly_speed_z={current_fly_speed_z:.2f}")
+            # Если разница > 1м
+            if abs(z_diff) > 1.0:
+                # Вычисляем значение
+                target_speed_z = member_fly_speed if z_diff < 0 else -member_fly_speed
+                
+                # Добавляем в заморозку
+                char_base_addr = member.char_base.cache.get("char_base")
+                fly_speed_z_address = char_base_addr + 0x12A8
+                
+                self.freeze_targets[member.pid] = {
+                    'address': fly_speed_z_address,
+                    'value': target_speed_z
+                }
+            else:
+                # Убираем из заморозки
+                if member.pid in self.freeze_targets:
+                    del self.freeze_targets[member.pid]
+                
+                # Ставим 0
+                member.char_base.set_fly_speed_z(0)
         
-        return 0
+        return len(self.freeze_targets)
             
     # ===================================================
     # ATTACK (ИСПРАВЛЕНО)

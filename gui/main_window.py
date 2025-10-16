@@ -566,10 +566,7 @@ class MainWindow:
         """Запустить циклический вызов callback для toggle экшена"""
         interval = TOGGLE_ACTION_INTERVALS.get(action_id, 500)
         
-        print(f"🔍 _start_action_loop called for {action_id}, interval={interval}ms")
-        
         def loop():
-            print(f"🔍 Loop tick for {action_id}")
             if self.app_state.is_action_active(action_id):
                 try:
                     callback()
@@ -578,8 +575,6 @@ class MainWindow:
                 
                 # Повторить через соответствующий интервал
                 self.action_timers[action_id] = self.root.after(interval, loop)
-            else:
-                print(f"🔍 Action {action_id} not active, stopping loop")
         
         loop()
     

@@ -294,38 +294,6 @@ class Memory:
             'active': True,
             'stop_event': threading.Event()
         }
-        
-        # Функция потока заморозки
-        def freeze_loop():
-            print(f"🔧 Freeze thread started for {hex(address)}")
-            count = 0
-            while not freeze_info['stop_event'].is_set():
-                # Записываем значение
-                self.write_int(address, value)
-                count += 1
-                if count % 10 == 0:  # Каждые 10 итераций
-                    print(f"🔧 Freeze active: {hex(address)} = {value}, iterations={count}")
-                time.sleep(0.05)  # 50ms между записями
-            print(f"🔧 Freeze thread stopped for {hex(address)}")
-        
-        # Запускаем поток
-        thread = threading.Thread(target=freeze_loop, daemon=True)
-        freeze_info['thread'] = thread
-        thread.start()
-        print(f"🔧 Freeze thread launched!")
-        
-        return freeze_info
-
-    def unfreeze_address(self, freeze_info):
-        """
-        Разморозить адрес
-        
-        Args:
-            freeze_info: информация о заморозке из freeze_address()
-        """
-        freeze_info['active'] = False
-        if freeze_info['thread']:
-            freeze_info['thread'].join(timeout=1)
 
     def write_uint(self, address, value):
         """Записать 4-байтовое беззнаковое целое число"""

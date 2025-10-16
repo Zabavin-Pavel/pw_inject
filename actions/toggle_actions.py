@@ -20,27 +20,12 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         
         if is_active:
             print("Follow: STARTED")
+            multibox_manager.start_follow_freeze()
             main_window._start_action_loop('follow', lambda: follow_loop_callback(multibox_manager))
         else:
             print("Follow: STOPPED")
             main_window._stop_action_loop('follow')
-
-        # """Toggle: Следование с заморозкой"""
-        # is_active = app_state.is_action_active('follow')
-        
-        # if is_active:
-        #     print("Follow: STARTED")
-        #     main_window._start_action_loop('follow', lambda: follow_loop_callback(multibox_manager))
-        # else:
-        #     print("Follow: STOPPED")
-        #     main_window._stop_action_loop('follow')
-            
-        #     # Размораживаем всех
-        #     for char in multibox_manager.get_all_characters():
-        #         if hasattr(char, 'fly_freeze_info') and char.fly_freeze_info and char.fly_freeze_info.get('active'):
-        #             char.memory.unfreeze_address(char.fly_freeze_info)
-        #             char.fly_freeze_info = None
-        #             char.char_base.set_fly_speed_z(0)
+            multibox_manager.stop_follow_freeze()
     
     action_manager.register(
         'follow',
@@ -109,9 +94,9 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
 
 def follow_loop_callback(multibox_manager):
     """Callback для Follow loop (вызывается каждые 500ms)"""
-    print("🔍 follow_loop_callback CALLED")
+    # print("🔍 follow_loop_callback CALLED")
     active_corrections = multibox_manager.follow_leader()
-    print(f"🔍 follow_loop_callback DONE, corrections={active_corrections}")
+    # print(f"🔍 follow_loop_callback DONE, corrections={active_corrections}")
 
 def attack_loop_callback(multibox_manager):
     """
