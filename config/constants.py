@@ -31,22 +31,30 @@ CLASS_NAMES_DEBUG = {
 # Радиус проверки лута (метры)
 LOOT_CHECK_RADIUS = 50
 
-LONG_LEFT_POINT = (355, -66, 281)     # <- LONG
-LONG_RIGHT_POINT = (270, 330, 288)    # LONG ->
-EXIT_POINT = (-90, 153, 284)          # EXIT >>
+# LONG/EXIT точки (локация 243)
+LONG_LEFT_POINT = (355, -66, 281, [243])      # <- LONG
+LONG_RIGHT_POINT = (270, 330, 288, [243])     # LONG ->
+EXIT_POINT = (-90, 153, 284, [243])           # EXIT >>
 
-# НОВОЕ: Специальные точки для SO/GO
-SO_POINT = (-800, 480, 3)            # SO 
-GO_POINT = (1200, -129, 3)           # GO 
+# QB точки
+SO_POINT = (-800, 480, 3, [3495])             # SO (локация 3495)
+GO_POINT = (1200, -129, 3, [3495, 1214])      # GO (локации 3495 или 1214)
 
-# Точки подземелья для автоматической телепортации
+# TARGET точка (доступна из локации 1381 для не-DEV)
+TARGET_ALLOWED_LOCATIONS = [1381]
+
+# ========================================
+# DUNGEON_POINTS - автоматические точки
+# ОБНОВЛЕНО: добавлены location_id и count_in_limits
+# ========================================
 DUNGEON_POINTS = [
     {
         "name": "0 FROST",
         "trigger": (-210, 282),
         "target": (-210, 183, 256),
         "radius": 40,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"  # party или solo
     },
     {
@@ -54,7 +62,8 @@ DUNGEON_POINTS = [
         "trigger": (-210, 183),
         "target": (-313, 187, 262),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"  # party или solo
     },
     {
@@ -62,7 +71,8 @@ DUNGEON_POINTS = [
         "trigger": (-313, 187),
         "target": (-309, 106, 262),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -70,7 +80,8 @@ DUNGEON_POINTS = [
         "trigger": (-309, 106),
         "target": (-160, 267, 251),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -78,7 +89,8 @@ DUNGEON_POINTS = [
         "trigger": (-160, 267),
         "target": (-68, 267, 233),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -86,7 +98,8 @@ DUNGEON_POINTS = [
         "trigger": (-50, 267),
         "target": (-210, -83, 265),
         "radius": 60,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -94,7 +107,8 @@ DUNGEON_POINTS = [
         "trigger": (-210, -83),
         "target": (-210, -186, 279),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -102,7 +116,8 @@ DUNGEON_POINTS = [
         "trigger": (-210, -186),
         "target": (-111, -276, 283),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -110,7 +125,8 @@ DUNGEON_POINTS = [
         "trigger": (-111, -276),
         "target": (-12, -276, 274),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -118,7 +134,8 @@ DUNGEON_POINTS = [
         "trigger": (-12, -276),
         "target": (158, -94, 275),
         "radius": 100,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -126,7 +143,8 @@ DUNGEON_POINTS = [
         "trigger": (158, -94),
         "target": (265, -146, 279),
         "radius": 60,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -134,7 +152,8 @@ DUNGEON_POINTS = [
         "trigger": (265, -146),
         "target": (340, -10, 281),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -142,7 +161,8 @@ DUNGEON_POINTS = [
         "trigger": (340, -10),
         "target": (269, 52, 288),
         "radius": 40,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -150,7 +170,8 @@ DUNGEON_POINTS = [
         "trigger": (269, 52),
         "target": (340, 202, 281),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -158,7 +179,8 @@ DUNGEON_POINTS = [
         "trigger": (340, 202),
         "target": (282, 354, 288),
         "radius": 40,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -166,7 +188,8 @@ DUNGEON_POINTS = [
         "trigger": (282, 354),
         "target": (350, 327, 277),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -174,7 +197,8 @@ DUNGEON_POINTS = [
         "trigger": (350, 327),
         "target": (32, -117, 275),
         "radius": 40,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -182,7 +206,8 @@ DUNGEON_POINTS = [
         "trigger": (32, -117),
         "target": (2, 19, 268),
         "radius": 15,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -190,7 +215,8 @@ DUNGEON_POINTS = [
         "trigger": (2, 19),
         "target": (-90, 153, 284),
         "radius": 60,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -198,7 +224,8 @@ DUNGEON_POINTS = [
         "trigger": (-90, 153),
         "target": (80, 175, 284),
         "radius": 40,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
     {
@@ -206,7 +233,8 @@ DUNGEON_POINTS = [
         "trigger": (80, 175),
         "target": (-18, 166, 284),
         "radius": 40,
-        "check_loot": True,
+        "location_id": 243,
+        "count_in_limits": True,
         "mode": "party"
     },
 ]

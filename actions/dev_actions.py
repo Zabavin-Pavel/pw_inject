@@ -1,6 +1,6 @@
 """
 DEV уровень - продвинутые действия для разработки
-ОБНОВЛЕНО: добавлены лимиты для QB экшенов
+ОБНОВЛЕНО: добавлены проверки location_id для SO/GO
 """
 from core.keygen import PERMISSION_DEV
 from config.constants import SO_POINT, GO_POINT
@@ -13,7 +13,7 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
         action_manager: менеджер действий
         multibox_manager: менеджер мультибокса
         app_state: состояние приложения
-        action_limiter: система лимитов (НОВОЕ)
+        action_limiter: система лимитов
     """
     
     # === РАЗДЕЛИТЕЛЬ ===
@@ -27,9 +27,9 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
         is_separator=True
     )
     
-    # === ACT SO ===
+    # === QB SO ===
     def action_tp_to_so():
-        """TP to SO (только последнее активное окно, С ОДИНОЧНЫМ SPACE)"""
+        """TP to SO (только последнее активное окно, С ОДИНОЧНЫМ SPACE, С ПРОВЕРКОЙ ЛОКАЦИИ)"""
         # ПРОВЕРКА ЛИМИТА
         if not action_limiter.can_use('tp_to_so'):
             print("\n[QB SO] ⛔ Лимит использований достигнут")
@@ -41,7 +41,15 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
             print("\n[QB SO] Нет активного окна")
             return
         
-        target_x, target_y, target_z = SO_POINT
+        # ПРОВЕРКА ЛОКАЦИИ
+        target_x, target_y, target_z, allowed_locations = SO_POINT
+        
+        active_char.char_base.refresh()
+        char_location = active_char.char_base.location_id
+        
+        if char_location not in allowed_locations:
+            print(f"\n[QB SO] ⛔ Неверная локация {char_location} (разрешено: {allowed_locations})\n")
+            return
         
         success = multibox_manager.teleport_character(
             active_char,
@@ -67,9 +75,9 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
         required_permission=PERMISSION_DEV
     )
     
-    # === ACT GO ===
+    # === QB GO ===
     def action_tp_to_go():
-        """TP to GO (только последнее активное окно, С ОДИНОЧНЫМ SPACE)"""
+        """TP to GO (только последнее активное окно, С ОДИНОЧНЫМ SPACE, С ПРОВЕРКОЙ ЛОКАЦИИ)"""
         # ПРОВЕРКА ЛИМИТА
         if not action_limiter.can_use('tp_to_go'):
             print("\n[QB GO] ⛔ Лимит использований достигнут")
@@ -81,7 +89,15 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
             print("\n[QB GO] Нет активного окна")
             return
         
-        target_x, target_y, target_z = GO_POINT
+        # ПРОВЕРКА ЛОКАЦИИ
+        target_x, target_y, target_z, allowed_locations = GO_POINT
+        
+        active_char.char_base.refresh()
+        char_location = active_char.char_base.location_id
+        
+        if char_location not in allowed_locations:
+            print(f"\n[QB GO] ⛔ Неверная локация {char_location} (разрешено: {allowed_locations})\n")
+            return
         
         success = multibox_manager.teleport_character(
             active_char,
