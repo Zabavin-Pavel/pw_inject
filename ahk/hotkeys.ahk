@@ -1,5 +1,5 @@
 ; hotkeys.ahk - принимает путь к command_file как аргумент
-; #NoTrayIcon
+#NoTrayIcon
 #SingleInstance Force
 #NoEnv
 #Persistent

@@ -664,7 +664,7 @@ class MultiboxManager:
             return 0
         
         print(f"\n[FOLLOW] Лидер={leader.char_base.char_name} Z={leader_z:.1f}, Location={leader_location}")
-        
+
         for member in members:
             # Пропускаем лидера
             if member.char_base.char_id == leader.char_base.char_id:

@@ -3,7 +3,7 @@
 block_cipher = None
 
 a = Analysis(
-    ['bot.py'],
+    ['xvocmuk.py'],
     pathex=[],
     binaries=[],
     datas=[
