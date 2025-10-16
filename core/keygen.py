@@ -4,8 +4,9 @@
 import hmac
 import hashlib
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 
+TICKET_MAC = "TICKET"
 SECRET_KEY = b'OWL'
 
 # Уровни доступа
@@ -29,11 +30,15 @@ def get_current_date() -> str:
         if response.status_code == 200:
             data = response.json()
             dt = datetime.fromisoformat(data['datetime'].replace('Z', '+00:00'))
-            return dt.strftime('%d%m%y')  # Формат: "051025"
+            return dt.strftime('%d%m%y')
         else:
             return datetime.now().strftime('%d%m%y')
     except:
         return datetime.now().strftime('%d%m%y')
+
+def parse_date(date_str: str) -> datetime:
+    """Парсить дату из формата DDMMYY в datetime"""
+    return datetime.strptime(date_str, '%d%m%y')
 
 def generate_license(mac_address: str, expiry_date: str, permission: str = PERMISSION_TRY) -> str:
     """
@@ -61,54 +66,6 @@ def generate_license(mac_address: str, expiry_date: str, permission: str = PERMI
     # Формат: PERMISSION-DDMMYY-SIGNATURE (без MAC!)
     return f'{permission.upper()}-{expiry_date}-{short_signature}'
 
-def verify_license(license_key: str, current_mac: str) -> tuple[bool, str, str]:
-    """
-    Проверить лицензионный ключ
-    
-    Args:
-        license_key: Лицензионный ключ в формате "PERMISSION-DDMMYY-SIGNATURE"
-        current_mac: Текущий MAC адрес
-    
-    Returns:
-        (success: bool, permission_level: str, error_message: str)
-    """
-    try:
-        parts = license_key.split('-')
-        
-        if len(parts) != 3:
-            return False, PERMISSION_NONE, "Invalid license format (expected 3 parts)"
-        
-        permission, expiry, signature = parts
-        
-        # Нормализуем permission (из uppercase в lowercase)
-        permission = permission.lower()
-        
-        # Проверка уровня доступа
-        if permission not in [PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV]:
-            return False, PERMISSION_NONE, f"Invalid permission: {permission}"
-        
-        # Проверка подписи (генерируем на основе ТЕКУЩЕГО MAC!)
-        data = f'{current_mac}-{expiry}-{permission}'
-        expected_signature = hmac.new(
-            SECRET_KEY, 
-            data.encode(), 
-            hashlib.sha256
-        ).hexdigest()[:15]  # Берём первые 15 символов
-        
-        if signature != expected_signature:
-            return False, PERMISSION_NONE, f"Invalid signature (expected {expected_signature}, got {signature})"
-        
-        # Проверка срока действия
-        current_date = get_current_date()
-        
-        if expiry < current_date:
-            return False, PERMISSION_NONE, f"License expired ({expiry} < {current_date})"
-        
-        return True, permission, "OK"
-    
-    except Exception as e:
-        return False, PERMISSION_NONE, f"Verification error: {str(e)}"
-
 def compare_permissions(perm1: str, perm2: str) -> str:
     """
     Сравнить два уровня доступа и вернуть наивысший
@@ -131,7 +88,74 @@ def get_mac_address() -> str:
     mac = uuid.getnode()
     return str(mac)
 
-# Для генерации ключей (запускать вручную)
+def generate_ticket(days_valid: int = 0, permission: str = PERMISSION_PRO) -> str:
+    """
+    Сгенерировать талон до конца дня (не привязан к MAC, работает для всех)
+    
+    Args:
+        days_valid: Сколько дней действителен (0 = до конца сегодня, 1 = до конца завтра)
+        permission: Уровень доступа
+    
+    Returns:
+        Лицензионный ключ-талон (универсальный для всех)
+    """
+    target_date = datetime.now() + timedelta(days=days_valid)
+    expiry = (target_date + timedelta(days=1)).strftime('%d%m%y')
+    
+    # Используем специальный TICKET_MAC вместо реального MAC
+    return generate_license(TICKET_MAC, expiry, permission)
+
+def verify_license(license_key: str, current_mac: str) -> tuple[bool, str, str]:
+    """Проверить лицензионный ключ или талон"""
+    try:
+        parts = license_key.split('-')
+        
+        if len(parts) != 3:
+            return False, PERMISSION_NONE, "Invalid license format"
+        
+        permission, expiry, signature = parts
+        permission = permission.lower()
+        
+        if permission not in [PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV]:
+            return False, PERMISSION_NONE, f"Invalid permission: {permission}"
+        
+        # Сначала проверяем как обычную лицензию (с текущим MAC)
+        data = f'{current_mac}-{expiry}-{permission}'
+        expected_signature = hmac.new(
+            SECRET_KEY, 
+            data.encode(), 
+            hashlib.sha256
+        ).hexdigest()[:15]
+        
+        is_valid = (signature == expected_signature)
+        
+        # Если не подошло, проверяем как талон (с TICKET_MAC)
+        if not is_valid:
+            ticket_data = f'{TICKET_MAC}-{expiry}-{permission}'
+            ticket_signature = hmac.new(
+                SECRET_KEY,
+                ticket_data.encode(),
+                hashlib.sha256
+            ).hexdigest()[:15]
+            
+            if signature != ticket_signature:
+                return False, PERMISSION_NONE, "Invalid signature"
+        
+        # Проверка срока действия
+        current_date_str = get_current_date()
+        current_date = parse_date(current_date_str)
+        expiry_date = parse_date(expiry)
+        
+        # ИСПРАВЛЕНО: используем <= вместо 
+        if current_date >= expiry_date:
+            return False, PERMISSION_NONE, f"License expired"
+        
+        return True, permission, "OK"
+    
+    except Exception as e:
+        return False, PERMISSION_NONE, f"Verification error: {str(e)}"
+
+# Тест
 if __name__ == '__main__':
     USERS = {
         '1 Pawka': '238300919419878',
@@ -144,33 +168,46 @@ if __name__ == '__main__':
     }
     EXPIRY = '311025'  # 31 октября 2025
     
-    print("=== Мой MAC адрес ===\n")
-    print(get_mac_address())
-    print(f"\nТекущая дата: {get_current_date()}")
+    # print("=== Мой MAC адрес ===\n")
+    # print(get_mac_address())
+    # print(f"\nТекущая дата: {get_current_date()}")
     
-    print("\n=== Лицензионные ключи (TRY) ===\n")
-    for user, mac_address in USERS.items():
-        key = generate_license(mac_address, EXPIRY, PERMISSION_TRY)
-        print(f'{user}: {key}')
+    # print("\n=== Лицензионные ключи (TRY) ===\n")
+    # for user, mac_address in USERS.items():
+    #     key = generate_license(mac_address, EXPIRY, PERMISSION_TRY)
+    #     print(f'{user}: {key}')
     
-    print("\n=== Лицензионные ключи (PRO) ===\n")
-    for user, mac_address in USERS.items():
-        key = generate_license(mac_address, EXPIRY, PERMISSION_PRO)
-        print(f'{user}: {key}')
+    # print("\n=== Лицензионные ключи (PRO) ===\n")
+    # for user, mac_address in USERS.items():
+    #     key = generate_license(mac_address, EXPIRY, PERMISSION_PRO)
+    #     print(f'{user}: {key}')
     
-    print("\n=== Лицензионные ключи (DEV) ===\n")
-    for user, mac_address in USERS.items():
-        key = generate_license(mac_address, EXPIRY, PERMISSION_DEV)
-        print(f'{user}: {key}')
+    # print("\n=== Лицензионные ключи (DEV) ===\n")
+    # for user, mac_address in USERS.items():
+    #     key = generate_license(mac_address, EXPIRY, PERMISSION_DEV)
+    #     print(f'{user}: {key}')
     
-    print("\n=== Талон на 1 день (PRO) ===")
-    from datetime import timedelta
-    tomorrow = (datetime.now() + timedelta(days=1)).strftime('%d%m%y')
-    ticket = generate_license('238300919419878', tomorrow, PERMISSION_PRO)
-    print(f'Ticket (expires {tomorrow}): {ticket}')
+    print("=== Тест талонов ===\n")
+    mac = '23855555555878'
+    # Просроченный талон (вчера)
+    yesterday = (datetime.now() - timedelta(days=1)).strftime('%d%m%y')
+    expired_key = generate_license(mac, yesterday, PERMISSION_PRO)
+    print(f"Просроченный ключ (вчера {yesterday}): {expired_key}")
+    success, perm, msg = verify_license(expired_key, mac)
+    print(f"Результат: {success}, Уровень: {perm}, Сообщение: {msg}\n")
     
-    print("\n=== Проверка ключа ===")
-    test_key = generate_license('238300919419878', EXPIRY, PERMISSION_PRO)
-    print(f"Generated key: {test_key}")
-    success, perm, msg = verify_license(test_key, '238300919419878')
-    print(f"Результат: {success}, Уровень: {perm}, Сообщение: {msg}")
+    # Талон на сегодня (до конца дня)
+    today_ticket = generate_ticket(0, PERMISSION_PRO)
+    print(f"Талон на сегодня:   {today_ticket}")
+    # Проверяем с разными MAC
+    # for test_mac in ['238300919419878', '84585009692719', '999999999999']:
+    #     success, perm, msg = verify_license(today_ticket, test_mac)
+    #     print(f"  MAC {test_mac}: {success}")
+    
+    # Талон на вчера
+    delta_ticket = generate_ticket(-1, PERMISSION_PRO)
+    print(f"\nТалон на вчера:   {delta_ticket}")
+    # Проверяем с разными MAC
+    # for test_mac in ['238300919419878', '84585009692719', '999999999999']:
+    #     success, perm, msg = verify_license(delta_ticket, test_mac)
+    #     print(f"  MAC {test_mac}: {success}")

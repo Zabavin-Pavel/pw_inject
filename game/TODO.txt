@@ -24,11 +24,78 @@ pyinstaller build.spec --clean
 fly_speed_z_address = char_base_addr + 0x12A8 в менеджере оффсет ...
 
 
+TRY-311025-415104529d29e81
+PRO-311025-9af55a77cb702a2
+DEV-311025-37c5b95d5adeb5b
+ticket = PRO-181025-b2d2d9472fe07a0
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=== Лицензионные ключи (TRY) ===
+
+1 Pawka: TRY-311025-415104529d29e81
+2 Sawka: TRY-311025-42d33e2392167ce
+3 Evgen: TRY-311025-63f3a6cd8b3df64
+4 Wladik: TRY-311025-6527dcfa0d5c656
+5 Valek: TRY-311025-a3ce7b192d6e5ea
+6 Sergey: TRY-311025-4df6a0dd9cc9324
+7 Ruzlan: TRY-311025-720807f3818d212
+
+=== Лицензионные ключи (PRO) ===
+
+1 Pawka: PRO-311025-9af55a77cb702a2
+2 Sawka: PRO-311025-d295e43143608a2
+3 Evgen: PRO-311025-ab1479c1c54cffa
+4 Wladik: PRO-311025-bc520fe35954914
+5 Valek: PRO-311025-386f0ce8aa80c33
+6 Sergey: PRO-311025-49b58b8f46d9a55
+7 Ruzlan: PRO-311025-edda40f4b3bcd41
+
+=== Лицензионные ключи (DEV) ===
+
+1 Pawka: DEV-311025-37c5b95d5adeb5b
+2 Sawka: DEV-311025-13d9b8a7a1a759b
+3 Evgen: DEV-311025-983dcb1c7ca8f4d
+4 Wladik: DEV-311025-81a2b978a93442a
+5 Valek: DEV-311025-f8a9d544eee7135
+6 Sergey: DEV-311025-420f808ddfb0edb
+7 Ruzlan: DEV-311025-6ecde2f6bd163f1
+
+=== Талон на 1 день (PRO) ===
+Ticket (expires 161025): PRO-161025-e6c6f4e7a539973
+
+=== Проверка ключа ===
+Generated key: PRO-311025-9af55a77cb702a2
+Результат: True, Уровень: pro, Сообщение: OK
+=== Тест талонов ===
+
+Просроченный ключ (вчера 161025): PRO-161025-e6c6f4e7a539973
+Результат: True, Уровень: pro, Сообщение: OK
+
+Талон на сегодня: PRO-181025-bf1fdbff500a8f3
+Результат: True, Уровень: pro, Сообщение: OK
+
+Талон на завтра: PRO-191025-831210671a7bb43
+Результат: True, Уровень: pro, Сообщение: OK
 
 
 
