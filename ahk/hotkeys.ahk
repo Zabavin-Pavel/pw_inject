@@ -1,4 +1,4 @@
-; hotkeys.ahk - ОБНОВЛЕНО: все функции ожидают PID в аргументах
+; hotkeys.ahk - ИСПРАВЛЕНО: проверены все скобки
 #NoTrayIcon
 #SingleInstance Force
 #NoEnv
@@ -7,24 +7,21 @@ SetControlDelay -1
 SetBatchLines -1
 
 ; Получаем путь к command_file из аргументов командной строки
-if (A_Args.Length() > 0) {
+if A_Args[1]
     command_file := A_Args[1]
-} else {
+else
     command_file := A_ScriptDir . "\ahk_command.txt"
-}
 
 ; === ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ===
 
 GetWindowByPID(target_pid) {
-    ; Найти HWND окна по PID
     WinGet, id, list, ahk_class ElementClient Window
     Loop, %id% {
         this_id := id%A_Index%
         WinGet, window_pid, PID, ahk_id %this_id%
         
-        if (window_pid = target_pid) {
+        if (window_pid = target_pid)
             return this_id
-        }
     }
     return 0
 }
@@ -32,39 +29,31 @@ GetWindowByPID(target_pid) {
 ; === ОСНОВНЫЕ ФУНКЦИИ ===
 
 SendKeyToPIDs(key, pids_string) {
-    ; Отправить клавишу окнам по списку PID
-    ; pids_string = "12345,67890,11111"
     pids := StrSplit(pids_string, ",")
     
     for index, target_pid in pids {
         target_pid := Trim(target_pid)
         
-        if (target_pid = "") {
+        if (target_pid = "")
             continue
-        }
         
         hwnd := GetWindowByPID(target_pid)
         if (hwnd) {
-            ; Кликнуть для активации
             CoordMode, Mouse, Screen
             ControlClick, x140 y120, ahk_id %hwnd%, , L, NA
-            
-            ; Отправить клавишу
             ControlSend, , {%key%}, ahk_id %hwnd%
         }
     }
 }
 
 ClickToPIDs(x, y, pids_string) {
-    ; Клик по координатам для указанных PID
     pids := StrSplit(pids_string, ",")
     
     for index, target_pid in pids {
         target_pid := Trim(target_pid)
         
-        if (target_pid = "") {
+        if (target_pid = "")
             continue
-        }
         
         hwnd := GetWindowByPID(target_pid)
         if (hwnd) {
@@ -75,41 +64,38 @@ ClickToPIDs(x, y, pids_string) {
 }
 
 Headhunter(pid) {
-    ; Tab + ЛКМ по 100,100 для указанного PID
+    
     hwnd := GetWindowByPID(pid)
+    
+    
     if (!hwnd) {
+        asd
         return
     }
     
-    ; Tab
-    ControlSend, , {Tab}, ahk_id %hwnd%
-    Sleep, 50
-    ; ЛКМ по 100,100
+    ; ControlSend, , {Tab}, ahk_id %hwnd%
+    ; Sleep, 50
+    
     CoordMode, Mouse, Screen
-    ControlClick, x100 y100, ahk_id %hwnd%, , L, NA
+    ControlClick, x50 y50, ahk_id %hwnd%, , L, NA
 }
 
 FollowLider(pids_string) {
-    ; ЛКМ + ПКМ по 100,100 для указанных PID
     pids := StrSplit(pids_string, ",")
     
     for index, target_pid in pids {
         target_pid := Trim(target_pid)
         
-        if (target_pid = "") {
+        if (target_pid = "")
             continue
-        }
         
         hwnd := GetWindowByPID(target_pid)
-        if (!hwnd) {
+        if (!hwnd)
             continue
-        }
         
         CoordMode, Mouse, Screen
-        ; ЛКМ
         ControlClick, x100 y100, ahk_id %hwnd%, , L, NA
         Sleep, 50
-        ; ПКМ
         ControlClick, x100 y100, ahk_id %hwnd%, , R, NA
     }
 }
@@ -121,54 +107,76 @@ CheckCommand:
         FileRead, command, %command_file%
         FileDelete, %command_file%
         
+        FileAppend, === COMMAND: [%command%]`n, C:\ahk_debug.txt
+        
         if (command = "") {
+            FileAppend, Command is EMPTY`n, C:\ahk_debug.txt
             return
         }
-        else if (command = "EXIT") {
+        
+        if (command = "EXIT") {
+            FileAppend, EXIT received`n, C:\ahk_debug.txt
             ExitApp
         }
-        ; CLICK:100:200:12345,67890
-        else if (InStr(command, "CLICK:") = 1) {
+        
+        if (InStr(command, "CLICK:") = 1) {
+            FileAppend, CLICK detected`n, C:\ahk_debug.txt
             parts := StrSplit(command, ":")
-            if (parts.Length() >= 4) {
+            parts_count := parts.MaxIndex()
+            if (parts_count >= 4) {
                 x := parts[2]
                 y := parts[3]
                 pids := parts[4]
                 ClickToPIDs(x, y, pids)
             }
+            return
         }
-        ; HEADHUNTER:12345
-        else if (InStr(command, "HEADHUNTER:") = 1) {
+        
+        if (InStr(command, "HEADHUNTER:") = 1) {
+            FileAppend, HEADHUNTER detected`n, C:\ahk_debug.txt
             parts := StrSplit(command, ":")
-            if (parts.Length() = 2) {
+            parts_count := parts.MaxIndex()
+            FileAppend, Parts count: %parts_count%`n, C:\ahk_debug.txt
+            if (parts_count = 2) {
                 pid := parts[2]
+                FileAppend, Calling Headhunter with PID: %pid%`n, C:\ahk_debug.txt
                 Headhunter(pid)
+            } else {
+                FileAppend, ERROR: Wrong parts count`n, C:\ahk_debug.txt
             }
+            return
         }
-        ; FOLLOW_LIDER:12345,67890
-        else if (InStr(command, "FOLLOW_LIDER:") = 1) {
+        
+        if (InStr(command, "FOLLOW_LIDER:") = 1) {
+            FileAppend, FOLLOW_LIDER detected`n, C:\ahk_debug.txt
             parts := StrSplit(command, ":")
-            if (parts.Length() = 2) {
+            parts_count := parts.MaxIndex()
+            if (parts_count = 2) {
                 pids := parts[2]
                 FollowLider(pids)
             }
+            return
         }
-        ; KEY:W:12345,67890
-        else if (InStr(command, "KEY:") = 1) {
+        
+        if (InStr(command, "KEY:") = 1) {
+            FileAppend, KEY detected`n, C:\ahk_debug.txt
             parts := StrSplit(command, ":")
-            if (parts.Length() >= 3) {
+            parts_count := parts.MaxIndex()
+            if (parts_count >= 3) {
                 key := parts[2]
                 pids := parts[3]
                 SendKeyToPIDs(key, pids)
             }
+            return
         }
+        
+        FileAppend, UNKNOWN command`n, C:\ahk_debug.txt
     }
 return
 
 ; === ИНИЦИАЛИЗАЦИЯ ===
-if FileExist(command_file) {
+if FileExist(command_file)
     FileDelete, %command_file%
-}
 
 SetTimer, CheckCommand, 50
 return

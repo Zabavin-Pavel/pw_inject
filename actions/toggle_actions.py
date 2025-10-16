@@ -61,12 +61,17 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         required_permission=PERMISSION_PRO
     )
     
-    # === HEADHUNTER (DEV) - ИСПРАВЛЕНО ===
+    # === HEADHUNTER (DEV) - ИСПРАВЛЕНО: фиксируем PID ===
     def toggle_headhunter():
         """Toggle: Headhunter (Tab + ЛКМ по 100, 100 для активного окна)"""
         is_active = app_state.is_action_active('headhunter')
-        
         active_char = app_state.last_active_character
+        
+        # ОТЛАДКА
+        print(f"\n=== toggle_headhunter CALLED ===")
+        print(f"  is_active: {is_active}")
+        print(f"  active_char: {active_char.char_base.char_name if active_char else None}")
+        print(f"  active_char.pid: {active_char.pid if active_char else None}")
         
         if is_active:
             if not active_char:
@@ -74,14 +79,18 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
                 app_state.toggle_action('headhunter')  # Выключаем обратно
                 return
             
+            # КРИТИЧНО: Сохраняем PID при старте
+            fixed_pid = active_char.pid
+            
             print(f"Headhunter: STARTED for {active_char.char_base.char_name}")
-            # ИСПРАВЛЕНО: запускаем таймер
-            main_window._start_action_loop('headhunter', lambda: headhunter_loop_callback(ahk_manager, app_state))
+            print(f"  Fixed PID: {fixed_pid}")
+            
+            # ИСПРАВЛЕНО: передаем зафиксированный PID в callback
+            main_window._start_action_loop('headhunter', lambda: headhunter_loop_callback(ahk_manager, fixed_pid))
         else:
             print("Headhunter: STOPPED")
-            # ИСПРАВЛЕНО: останавливаем таймер
             main_window._stop_action_loop('headhunter')
-    
+
     action_manager.register(
         'headhunter',
         label='Headhunter',
@@ -109,18 +118,33 @@ def attack_loop_callback(multibox_manager):
     except Exception as e:
         logging.error(f"Error in attack_loop_callback: {e}")
 
-
-def headhunter_loop_callback(ahk_manager, app_state):
+def headhunter_loop_callback(ahk_manager, fixed_pid):
     """
     Callback для Headhunter loop (вызывается каждые 200ms)
+    
+    Args:
+        ahk_manager: менеджер AHK
+        fixed_pid: зафиксированный PID окна (не меняется во время работы)
     """
     try:
-        active_char = app_state.last_active_character
+        # ОТЛАДКА: только первые 3 раза
+        if not hasattr(headhunter_loop_callback, 'call_count'):
+            headhunter_loop_callback.call_count = 0
         
-        if not active_char:
-            return
+        headhunter_loop_callback.call_count += 1
+        if headhunter_loop_callback.call_count <= 3:
+            print(f"  headhunter_loop #{headhunter_loop_callback.call_count}: Calling AHK with FIXED PID={fixed_pid}")
         
-        # Вызываем AHK функцию headhunter с PID
-        ahk_manager.headhunter(active_char.pid)
+        # Вызываем AHK функцию headhunter с ЗАФИКСИРОВАННЫМ PID
+        result = ahk_manager.headhunter(fixed_pid)
+        
+        if headhunter_loop_callback.call_count <= 3:
+            print(f"  headhunter_loop #{headhunter_loop_callback.call_count}: AHK result={result}")
+        
     except Exception as e:
         logging.error(f"Error in headhunter_loop_callback: {e}")
+        print(f"❌ Error in headhunter_loop: {e}")
+        
+    except Exception as e:
+        logging.error(f"Error in headhunter_loop_callback: {e}")
+        print(f"❌ Error in headhunter_loop: {e}")

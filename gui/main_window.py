@@ -562,22 +562,6 @@ class MainWindow:
                     pass
             self.action_timers[action_id] = None
     
-    def _start_action_loop(self, action_id: str, callback):
-        """Запустить циклический вызов callback для toggle экшена"""
-        interval = TOGGLE_ACTION_INTERVALS.get(action_id, 500)
-        
-        def loop():
-            if self.app_state.is_action_active(action_id):
-                try:
-                    callback()
-                except Exception as e:
-                    logging.error(f"Error in {action_id} loop: {e}")
-                
-                # Повторить через соответствующий интервал
-                self.action_timers[action_id] = self.root.after(interval, loop)
-        
-        loop()
-    
     def _follow_loop_callback(self):
         """Callback для Follow loop"""
         active_corrections = self.manager.follow_leader()

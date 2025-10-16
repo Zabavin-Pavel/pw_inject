@@ -30,6 +30,7 @@ class AHKManager:
         appdata_dir.mkdir(parents=True, exist_ok=True)
         
         self.command_file = appdata_dir / "ahk_command.txt"
+        print(f"🔍 AHK command_file: {self.command_file}")  # ОТЛАДКА
         
         if getattr(sys, 'frozen', False):
             # Prod режим - hotkeys.exe должен быть скопирован в AppData при первом запуске
@@ -140,7 +141,11 @@ class AHKManager:
         Args:
             pid: PID окна
         """
-        return self.send_command(f"HEADHUNTER:{pid}")
+        command = f"HEADHUNTER:{pid}"
+        print(f"  AHK: Sending command: {command}")  # ОТЛАДКА
+        result = self.send_command(command)
+        print(f"  AHK: Command result: {result}")  # ОТЛАДКА
+        return result
     
     def follow_lider(self, pids: list):
         """
