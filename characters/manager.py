@@ -647,7 +647,7 @@ class MultiboxManager:
         
         # Проверка: fly_status == 2
         if leader.char_base.fly_status != 2:
-            # НОВОЕ: Размораживаем всех и ставим 0
+            # Размораживаем всех
             for member in members:
                 if member.char_base.char_id == leader.char_base.char_id:
                     continue
@@ -665,6 +665,8 @@ class MultiboxManager:
         if leader_z is None or leader_location is None:
             return 0
         
+        print(f"\n[FOLLOW] Лидер={leader.char_base.char_name} Z={leader_z:.1f}, Location={leader_location}")
+        
         for member in members:
             # Пропускаем лидера
             if member.char_base.char_id == leader.char_base.char_id:
@@ -672,17 +674,20 @@ class MultiboxManager:
             
             member.char_base.refresh()
             
+            member_location = member.char_base.location_id
+            
             # Проверка локации
-            if member.char_base.location_id != leader_location:
-                # Убираем из заморозки
+            if member_location != leader_location:
                 if member.pid in self.freeze_targets:
                     del self.freeze_targets[member.pid]
+                print(f"  {member.char_base.char_name} (PID={member.pid}): Location={member_location} (лидер={leader_location}) ❌")
                 continue
             
             member_z = member.char_base.char_pos_z
             member_fly_speed = member.char_base.fly_speed
             
             if member_z is None or member_fly_speed is None:
+                print(f"  {member.char_base.char_name}: нет данных")
                 continue
             
             z_diff = member_z - leader_z
@@ -700,6 +705,8 @@ class MultiboxManager:
                     'address': fly_speed_z_address,
                     'value': target_speed_z
                 }
+                
+                print(f"  {member.char_base.char_name} (PID={member.pid}): diff={z_diff:+.1f}м → заморожен на {target_speed_z:+.1f} @ {hex(fly_speed_z_address)}")
             else:
                 # Убираем из заморозки
                 if member.pid in self.freeze_targets:
@@ -707,6 +714,9 @@ class MultiboxManager:
                 
                 # Ставим 0
                 member.char_base.set_fly_speed_z(0)
+                print(f"  {member.char_base.char_name}: OK (diff={z_diff:+.1f}м)")
+        
+        print(f"  Активных заморозок: {len(self.freeze_targets)}")
         
         return len(self.freeze_targets)
             
