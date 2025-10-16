@@ -15,17 +15,15 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
     
     # === FOLLOW (TRY) - ИСПРАВЛЕНО ===
     def toggle_follow():
-        """Toggle: Следование"""
+        """Toggle: Follow"""
         is_active = app_state.is_action_active('follow')
         
         if is_active:
             print("Follow: STARTED")
-            multibox_manager.start_follow_freeze()
-            main_window._start_action_loop('follow', lambda: follow_loop_callback(multibox_manager))
+            main_window._start_action_loop('follow', lambda: follow_loop_callback(ahk_manager))
         else:
             print("Follow: STOPPED")
             main_window._stop_action_loop('follow')
-            multibox_manager.stop_follow_freeze()
     
     action_manager.register(
         'follow',
@@ -65,28 +63,10 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
     def toggle_headhunter():
         """Toggle: Headhunter (Tab + ЛКМ по 100, 100 для активного окна)"""
         is_active = app_state.is_action_active('headhunter')
-        active_char = app_state.last_active_character
-        
-        # ОТЛАДКА
-        print(f"\n=== toggle_headhunter CALLED ===")
-        print(f"  is_active: {is_active}")
-        print(f"  active_char: {active_char.char_base.char_name if active_char else None}")
-        print(f"  active_char.pid: {active_char.pid if active_char else None}")
         
         if is_active:
-            if not active_char:
-                print("Headhunter: No active character")
-                app_state.toggle_action('headhunter')  # Выключаем обратно
-                return
-            
-            # КРИТИЧНО: Сохраняем PID при старте
-            fixed_pid = active_char.pid
-            
-            print(f"Headhunter: STARTED for {active_char.char_base.char_name}")
-            print(f"  Fixed PID: {fixed_pid}")
-            
-            # ИСПРАВЛЕНО: передаем зафиксированный PID в callback
-            main_window._start_action_loop('headhunter', lambda: headhunter_loop_callback(ahk_manager, fixed_pid))
+            print("Headhunter: STARTED")
+            main_window._start_action_loop('headhunter', lambda: headhunter_loop_callback(ahk_manager))
         else:
             print("Headhunter: STOPPED")
             main_window._stop_action_loop('headhunter')
@@ -118,33 +98,16 @@ def attack_loop_callback(multibox_manager):
     except Exception as e:
         logging.error(f"Error in attack_loop_callback: {e}")
 
-def headhunter_loop_callback(ahk_manager, fixed_pid):
-    """
-    Callback для Headhunter loop (вызывается каждые 200ms)
-    
-    Args:
-        ahk_manager: менеджер AHK
-        fixed_pid: зафиксированный PID окна (не меняется во время работы)
-    """
+def headhunter_loop_callback(ahk_manager):
+    """Callback для Headhunter loop (вызывается каждые 200ms)"""
     try:
-        # ОТЛАДКА: только первые 3 раза
-        if not hasattr(headhunter_loop_callback, 'call_count'):
-            headhunter_loop_callback.call_count = 0
-        
-        headhunter_loop_callback.call_count += 1
-        if headhunter_loop_callback.call_count <= 3:
-            print(f"  headhunter_loop #{headhunter_loop_callback.call_count}: Calling AHK with FIXED PID={fixed_pid}")
-        
-        # Вызываем AHK функцию headhunter с ЗАФИКСИРОВАННЫМ PID
-        result = ahk_manager.headhunter(fixed_pid)
-        
-        if headhunter_loop_callback.call_count <= 3:
-            print(f"  headhunter_loop #{headhunter_loop_callback.call_count}: AHK result={result}")
-        
+        ahk_manager.headhunter()
     except Exception as e:
         logging.error(f"Error in headhunter_loop_callback: {e}")
-        print(f"❌ Error in headhunter_loop: {e}")
-        
+
+def follow_loop_callback(ahk_manager):
+    """Callback для Follow loop (вызывается каждые 500ms)"""
+    try:
+        ahk_manager.follow()
     except Exception as e:
-        logging.error(f"Error in headhunter_loop_callback: {e}")
-        print(f"❌ Error in headhunter_loop: {e}")
+        logging.error(f"Error in follow_loop_callback: {e}")
