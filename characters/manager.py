@@ -12,22 +12,149 @@ from game.win32_api import TH32CS_SNAPPROCESS, PROCESSENTRY32
 from game.offsets import resolve_offset, OFFSETS
 
 
-class MultiboxManager:
-    """Управление группой персонажей"""
+def __init__(self):
+    self.characters = {}
+    self.kernel32 = ctypes.windll.kernel32
     
-    def __init__(self):
-        self.characters = {}  # {pid: Character}
-        self.kernel32 = ctypes.windll.kernel32
-        
-        # WorldManager для первого процесса (главный)
-        self.world_manager = None
-        self._main_pid = None
-        
-        # Зависимости (устанавливаются из GUI)
-        self.ahk_manager = None
-        self.app_state = None
-        self.action_limiter = None  # НОВОЕ: система лимитов
+    # WorldManager для первого процесса
+    self.world_manager = None
+    self._main_pid = None
     
+    # Зависимости
+    self.ahk_manager = None
+    self.app_state = None
+    self.action_limiter = None
+    
+    # НОВОЕ: Кеш группы (обновляется Attack каждые 500ms)
+    self.party_cache = {
+        'timestamp': None,  # время последнего обновления
+        'leader': None,  # Character объект лидера
+        'members': [],  # список Character объектов в группе
+        'member_info': {}  # {char_id: {'pid': ..., 'location_id': ..., 'name': ...}}
+    }
+
+    def _update_party_cache(self):
+        """
+        Обновить кеш группы
+        
+        Читает party_ptr, leader_id, собирает всех членов группы.
+        Вызывается Attack каждый тик (500ms).
+        """
+        import time
+        from game.offsets import resolve_offset, OFFSETS
+        
+        # Сбрасываем кеш
+        self.party_cache['leader'] = None
+        self.party_cache['members'] = []
+        self.party_cache['member_info'] = {}
+        
+        all_chars = self.get_all_characters()
+        
+        if not all_chars:
+            return
+        
+        # Берем первое окно для чтения party_leader_id
+        first_char = all_chars[0]
+        first_char.char_base.refresh()
+        
+        # Читаем party_ptr
+        party_ptr = resolve_offset(
+            first_char.memory,
+            OFFSETS["party_ptr"],
+            first_char.char_base.cache
+        )
+        
+        if not party_ptr or party_ptr == 0:
+            # Нет пати
+            self.party_cache['timestamp'] = time.time()
+            return
+        
+        # ЗАПИСЫВАЕМ В КЕШ
+        first_char.char_base.cache["party_ptr"] = party_ptr
+        
+        # Читаем party_leader_id
+        party_leader_id = resolve_offset(
+            first_char.memory,
+            OFFSETS["party_leader_id"],
+            first_char.char_base.cache
+        )
+        
+        if not party_leader_id or party_leader_id == 0:
+            self.party_cache['timestamp'] = time.time()
+            return
+        
+        # Ищем лидера (быстро через map)
+        leader = None
+        
+        if self.app_state:
+            leader_pid = self.app_state.get_pid_by_char_id(party_leader_id)
+            if leader_pid and leader_pid in self.characters:
+                leader = self.characters[leader_pid]
+        
+        # Fallback: ищем напрямую
+        if not leader:
+            for char in all_chars:
+                char.char_base.refresh()
+                if char.char_base.char_id == party_leader_id:
+                    leader = char
+                    break
+        
+        if not leader:
+            self.party_cache['timestamp'] = time.time()
+            return
+        
+        # Собираем всех членов группы (все окна с party_ptr != 0)
+        members = []
+        
+        for char in all_chars:
+            char.char_base.refresh()
+            
+            # Проверяем party_ptr
+            char_party_ptr = resolve_offset(
+                char.memory,
+                OFFSETS["party_ptr"],
+                char.char_base.cache
+            )
+            
+            if not char_party_ptr or char_party_ptr == 0:
+                continue
+            
+            char.char_base.cache["party_ptr"] = char_party_ptr
+            
+            members.append(char)
+            
+            # Заполняем member_info
+            self.party_cache['member_info'][char.char_base.char_id] = {
+                'pid': char.pid,
+                'location_id': char.char_base.location_id,
+                'name': char.char_base.char_name
+            }
+        
+        # Сохраняем в кеш
+        self.party_cache['leader'] = leader
+        self.party_cache['members'] = members
+        self.party_cache['timestamp'] = time.time()
+        
+        print(f"🔄 Party cache updated: leader={leader.char_base.char_name}, members={len(members)}")
+
+    def _get_party_cache(self, force_update=False):
+        """
+        Получить кеш группы с проверкой актуальности
+        
+        Args:
+            force_update: принудительно обновить кеш
+        
+        Returns:
+            dict: party_cache
+        """
+        import time
+        
+        # Проверяем актуальность (1 секунда)
+        if force_update or not self.party_cache['timestamp'] or (time.time() - self.party_cache['timestamp']) > 1.0:
+            self._update_party_cache()
+        
+        return self.party_cache
+
     def set_ahk_manager(self, ahk_manager):
         """Установить AHK менеджер"""
         self.ahk_manager = ahk_manager
@@ -126,12 +253,11 @@ class MultiboxManager:
                 
                 char_name = char_base.char_name if char_base.char_name else "???"
                 logging.info(f"✅ New character added: PID={pid}, Name={repr(char_name)}")
-
-
         
-        # НОВОЕ: Обновляем мапу pid↔char_id в AppState
+        # ИСПРАВЛЕНО: Обновляем мапу pid↔char_id ВСЕГДА в конце refresh
         if self.app_state:
             self.app_state.update_pid_char_id_map(self.get_all_characters())
+            logging.debug(f"🔄 Map updated: {self.app_state.char_id_to_pid}")
     
     def refresh_characters(self):
         """Алиас для refresh()"""
@@ -155,60 +281,100 @@ class MultiboxManager:
     
     def get_leader_and_group(self):
         """
-        НОВАЯ ЛОГИКА: Взять последнего активного персонажа
-        - Если он в пати → вернуть всех членов группы через оффсеты
-        - Иначе → вернуть только его
+        Найти лидера и группу среди наших окон (ДИАГНОСТИКА)
         
         Returns:
-            (leader: Character, members: list[Character])
-            - leader: последний активный персонаж (или None)
-            - members: [leader] если без пати, или вся группа если в пати
+            (leader, group): лидер и список участников группы, или (None, [])
         """
-        # Берем последнего активного персонажа
-        leader = self.app_state.last_active_character if self.app_state else None
+        print("\n🔍 get_leader_and_group() вызван")
+        print(f"   Всего окон: {len(self.characters)}")
         
-        if not leader or not leader.is_valid():
-            return None, []
+        # Собираем всех персонажей с валидными данными
+        valid_chars = []
         
-        # Обновляем данные лидера
-        leader.char_base.refresh()
-        
-        # Проверяем есть ли пати
-        party_ptr = resolve_offset(leader.memory, OFFSETS["party_ptr"], leader.char_base.cache)
-        
-        if not party_ptr or party_ptr == 0:
-            # Нет пати - возвращаем только лидера
-            return leader, [leader]
-        
-        # Есть пати - получаем всех членов группы
-        leader.char_base.cache["party_ptr"] = party_ptr
-        
-        party_members = resolve_offset(leader.memory, OFFSETS["party_members"], leader.char_base.cache)
-        
-        if not party_members:
-            return leader, [leader]
-        
-        # Собираем наших персонажей из группы
-        group_chars = []
-        
-        for member in party_members:
-            member_id = member.get('id')
-            if not member_id:
+        for pid, char in self.characters.items():
+            print(f"\n   --- PID {pid} ---")
+            
+            if not char.char_base.is_valid():
+                print(f"   ❌ Не валиден")
                 continue
             
-            # Ищем персонажа по char_id через мапу
-            if self.app_state:
-                member_pid = self.app_state.get_pid_by_char_id(member_id)
-                if member_pid and member_pid in self.characters:
-                    char = self.characters[member_pid]
-                    if char.is_valid():
-                        group_chars.append(char)
+            char.char_base.refresh()
+            
+            char_name = char.char_base.char_name
+            char_id = char.char_base.char_id
+            # ДОЛЖНО БЫТЬ (как в attack):
+            party_ptr = resolve_offset(
+                char.memory, 
+                OFFSETS["party_ptr"], 
+                char.char_base.cache
+            )
+
+            if not party_ptr or party_ptr == 0:
+                print(f"   ❌ Нет party_ptr")
+                continue
+
+            # ЗАПИСАТЬ В КЕШ!
+            char.char_base.cache["party_ptr"] = party_ptr
+            
+            print(f"   Имя: {char_name}")
+            print(f"   ID: {char_id}")
+            print(f"   party_ptr: {hex(party_ptr) if party_ptr else 'NULL'}")
+            
+            if not party_ptr or party_ptr == 0:
+                print(f"   ❌ Нет party_ptr")
+                continue
+            
+            # Читаем данные группы
+            from game.offsets import resolve_offset, OFFSETS
+            
+            party_leader_id = resolve_offset(char.memory, OFFSETS["party_leader_id"], char.char_base.cache)
+            party_count = resolve_offset(char.memory, OFFSETS["party_count"], char.char_base.cache)
+            
+            print(f"   party_leader_id: {party_leader_id}")
+            print(f"   party_count: {party_count}")
+            
+            if not party_leader_id or party_leader_id == 0:
+                print(f"   ❌ Нет лидера группы")
+                continue
+            
+            if not party_count or party_count <= 0:
+                print(f"   ❌ Группа пустая")
+                continue
+            
+            print(f"   ✅ В группе")
+            valid_chars.append(char)
         
-        # Если не нашли никого - возвращаем только лидера
-        if not group_chars:
-            return leader, [leader]
+        print(f"\n📊 Валидных персонажей в группе: {len(valid_chars)}")
         
-        return leader, group_chars
+        if not valid_chars:
+            print("❌ Нет персонажей в группе")
+            return None, []
+        
+        # Ищем лидера среди наших окон
+        leader = None
+        
+        for char in valid_chars:
+            char.char_base.refresh()
+            party_leader_id = resolve_offset(char.memory, OFFSETS["party_leader_id"], char.char_base.cache)
+            
+            print(f"\n🔍 Проверяем {char.char_base.char_name}:")
+            print(f"   char_id: {char.char_base.char_id}")
+            print(f"   party_leader_id: {party_leader_id}")
+            
+            if char.char_base.char_id == party_leader_id:
+                leader = char
+                print(f"   ✅ ЭТО ЛИДЕР!")
+                break
+        
+        if not leader:
+            print("❌ Лидер не найден среди наших окон")
+            return None, []
+        
+        print(f"\n✅ Лидер найден: {leader.char_base.char_name}")
+        print(f"✅ Группа: {len(valid_chars)} участников")
+        
+        return leader, valid_chars
     
     # ===================================================
     # ТИПОВЫЕ ФУНКЦИИ ТЕЛЕПОРТАЦИИ (С ПРОВЕРКОЙ ЛИЦЕНЗИИ)
@@ -432,132 +598,178 @@ class MultiboxManager:
     
     def follow_leader(self):
         """
-        Синхронизация полета группы (ИСПРАВЛЕНО)
+        ДИАГНОСТИЧЕСКАЯ ВЕРСИЯ: Проверка заморозки HP
         
-        Логика:
-        1. Только для окон в пати
-        2. Только если есть лидер среди наших окон
-        3. Только для окон в той же локации что и лидер
-        4. Лидера НЕ трогаем (не морозим, не меняем fly_trigger)
-        5. Используем fly_trigger для управления полетом (если найдены оба состояния)
-        
-        Returns:
-            int: количество активных корректировок
+        Выводим:
+        - fly_status лидера
+        - разницу по Z для каждого окна
+        - каждое условие отдельно
         """
         leader, group = self.get_leader_and_group()
         
-        if not leader or len(group) <= 1:
+        print("\n" + "="*60)
+        print("FOLLOW TICK")
+        
+        if not leader:
+            print("❌ Лидер не найден")
             return 0
         
-        # Обновляем данные лидера
+        if len(group) <= 1:
+            print("❌ Группа пустая или только лидер")
+            return 0
+        
+        print(f"✅ Лидер: {leader.char_base.char_name}")
+        print(f"✅ Участников в группе: {len(group)}")
+        
         leader.char_base.refresh()
         
-        leader_z = leader.char_base.char_pos_z
         leader_fly_status = leader.char_base.fly_status
+        print(f"\n🔍 FLY_STATUS ЛИДЕРА: {leader_fly_status}")
+        
+        # Первая проверка: fly_status == 2
+        if leader_fly_status != 2:
+            print(f"❌ fly_status != 2, выход из follow")
+            return 0
+        
+        print("✅ fly_status == 2, продолжаем")
+        
+        leader_z = leader.char_base.char_pos_z
         leader_location = leader.char_base.location_id
         
-        if leader_z is None or leader_fly_status is None or leader_location is None:
+        print(f"📍 Лидер Z: {leader_z:.2f}, Location: {leader_location}")
+        
+        if leader_z is None or leader_location is None:
+            print("❌ leader_z или leader_location == None")
             return 0
         
         active_corrections = 0
         
-        for member in group:
+        for i, member in enumerate(group):
+            print(f"\n--- Участник #{i+1} ---")
+            
             # Пропускаем лидера
             if member.char_base.char_id == leader.char_base.char_id:
+                print("⏭️ Это лидер, пропускаем")
                 continue
             
             member.char_base.refresh()
             
-            # Проверка локации (КРИТИЧНО!)
+            print(f"👤 Имя: {member.char_base.char_name}")
+            print(f"🆔 ID: {member.char_base.char_id}")
+            
+            # Проверка локации
             member_location = member.char_base.location_id
+            print(f"📍 Location: {member_location} (лидер: {leader_location})")
+            
             if member_location != leader_location:
-                # Окно в другой локации - пропускаем
+                print("❌ Разные локации, пропускаем")
                 continue
             
-            member_z = member.char_base.char_pos_z
-            member_fly_status = member.char_base.fly_status
+            print("✅ Та же локация")
             
-            if member_z is None or member_fly_status is None:
+            member_z = member.char_base.char_pos_z
+            member_hp = member.char_base.char_hp
+            
+            print(f"📍 Z: {member_z:.2f} (лидер: {leader_z:.2f})")
+            print(f"❤️ HP: {member_hp}")
+            
+            if member_z is None:
+                print("❌ member_z == None")
+                continue
+            
+            if member_hp is None:
+                print("❌ member_hp == None")
                 continue
             
             # Разница по высоте
-            z_diff = abs(member_z - leader_z)
+            z_diff = member_z - leader_z
+            print(f"📏 Разница по Z: {z_diff:.2f} м")
             
-            # УПРАВЛЕНИЕ ПОЛЕТОМ (если найдены оба состояния)
-            if member.can_control_flight():
-                # Лидер летит, а член не летит
-                if leader_fly_status == 1 and member_fly_status != 1:
-                    member.set_flight_state(True)
-                    logging.debug(f"✈️ {member.char_base.char_name} взлетает")
+            # Если разница > 1 метр
+            if abs(z_diff) > 1.0:
+                print(f"✅ |z_diff| > 1.0, пытаемся заморозить HP")
                 
-                # Лидер не летит, а член летит
-                elif leader_fly_status != 1 and member_fly_status == 1:
-                    member.set_flight_state(False)
-                    logging.debug(f"🚶 {member.char_base.char_name} приземляется")
-            
-            # РЕГУЛИРОВАНИЕ ВЫСОТЫ
-            if leader_fly_status == 1:  # Лидер летит
-                if z_diff > 1.0:  # Разница больше 1м
-                    # Заморозить высоту на уровне лидера
-                    if not member.fly_freeze_info or not member.fly_freeze_info.get('active'):
-                        # Морозим
-                        freeze_info = member.memory.freeze_address(
-                            member.char_base.cache["char_base"] + 0x9FC,  # char_pos_z
-                            leader_z
-                        )
-                        
-                        if freeze_info:
-                            member.fly_freeze_info = freeze_info
-                            member.char_base.set_fly_speed_z(0)
-                            active_corrections += 1
-                            logging.debug(f"❄️ {member.char_base.char_name} заморожен на высоте {leader_z:.1f}")
+                # Проверяем есть ли уже заморозка
+                has_freeze = hasattr(member, 'hp_freeze') and member.hp_freeze and member.hp_freeze.get('active')
+                print(f"🔍 Уже заморожен: {has_freeze}")
+                
+                if not has_freeze:
+                    target_hp = member_hp * 2
+                    print(f"❄️ МОРОЗИМ HP: {member_hp} → {target_hp}")
+                    
+                    char_base_addr = member.char_base.cache.get("char_base")
+                    hp_offset = 0x6BC
+                    hp_address = char_base_addr + hp_offset
+                    
+                    print(f"   Адрес char_base: {hex(char_base_addr)}")
+                    print(f"   Адрес HP: {hex(hp_address)}")
+                    
+                    freeze_info = member.memory.freeze_address(hp_address, target_hp)
+                    
+                    if freeze_info:
+                        member.hp_freeze = freeze_info
+                        active_corrections += 1
+                        print(f"✅ HP успешно заморожен!")
+                    else:
+                        print(f"❌ Не удалось заморозить HP")
                 else:
-                    # Высота в пределах нормы - разморозить если был заморожен
-                    if member.fly_freeze_info and member.fly_freeze_info.get('active'):
-                        member.memory.unfreeze_address(member.fly_freeze_info)
-                        member.fly_freeze_info = None
-                        member.char_base.set_fly_speed_z(0)
-                        logging.debug(f"🔓 {member.char_base.char_name} разморожен")
+                    print("⏭️ Уже заморожен, пропускаем")
             else:
-                # Лидер не летит - разморозить всех
-                if member.fly_freeze_info and member.fly_freeze_info.get('active'):
-                    member.memory.unfreeze_address(member.fly_freeze_info)
-                    member.fly_freeze_info = None
-                    member.char_base.set_fly_speed_z(0)
+                print(f"❌ |z_diff| <= 1.0, не морозим")
+                
+                # Размораживаем HP если был заморожен
+                if hasattr(member, 'hp_freeze') and member.hp_freeze and member.hp_freeze.get('active'):
+                    print(f"🔓 РАЗМОРАЖИВАЕМ HP")
+                    member.memory.unfreeze_address(member.hp_freeze)
+                    member.hp_freeze = None
+                    print(f"✅ HP разморожен")
+        
+        print(f"\n📊 Активных корректировок: {active_corrections}")
+        print("="*60 + "\n")
         
         return active_corrections
-    
+            
     # ===================================================
     # ATTACK (ИСПРАВЛЕНО)
     # ===================================================
     
+
     def set_attack_target(self):
         """
-        Установить таргет лидера всем членам группы (ИСПРАВЛЕНО)
+        Установить таргет лидера всем окнам (ИСПОЛЬЗУЕТ КЕШ)
         
-        Returns:
-            int: количество успешных установок
+        Обновляет кеш группы каждый тик.
         """
-        leader, group = self.get_leader_and_group()
+        # ВСЕГДА обновляем кеш
+        self._update_party_cache()
         
-        if not leader or len(group) <= 1:
+        cache = self.party_cache
+        leader = cache['leader']
+        members = cache['members']
+        
+        if not leader or len(members) <= 1:
             return 0
         
+        # Читаем target_id у лидера
         leader.char_base.refresh()
         leader_target_id = leader.char_base.target_id
         
         if not leader_target_id or leader_target_id == 0:
             return 0
         
+        # Устанавливаем target_id ВСЕМ окнам (кроме лидера)
         success_count = 0
         
-        for member in group:
+        for char in members:
             # Пропускаем лидера
-            if member.char_base.char_id == leader.char_base.char_id:
+            if char.pid == leader.pid:
                 continue
             
             # Устанавливаем target_id
-            if member.char_base.set_target_id(leader_target_id):
+            if char.char_base.set_target_id(leader_target_id):
                 success_count += 1
+        
+        if success_count > 0:
+            logging.info(f"⚔️ Attack: set target {leader_target_id} to {success_count} windows")
         
         return success_count

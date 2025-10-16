@@ -17,9 +17,6 @@ class CharBase:
     
     def _update(self):
         """Обновить данные из памяти"""
-        # ОТЛАДКА
-        logging.info(f"DEBUG _update: module_base={hex(self.memory.module_base)}")
-
         # Получаем базовые адреса
         char_origin = resolve_offset(self.memory, OFFSETS["char_origin"], self.cache)
         if char_origin:
@@ -45,13 +42,7 @@ class CharBase:
         # Читаем все данные
         self.char_id = new_char_id
         
-        # ОТЛАДКА - покажем что читается
-        char_base_addr = self.cache.get("char_base", 0)
-        logging.info(f"DEBUG: Trying to read from char_base={hex(char_base_addr)}")
-        logging.info(f"  char_id at +0x6A8 = {new_char_id}")
-        
         self.char_class = resolve_offset(self.memory, OFFSETS["char_class"], self.cache)
-        logging.info(f"  char_class at +0x9D0 = {self.char_class}")
         
         self.char_name = resolve_offset(self.memory, OFFSETS["char_name"], self.cache)
         self.target_id = resolve_offset(self.memory, OFFSETS["target_id"], self.cache)

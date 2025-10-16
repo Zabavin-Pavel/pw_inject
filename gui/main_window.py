@@ -100,38 +100,41 @@ class MainWindow:
         self.manager.set_app_state(self.app_state)
         self.manager.set_action_limiter(self.action_limiter)  # НОВОЕ
     
+
     def _register_actions(self):
-        """Зарегистрировать все действия (ОБНОВЛЕНО)"""
-        
-        # Toggle действия (Follow, Attack, Headhunter)
-        register_toggle_actions(
-            self.action_manager,
-            self.manager,
-            self.ahk_manager,
-            self.app_state
-        )
-        
-        # TRY уровень (LBM, SPACE, FOLLOW_LIDER)
-        register_try_actions(
-            self.action_manager,
-            self.ahk_manager
-        )
-        
-        # PRO уровень (TARGET, NEXT >>, <- LONG, LONG ->, FINAL ->) - ПЕРЕДАЕМ action_limiter
-        register_pro_actions(
-            self.action_manager,
-            self.manager,
-            self.app_state,
-            self.action_limiter
-        )
-        
-        # DEV уровень (ACT SO, ACT GO) - ПЕРЕДАЕМ action_limiter
-        register_dev_actions(
-            self.action_manager,
-            self.manager,
-            self.app_state,
-            self.action_limiter
-        )
+            """Зарегистрировать все действия (ОБНОВЛЕНО)"""
+            
+            # ИСПРАВЛЕНО: Toggle действия - передаем self для доступа к _start_action_loop/_stop_action_loop
+            register_toggle_actions(
+                self.action_manager,
+                self.manager,
+                self.ahk_manager,
+                self.app_state,
+                self  # НОВОЕ: передаем main_window
+            )
+            
+            # TRY уровень (LBM, SPACE, FOLLOW_LIDER) - ИСПРАВЛЕНО: передаем app_state
+            register_try_actions(
+                self.action_manager,
+                self.ahk_manager,
+                self.app_state  # НОВОЕ: для получения PIDs группы
+            )
+            
+            # PRO уровень (TARGET, NEXT >>, <- LONG, LONG ->, FINAL ->)
+            register_pro_actions(
+                self.action_manager,
+                self.manager,
+                self.app_state,
+                self.action_limiter
+            )
+            
+            # DEV уровень (ACT SO, ACT GO)
+            register_dev_actions(
+                self.action_manager,
+                self.manager,
+                self.app_state,
+                self.action_limiter
+            )
 
     def _create_ui(self):
         """Создать UI"""
@@ -559,18 +562,26 @@ class MainWindow:
                     pass
             self.action_timers[action_id] = None
     
-    def toggle_follow(self):
-        """Toggle: Следование (синхронизация полета)"""
-        is_active = self.app_state.is_action_active('follow')
+    def _start_action_loop(self, action_id: str, callback):
+        """Запустить циклический вызов callback для toggle экшена"""
+        interval = TOGGLE_ACTION_INTERVALS.get(action_id, 500)
         
-        if is_active:
-            print("Follow: STARTED")
-            self._start_action_loop('follow', lambda: follow_loop_callback(self.manager))
-        else:
-            print("Follow: STOPPED")
-            self._stop_action_loop('follow')
+        print(f"🔍 _start_action_loop called for {action_id}, interval={interval}ms")
         
-        self.hotkey_panel.update_display()
+        def loop():
+            print(f"🔍 Loop tick for {action_id}")
+            if self.app_state.is_action_active(action_id):
+                try:
+                    callback()
+                except Exception as e:
+                    logging.error(f"Error in {action_id} loop: {e}")
+                
+                # Повторить через соответствующий интервал
+                self.action_timers[action_id] = self.root.after(interval, loop)
+            else:
+                print(f"🔍 Action {action_id} not active, stopping loop")
+        
+        loop()
     
     def _follow_loop_callback(self):
         """Callback для Follow loop"""
