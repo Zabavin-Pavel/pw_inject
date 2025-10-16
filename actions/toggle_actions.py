@@ -59,7 +59,7 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         callback=toggle_attack,
         icon='⚔️',
         has_hotkey=False,
-        required_permission=PERMISSION_PRO
+        required_permission=PERMISSION_TRY
     )
     
     # === HEADHUNTER (DEV) - ОБНОВЛЕНО: через AHK ===
@@ -90,7 +90,7 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         callback=toggle_headhunter,
         icon='☠',
         has_hotkey=False,
-        required_permission=PERMISSION_DEV
+        required_permission=PERMISSION_PRO
     )
 
 
