@@ -23,10 +23,12 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         
         if is_active:
             print("Follow: STARTED")
-            main_window._start_action_loop('follow', lambda: follow_loop_callback(multibox_manager))
+            multibox_manager.start_follow_freeze()  # ДОБАВИТЬ!
+            main_window._start_action_loop('follow', lambda: follow_loop_callback(multibox_manager))  # ИСПРАВИТЬ!
         else:
             print("Follow: STOPPED")
             main_window._stop_action_loop('follow')
+            multibox_manager.stop_follow_freeze()  # ДОБАВИТЬ!
     
     action_manager.register(
         'follow',
@@ -94,12 +96,10 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
 
 # === CALLBACK ФУНКЦИИ ДЛЯ LOOPS ===
 
-def follow_loop_callback(multibox_manager):
+def follow_loop_callback(ahk_manager):
     """Callback для Follow loop (вызывается каждые 500ms)"""
     try:
-        active_corrections = multibox_manager.follow_leader()
-        if active_corrections > 0:
-            logging.debug(f"Follow: {active_corrections} active corrections")
+        ahk_manager.follow_leader()
     except Exception as e:
         logging.error(f"Error in follow_loop_callback: {e}")
 
