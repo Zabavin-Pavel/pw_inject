@@ -30,7 +30,6 @@ from actions import (
     register_dev_actions,
     follow_loop_callback,
     attack_loop_callback,
-    headhunter_loop_callback
 )
 
 # Константа для интервала toggle экшенов
@@ -593,10 +592,12 @@ class MainWindow:
         
         if is_active:
             print("Headhunter: STARTED")
-            self._start_action_loop('headhunter', lambda: headhunter_loop_callback(self.ahk_manager, self.app_state))
+            # НОВОЕ: вызываем AHK, а не Python loop
+            self.ahk_manager.start_headhunter()
         else:
             print("Headhunter: STOPPED")
-            self._stop_action_loop('headhunter')
+            # НОВОЕ: останавливаем AHK
+            self.ahk_manager.stop_headhunter()
         
         self.hotkey_panel.update_display()
     

@@ -122,5 +122,11 @@ CheckCommand:
         else if (command = "FOLLOW") {
             FollowLider()
         }
+        else if (command = "HEADHUNTER_START") {
+            StartHeadhunter()
+        }
+        else if (command = "HEADHUNTER_STOP") {
+            StopHeadhunter()
+        }
     }
 return

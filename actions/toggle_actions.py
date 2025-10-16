@@ -1,3 +1,6 @@
+"""
+Toggle действия - ОБНОВЛЕНО: Headhunter через AHK
+"""
 import logging
 from core.keygen import PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
 
@@ -13,14 +16,14 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         main_window: главное окно (для запуска loops)
     """
     
-    # === FOLLOW (TRY) - ИСПРАВЛЕНО ===
+    # === FOLLOW (TRY) ===
     def toggle_follow():
         """Toggle: Follow"""
         is_active = app_state.is_action_active('follow')
         
         if is_active:
             print("Follow: STARTED")
-            main_window._start_action_loop('follow', lambda: follow_loop_callback(ahk_manager))
+            main_window._start_action_loop('follow', lambda: follow_loop_callback(multibox_manager))
         else:
             print("Follow: STOPPED")
             main_window._stop_action_loop('follow')
@@ -35,18 +38,16 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         required_permission=PERMISSION_TRY
     )
     
-    # === ATTACK (PRO) - ИСПРАВЛЕНО ===
+    # === ATTACK (PRO) ===
     def toggle_attack():
         """Toggle: Атака (копирование таргета лидера)"""
         is_active = app_state.is_action_active('attack')
         
         if is_active:
             print("Attack: STARTED")
-            # ИСПРАВЛЕНО: запускаем таймер
             main_window._start_action_loop('attack', lambda: attack_loop_callback(multibox_manager))
         else:
             print("Attack: STOPPED")
-            # ИСПРАВЛЕНО: останавливаем таймер
             main_window._stop_action_loop('attack')
     
     action_manager.register(
@@ -59,17 +60,26 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         required_permission=PERMISSION_PRO
     )
     
-    # === HEADHUNTER (DEV) - ИСПРАВЛЕНО: фиксируем PID ===
+    # === HEADHUNTER (DEV) - ОБНОВЛЕНО: через AHK ===
     def toggle_headhunter():
-        """Toggle: Headhunter (Tab + ЛКМ по 100, 100 для активного окна)"""
+        """
+        Toggle: Headhunter (Tab + ЛКМ по 100, 100 для активного окна)
+        
+        НОВАЯ ЛОГИКА:
+        - При активации: вызываем ahk_manager.start_headhunter()
+        - При деактивации: вызываем ahk_manager.stop_headhunter()
+        - Весь цикл выполняется в AHK, без Python loops
+        """
         is_active = app_state.is_action_active('headhunter')
         
         if is_active:
             print("Headhunter: STARTED")
-            main_window._start_action_loop('headhunter', lambda: headhunter_loop_callback(ahk_manager))
+            # Запускаем AHK цикл
+            ahk_manager.start_headhunter()
         else:
             print("Headhunter: STOPPED")
-            main_window._stop_action_loop('headhunter')
+            # Останавливаем AHK цикл
+            ahk_manager.stop_headhunter()
 
     action_manager.register(
         'headhunter',
@@ -81,33 +91,23 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         required_permission=PERMISSION_DEV
     )
 
+
+# === CALLBACK ФУНКЦИИ ДЛЯ LOOPS ===
+
 def follow_loop_callback(multibox_manager):
     """Callback для Follow loop (вызывается каждые 500ms)"""
-    # print("🔍 follow_loop_callback CALLED")
-    active_corrections = multibox_manager.follow_leader()
-    # print(f"🔍 follow_loop_callback DONE, corrections={active_corrections}")
+    try:
+        active_corrections = multibox_manager.follow_leader()
+        if active_corrections > 0:
+            logging.debug(f"Follow: {active_corrections} active corrections")
+    except Exception as e:
+        logging.error(f"Error in follow_loop_callback: {e}")
 
 def attack_loop_callback(multibox_manager):
-    """
-    Callback для Attack loop (вызывается каждые 500ms)
-    """
+    """Callback для Attack loop (вызывается каждые 500ms)"""
     try:
         success_count = multibox_manager.set_attack_target()
         if success_count > 0:
             logging.debug(f"Attack: {success_count} targets set")
     except Exception as e:
         logging.error(f"Error in attack_loop_callback: {e}")
-
-def headhunter_loop_callback(ahk_manager):
-    """Callback для Headhunter loop (вызывается каждые 200ms)"""
-    try:
-        ahk_manager.headhunter()
-    except Exception as e:
-        logging.error(f"Error in headhunter_loop_callback: {e}")
-
-def follow_loop_callback(ahk_manager):
-    """Callback для Follow loop (вызывается каждые 500ms)"""
-    try:
-        ahk_manager.follow()
-    except Exception as e:
-        logging.error(f"Error in follow_loop_callback: {e}")
