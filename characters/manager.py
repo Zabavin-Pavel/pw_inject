@@ -432,9 +432,11 @@ class MultiboxManager:
         
         # Записываем координаты (БЕЗ ПРОВЕРОК)
         character.char_base.set_position(target_x, target_y, target_z)
-        
+        import time
         # Нажимаем space если нужно (ОДИНОЧНЫЙ)
         if send_space and self.ahk_manager:
+            self.ahk_manager.send_key("Space")
+            time.sleep(.1)
             self.ahk_manager.send_key("Space")
         
         # НОВОЕ: Проверка лицензии в конце
@@ -691,7 +693,7 @@ class MultiboxManager:
             z_diff = member_z - leader_z
             
             # Если разница > 1м
-            if abs(z_diff) > 1.5:
+            if abs(z_diff) > 2:
                 # Вычисляем значение
                 target_speed_z = member_fly_speed if z_diff < 0 else -member_fly_speed
                 
