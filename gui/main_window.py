@@ -35,7 +35,7 @@ from actions import (
 # Константа для интервала toggle экшенов
 TOGGLE_ACTION_INTERVALS = {
     'follow': 500,      # 0.5 секунды
-    'attack': 500,      # 0.5 секунды  
+    'attack': 2000,      # 0.5 секунды  
     'headhunter': 200,  # 0.2 секунды
 }
 

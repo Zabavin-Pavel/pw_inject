@@ -159,7 +159,7 @@ def verify_license(license_key: str, current_mac: str) -> tuple[bool, str, str]:
 if __name__ == '__main__':
     USERS = {
         '1 Pawka': '238300919419878',
-        '2 Sawka': '84585009692719',
+        '2 Sawka': '207794402335169',
         '3 Evgen': '238300914231286',
         '4 Wladik': '185410943814810',
         '5 Valek': '5025756573854',
@@ -168,24 +168,24 @@ if __name__ == '__main__':
     }
     EXPIRY = '311025'  # 31 октября 2025
     
-    # print("=== Мой MAC адрес ===\n")
-    # print(get_mac_address())
-    # print(f"\nТекущая дата: {get_current_date()}")
+    print("=== Мой MAC адрес ===\n")
+    print(get_mac_address())
+    print(f"\nТекущая дата: {get_current_date()}")
     
-    # print("\n=== Лицензионные ключи (TRY) ===\n")
-    # for user, mac_address in USERS.items():
-    #     key = generate_license(mac_address, EXPIRY, PERMISSION_TRY)
-    #     print(f'{user}: {key}')
+    print("\n=== Лицензионные ключи (TRY) ===\n")
+    for user, mac_address in USERS.items():
+        key = generate_license(mac_address, EXPIRY, PERMISSION_TRY)
+        print(f'{user}: {key}')
     
-    # print("\n=== Лицензионные ключи (PRO) ===\n")
-    # for user, mac_address in USERS.items():
-    #     key = generate_license(mac_address, EXPIRY, PERMISSION_PRO)
-    #     print(f'{user}: {key}')
+    print("\n=== Лицензионные ключи (PRO) ===\n")
+    for user, mac_address in USERS.items():
+        key = generate_license(mac_address, EXPIRY, PERMISSION_PRO)
+        print(f'{user}: {key}')
     
-    # print("\n=== Лицензионные ключи (DEV) ===\n")
-    # for user, mac_address in USERS.items():
-    #     key = generate_license(mac_address, EXPIRY, PERMISSION_DEV)
-    #     print(f'{user}: {key}')
+    print("\n=== Лицензионные ключи (DEV) ===\n")
+    for user, mac_address in USERS.items():
+        key = generate_license(mac_address, EXPIRY, PERMISSION_DEV)
+        print(f'{user}: {key}')
     
     print("=== Тест талонов ===\n")
     mac = '23855555555878'
