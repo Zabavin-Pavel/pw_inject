@@ -14,22 +14,19 @@ if (A_Args.Length() > 0) {
     command_file := A_ScriptDir . "\ahk_command.txt"
 }
 
-global static_x, static_y
 global headhunter_x, headhunter_y
 global leader_x, leader_y
 global excluded_windows := 0
 global element_windows := []
 
 LoadSettings() {
-    global static_x, static_y, headhunter_x, headhunter_y
+    global headhunter_x, headhunter_y
     global leader_x, leader_y
     global excluded_windows
 
     EnvGet, LocalAppData, LOCALAPPDATA
     settings_file := LocalAppData . "\xvocmuk\settings.ini"
-    
-    IniRead, static_x, %settings_file%, Coordinates, static_x, 115
-    IniRead, static_y, %settings_file%, Coordinates, static_y, 75
+
     IniRead, headhunter_x, %settings_file%, Coordinates, headhunter_x, 394
     IniRead, headhunter_y, %settings_file%, Coordinates, headhunter_y, 553
     IniRead, leader_x, %settings_file%, Coordinates, leader_x, 411
@@ -71,7 +68,6 @@ ClickAtMouse() {
     }
 }
 
-
 FollowLider() {
     global element_windows, excluded_windows, leader_x, leader_y
     
@@ -79,17 +75,20 @@ FollowLider() {
         return
     }
 
-    CoordMode, Mouse, Screen
-
     ; Вычисляем координаты с offset
-    x2 := leader_x + 50
-    y2 := leader_y + 50
+    offset_x := leader_x + 30
+    assist_y := leader_y + 65
+    follow_y := leader_y + 50
     ; MsgBox, excluded_windows = %excluded_windows%
+
     for index, window_id in element_windows {
         WinGet, window_pid, PID, ahk_id %window_id%
         if (window_pid != excluded_windows) && WinExist("ahk_id " . window_id) {
+            CoordMode, Mouse, Screen
             ControlClick, x%leader_x% y%leader_y%, ahk_id %window_id%, , R, NA
-            ControlClick, x%x2% y%y2%, ahk_id %window_id%, , L, NA
+            ControlClick, x%offset_x% y%assist_y%, ahk_id %window_id%, , L, NA
+            ControlClick, x%leader_x% y%leader_y%, ahk_id %window_id%, , R, NA
+            ControlClick, x%offset_x% y%follow_y%, ahk_id %window_id%, , L, NA
         }
     }
 }
@@ -107,9 +106,6 @@ SendKeyToAll(key, repeat_count := 1) {
     for index, window_id in element_windows {
         if WinExist("ahk_id " . window_id) {
             ControlClick, x115 y75, ahk_id %window_id%, , L, NA
-            Sleep, 10
-            ControlClick, x115 y75, ahk_id %window_id%, , L, NA
-
             Loop, %repeat_count%
             {
                 ControlSend, , {%key%}, ahk_id %window_id%
@@ -158,6 +154,7 @@ CheckCommand:
             WinWaitActive, ahk_class ElementClient Window, , 5
             
             if (!ErrorLevel) {
+                global headhunter_x, headhunter_y
                 ; Получаем ID окна
                 WinGet, window_id, ID, A
                 CoordMode, Mouse, Screen
@@ -182,10 +179,9 @@ CheckCommand:
                         
                         ControlClick, x115 y75, ahk_id %window_id%, , L, NA
                         ControlSend, , {tab}, ahk_id %window_id%
-                        ; Задержка 100 мс
-                        Sleep, 100
+                        Sleep, 200
                         ; Клик левой кнопкой по координатам
-                        ControlClick, x394 y553, ahk_id %window_id%, , L, 1, NA
+                        ControlClick, x%headhunter_x% y%headhunter_y%, ahk_id %window_id%, , L, 1, NA
                     }
                 }
             }

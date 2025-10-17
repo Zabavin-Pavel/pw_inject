@@ -137,23 +137,21 @@ class CharacterPanel(tk.Frame):
 
 
 class CharacterRow(tk.Frame):
-    """Строка персонажа - БЕЗ ЧЕКБОКСА"""
+    """Строка персонажа с иконкой и именем"""
     
     def __init__(self, parent, character, app_state, icons, on_selected, on_icon_clicked):
         super().__init__(parent, bg=COLOR_BG, highlightthickness=0)
         
         self.character = character
         self.app_state = app_state
-        self.color_icon, self.gray_icon = icons
+        self.color_icon, self.gray_icon = icons  # Распаковываем кортеж
         self.on_selected = on_selected
         self.on_icon_clicked = on_icon_clicked
         
-        self._setup_ui()
-        self.update_display()
-    
-    def _setup_ui(self):
-        """Создать UI строки"""
-        # Иконка класса (ВСЕГДА ЦВЕТНАЯ, кликабельная)
+        self.is_flashing = False
+        self.flash_job = None
+        
+        # Иконка класса (ВСЕГДА ЦВЕТНАЯ)
         if self.color_icon:
             self.icon_label = tk.Label(
                 self,
@@ -164,7 +162,7 @@ class CharacterRow(tk.Frame):
             self.icon_label.pack(side=tk.LEFT, padx=(2, 0))
             self.icon_label.bind("<Button-1>", lambda e: self._on_icon_click())
         
-        # Имя персонажа (кликабельное для toggle выбора)
+        # Имя персонажа (кликабельное для переключения окна)
         char_name = self.character.char_base.char_name
         display_name = char_name
         
@@ -174,6 +172,7 @@ class CharacterRow(tk.Frame):
 
         if len(display_name) > MAX_NAME_LENGTH:
             display_name = display_name[:MAX_NAME_LENGTH-3] + "..."
+        
         self.name_label = tk.Label(
             self,
             text=display_name,
@@ -189,22 +188,34 @@ class CharacterRow(tk.Frame):
     def _on_icon_click(self):
         """Клик по иконке - активировать окно"""
         self.on_icon_clicked(self.character)
+        self.flash()
     
     def _on_name_click(self):
-        """Клик по никнейму - toggle выбора"""
-        self.on_selected(self.character)
+        """Клик по никнейму - активировать окно (как иконка)"""
+        self.on_icon_clicked(self.character)
+        self.flash()
+    
+    def flash(self):
+        """Мигнуть никнеймом (как экшены)"""
+        if self.is_flashing:
+            return
+        
+        self.is_flashing = True
+        original_fg = self.name_label.cget('fg')
+        
+        # Мигаем: акцент -> оригинал -> акцент -> оригинал
+        self.name_label.configure(fg=COLOR_ACCENT)
+        self.flash_job = self.after(100, lambda: self.name_label.configure(fg=original_fg))
+        self.flash_job = self.after(200, lambda: self.name_label.configure(fg=COLOR_ACCENT))
+        self.flash_job = self.after(300, lambda: self._finish_flash(original_fg))
+    
+    def _finish_flash(self, original_fg):
+        """Завершить мигание"""
+        self.name_label.configure(fg=original_fg)
+        self.is_flashing = False
     
     def update_display(self):
-        """Обновить отображение строки"""
-        # Проверка выбран ли персонаж (оранжевый цвет текста)
-        is_selected = self.app_state.selected_character == self.character
-        
-        # Обновить ТОЛЬКО цвет текста никнейма
-        if is_selected:
-            self.name_label.configure(fg=COLOR_ACCENT)
-        else:
-            self.name_label.configure(fg=COLOR_TEXT)
-        
+        """Обновить отображение строки (без toggle выбора)"""
         # Фон ВСЕГДА остаётся тёмным
         self.configure(bg=COLOR_BG)
         if hasattr(self, 'icon_label'):

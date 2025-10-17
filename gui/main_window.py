@@ -96,6 +96,7 @@ class MainWindow:
         self.manager.set_app_state(self.app_state)
         self.manager.set_action_limiter(self.action_limiter)
 
+        # self.root.after(100, self.on_refresh)
         self.on_refresh()
 
     def _register_actions(self):
@@ -271,7 +272,7 @@ class MainWindow:
         self.character_panel = CharacterPanel(
             left_container,
             self.app_state,
-            on_character_selected=self.on_character_selected,
+            on_character_selected=None,  # УДАЛЕНО: toggle выбора больше не нужен
             on_character_toggled=self.on_character_toggled
         )
         self.character_panel.pack(fill=tk.BOTH, expand=True, padx=0, pady=0)
@@ -498,14 +499,15 @@ class MainWindow:
     def on_character_selected(self, character):
         """Обработчик клика по никнейму персонажа - toggle выбора"""
         # Если этот персонаж уже выбран - снять выбор
-        if self.app_state.selected_character == character:
-            self.app_state.select_character(None)
-        else:
-            # Иначе - выбрать его
-            self.app_state.select_character(character)
+        pass
+        # if self.app_state.selected_character == character:
+        #     self.app_state.select_character(None)
+        # else:
+        #     # Иначе - выбрать его
+        #     self.app_state.select_character(character)
         
-        # Обновить отображение
-        self.character_panel.update_display()
+        # # Обновить отображение
+        # self.character_panel.update_display()
     
     def on_character_toggled(self, character):
         """Обработчик переключения активности персонажа (чекбокс)"""
