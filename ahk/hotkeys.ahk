@@ -35,8 +35,7 @@ LoadSettings() {
     IniRead, leader_x, %settings_file%, Coordinates, leader_x, 411
     IniRead, leader_y, %settings_file%, Coordinates, leader_y, 666
     IniRead, excluded_windows, %settings_file%, Excluded, windows, 0
-    excluded_windows += 0
-    MsgBox, excluded_windows = %excluded_windows%
+    ; MsgBox, excluded_windows = %excluded_windows%
 }
 
 ; Обновить список окон
@@ -85,7 +84,7 @@ FollowLider() {
     ; Вычисляем координаты с offset
     x2 := leader_x + 50
     y2 := leader_y + 50
-    
+    ; MsgBox, excluded_windows = %excluded_windows%
     for index, window_id in element_windows {
         WinGet, window_pid, PID, ahk_id %window_id%
         if (window_pid != excluded_windows) && WinExist("ahk_id " . window_id) {

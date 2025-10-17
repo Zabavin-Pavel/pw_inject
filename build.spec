@@ -9,6 +9,7 @@ a = Analysis(
     datas=[
         ('assets', 'assets'),              # Иконки классов и app icon
         ('ahk/hotkeys.exe', 'ahk'),        # AHK скрипт в папке ahk
+        ('ahk/settings.ini', 'ahk'),       # НОВОЕ: Шаблон settings.ini
     ],
     hiddenimports=[
         'pystray._win32',
@@ -86,7 +87,9 @@ exe = EXE(
 #   │   ├── icon.png
 #   │   └── class_icons/
 #   └── ahk/
-#       └── hotkeys.exe
+#       ├── hotkeys.exe
+#       └── settings.ini (шаблон)
 #
-# При первом запуске hotkeys.exe скопируется в:
-# C:\Users\USERNAME\AppData\Local\xvocmuk\hotkeys.exe
+# При первом запуске:
+# - hotkeys.exe скопируется в AppData (с проверкой хеша)
+# - settings.ini скопируется в AppData (только если отсутствует)

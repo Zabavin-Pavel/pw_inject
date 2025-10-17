@@ -18,6 +18,7 @@ from gui.styles import *
 from gui.character_panel import CharacterPanel
 from gui.hotkey_panel import HotkeyPanel
 from core import AppState, ActionManager, HotkeyManager, LicenseManager
+from core.license import LicenseManager
 from ahk.manager import AHKManager
 from core.license_manager import LicenseConfig
 from core.keygen import PERMISSION_NONE, PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
@@ -89,14 +90,13 @@ class MainWindow:
         
         # Запустить polling активного окна
         self._start_active_window_polling()
-
-        self.on_refresh()
         
         # Передаем зависимости в multibox_manager
         self.manager.set_ahk_manager(self.ahk_manager)
         self.manager.set_app_state(self.app_state)
-        self.manager.set_action_limiter(self.action_limiter)  # НОВОЕ
-    
+        self.manager.set_action_limiter(self.action_limiter)
+
+        self.on_refresh()
 
     def _register_actions(self):
             """Зарегистрировать все действия (ОБНОВЛЕНО)"""
@@ -110,7 +110,7 @@ class MainWindow:
                 self  # НОВОЕ: передаем main_window
             )
             
-            # TRY уровень (LBM, SPACE, FOLLOW_LIDER) - ИСПРАВЛЕНО: передаем app_state
+            # TRY уровень (LBM, SPACE, follow_leader) - ИСПРАВЛЕНО: передаем app_state
             register_try_actions(
                 self.action_manager,
                 self.ahk_manager,
@@ -409,29 +409,25 @@ class MainWindow:
         # Мигнуть кнопкой
         self._flash_refresh_button()
         
-        # Обновить список окон в AHK (no-op теперь)
+        # Обновить список окон в AHK
         self.ahk_manager.refresh_windows()
         
-        # === ШАГ 1: ВЕРИФИКАЦИЯ (КАЖДЫЙ РАЗ!)
+        # === ШАГ 1: ВЕРИФИКАЦИЯ (КАЖДЫЙ РАЗ!) ===
         from core.license import LicenseManager
+        is_valid, perm_level = LicenseManager.verify_best_license(self.license_config)
         
-        # Верификация
-        success, new_permission = LicenseManager.verify_best_license(self.license_config)
-        
-        if success:
+        if is_valid:
             self.app_state.verified = True
             old_permission = self.app_state.permission_level
-            self.app_state.permission_level = new_permission
+            self.app_state.permission_level = perm_level
             
             # Обновляем UI только если уровень изменился
-            if new_permission != old_permission:
-                self.prev_permission_level = new_permission
+            if perm_level != old_permission:
+                self.prev_permission_level = perm_level
                 self.hotkey_panel.update_display()
-                logging.info(f"🔑 Permission level updated: {new_permission}")
-
-                for action in self.action_manager.get_hotkey_actions():
-                    logging.info(f"  - {action.id} ({action.required_permission})")
+                logging.info(f"🔑 Permission level updated: {perm_level}")
         else:
+            logging.warning("❌ License verification failed")
             self.app_state.verified = False
             self.app_state.permission_level = "none"
             
@@ -439,34 +435,65 @@ class MainWindow:
                 self.prev_permission_level = "none"
                 self.hotkey_panel.update_display()
         
-        # === ШАГ 2: ОБНОВИТЬ ПЕРСОНАЖЕЙ
+        # === ШАГ 2: ОБНОВИТЬ ПЕРСОНАЖЕЙ ===
         self.manager.refresh()
         
-        # === ШАГ 3: ОБНОВИТЬ GUI
+        # === ШАГ 3: ОПРЕДЕЛИТЬ ЛИДЕРА И ЗАПИСАТЬ В settings.ini ===
+        leader, group = self.manager.get_leader_and_group()
+        
+        if leader:
+            leader_pid = leader.pid
+            logging.info(f"🎯 Leader found: PID={leader_pid}, Name={leader.char_base.char_name}")
+            
+            # Записать excluded_windows в settings.ini через AHK
+            from pathlib import Path
+            settings_ini = Path.home() / "AppData" / "Local" / "xvocmuk" / "settings.ini"
+            
+            try:
+                # Читаем весь файл
+                if settings_ini.exists():
+                    with open(settings_ini, 'r', encoding='utf-8') as f:
+                        lines = f.readlines()
+                else:
+                    lines = []
+                
+                # Ищем секцию [Excluded] и строку windows=
+                found_section = False
+                found_windows = False
+                new_lines = []
+                
+                for line in lines:
+                    if line.strip() == '[Excluded]':
+                        found_section = True
+                        new_lines.append(line)
+                    elif found_section and line.startswith('windows='):
+                        found_windows = True
+                        new_lines.append(f'windows={leader_pid}\n')
+                    else:
+                        new_lines.append(line)
+                
+                # Если секция или параметр не найдены - добавляем
+                if not found_section:
+                    new_lines.append('\n[Excluded]\n')
+                    new_lines.append(f'windows={leader_pid}\n')
+                elif not found_windows:
+                    new_lines.append(f'windows={leader_pid}\n')
+                
+                # Записываем обратно
+                with open(settings_ini, 'w', encoding='utf-8') as f:
+                    f.writelines(new_lines)
+                
+                logging.info(f"✅ Leader PID {leader_pid} saved to settings.ini")
+                
+            except Exception as e:
+                logging.error(f"❌ Failed to save leader PID to settings.ini: {e}")
+        else:
+            logging.info("⚠️ No leader found in group")
+        
+        # === ШАГ 4: ОБНОВИТЬ UI ===
         self.character_panel.set_characters(self.manager.get_all_characters())
         
         logging.info("🔄 Refresh completed")
-    
-    def _rebuild_hotkey_panel(self):
-        """Пересоздать hotkey panel (для обновления видимости экшенов)"""
-        # Удаляем старый hotkey_panel
-        self.hotkey_panel.destroy()
-        
-        # Создаём новый hotkey_panel
-        self.hotkey_panel = HotkeyPanel(
-            self.right_container,
-            self.app_state,
-            self.action_manager,
-            self.hotkey_manager,
-            self.settings_manager,
-            on_action_executed=self.on_action_executed
-        )
-        self.hotkey_panel.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
-                
-        # ОТЛАДКА
-        logging.info(f"📋 HotkeyPanel created, actions count: {len(self.action_manager.get_hotkey_actions())}")
-        # Обновить отображение хоткеев
-        self.root.after(100, lambda: self.hotkey_panel.update_hotkey_display())
 
     def on_character_selected(self, character):
         """Обработчик клика по никнейму персонажа - toggle выбора"""

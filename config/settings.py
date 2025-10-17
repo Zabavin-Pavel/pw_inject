@@ -52,7 +52,7 @@ class SettingsManager:
                 # TRY
                 "ahk_click_mouse": "-",
                 "ahk_press_space": "-",
-                "ahk_follow_lider": "-",
+                "ahk_follow_leader": "-",
                 # PRO
                 "separator_pro": "-",
                 "tp_to_target": "-",

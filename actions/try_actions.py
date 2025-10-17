@@ -41,8 +41,8 @@ def register_try_actions(action_manager, ahk_manager, app_state):
         required_permission=PERMISSION_TRY
     )
 
-    # === FOLLOW_LIDER - ИСПРАВЛЕНО ===
-    def ahk_follow_lider():
+    # === follow_leader - ИСПРАВЛЕНО ===
+    def ahk_follow_leader():
         """
         ЛКМ + ПКМ по 100,100 для членов группы (БЕЗ лидера)
         
@@ -50,13 +50,13 @@ def register_try_actions(action_manager, ahk_manager, app_state):
         - Получает PIDs группы через app_state
         - Передает PIDs в AHK
         """
-        ahk_manager.follow_lider()
+        ahk_manager.follow_leader()
     
     action_manager.register(
-        'ahk_follow_lider',
+        'ahk_follow_leader',
         label='FOLLOW   [TRY]',
         type='quick',
-        callback=ahk_follow_lider,
+        callback=ahk_follow_leader,
         has_hotkey=True,
         required_permission=PERMISSION_TRY
     )
