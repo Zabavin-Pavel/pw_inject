@@ -160,11 +160,12 @@ if __name__ == '__main__':
     USERS = {
         '1 Pawka': '238300919419878',
         '2 Sawka': '207794402335169',
-        '3 Evgen': '238300914231286',
-        '4 Wladik': '185410943814810',
+        # '3 Evgen': '238300914231286',
+        # '4 Wladik': '185410943814810',
         '5 Valek': '5025756573854',
         '6 Sergey': '27214211329154',
-        '7 Ruzlan': '198112242178987',
+        # '7 Ruzlan': '198112242178987',
+        '7 Roman': '18691165716581',
     }
     EXPIRY = '311025'  # 31 октября 2025
     
@@ -198,6 +199,8 @@ if __name__ == '__main__':
     
     # Талон на сегодня (до конца дня)
     today_ticket = generate_ticket(0, PERMISSION_PRO)
+    print(f"Талон на сегодня:   {today_ticket}")
+    today_ticket = generate_ticket(0, PERMISSION_TRY)
     print(f"Талон на сегодня:   {today_ticket}")
     # Проверяем с разными MAC
     # for test_mac in ['238300919419878', '84585009692719', '999999999999']:

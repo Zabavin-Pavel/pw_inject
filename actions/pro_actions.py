@@ -108,9 +108,9 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
                 # В триггере! Проверяем location_id активного окна
                 required_location = point.get("location_id")
                 
-                if required_location and char_location not in required_location:
-                    print(f"\n[NEXT >>] {point['name']}: ⛔ Неверная локация {char_location} (нужна {required_location})\n")
-                    return
+                # if required_location and char_location not in required_location:
+                #     print(f"\n[NEXT >>] {point['name']}: ⛔ Неверная локация {char_location} (нужна {required_location})\n")
+                #     return
                 
                 # Телепортируем
                 target_x, target_y, target_z = point["target"]
@@ -276,9 +276,9 @@ def _tp_to_special_point(point_name, point_data, mode, multibox_manager, app_sta
         active_char.char_base.refresh()
         char_location = active_char.char_base.location_id
         
-        if char_location not in allowed_locations:
-            print(f"\n[{point_name}] ⛔ Неверная локация {char_location} (разрешено: {allowed_locations})\n")
-            return
+        # if char_location not in allowed_locations:
+        #     print(f"\n[{point_name}] ⛔ Неверная локация {char_location} (разрешено: {allowed_locations})\n")
+        #     return
         
         success = multibox_manager.teleport_character(
             active_char,
@@ -305,9 +305,9 @@ def _tp_to_special_point(point_name, point_data, mode, multibox_manager, app_sta
         active_char.char_base.refresh()
         char_location = active_char.char_base.location_id
         
-        if char_location not in allowed_locations:
-            print(f"\n[{point_name}] ⛔ Неверная локация {char_location} (разрешено: {allowed_locations})\n")
-            return
+        # if char_location not in allowed_locations:
+        #     print(f"\n[{point_name}] ⛔ Неверная локация {char_location} (разрешено: {allowed_locations})\n")
+        #     return
         
         leader, group = multibox_manager.get_leader_and_group()
         

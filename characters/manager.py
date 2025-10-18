@@ -517,7 +517,7 @@ class MultiboxManager:
             character, 
             target_x, 
             target_y, 
-            target_z + 3,
+            target_z + 2,
             send_space=False
         )
         
