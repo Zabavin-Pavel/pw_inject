@@ -3,12 +3,27 @@
 Все оффсеты в одном месте с удобной нотацией
 """
 
+def _load_base_address():
+    """Загрузить BASE_ADRESS из license.ini"""
+    try:
+        from core.license_manager import LicenseConfig
+        license = LicenseConfig()
+        base = license.get_base_address()
+        # Убираем пробелы и добавляем 0x
+        return f"0x{base.strip().upper()}"
+    except Exception as e:
+        print(f"⚠️ Failed to load BASE_ADRESS: {e}, using default")
+        return "0x013FCB38"
+    
+# Загружаем базовый адрес
+_BASE_ADDRESS = _load_base_address()
+
 OFFSETS = {
     # ========================================
     # CHAR BASE
     # ========================================
     # "char_origin": "static:ElementClient.exe +0x013FAB08 +0x1000",
-    "char_origin": "static:ElementClient.exe +013FCB38",
+    "char_origin": f"static:ElementClient.exe +{_BASE_ADDRESS}",
     
     "char_base": "ptr:char_origin +0x68",
     
@@ -61,7 +76,8 @@ OFFSETS = {
     # ========================================
     # SELECTION MANAGER (Target + Movepoint)
     # ========================================
-    "selection_origin": "static:ElementClient.exe +0x013FBB40",  # БЕЗ +0x1000!
+    # "selection_origin": "static:ElementClient.exe +0x013FBB40",  # БЕЗ +0x1000!
+    "selection_origin": f"static:ElementClient.exe +{_BASE_ADDRESS} +0x38",
     "selection_ptr": "ptr:selection_origin +0x58 -> +0x0",
 
     # Target (выбранная цель)
@@ -79,7 +95,6 @@ from collections import Counter
 from game.memory import Memory
 from game.win32_api import TH32CS_SNAPPROCESS, PROCESSENTRY32
 from config.constants import CLASS_NAMES_DEBUG
-
 
 def get_first_pid(process_name="ElementClient.exe"):
     """Получить PID первого найденного процесса"""

@@ -93,3 +93,37 @@ class LicenseConfig:
             self.config['License'] = {}
         self.config['License']['ticket'] = ticket
         self._save()
+
+    def get_base_address(self):
+        """
+        Получить базовый оффсет char_origin из license.ini
+        
+        Returns:
+            str: оффсет в формате "013FCB38" (без 0x)
+        """
+        try:
+            if not self.config.has_section('Offsets'):
+                # Создаем секцию по умолчанию
+                self.config['Offsets'] = {
+                    'BASE_ADRESS': '013FCB38'
+                }
+                self._save()
+            
+            base = self.config.get('Offsets', 'BASE_ADRESS', fallback='013FCB38')
+            logging.info(f"📍 BASE_ADRESS loaded: {base}")
+            return base
+        except Exception as e:
+            logging.error(f"❌ Failed to read BASE_ADRESS: {e}")
+            return '013FCB38'  # Дефолт
+
+    def set_base_address(self, value):
+        """Сохранить новый базовый оффсет"""
+        try:
+            if not self.config.has_section('Offsets'):
+                self.config.add_section('Offsets')
+            
+            self.config.set('Offsets', 'BASE_ADRESS', value)
+            self._save()
+            logging.info(f"✅ BASE_ADRESS saved: {value}")
+        except Exception as e:
+            logging.error(f"❌ Failed to save BASE_ADRESS: {e}")

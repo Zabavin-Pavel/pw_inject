@@ -257,14 +257,6 @@ def _tp_to_special_point(point_name, point_data, mode, multibox_manager, app_sta
             print(f"\n[{point_name}] Ошибка телепортации\n")
     
     elif mode == "party":
-        # Телепортируем всю группу (С МАССОВЫМ SPACE)
-        # Сначала проверяем локацию активного окна
-        active_char = app_state.last_active_character
-        
-        if not active_char:
-            print(f"\n[{point_name}] Нет активного окна")
-            return
-        
         leader, group = multibox_manager.get_leader_and_group()
         
         if not group:
