@@ -1,6 +1,6 @@
 """
 Игровые структуры для чтения/записи данных из памяти - ОБНОВЛЕНО
-Добавлено: location_id, fly_trigger
+Добавлено: fly_trigger
 """
 from game.offsets import OFFSETS, resolve_offset
 import logging
@@ -60,9 +60,6 @@ class CharBase:
         self.fly_speed = resolve_offset(self.memory, OFFSETS["fly_speed"], self.cache)
         self.fly_speed_z = resolve_offset(self.memory, OFFSETS["fly_speed_z"], self.cache)
         self.fly_status = resolve_offset(self.memory, OFFSETS["fly_status"], self.cache)
-        
-        # НОВОЕ: Location ID
-        self.location_id = resolve_offset(self.memory, OFFSETS["location_id"], self.cache)
     
     def _invalidate_cache(self):
         """Очистить кеш указателей (кроме базовых адресов)"""

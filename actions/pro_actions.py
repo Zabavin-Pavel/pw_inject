@@ -1,6 +1,5 @@
 """
 PRO уровень - продвинутые действия с телепортацией
-ОБНОВЛЕНО: добавлены проверки location_id для всех телепортов
 """
 import logging
 from core.keygen import PERMISSION_PRO, PERMISSION_DEV
@@ -8,8 +7,7 @@ from config.constants import (
     DUNGEON_POINTS, 
     LONG_LEFT_POINT, 
     LONG_RIGHT_POINT, 
-    EXIT_POINT,
-    TARGET_ALLOWED_LOCATIONS
+    EXIT_POINT
 )
 
 def register_pro_actions(action_manager, multibox_manager, app_state, action_limiter):
@@ -42,16 +40,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
         if not active_char:
             print("\n[TP to TARGET] Нет последнего активного окна")
             return
-        
-        # Проверка локации для не-DEV
-        if not app_state.has_permission(PERMISSION_DEV):
-            active_char.char_base.refresh()
-            char_location = active_char.char_base.location_id
-            
-            if char_location not in TARGET_ALLOWED_LOCATIONS:
-                print(f"\n[TP to TARGET] ⛔ Недоступно в локации {char_location} (разрешено: {TARGET_ALLOWED_LOCATIONS})\n")
-                return
-        
+          
         multibox_manager.action_teleport_to_target(active_char)
     
     action_manager.register(
@@ -70,7 +59,6 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
         
         Логика:
         1. Берем активного персонажа
-        2. Проверяем его location_id
         3. Если нет пати - одиночный прыжок
         4. Если есть пати - групповой с проверкой локации у каждого члена
         """
@@ -90,9 +78,8 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
         active_char.char_base.refresh()
         char_x = active_char.char_base.char_pos_x
         char_y = active_char.char_base.char_pos_y
-        char_location = active_char.char_base.location_id
         
-        if char_x is None or char_y is None or char_location is None:
+        if char_x is None or char_y is None:
             print("\n[NEXT >>] Не удалось получить координаты/локацию")
             return
         
@@ -105,13 +92,6 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
             dy = abs(char_y - trigger_y)
             
             if dx <= radius and dy <= radius:
-                # В триггере! Проверяем location_id активного окна
-                required_location = point.get("location_id")
-                
-                # if required_location and char_location not in required_location:
-                #     print(f"\n[NEXT >>] {point['name']}: ⛔ Неверная локация {char_location} (нужна {required_location})\n")
-                #     return
-                
                 # Телепортируем
                 target_x, target_y, target_z = point["target"]
                 count_in_limits = point.get("count_in_limits", True)
@@ -145,18 +125,9 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
                     # ЕСТЬ ПАТИ - групповой телепорт с проверкой локации
                     _, group = multibox_manager.get_leader_and_group()
                     
-                    # Фильтруем по локации (только окна в той же локации что и активное)
-                    chars_to_tp = []
-                    for member in group:
-                        member.char_base.refresh()
-                        member_location = member.char_base.location_id
-                        
-                        if member_location == char_location:
-                            chars_to_tp.append(member)
-                    
-                    if chars_to_tp:
+                    if group:
                         success_count = multibox_manager.teleport_group(
-                            chars_to_tp,
+                            group,
                             target_x,
                             target_y,
                             target_z,
@@ -257,12 +228,12 @@ def _tp_to_special_point(point_name, point_data, mode, multibox_manager, app_sta
     
     Args:
         point_name: название точки (для логов)
-        point_data: (x, y, z, [allowed_location_ids])
+        point_data: (x, y, z)
         mode: "solo" или "party"
         multibox_manager: менеджер мультибокса
         app_state: состояние приложения
     """
-    target_x, target_y, target_z, allowed_locations = point_data
+    target_x, target_y, target_z = point_data
     
     if mode == "solo":
         # Телепортируем только активное окно (С ОДИНОЧНЫМ SPACE)
@@ -271,14 +242,6 @@ def _tp_to_special_point(point_name, point_data, mode, multibox_manager, app_sta
         if not active_char:
             print(f"\n[{point_name}] Нет активного окна")
             return
-        
-        # ПРОВЕРКА ЛОКАЦИИ
-        active_char.char_base.refresh()
-        char_location = active_char.char_base.location_id
-        
-        # if char_location not in allowed_locations:
-        #     print(f"\n[{point_name}] ⛔ Неверная локация {char_location} (разрешено: {allowed_locations})\n")
-        #     return
         
         success = multibox_manager.teleport_character(
             active_char,
@@ -302,34 +265,14 @@ def _tp_to_special_point(point_name, point_data, mode, multibox_manager, app_sta
             print(f"\n[{point_name}] Нет активного окна")
             return
         
-        active_char.char_base.refresh()
-        char_location = active_char.char_base.location_id
-        
-        # if char_location not in allowed_locations:
-        #     print(f"\n[{point_name}] ⛔ Неверная локация {char_location} (разрешено: {allowed_locations})\n")
-        #     return
-        
         leader, group = multibox_manager.get_leader_and_group()
         
         if not group:
             print(f"\n[{point_name}] Нет группы")
             return
         
-        # Фильтруем группу по локации (только окна в разрешенных локациях)
-        chars_to_tp = []
-        for member in group:
-            member.char_base.refresh()
-            member_location = member.char_base.location_id
-            
-            if member_location in allowed_locations:
-                chars_to_tp.append(member)
-        
-        if not chars_to_tp:
-            print(f"\n[{point_name}] Нет персонажей в разрешенных локациях")
-            return
-        
         success_count = multibox_manager.teleport_group(
-            chars_to_tp,
+            group,
             target_x,
             target_y,
             target_z,

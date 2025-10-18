@@ -1,6 +1,5 @@
 """
 DEV уровень - продвинутые действия для разработки
-ОБНОВЛЕНО: добавлены проверки location_id для SO/GO
 """
 from core.keygen import PERMISSION_DEV
 from config.constants import SO_POINT, GO_POINT
@@ -42,14 +41,9 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
             return
         
         # ПРОВЕРКА ЛОКАЦИИ
-        target_x, target_y, target_z, allowed_locations = SO_POINT
+        target_x, target_y, target_z = SO_POINT
         
         active_char.char_base.refresh()
-        char_location = active_char.char_base.location_id
-        
-        # if char_location not in allowed_locations:
-        #     print(f"\n[QB SO] ⛔ Неверная локация {char_location} (разрешено: {allowed_locations})\n")
-        #     return
         
         success = multibox_manager.teleport_character(
             active_char,
@@ -90,14 +84,9 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
             return
         
         # ПРОВЕРКА ЛОКАЦИИ
-        target_x, target_y, target_z, allowed_locations = GO_POINT
+        target_x, target_y, target_z = GO_POINT
         
         active_char.char_base.refresh()
-        char_location = active_char.char_base.location_id
-        
-        # if char_location not in allowed_locations:
-        #     print(f"\n[QB GO] ⛔ Неверная локация {char_location} (разрешено: {allowed_locations})\n")
-        #     return
         
         success = multibox_manager.teleport_character(
             active_char,

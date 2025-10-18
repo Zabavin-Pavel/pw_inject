@@ -32,7 +32,7 @@ class MultiboxManager:
             'timestamp': None,  # время последнего обновления
             'leader': None,  # Character объект лидера
             'members': [],  # список Character объектов в группе
-            'member_info': {}  # {char_id: {'pid': ..., 'location_id': ..., 'name': ...}}
+            'member_info': {}  # {char_id: {'pid': ..., 'name': ...}}
         }
     
         # НОВОЕ: Единый поток заморозки для Follow
@@ -163,7 +163,6 @@ class MultiboxManager:
             # Заполняем member_info
             self.party_cache['member_info'][char.char_base.char_id] = {
                 'pid': char.pid,
-                'location_id': char.char_base.location_id,
                 'name': char.char_base.char_name
             }
         
@@ -660,12 +659,11 @@ class MultiboxManager:
             return 0
         
         leader_z = leader.char_base.char_pos_z
-        leader_location = leader.char_base.location_id
         
-        if leader_z is None or leader_location is None:
+        if leader_z is None:
             return 0
         
-        print(f"\n[FOLLOW] Лидер={leader.char_base.char_name} Z={leader_z:.1f}, Location={leader_location}")
+        print(f"\n[FOLLOW] Лидер={leader.char_base.char_name} Z={leader_z:.1f}")
 
         for member in members:
             # Пропускаем лидера
@@ -673,15 +671,6 @@ class MultiboxManager:
                 continue
             
             member.char_base.refresh()
-            
-            member_location = member.char_base.location_id
-            
-            # Проверка локации
-            if member_location != leader_location:
-                if member.pid in self.freeze_targets:
-                    del self.freeze_targets[member.pid]
-                print(f"  {member.char_base.char_name} (PID={member.pid}): Location={member_location} (лидер={leader_location}) ❌")
-                continue
             
             member_z = member.char_base.char_pos_z
             member_fly_speed = member.char_base.fly_speed

@@ -7,7 +7,9 @@ OFFSETS = {
     # ========================================
     # CHAR BASE
     # ========================================
-    "char_origin": "static:ElementClient.exe +0x013FAB08 +0x1000",
+    # "char_origin": "static:ElementClient.exe +0x013FAB08 +0x1000",
+    "char_origin": "static:ElementClient.exe +013FCB38",
+    
     "char_base": "ptr:char_origin +0x68",
     
     # Структура для движения
@@ -68,12 +70,6 @@ OFFSETS = {
     "target_pos_x": "float:target_ptr +0xFC",
     "target_pos_y": "float:target_ptr +0xF4",
     "target_pos_z": "float:target_ptr +0xF8",
-
-    # ========================================
-    # GAME INFO
-    # ========================================
-    "location_origin": "static:ElementClient.exe +0x0149AE10 +0x1000",
-    "location_id": "int32:location_origin -> +0x0 -> +0x50 -> +0x268 -> +0x128 -> +0x10",
 }
 
 
@@ -515,14 +511,6 @@ def main():
         print("="*70)
         print("GAME INFO")
         print("="*70)
-        
-        location_origin = resolve_offset(memory, OFFSETS["location_origin"], cache)
-        if location_origin:
-            cache["location_origin"] = location_origin
-            print(f"✅ location_origin: {hex(location_origin)}")
-        
-        location_id = resolve_offset(memory, OFFSETS["location_id"], cache)
-        print(f"Location ID: {location_id}")
         
         # ========================================
         # SELECTION MANAGER TEST
