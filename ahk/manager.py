@@ -196,3 +196,11 @@ class AHKManager:
                 logging.warning("⚠️ AHK killed forcefully")
             except Exception as e:
                 logging.warning(f"⚠️ Error stopping AHK: {e}")
+
+    def attack_guard(self):
+        """Атака guard (ассист + макрос guard)"""
+        self._write_command("attack_guard")
+
+    def attack_boss(self):
+        """Атака boss (ассист + макрос boss)"""
+        self._write_command("attack_boss")

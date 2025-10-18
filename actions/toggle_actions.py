@@ -40,18 +40,18 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         required_permission=PERMISSION_TRY
     )
     
-    # === ATTACK (PRO) ===
+    # === ATTACK (PRO) - НОВАЯ ЛОГИКА ===
     def toggle_attack():
-        """Toggle: Атака (копирование таргета лидера)"""
+        """Toggle: Атака (ассист + макросы)"""
         is_active = app_state.is_action_active('attack')
         
         if is_active:
             print("Attack: STARTED")
-            main_window._start_action_loop('attack', lambda: attack_loop_callback(multibox_manager))
+            main_window._start_action_loop('attack', lambda: attack_loop_callback(multibox_manager, ahk_manager, app_state))
         else:
             print("Attack: STOPPED")
             main_window._stop_action_loop('attack')
-    
+
     action_manager.register(
         'attack',
         label='Attack',
@@ -59,7 +59,7 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         callback=toggle_attack,
         icon='⚔️',
         has_hotkey=False,
-        required_permission=PERMISSION_TRY
+        required_permission=PERMISSION_PRO
     )
     
     # === HEADHUNTER (DEV) - ОБНОВЛЕНО: через AHK ===
@@ -103,11 +103,27 @@ def follow_loop_callback(ahk_manager):
     except Exception as e:
         logging.error(f"Error in follow_loop_callback: {e}")
 
-def attack_loop_callback(multibox_manager):
+def attack_loop_callback(multibox_manager, ahk_manager, app_state):
     """Callback для Attack loop (вызывается каждые 500ms)"""
-    try:
-        success_count = multibox_manager.set_attack_target()
-        if success_count > 0:
-            logging.debug(f"Attack: {success_count} targets set")
-    except Exception as e:
-        logging.error(f"Error in attack_loop_callback: {e}")
+    from config.constants import GUARD_ID, BOSS_IDS
+    
+    # Берем активное окно
+    active_char = app_state.last_active_character
+    
+    if not active_char:
+        return
+    
+    # Читаем target_id
+    active_char.char_base.refresh()
+    target_id = active_char.char_base.target_id
+    
+    if not target_id or target_id == 0:
+        return
+    
+    # Проверяем тип цели
+    if target_id == GUARD_ID:
+        # Guard - отправляем команду
+        ahk_manager.attack_guard()
+    elif target_id in BOSS_IDS:
+        # Boss - отправляем команду
+        ahk_manager.attack_boss()

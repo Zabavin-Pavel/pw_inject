@@ -328,3 +328,77 @@ get_leader_and_group усложнен. Достаточно взять посл�
     __int64 __fastcall sub_7FF787271190(__int64 a1, __int64 a2, int a3, int a4, unsigned int a5)
 
 Не забудь сначала поменять, а потом заморозить координаты movepoint_x, y, x на время выполнения последней функции.
+
+
+
+
+
+
+
+
+; Команда: attack_guard
+if (command = "attack_guard")
+{
+    ReadSettings()
+    
+    offset_x := leader_x + 30
+    assist_y := leader_y + 65
+    
+    WinGet, windows, List, ahk_exe ElementClient.exe
+    Loop, %windows%
+    {
+        hwnd := windows%A_Index%
+        WinGet, window_pid, PID, ahk_id %hwnd%
+        if (window_pid != excluded_windows) && WinExist("ahk_id " . hwnd) {
+            ; ПКМ по лидеру
+            ControlClick, x%leader_x% y%leader_y%, ahk_id %hwnd%, , R, NA
+            Sleep, 50
+            ; ЛКМ ассист
+            ControlClick, x%offset_x% y%assist_y%, ahk_id %hwnd%, , L, NA
+            Sleep, 50
+            ; ЛКМ макрос guard
+            ControlClick, x%macros_spam_x% y%macros_spam_y%, ahk_id %hwnd%, , L, NA
+        }
+    }
+    FileDelete, %CommandFile%
+    return
+}
+
+; Команда: attack_boss
+if (command = "attack_boss")
+{
+    ReadSettings()
+    
+    offset_x := leader_x + 30
+    assist_y := leader_y + 65
+    
+    WinGet, windows, List, ahk_exe ElementClient.exe
+    Loop, %windows%
+    {
+        hwnd := windows%A_Index%
+        WinGet, window_pid, PID, ahk_id %hwnd%
+        if (window_pid != excluded_windows) && WinExist("ahk_id " . hwnd) {
+            ; ПКМ по лидеру
+            ControlClick, x%leader_x% y%leader_y%, ahk_id %hwnd%, , R, NA
+            Sleep, 50
+            ; ЛКМ ассист
+            ControlClick, x%offset_x% y%assist_y%, ahk_id %hwnd%, , L, NA
+            Sleep, 50
+            ; ЛКМ макрос boss
+            ControlClick, x%macro_boss_x% y%macro_boss_y%, ahk_id %hwnd%, , L, NA
+        }
+    }
+    FileDelete, %CommandFile%
+    return
+}
+
+ReadSettings() {
+    global leader_x, leader_y, macros_spam_x, macros_spam_y, macro_boss_x, macro_boss_y
+    
+    IniRead, leader_x, %SettingsFile%, Coordinates, leader_x, 960
+    IniRead, leader_y, %SettingsFile%, Coordinates, leader_y, 540
+    IniRead, macros_spam_x, %SettingsFile%, Coordinates, macros_spam_x, 1300
+    IniRead, macros_spam_y, %SettingsFile%, Coordinates, macros_spam_y, 850
+    IniRead, macro_boss_x, %SettingsFile%, Coordinates, macro_boss_x, 1350
+    IniRead, macro_boss_y, %SettingsFile%, Coordinates, macro_boss_y, 850
+}
