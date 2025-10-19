@@ -24,7 +24,6 @@ class ActionLimiter:
         'tp_next': 'tp',
         'tp_long_left': 'tp',
         'tp_long_right': 'tp',
-        'tp_exit': 'tp',
         'tp_to_so': 'qb',
         'tp_to_go': 'qb',
     }

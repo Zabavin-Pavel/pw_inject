@@ -26,19 +26,22 @@ class MultiboxManager:
         self.ahk_manager = None
         self.app_state = None
         self.action_limiter = None
-        
+    
+        # НОВОЕ: Кеш для REDO телепорта
+        self.last_teleport_destination = None  # (x, y, z)
+    
         # НОВОЕ: Кеш группы (обновляется Attack каждые 500ms)
         self.party_cache = {
-            'timestamp': None,  # время последнего обновления
-            'leader': None,  # Character объект лидера
-            'members': [],  # список Character объектов в группе
-            'member_info': {}  # {char_id: {'pid': ..., 'name': ...}}
+            'timestamp': None,
+            'leader': None,
+            'members': [],
+            'member_info': {}
         }
     
         # НОВОЕ: Единый поток заморозки для Follow
         self.freeze_thread = None
         self.freeze_stop_event = None
-        self.freeze_targets = {}  # {pid: {'address': ..., 'value': ...}}
+        self.freeze_targets = {}
 
     def start_follow_freeze(self):
         """Запустить единый поток заморозки для Follow"""
@@ -314,101 +317,153 @@ class MultiboxManager:
     # ===================================================
     # НОВАЯ УПРОЩЕННАЯ ЛОГИКА GET_LEADER_AND_GROUP
     # ===================================================
-    
     def get_leader_and_group(self):
         """
-        Найти лидера и группу среди наших окон (ДИАГНОСТИКА)
+        Найти лидера и группу среди наших окон по НОВОЙ логике:
+        
+        1. Если есть лидер - берем его группу
+        2. Если несколько лидеров - берем самую многочисленную группу из наших персонажей
+        3. Если нет лидера - берем активное окно и его группу
         
         Returns:
-            (leader, group): лидер и список участников группы, или (None, [])
+            (leader, group): 
+                - leader: Character объект лидера или None
+                - group: список Character объектов в группе (включая лидера)
         """
-        # ИМПОРТ В НАЧАЛЕ!
         from game.offsets import resolve_offset, OFFSETS
         
         print("\n🔍 get_leader_and_group() вызван")
-        print(f"   Всего окон: {len(self.characters)}")
         
-        # Собираем всех персонажей с валидными данными
-        valid_chars = []
+        all_chars = self.get_all_characters()
         
-        for pid, char in self.characters.items():
-            print(f"\n   --- PID {pid} ---")
-            
-            if not char.char_base.is_valid():
-                print(f"   ❌ Не валиден")
-                continue
-            
+        if not all_chars:
+            print("❌ Нет валидных персонажей")
+            return None, []
+        
+        # Собираем информацию о всех группах
+        groups_info = {}  # {leader_char_id: {'leader': Character, 'members': [Character, ...]}}
+        
+        for char in all_chars:
             char.char_base.refresh()
-            
-            char_name = char.char_base.char_name
-            char_id = char.char_base.char_id
             
             # Читаем party_ptr
             party_ptr = resolve_offset(
-                char.memory, 
-                OFFSETS["party_ptr"], 
+                char.memory,
+                OFFSETS["party_ptr"],
                 char.char_base.cache
             )
-
+            
             if not party_ptr or party_ptr == 0:
-                print(f"   ❌ Нет party_ptr")
                 continue
-
-            # ЗАПИСАТЬ В КЕШ!
+            
+            # Записываем в кеш
             char.char_base.cache["party_ptr"] = party_ptr
             
-            print(f"   Имя: {char_name}")
-            print(f"   ID: {char_id}")
-            print(f"   party_ptr: {hex(party_ptr) if party_ptr else 'NULL'}")
-            
-            # Читаем данные группы
-            party_leader_id = resolve_offset(char.memory, OFFSETS["party_leader_id"], char.char_base.cache)
-            party_count = resolve_offset(char.memory, OFFSETS["party_count"], char.char_base.cache)
-            
-            print(f"   party_leader_id: {party_leader_id}")
-            print(f"   party_count: {party_count}")
+            # Читаем party_leader_id
+            party_leader_id = resolve_offset(
+                char.memory,
+                OFFSETS["party_leader_id"],
+                char.char_base.cache
+            )
             
             if not party_leader_id or party_leader_id == 0:
-                print(f"   ❌ Нет лидера группы")
                 continue
             
-            if not party_count or party_count <= 0:
-                print(f"   ❌ Группа пустая")
+            # Находим лидера среди наших персонажей
+            leader_char = None
+            for potential_leader in all_chars:
+                potential_leader.char_base.refresh()
+                if potential_leader.char_base.char_id == party_leader_id:
+                    leader_char = potential_leader
+                    break
+            
+            if not leader_char:
                 continue
             
-            print(f"   ✅ В группе")
-            valid_chars.append(char)
+            # Добавляем в группу
+            if party_leader_id not in groups_info:
+                groups_info[party_leader_id] = {
+                    'leader': leader_char,
+                    'members': []
+                }
+            
+            groups_info[party_leader_id]['members'].append(char)
         
-        print(f"\n📊 Валидных персонажей в группе: {len(valid_chars)}")
+        # Если есть группы с лидерами
+        if groups_info:
+            # Находим самую многочисленную группу
+            largest_group_id = max(groups_info.keys(), 
+                                key=lambda k: len(groups_info[k]['members']))
+            
+            leader = groups_info[largest_group_id]['leader']
+            members = groups_info[largest_group_id]['members']
+            
+            print(f"✅ Найдена группа: лидер={leader.char_base.char_name}, участников={len(members)}")
+            return leader, members
         
-        if not valid_chars:
-            print("❌ Нет персонажей в группе")
+        # Если нет лидеров, берем активное окно
+        try:
+            import win32gui
+            import win32process
+            
+            active_hwnd = win32gui.GetForegroundWindow()
+            
+            if not active_hwnd:
+                print("❌ Не удалось получить активное окно")
+                return None, []
+            
+            # Получаем PID активного окна
+            _, active_pid = win32process.GetWindowThreadProcessId(active_hwnd)
+            
+        except Exception as e:
+            print(f"❌ Ошибка при получении активного окна: {e}")
             return None, []
         
-        # Ищем лидера среди наших окон
-        leader = None
-        
-        for char in valid_chars:
-            char.char_base.refresh()
-            party_leader_id = resolve_offset(char.memory, OFFSETS["party_leader_id"], char.char_base.cache)
-            
-            print(f"\n🔍 Проверяем {char.char_base.char_name}:")
-            print(f"   char_id: {char.char_base.char_id}")
-            print(f"   party_leader_id: {party_leader_id}")
-            
-            if char.char_base.char_id == party_leader_id:
-                leader = char
-                print(f"   ✅ ЭТО ЛИДЕР!")
+        # Ищем активный персонаж среди наших по PID
+        active_char = None
+        for char in all_chars:
+            if char.pid == active_pid:
+                active_char = char
                 break
         
-        if not leader:
-            print("❌ Лидер не найден среди наших окон")
+        if not active_char:
+            print("❌ Активное окно не из наших персонажей")
             return None, []
         
-        print(f"\n✅ Лидер найден: {leader.char_base.char_name}")
-        print(f"✅ Группа: {len(valid_chars)} участников")
+        # Собираем группу активного персонажа
+        active_char.char_base.refresh()
+        active_char_id = active_char.char_base.char_id
         
-        return leader, valid_chars
+        group_members = [active_char]
+        
+        for char in all_chars:
+            if char.char_base.char_id == active_char_id:
+                continue
+            
+            char.char_base.refresh()
+            
+            party_ptr = resolve_offset(
+                char.memory,
+                OFFSETS["party_ptr"],
+                char.char_base.cache
+            )
+            
+            if not party_ptr or party_ptr == 0:
+                continue
+            
+            char.char_base.cache["party_ptr"] = party_ptr
+            
+            party_leader_id = resolve_offset(
+                char.memory,
+                OFFSETS["party_leader_id"],
+                char.char_base.cache
+            )
+            
+            if party_leader_id == active_char_id:
+                group_members.append(char)
+        
+        print(f"✅ Активное окно: {active_char.char_base.char_name}, группа из {len(group_members)} чел.")
+        return active_char, group_members
         
     # ===================================================
     # ТИПОВЫЕ ФУНКЦИИ ТЕЛЕПОРТАЦИИ (С ПРОВЕРКОЙ ЛИЦЕНЗИИ)
@@ -434,8 +489,6 @@ class MultiboxManager:
         import time
         # Нажимаем space если нужно (ОДИНОЧНЫЙ)
         if send_space and self.ahk_manager:
-            self.ahk_manager.send_key("Space")
-            time.sleep(.1)
             self.ahk_manager.send_key("Space")
         
         # НОВОЕ: Проверка лицензии в конце

@@ -187,3 +187,76 @@ CheckCommand:
         }
     }
 return
+
+
+; ; Добавь в начало файла после глобальных переменных:
+; global headhunter_active := false
+; global headhunter_window_id := 0
+
+; CheckCommand:
+;     if FileExist(command_file) {
+;         FileRead, command, %command_file%
+;         FileDelete, %command_file%
+        
+;         if (command = "") {
+;             return
+;         }
+        
+;         if (command = "CLICK") {
+;             ClickAtMouse()
+;         }
+;         else if (command = "REFRESH") {
+;             UpdateWindowList()
+;         }
+;         else if (command = "EXIT") {
+;             ExitApp
+;         }
+;         else if (InStr(command, "KEY:") = 1) {
+;             key := SubStr(command, 5)
+;             SendKeyToAll(key)
+;         }
+;         else if (command = "FOLLOW") {
+;             FollowLider()
+;         }
+;         else if (command = "HEADHUNTER_START") {
+;             global headhunter_active, headhunter_window_id
+            
+;             ; Получаем активное окно ElementClient
+;             WinGet, active_id, ID, A
+;             if WinExist("ahk_id " . active_id) {
+;                 WinGetClass, active_class, ahk_id %active_id%
+;                 if (active_class = "ElementClient Window") {
+;                     headhunter_window_id := active_id
+;                     headhunter_active := true
+;                     SetTimer, HeadhunterLoop, 500
+;                 }
+;             }
+;         }
+;         else if (command = "HEADHUNTER_STOP") {
+;             global headhunter_active
+;             headhunter_active := false
+;             SetTimer, HeadhunterLoop, Off
+;         }
+;     }
+; return
+
+; HeadhunterLoop:
+;     global headhunter_active, headhunter_window_id, headhunter_x, headhunter_y
+    
+;     if (!headhunter_active) {
+;         SetTimer, HeadhunterLoop, Off
+;         return
+;     }
+    
+;     ; Проверка что окно еще существует
+;     if (!WinExist("ahk_id " . headhunter_window_id)) {
+;         headhunter_active := false
+;         SetTimer, HeadhunterLoop, Off
+;         return
+;     }
+    
+;     CoordMode, Mouse, Screen
+;     ControlClick, x115 y75, ahk_id %headhunter_window_id%, , L, NA
+;     ControlSend, , {tab}, ahk_id %headhunter_window_id%
+;     ControlClick, x%headhunter_x% y%headhunter_y%, ahk_id %headhunter_window_id%, , L, 1, NA
+; return
