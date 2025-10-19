@@ -34,7 +34,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
     
     # === TARGET ===
     def action_tp_to_target():
-        """Телепортировать к таргету (БЕЗ space, С ПРОВЕРКОЙ ЛОКАЦИИ)"""
+        """Телепортировать к таргету (БЕЗ space)"""
         active_char = app_state.last_active_character
         
         if not active_char:
@@ -52,7 +52,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
         required_permission=PERMISSION_PRO
     )
     
-    # === NEXT >> (С ПРОВЕРКОЙ ЛОКАЦИИ) ===
+    # === NEXT >> ===
     def action_next():
         """
         Телепортировать группу на следующую точку
@@ -60,7 +60,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
         Логика:
         1. Берем активного персонажа
         3. Если нет пати - одиночный прыжок
-        4. Если есть пати - групповой с проверкой локации у каждого члена
+        4. Если есть пати - групповой у каждого члена
         """
         # ПРОВЕРКА ЛИМИТА (быстро, из кеша)
         if not action_limiter.can_use('tp_next'):
@@ -122,7 +122,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
                     else:
                         print(f"\n[NEXT >>] {point['name']}: ошибка телепортации\n")
                 else:
-                    # ЕСТЬ ПАТИ - групповой телепорт с проверкой локации
+                    # ЕСТЬ ПАТИ - групповой телепорт
                     _, group = multibox_manager.get_leader_and_group()
                     
                     if group:
@@ -157,7 +157,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
     
     # === <- LONG ===
     def action_long_left():
-        """Телепортировать к точке LONG LEFT (с проверкой локации)"""
+        """Телепортировать к точке LONG LEFT"""
         # ПРОВЕРКА ЛИМИТА
         if not action_limiter.can_use('tp_long_left'):
             print("\n[LONG <-] ⛔ Лимит использований достигнут")
@@ -179,7 +179,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
     
     # === LONG -> ===
     def action_long_right():
-        """Телепортировать к точке LONG RIGHT (с проверкой локации)"""
+        """Телепортировать к точке LONG RIGHT"""
         # ПРОВЕРКА ЛИМИТА
         if not action_limiter.can_use('tp_long_right'):
             print("\n[LONG ->] ⛔ Лимит использований достигнут")
@@ -201,7 +201,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
     
     # === EXIT -> ===
     def action_exit():
-        """Телепортировать к точке EXIT (с проверкой локации)"""
+        """Телепортировать к точке EXIT"""
         # ПРОВЕРКА ЛИМИТА
         if not action_limiter.can_use('tp_exit'):
             print("\n[EXIT >>] ⛔ Лимит использований достигнут")
@@ -224,7 +224,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
 
 def _tp_to_special_point(point_name, point_data, mode, multibox_manager, app_state):
     """
-    Универсальная функция телепорта к специальной точке (С ПРОВЕРКОЙ ЛОКАЦИИ)
+    Универсальная функция телепорта к специальной точке
     
     Args:
         point_name: название точки (для логов)

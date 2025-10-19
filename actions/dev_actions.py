@@ -28,7 +28,7 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
     
     # === QB SO ===
     def action_tp_to_so():
-        """TP to SO (только последнее активное окно, С ОДИНОЧНЫМ SPACE, С ПРОВЕРКОЙ ЛОКАЦИИ)"""
+        """TP to SO (только последнее активное окно, С ОДИНОЧНЫМ SPACE)"""
         # ПРОВЕРКА ЛИМИТА
         if not action_limiter.can_use('tp_to_so'):
             print("\n[QB SO] ⛔ Лимит использований достигнут")
@@ -40,7 +40,6 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
             print("\n[QB SO] Нет активного окна")
             return
         
-        # ПРОВЕРКА ЛОКАЦИИ
         target_x, target_y, target_z = SO_POINT
         
         active_char.char_base.refresh()
@@ -71,7 +70,7 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
     
     # === QB GO ===
     def action_tp_to_go():
-        """TP to GO (только последнее активное окно, С ОДИНОЧНЫМ SPACE, С ПРОВЕРКОЙ ЛОКАЦИИ)"""
+        """TP to GO (только последнее активное окно, С ОДИНОЧНЫМ SPACE)"""
         # ПРОВЕРКА ЛИМИТА
         if not action_limiter.can_use('tp_to_go'):
             print("\n[QB GO] ⛔ Лимит использований достигнут")
@@ -83,7 +82,6 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
             print("\n[QB GO] Нет активного окна")
             return
         
-        # ПРОВЕРКА ЛОКАЦИИ
         target_x, target_y, target_z = GO_POINT
         
         active_char.char_base.refresh()

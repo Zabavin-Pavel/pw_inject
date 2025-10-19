@@ -39,8 +39,10 @@ LONG_RIGHT_POINT = (270, 330, 288+INCREASE_MAX)     # LONG ->
 EXIT_POINT = (-90, 153, 284+INCREASE_MAX)           # EXIT >>
 
 # QB точки
-SO_POINT = (-800, 480, 3+INCREASE_MIN)       # SO (локация 3495)
-GO_POINT = (1200, -129, 3+INCREASE_MIN)      # GO (локации 3495 или 1214)
+_SO_POINT = (-990, 340, 3+INCREASE_MIN)     # SO
+SO_POINT = (-800, 480, 3)                   # SO
+_GO_POINT = (1060, -35, 3+INCREASE_MIN)     # GO
+GO_POINT = (1200, -129, 3)                  # GO
 
 # ========================================
 # ATTACK IDS
