@@ -179,9 +179,8 @@ CheckCommand:
                         
                         ControlClick, x115 y75, ahk_id %window_id%, , L, NA
                         ControlSend, , {tab}, ahk_id %window_id%
-                        Sleep, 200
-                        ; Клик левой кнопкой по координатам
                         ControlClick, x%headhunter_x% y%headhunter_y%, ahk_id %window_id%, , L, 1, NA
+                        Sleep, 500
                     }
                 }
             }
