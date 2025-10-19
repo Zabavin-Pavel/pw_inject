@@ -166,7 +166,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
         _tp_to_special_point("LONG LEFT", LONG_LEFT_POINT, "solo", multibox_manager, app_state)
         
         # Записываем использование
-        action_limiter.record_usage('tp_long_left')
+        # action_limiter.record_usage('tp_long_left')
     
     action_manager.register(
         'tp_long_left',
@@ -188,7 +188,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
         _tp_to_special_point("LONG RIGHT", LONG_RIGHT_POINT, "solo", multibox_manager, app_state)
         
         # Записываем использование
-        action_limiter.record_usage('tp_long_right')
+        # action_limiter.record_usage('tp_long_right')
     
     action_manager.register(
         'tp_long_right',
@@ -210,7 +210,7 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
         _tp_to_special_point("EXIT", EXIT_POINT, "solo", multibox_manager, app_state)
         
         # Записываем использование
-        action_limiter.record_usage('tp_exit')
+        # action_limiter.record_usage('tp_exit')
     
     action_manager.register(
         'tp_exit',
