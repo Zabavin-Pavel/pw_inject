@@ -13,19 +13,10 @@ MSK = timezone(timedelta(hours=3))
 class ActionLimiter:
     """Управление лимитами использования экшенов с защитой от читеров"""
     
-    # Лимиты по группам экшенов
+    # Лимиты по типам точек
     LIMITS = {
-        'tp': 200,  # NEXT/LONG (общий счетчик)
-        'qb': 100,  # QBSO/QBGO (общий счетчик)
-    }
-    
-    # Маппинг экшенов на группы
-    ACTION_GROUPS = {
-        'tp_next': 'tp',
-        'tp_long_left': 'tp',
-        'tp_long_right': 'tp',
-        'tp_to_so': 'qb',
-        'tp_to_go': 'qb',
+        'FROST': 200,  # FROST точки (NEXT/LONG)
+        'QB': 100,     # QB точки (QB SO/GO)
     }
     
     def __init__(self):
@@ -45,16 +36,16 @@ class ActionLimiter:
         
         # Кеш текущих счетчиков (быстрая проверка)
         self.counters = {
-            'tp': 0,
-            'qb': 0,
+            'FROST': 0,
+            'QB': 0,
         }
         
-        # Кеш состояния лимитов (для быстрой проверки в начале экшена)
+        # Кеш состояния лимитов
         self.limits_reached = {
-            'tp': False,
-            'qb': False,
+            'FROST': False,
+            'QB': False,
         }
-        
+
         # Флаг блокировки (если обнаружена попытка читерства)
         self.is_blocked = False
         self.block_reason = ""
@@ -93,56 +84,62 @@ class ActionLimiter:
             log_file: путь к файлу логов
         
         Returns:
-            list: список валидных записей [{date, action_group, hash}, ...]
+            list: список валидных записей или []
         """
         if not log_file.exists():
             return []
         
         try:
             with open(log_file, 'r', encoding='utf-8') as f:
-                lines = f.readlines()
+                records = json.load(f)
             
-            records = []
+            if not isinstance(records, list):
+                return []
+            
+            # Валидация цепочки хешей
             prev_hash = ""
+            valid_records = []
             
-            for line in lines:
-                line = line.strip()
-                if not line:
+            for record in records:
+                if not isinstance(record, dict):
                     continue
                 
-                # ВАЖНО: Пропускаем служебные записи (блокировки, предупреждения)
-                if line.startswith('### BLOCK ###') or line.startswith('### WARNING ###'):
+                # Проверяем необходимые ключи (поддержка старого и нового формата)
+                if 'date' not in record or 'hash' not in record:
                     continue
                 
-                try:
-                    record = json.loads(line)
-                    date = record.get('date')
-                    action_group = record.get('action_group')
-                    stored_hash = record.get('hash')
-                    
-                    if not all([date, action_group, stored_hash]):
-                        logging.warning(f"Неполная запись в логах: {line}")
-                        continue
-                    
-                    # Проверка хеша (защита от редактирования)
-                    expected_hash = self._compute_hash(f"{date}:{action_group}", prev_hash)
-                    
-                    if expected_hash != stored_hash:
-                        logging.error(f"❌ Лог поврежден! Хеш не совпадает: {line}")
-                        # Все логи после этой записи считаем недействительными
-                        break
-                    
-                    records.append(record)
-                    prev_hash = stored_hash
-                    
-                except json.JSONDecodeError:
-                    logging.warning(f"Невалидный JSON в логах: {line}")
+                # ОБРАТНАЯ СОВМЕСТИМОСТЬ: поддержка обоих форматов
+                action_group = record.get('action_group') or record.get('action')
+                
+                if not action_group:
                     continue
+                
+                # Проверяем хеш
+                date = record['date']
+                data = f"{date}:{action_group}"
+                expected_hash = self._compute_hash(data, prev_hash)
+                
+                if record['hash'] != expected_hash:
+                    # Цепочка нарушена - ТРЕВОГА!
+                    logging.error(f"🚨 HASH MISMATCH detected in {log_file}")
+                    self.is_blocked = True
+                    self.block_reason = "Log tampering detected"
+                    return []
+                
+                # Нормализуем запись к новому формату
+                normalized_record = {
+                    'date': date,
+                    'action_group': action_group,
+                    'hash': record['hash']
+                }
+                
+                valid_records.append(normalized_record)
+                prev_hash = record['hash']
             
-            return records
+            return valid_records
         
         except Exception as e:
-            logging.error(f"Ошибка чтения логов {log_file}: {e}")
+            logging.error(f"Failed to read logs: {e}")
             return []
     
     def _check_decoy_integrity(self):
@@ -236,11 +233,10 @@ class ActionLimiter:
             return False
     
     def _load_counters_from_logs(self):
-        """Загрузить счетчики из ОСНОВНЫХ логов при старте приложения"""
+        """Загрузить счетчики из основных логов"""
         records = self._read_logs(self.main_log_file)
         
         if not records:
-            logging.info("📊 Логи использований пусты, счетчики обнулены")
             return
         
         today = self._get_msk_date()
@@ -248,121 +244,121 @@ class ActionLimiter:
         # Считаем использования за сегодня
         for record in records:
             if record['date'] == today:
-                group = record['action_group']
-                if group in self.counters:
-                    self.counters[group] += 1
+                # ИСПРАВЛЕНИЕ: поддержка старого формата логов
+                point_type = record.get('action_group') or record.get('action')
+                
+                if point_type and point_type in self.counters:
+                    self.counters[point_type] += 1
         
-        # Обновляем кеш лимитов
-        for group in self.counters:
-            if self.counters[group] >= self.LIMITS[group]:
-                self.limits_reached[group] = True
+        # Обновляем состояние лимитов
+        for point_type in self.counters:
+            if self.counters[point_type] >= self.LIMITS[point_type]:
+                self.limits_reached[point_type] = True
         
-        logging.info(f"📊 Загружены счетчики: TP={self.counters['tp']}/{self.LIMITS['tp']}, QB={self.counters['qb']}/{self.LIMITS['qb']}")
+        logging.info(f"📊 Загружены счетчики: FROST={self.counters['FROST']}/{self.LIMITS['FROST']}, QB={self.counters['QB']}/{self.LIMITS['QB']}")
     
-    def _write_log_entry(self, action_group: str):
+    def _write_log_entry(self, point_type: str):
         """
-        Записать использование экшена в ОБА лога (основной + приманка)
+        Записать запись об использовании в ОБА лога
         
         Args:
-            action_group: группа экшена ('tp' или 'qb')
+            point_type: тип точки ("FROST" или "QB")
         """
-        # Читаем ОСНОВНЫЕ логи для получения хеша
-        records = self._read_logs(self.main_log_file)
+        # Записываем в основной лог
+        self._append_to_log(self.main_log_file, point_type)
         
-        # Берем хеш последней записи (или пустую строку для первой)
+        # Записываем в приманку
+        self._append_to_log(self.decoy_log_file, point_type)
+    
+    def _append_to_log(self, log_file: Path, point_type: str):
+        """
+        Добавить запись в лог-файл
+        
+        Args:
+            log_file: путь к файлу
+            point_type: тип точки ("FROST" или "QB")
+        """
+        # Читаем существующие записи для получения предыдущего хеша
+        records = self._read_logs(log_file)
         prev_hash = records[-1]['hash'] if records else ""
         
+        # Создаем новую запись
         date = self._get_msk_date()
-        data = f"{date}:{action_group}"
-        new_hash = self._compute_hash(data, prev_hash)
+        data = f"{date}:{point_type}"
+        hash_value = self._compute_hash(data, prev_hash)
         
-        record = {
+        new_record = {
             'date': date,
-            'action_group': action_group,
-            'hash': new_hash
+            'action_group': point_type,  # НОВЫЙ КЛЮЧ
+            'hash': hash_value
         }
         
-        record_line = json.dumps(record) + '\n'
-        
-        # Пишем в ОСНОВНЫЕ логи (Discord)
+        # Добавляем в файл
         try:
-            with open(self.main_log_file, 'a', encoding='utf-8') as f:
-                f.write(record_line)
-        except Exception as e:
-            logging.error(f"Ошибка записи в основной лог: {e}")
+            if log_file.exists():
+                with open(log_file, 'r', encoding='utf-8') as f:
+                    existing_records = json.load(f)
+            else:
+                existing_records = []
+            
+            existing_records.append(new_record)
+            
+            with open(log_file, 'w', encoding='utf-8') as f:
+                json.dump(existing_records, f, indent=2, ensure_ascii=False)
         
-        # Пишем в ПРИМАНКУ (xvocmuk)
-        try:
-            with open(self.decoy_log_file, 'a', encoding='utf-8') as f:
-                f.write(record_line)
         except Exception as e:
-            logging.error(f"Ошибка записи в приманку: {e}")
-    
-    def can_use(self, action_id: str) -> bool:
+            logging.error(f"Failed to write log entry: {e}")
+
+    def can_use(self, point_type: str) -> bool:
         """
-        БЫСТРАЯ проверка: можно ли использовать экшен (из кеша)
+        Проверить можно ли использовать точку данного типа
         
         Args:
-            action_id: ID экшена
+            point_type: тип точки ("FROST" или "QB")
         
         Returns:
             bool: True если можно использовать
         """
-        # ПРОВЕРКА БЛОКИРОВКИ (ПРИОРИТЕТ #1)
-        if self.is_blocked:
-            # Проверяем истекла ли блокировка
-            if not self._is_block_expired():
-                logging.warning(f"🚫 Экшен заблокирован: {self.block_reason}")
-                return False
-            else:
-                # Снимаем блокировку
-                self.is_blocked = False
-                self.block_reason = ""
-                logging.info("✅ Блокировка снята (новый день)")
-        
-        # Периодическая проверка целостности приманки
-        self._check_decoy_integrity()
-        
-        # Если блокировка установлена - отказ
+        # Если заблокирован - запрещаем все
         if self.is_blocked:
             return False
         
-        # Проверяем переход на новый день МСК
+        # Проверяем смену дня
         self._check_and_reset_if_new_day()
         
-        # Определяем группу
-        group = self.ACTION_GROUPS.get(action_id)
-        if not group:
-            return True  # Экшен без лимита
+        # Проверяем целостность приманки
+        self._check_decoy_integrity()
         
-        # Проверка по кешу (быстро!)
-        return not self.limits_reached[group]
+        # Проверяем лимит для данного типа
+        if point_type not in self.LIMITS:
+            return True  # Неизвестный тип - разрешаем
+        
+        return not self.limits_reached.get(point_type, False)
     
-    def record_usage(self, action_id: str):
+    def record_usage(self, point_type: str):
         """
-        Записать использование экшена (вызывается в КОНЦЕ экшена)
+        Записать использование точки
         
         Args:
-            action_id: ID экшена
+            point_type: тип точки ("FROST" или "QB")
         """
         # Если заблокирован - не записываем
         if self.is_blocked:
             return
         
-        group = self.ACTION_GROUPS.get(action_id)
-        if not group:
+        if point_type not in self.LIMITS:
             return
         
         # Увеличиваем счетчик
-        self.counters[group] += 1
+        self.counters[point_type] += 1
         
         # Пишем в ОБА лога
-        self._write_log_entry(group)
+        self._write_log_entry(point_type)
         
         # Обновляем кеш лимита
-        if self.counters[group] >= self.LIMITS[group]:
-            self.limits_reached[group] = True
-            logging.warning(f"⚠️ Лимит использований достигнут: {group.upper()} = {self.counters[group]}/{self.LIMITS[group]}")
+        if self.counters[point_type] >= self.LIMITS[point_type]:
+            self.limits_reached[point_type] = True
+            logging.warning(f"⚠️ Лимит использований достигнут: {point_type} = {self.counters[point_type]}/{self.LIMITS[point_type]}")
     
     def _check_and_reset_if_new_day(self):
         """Проверить наступление нового дня МСК и сбросить счетчики"""
@@ -378,8 +374,8 @@ class ActionLimiter:
         # Если наступил новый день - сбрасываем счетчики
         if last_date != today:
             logging.info(f"🔄 Наступил новый день МСК ({today}), сброс счетчиков")
-            self.counters = {'tp': 0, 'qb': 0}
-            self.limits_reached = {'tp': False, 'qb': False}
+            self.counters = {'FROST': 0, 'QB': 0}
+            self.limits_reached = {'FROST': False, 'QB': False}
             
             # Также снимаем блокировку
             if self.is_blocked:
@@ -392,17 +388,17 @@ class ActionLimiter:
         Получить статистику использований
         
         Returns:
-            dict: {group: {'used': int, 'limit': int, 'remaining': int, 'blocked': bool}, ...}
+            dict: {point_type: {'used': int, 'limit': int, 'remaining': int, 'blocked': bool}, ...}
         """
         self._check_and_reset_if_new_day()
         self._check_decoy_integrity()
         
         stats = {}
-        for group in self.counters:
-            stats[group] = {
-                'used': self.counters[group],
-                'limit': self.LIMITS[group],
-                'remaining': max(0, self.LIMITS[group] - self.counters[group]),
+        for point_type in self.counters:
+            stats[point_type] = {
+                'used': self.counters[point_type],
+                'limit': self.LIMITS[point_type],
+                'remaining': max(0, self.LIMITS[point_type] - self.counters[point_type]),
                 'blocked': self.is_blocked
             }
         
