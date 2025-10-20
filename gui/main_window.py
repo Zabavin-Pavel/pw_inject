@@ -100,7 +100,7 @@ class MainWindow:
         self.on_refresh()
 
         # Запустить периодическое обновление цветов
-        self.root.after(2000, self._update_party_colors)
+        self.root.after(500, self._update_party_colors)
 
     def _register_actions(self):
             """Зарегистрировать все действия (ОБНОВЛЕНО)"""
@@ -500,7 +500,7 @@ class MainWindow:
                 logging.error(f"❌ Failed to save leader PID to settings.ini: {e}")
         else:
             logging.info("⚠️ No leader found in group")
-            
+
             # Если нет лидера, очищаем группу
             self.app_state.active_characters.clear()
             self.app_state.current_leader = None
@@ -716,4 +716,4 @@ class MainWindow:
             self.character_panel.update_display()
         
         # Повторить через 2 секунды
-        self.root.after(2000, self._update_party_colors)
+        self.root.after(500, self._update_party_colors)

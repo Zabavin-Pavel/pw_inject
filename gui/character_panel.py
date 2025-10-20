@@ -38,22 +38,35 @@ class CharacterPanel(tk.Frame):
         self.characters = characters
         self.character_rows.clear()
         
-        # Создать строки для каждого персонажа
+        # ИСПРАВЛЕНО: Фильтруем только валидных персонажей
         for character in characters:
-            row = CharacterRow(
-                self.characters_container,
-                character,
-                self.app_state,
-                self._load_class_icons(character.char_base.char_class),
-                self.on_character_selected,
-                on_icon_clicked=self._on_icon_clicked
-            )
-            # НОВОЕ: Передаем ссылку на менеджера для доступа к party_cache
-            if hasattr(character, 'manager'):
-                row.character.manager = character.manager
+            # Пропускаем персонажей с невалидными данными
+            if not character.is_valid():
+                logging.warning(f"Skipping invalid character PID={character.pid}")
+                continue
+            
+            # Пропускаем если char_name = None (экран выбора персонажа)
+            if not character.char_base.char_name:
+                logging.warning(f"Skipping character with no name PID={character.pid}")
+                continue
+            
+            try:
+                row = CharacterRow(
+                    self.characters_container,
+                    character,
+                    self.app_state,
+                    self._load_class_icons(character.char_base.char_class),
+                    self.on_character_selected,
+                    on_icon_clicked=self._on_icon_clicked
+                )
+                
+                if hasattr(character, 'manager'):
+                    row.character.manager = character.manager
 
-            row.pack(fill=tk.X, padx=2, pady=0)
-            self.character_rows[character] = row
+                row.pack(fill=tk.X, padx=2, pady=0)
+                self.character_rows[character] = row
+            except Exception as e:
+                logging.error(f"Failed to create row for character PID={character.pid}: {e}")
     
     def update_display(self):
         """Обновить отображение всех персонажей"""
@@ -148,14 +161,13 @@ class CharacterRow(tk.Frame):
         
         self.character = character
         self.app_state = app_state
-        self.color_icon, self.gray_icon = icons  # Распаковываем кортеж
+        self.color_icon, self.gray_icon = icons
         self.on_selected = on_selected
         self.on_icon_clicked = on_icon_clicked
         
         self.is_flashing = False
         self.flash_job = None
     
-        # НОВОЕ: Кешируем последний цвет ника для оптимизации
         self.last_nick_color = COLOR_TEXT
         
         # Иконка класса (ВСЕГДА ЦВЕТНАЯ)
@@ -169,12 +181,18 @@ class CharacterRow(tk.Frame):
             self.icon_label.pack(side=tk.LEFT, padx=(2, 0))
             self.icon_label.bind("<Button-1>", lambda e: self._on_icon_click())
         
-        # Имя персонажа (кликабельное для переключения окна)
+        # ИСПРАВЛЕНО: Безопасная проверка char_name
         char_name = self.character.char_base.char_name
+        
+        # Если имя None или пустое - используем заглушку
+        if not char_name:
+            char_name = "???"
+        
         display_name = char_name
         
         # Добавить огненную иконку для особых персонажей
-        if any(keyword in char_name.lower() for keyword in ['fire', 'flame', 'inn', 'rin']):
+        # ИСПРАВЛЕНО: Проверяем что char_name не None перед .lower()
+        if char_name and any(keyword in char_name.lower() for keyword in ['fire', 'flame', 'inn', 'rin']):
             display_name = f"🔥{char_name}"
 
         if len(display_name) > MAX_NAME_LENGTH:
