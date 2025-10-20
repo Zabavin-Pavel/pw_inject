@@ -91,6 +91,7 @@ OFFSETS = {
 
 
 import ctypes
+import logging
 from collections import Counter
 from game.memory import Memory
 from game.win32_api import TH32CS_SNAPPROCESS, PROCESSENTRY32
@@ -290,6 +291,12 @@ def resolve_offset(memory, path_str, cached_values=None):
         
         elif part.startswith("+0x"):
             offset = int(part[1:], 16)
+
+            # НОВОЕ: Проверка что current_addr не None
+            if current_addr is None:
+                logging.error(f"❌ Cannot add offset to None address")
+                return None
+            
             current_addr += offset
             
             # Проверяем следующий элемент - если это "->" то читаем указатель

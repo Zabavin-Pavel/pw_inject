@@ -241,49 +241,47 @@ class CharacterRow(tk.Frame):
 
     def update_display(self):
         """Обновить отображение строки с учетом роли в группе"""
-        # Фон ВСЕГДА остаётся тёмным
+        # Фон ВСЕГДА тёмный
         self.configure(bg=COLOR_BG)
         if hasattr(self, 'icon_label'):
             self.icon_label.configure(bg=COLOR_BG)
         self.name_label.configure(bg=COLOR_BG)
         
-        # НОВОЕ: Определяем цвет ника в зависимости от роли
-        new_fg = COLOR_TEXT  # По умолчанию серый
+        # По умолчанию серый
+        new_fg = COLOR_TEXT
         
         # Берем активное окно
         active_char = self.app_state.last_active_character
         
-        if not active_char:
-            # Нет активного окна - все серые
+        if not active_char or not active_char.is_valid():
             self.name_label.configure(fg=new_fg)
             return
         
-        # Если это активное окно - желтый
+        # Активное окно = желтый
         if self.character.pid == active_char.pid:
             new_fg = COLOR_LEADER
             self.name_label.configure(fg=new_fg)
             return
         
-        # Проверяем, есть ли у активного окна группа
-        if hasattr(active_char, 'manager') and active_char.manager:
-            from game.offsets import resolve_offset, OFFSETS
-            
-            # Обновляем данные активного персонажа
+        # Проверяем группу активного окна
+        from game.offsets import resolve_offset, OFFSETS
+        
+        try:
             active_char.char_base.refresh()
             
-            # Читаем party_ptr активного персонажа
+            # Читаем party_ptr активного
             party_ptr = resolve_offset(
                 active_char.memory,
                 OFFSETS["party_ptr"],
                 active_char.char_base.cache
             )
             
-            # Если у активного окна НЕТ группы - все остальные серые
+            # Нет группы - остальные серые
             if not party_ptr or party_ptr == 0:
                 self.name_label.configure(fg=new_fg)
                 return
             
-            # Читаем party_leader_id
+            # Читаем party_leader_id активного
             party_leader_id = resolve_offset(
                 active_char.memory,
                 OFFSETS["party_leader_id"],
@@ -294,7 +292,7 @@ class CharacterRow(tk.Frame):
                 self.name_label.configure(fg=new_fg)
                 return
             
-            # Проверяем, находится ли ЭТОТ персонаж в той же группе
+            # Проверяем ЭТОТ персонаж
             self.character.char_base.refresh()
             
             # Читаем party_ptr этого персонажа
@@ -305,7 +303,6 @@ class CharacterRow(tk.Frame):
             )
             
             if not char_party_ptr or char_party_ptr == 0:
-                # Нет группы - серый
                 self.name_label.configure(fg=new_fg)
                 return
             
@@ -316,9 +313,12 @@ class CharacterRow(tk.Frame):
                 self.character.char_base.cache
             )
             
-            # Если лидер совпадает с лидером активного окна - зеленый
+            # Если лидер совпадает - зеленый
             if char_party_leader_id == party_leader_id:
                 new_fg = COLOR_MEMBER
         
-        # Применяем цвет
+        except Exception as e:
+            # При любой ошибке - серый
+            logging.debug(f"Error updating color for {self.character.pid}: {e}")
+        
         self.name_label.configure(fg=new_fg)

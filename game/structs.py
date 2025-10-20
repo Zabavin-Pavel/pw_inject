@@ -21,10 +21,20 @@ class CharBase:
         char_origin = resolve_offset(self.memory, OFFSETS["char_origin"], self.cache)
         if char_origin:
             self.cache["char_origin"] = char_origin
+        else:
+            # НОВОЕ: Если char_origin стал None - данные невалидны
+            logging.warning("❌ char_origin is None - character data invalid")
+            self.char_id = None
+            return
         
         char_base = resolve_offset(self.memory, OFFSETS["char_base"], self.cache)
         if char_base:
             self.cache["char_base"] = char_base
+        else:
+            # НОВОЕ: Если char_base стал None - данные невалидны
+            logging.warning("❌ char_base is None - character data invalid")
+            self.char_id = None
+            return
         
         # Читаем char_id СРАЗУ для проверки смены персонажа
         new_char_id = resolve_offset(self.memory, OFFSETS["char_id"], self.cache)

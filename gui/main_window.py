@@ -96,8 +96,8 @@ class MainWindow:
         self.manager.set_app_state(self.app_state)
         self.manager.set_action_limiter(self.action_limiter)
 
-        # self.root.after(100, self.on_refresh)
-        self.on_refresh()
+        # ИСПРАВЛЕНО: Делаем первоначальную загрузку через _silent_refresh
+        self._silent_refresh()
 
         # Запустить периодическое обновление цветов
         self.root.after(500, self._update_party_colors)
@@ -179,13 +179,13 @@ class MainWindow:
         title_label.pack(side=tk.LEFT, padx=0)
         
         # Кнопки управления окном (ИСПРАВЛЕНО - выравнивание и отступы)
-        # ПОРЯДОК: Refresh, Pin, Minimize, Close
+        # ПОРЯДОК: Pin, Minimize, Close (БЕЗ Refresh)
 
-        # Кнопка Close (ЧЕТВЁРТАЯ)
+        # Кнопка Close (ТРЕТЬЯ)
         self.close_btn = tk.Label(
             self.title_bar,
             text="✕",
-            font=("Segoe UI", 14, "bold"),  # Жирнее
+            font=("Segoe UI", 14, "bold"),
             bg=COLOR_BG,
             fg=COLOR_TEXT,
             cursor="hand2",
@@ -193,16 +193,16 @@ class MainWindow:
             height=1,
             anchor="center"
         )
-        self.close_btn.pack(side=tk.RIGHT, padx=(0, 10))  # Отступ от края
+        self.close_btn.pack(side=tk.RIGHT, padx=(0, 10))
         self.close_btn.bind("<Button-1>", lambda e: self.on_close())
         self.close_btn.bind("<Enter>", lambda e: self.close_btn.configure(fg=COLOR_ACCENT))
         self.close_btn.bind("<Leave>", lambda e: self.close_btn.configure(fg=COLOR_TEXT))
 
-        # Кнопка Minimize (ТРЕТЬЯ)
+        # Кнопка Minimize (ВТОРАЯ)
         self.minimize_btn = tk.Label(
             self.title_bar,
             text="−",
-            font=("Segoe UI", 14, "bold"),  # Жирнее
+            font=("Segoe UI", 14, "bold"),
             bg=COLOR_BG,
             fg=COLOR_TEXT,
             cursor="hand2",
@@ -215,11 +215,11 @@ class MainWindow:
         self.minimize_btn.bind("<Enter>", lambda e: self.minimize_btn.configure(fg=COLOR_ACCENT))
         self.minimize_btn.bind("<Leave>", lambda e: self.minimize_btn.configure(fg=COLOR_TEXT))
 
-        # Кнопка Pin (ВТОРАЯ)
+        # Кнопка Pin (ПЕРВАЯ)
         self.pin_btn = tk.Label(
             self.title_bar,
             text="📌",
-            font=("Segoe UI", 10),  # Увеличен размер
+            font=("Segoe UI", 10),
             bg=COLOR_BG,
             fg=COLOR_TEXT if not self.settings_manager.is_topmost() else COLOR_ACCENT,
             cursor="hand2",
@@ -233,23 +233,6 @@ class MainWindow:
         self.pin_btn.bind("<Leave>", lambda e: self.pin_btn.configure(
             fg=COLOR_ACCENT if self.is_topmost else COLOR_TEXT
         ))
-
-        # Кнопка Refresh (ПЕРВАЯ)
-        self.refresh_btn = tk.Label(
-            self.title_bar,
-            text="⟳",
-            font=("Segoe UI", 13, "bold"),  # Жирнее и крупнее
-            bg=COLOR_BG,
-            fg=COLOR_TEXT,
-            cursor="hand2",
-            width=3,
-            height=1,
-            anchor="center"
-        )
-        self.refresh_btn.pack(side=tk.RIGHT, padx=0)
-        self.refresh_btn.bind("<Button-1>", lambda e: self.on_refresh())
-        self.refresh_btn.bind("<Enter>", lambda e: self.refresh_btn.configure(fg=COLOR_ACCENT))
-        self.refresh_btn.bind("<Leave>", lambda e: self.refresh_btn.configure(fg=COLOR_TEXT))
         
         # Drag window - привязка к title bar
         self.title_bar.bind("<Button-1>", self._start_drag)
@@ -402,116 +385,6 @@ class MainWindow:
                 hotkeys[action_id] = hotkey if hotkey else "-"
         
         self.settings_manager.set_hotkeys(hotkeys)
-    
-    def _flash_refresh_button(self):
-        """Мигнуть кнопкой Refresh"""
-        self.refresh_btn.configure(fg=COLOR_ACCENT)
-        self.root.after(200, lambda: self.refresh_btn.configure(fg=COLOR_TEXT))
-    
-    def on_refresh(self):
-        """Обработчик кнопки Refresh - С ВЕРИФИКАЦИЕЙ ПРИ КАЖДОМ ВЫЗОВЕ"""
-        # Мигнуть кнопкой
-        self._flash_refresh_button()
-        
-        # Обновить список окон в AHK
-        self.ahk_manager.refresh_windows()
-        
-        # === ШАГ 1: ВЕРИФИКАЦИЯ (КАЖДЫЙ РАЗ!) ===
-        from core.license import LicenseManager
-        is_valid, perm_level = LicenseManager.verify_best_license(self.license_config)
-        
-        if is_valid:
-            self.app_state.verified = True
-            old_permission = self.app_state.permission_level
-            self.app_state.permission_level = perm_level
-            
-            # Обновляем UI только если уровень изменился
-            if perm_level != old_permission:
-                self.prev_permission_level = perm_level
-                self.hotkey_panel.update_display()
-                logging.info(f"🔑 Permission level updated: {perm_level}")
-        else:
-            logging.warning("❌ License verification failed")
-            self.app_state.verified = False
-            self.app_state.permission_level = "none"
-            
-            if self.prev_permission_level != "none":
-                self.prev_permission_level = "none"
-                self.hotkey_panel.update_display()
-        
-        # === ШАГ 2: ОБНОВИТЬ ПЕРСОНАЖЕЙ ===
-        self.manager.refresh()
-        
-        # === ШАГ 3: ОПРЕДЕЛИТЬ ЛИДЕРА И ЗАПИСАТЬ В settings.ini ===
-        leader, group = self.manager.get_leader_and_group()
-        
-        if leader:
-            leader_pid = leader.pid
-            logging.info(f"🎯 Leader found: PID={leader_pid}, Name={leader.char_base.char_name}")
-
-            # ОБНОВЛЯЕМ active_characters и current_leader
-            self.app_state.active_characters.clear()
-            for member in group:
-                self.app_state.active_characters.add(member)
-
-            self.app_state.current_leader = leader  # Сохраняем лидера
-
-            # Записать excluded_windows в settings.ini через AHK
-            from pathlib import Path
-            settings_ini = Path.home() / "AppData" / "Local" / "xvocmuk" / "settings.ini"
-            
-            try:
-                # Читаем весь файл
-                if settings_ini.exists():
-                    with open(settings_ini, 'r', encoding='utf-8') as f:
-                        lines = f.readlines()
-                else:
-                    lines = []
-                
-                # Ищем секцию [Excluded] и строку windows=
-                found_section = False
-                found_windows = False
-                new_lines = []
-                
-                for line in lines:
-                    if line.strip() == '[Excluded]':
-                        found_section = True
-                        new_lines.append(line)
-                    elif found_section and line.startswith('windows='):
-                        found_windows = True
-                        new_lines.append(f'windows={leader_pid}\n')
-                    else:
-                        new_lines.append(line)
-                
-                # Если секция или параметр не найдены - добавляем
-                if not found_section:
-                    new_lines.append('\n[Excluded]\n')
-                    new_lines.append(f'windows={leader_pid}\n')
-                elif not found_windows:
-                    new_lines.append(f'windows={leader_pid}\n')
-                
-                # Записываем обратно
-                with open(settings_ini, 'w', encoding='utf-8') as f:
-                    f.writelines(new_lines)
-                
-                logging.info(f"✅ Leader PID {leader_pid} saved to settings.ini")
-                
-            except Exception as e:
-                logging.error(f"❌ Failed to save leader PID to settings.ini: {e}")
-        else:
-            logging.info("⚠️ No leader found in group")
-
-            # Если нет лидера, очищаем группу
-            self.app_state.active_characters.clear()
-            self.app_state.current_leader = None
-        
-        # === ШАГ 4: ОБНОВИТЬ UI ===
-        self.character_panel.set_characters(self.manager.get_all_characters())
-
-        # Обновить цвета ников (лидер/члены группы)
-        self.character_panel.update_display()
-        
-        logging.info("🔄 Refresh completed")
 
     def on_character_selected(self, character):
         """Обработчик клика по никнейму персонажа - toggle выбора"""
@@ -679,9 +552,15 @@ class MainWindow:
 
 
     def _start_active_window_polling(self):
-        """НОВОЕ: Запустить мониторинг активного окна ElementClient.exe"""
+        """Запустить мониторинг активного окна ElementClient.exe"""
         def poll():
             try:
+                # НОВОЕ: Сначала проверяем валидность текущего активного персонажа
+                if self.app_state.last_active_character:
+                    if not self.app_state.last_active_character.is_valid():
+                        logging.debug(f"❌ Last active character became invalid, clearing")
+                        self.app_state.last_active_character = None
+                
                 # Получаем активное окно
                 user32 = ctypes.windll.user32
                 hwnd = user32.GetForegroundWindow()
@@ -696,7 +575,7 @@ class MainWindow:
                     if pid in self.manager.characters:
                         character = self.manager.characters[pid]
                         
-                        # Обновляем last_active_character
+                        # Обновляем last_active_character только если валиден
                         if character.is_valid():
                             self.app_state.set_last_active_character(character)
                             logging.debug(f"Active window: {character.char_base.char_name}")
@@ -711,9 +590,120 @@ class MainWindow:
         self.root.after(500, poll)
 
     def _update_party_colors(self):
-        """Периодически обновлять цвета ников (лидер/члены)"""
-        if hasattr(self, 'character_panel'):
-            self.character_panel.update_display()
+        """Умное обновление: проверка изменений + обновление цветов"""
+        # НОВОЕ: Проверяем есть ли валидные персонажи
+        valid_chars = self.manager.get_all_characters()
         
-        # Повторить через 2 секунды
-        self.root.after(500, self._update_party_colors)
+        if not valid_chars:
+            # Нет валидных персонажей - не делаем ничего
+            self.root.after(1000, self._update_party_colors)
+            return
+        
+        # Быстрая проверка - нужен ли refresh?
+        if self.manager.needs_refresh():
+            logging.info("🔄 Auto-refresh triggered by changes")
+            self._silent_refresh()
+        else:
+            # Просто обновляем цвета (быстро)
+            if hasattr(self, 'character_panel'):
+                self.character_panel.update_display()
+        
+        # Повторить через 1 секунду
+        self.root.after(1000, self._update_party_colors)
+
+    def _silent_refresh(self):
+        """Тихий refresh без мигания"""
+        # Обновить список окон в AHK
+        self.ahk_manager.refresh_windows()
+        
+        # Верификация лицензии
+        from core.license import LicenseManager
+        is_valid, perm_level = LicenseManager.verify_best_license(self.license_config)
+        
+        if is_valid:
+            self.app_state.verified = True
+            old_permission = self.app_state.permission_level
+            self.app_state.permission_level = perm_level
+            
+            if perm_level != old_permission:
+                self.prev_permission_level = perm_level
+                self.hotkey_panel.update_display()
+        else:
+            self.app_state.verified = False
+            self.app_state.permission_level = "none"
+            
+            if self.prev_permission_level != "none":
+                self.prev_permission_level = "none"
+                self.hotkey_panel.update_display()
+        
+        # ВАЖНО: Сохраняем старый список персонажей
+        old_chars = set(char.pid for char in self.manager.get_all_characters())
+        
+        # Обновить персонажей
+        self.manager.refresh()
+        
+        # НОВОЕ: Проверяем изменился ли список валидных персонажей
+        new_chars = set(char.pid for char in self.manager.get_all_characters())
+        
+        chars_changed = (old_chars != new_chars)
+        
+        # Определить лидера (для AHK excluded_windows)
+        leader, group = self.manager.get_leader_and_group()
+        
+        if leader:
+            leader_pid = leader.pid
+            
+            # Обновляем active_characters
+            self.app_state.active_characters.clear()
+            for member in group:
+                self.app_state.active_characters.add(member)
+            
+            self.app_state.current_leader = leader
+            
+            # Записать excluded_windows в settings.ini
+            from pathlib import Path
+            settings_ini = Path.home() / "AppData" / "Local" / "xvocmuk" / "settings.ini"
+            
+            try:
+                if settings_ini.exists():
+                    with open(settings_ini, 'r', encoding='utf-8') as f:
+                        lines = f.readlines()
+                else:
+                    lines = []
+                
+                found_section = False
+                found_windows = False
+                new_lines = []
+                
+                for line in lines:
+                    if line.strip() == '[Excluded]':
+                        found_section = True
+                        new_lines.append(line)
+                    elif found_section and line.startswith('windows='):
+                        found_windows = True
+                        new_lines.append(f'windows={leader_pid}\n')
+                    else:
+                        new_lines.append(line)
+                
+                if not found_section:
+                    new_lines.append('\n[Excluded]\n')
+                    new_lines.append(f'windows={leader_pid}\n')
+                elif not found_windows:
+                    new_lines.append(f'windows={leader_pid}\n')
+                
+                with open(settings_ini, 'w', encoding='utf-8') as f:
+                    f.writelines(new_lines)
+                    
+            except Exception as e:
+                logging.error(f"❌ Failed to save leader PID: {e}")
+        else:
+            self.app_state.active_characters.clear()
+            self.app_state.current_leader = None
+        
+        # НОВОЕ: Обновляем UI ТОЛЬКО если список персонажей изменился
+        if chars_changed:
+            logging.info(f"🔄 Character list changed: {old_chars} -> {new_chars}")
+            self.character_panel.set_characters(self.manager.get_all_characters())
+        
+        # Обновляем цвета (это быстро, без чтения памяти)
+        self.character_panel.update_display()

@@ -37,11 +37,138 @@ class MultiboxManager:
             'members': [],
             'member_info': {}
         }
+
+        # НОВОЕ: Кеш для быстрой проверки изменений
+        self.quick_check_cache = {
+            'pids': set(),           # Текущие PIDs
+            'char_ids': {},          # {pid: char_id}
+            'party_states': {},      # {pid: party_ptr или 0}
+            'timestamp': 0
+        }
     
         # НОВОЕ: Единый поток заморозки для Follow
         self.freeze_thread = None
         self.freeze_stop_event = None
         self.freeze_targets = {}
+
+    def needs_refresh(self) -> bool:
+        """
+        Быстрая проверка - нужен ли refresh?
+        
+        ВАЖНО: Если ВСЕ окна на выборе персонажа (char_id = 0) - не обновляем
+        """
+        import time
+        
+        current_pids = set(self._get_all_pids())
+        cached_pids = self.quick_check_cache['pids']
+        
+        # 1. Проверка PIDs (новые/закрытые окна)
+        if current_pids != cached_pids:
+            logging.info(f"🔄 PIDs changed: {len(cached_pids)} -> {len(current_pids)}")
+            return True
+        
+        # НОВОЕ: Проверяем что хотя бы одно окно НЕ на выборе персонажа
+        from game.offsets import resolve_offset, OFFSETS
+        
+        has_valid_chars = False
+        
+        for pid in current_pids:
+            if pid not in self.characters:
+                continue
+            
+            char = self.characters[pid]
+            
+            # Проверка валидности
+            if not char.is_valid():
+                logging.info(f"🔄 PID {pid} became invalid")
+                return True
+            
+            # Читаем текущий char_id
+            char_base = char.char_base.cache.get("char_base")
+            if not char_base:
+                continue
+            
+            current_char_id = char.memory.read_int(char_base + 0x6A8)
+            
+            # Если char_id валиден - есть хотя бы один персонаж в игре
+            if current_char_id and current_char_id != 0:
+                has_valid_chars = True
+            
+            # Проверка что char_id не обнулился
+            if current_char_id is None or current_char_id == 0:
+                cached_char_id = self.quick_check_cache['char_ids'].get(pid)
+                if cached_char_id and cached_char_id != 0:
+                    logging.info(f"🔄 Char ID became 0 for PID {pid} (character select)")
+                    return True
+                continue
+            
+            cached_char_id = self.quick_check_cache['char_ids'].get(pid)
+            
+            # Проверка смены персонажа
+            if current_char_id != cached_char_id:
+                if cached_char_id is not None and cached_char_id != 0:
+                    logging.info(f"🔄 Char ID changed for PID {pid}: {cached_char_id} -> {current_char_id}")
+                    return True
+            
+            # Читаем текущий party_ptr
+            char_origin = char.char_base.cache.get("char_origin")
+            if char_origin:
+                party_ptr_addr = char_base + 0xAA0
+                current_party_ptr = char.memory.read_uint64(party_ptr_addr)
+                
+                if current_party_ptr is None:
+                    continue
+                
+                cached_party_ptr = self.quick_check_cache['party_states'].get(pid, 0)
+                
+                # Проверка изменения группы
+                if (current_party_ptr == 0) != (cached_party_ptr == 0):
+                    logging.info(f"🔄 Party state changed for PID {pid}")
+                    return True
+        
+        # НОВОЕ: Если НЕТ валидных персонажей (все на выборе) - не обновляем
+        if not has_valid_chars:
+            logging.debug("⏸️ All characters on character select - skip refresh")
+            return False
+        
+        return False
+
+    def update_quick_check_cache(self):
+        """Обновить кеш быстрой проверки после refresh"""
+        import time
+        from game.offsets import resolve_offset, OFFSETS
+        
+        self.quick_check_cache['pids'] = set(self.characters.keys())
+        self.quick_check_cache['char_ids'].clear()
+        self.quick_check_cache['party_states'].clear()
+        
+        for pid, char in self.characters.items():
+            if not char.is_valid():
+                continue
+            
+            # НОВОЕ: Безопасная проверка char_id
+            char_id = char.char_base.char_id
+            if char_id is None or char_id == 0:
+                continue
+            
+            self.quick_check_cache['char_ids'][pid] = char_id
+            
+            # Кешируем party_ptr
+            char_base = char.char_base.cache.get("char_base")
+            if char_base:
+                try:
+                    party_ptr = resolve_offset(
+                        char.memory,
+                        OFFSETS["party_ptr"],
+                        char.char_base.cache
+                    )
+                    self.quick_check_cache['party_states'][pid] = party_ptr or 0
+                except Exception as e:
+                    logging.debug(f"Failed to read party_ptr for PID {pid}: {e}")
+                    continue
+        
+        self.quick_check_cache['timestamp'] = time.time()
+        logging.debug(f"✅ Quick check cache updated: {len(self.quick_check_cache['pids'])} PIDs")
 
     def start_follow_freeze(self):
         """Запустить единый поток заморозки для Follow"""
@@ -72,127 +199,6 @@ class MultiboxManager:
             self.freeze_stop_event.set()
         self.freeze_targets = {}
         self.freeze_thread = None
-
-    def _update_party_cache(self):
-        """
-        Обновить кеш группы
-        
-        Читает party_ptr, leader_id, собирает всех членов группы.
-        Вызывается Attack каждый тик (500ms).
-        """
-        import time
-        from game.offsets import resolve_offset, OFFSETS
-        
-        # Сбрасываем кеш
-        self.party_cache['leader'] = None
-        self.party_cache['members'] = []
-        self.party_cache['member_info'] = {}
-        
-        all_chars = self.get_all_characters()
-        
-        if not all_chars:
-            return
-        
-        # Берем первое окно для чтения party_leader_id
-        first_char = all_chars[0]
-        first_char.char_base.refresh()
-        
-        # Читаем party_ptr
-        party_ptr = resolve_offset(
-            first_char.memory,
-            OFFSETS["party_ptr"],
-            first_char.char_base.cache
-        )
-        
-        if not party_ptr or party_ptr == 0:
-            # Нет пати
-            self.party_cache['timestamp'] = time.time()
-            return
-        
-        # ЗАПИСЫВАЕМ В КЕШ
-        first_char.char_base.cache["party_ptr"] = party_ptr
-        
-        # Читаем party_leader_id
-        party_leader_id = resolve_offset(
-            first_char.memory,
-            OFFSETS["party_leader_id"],
-            first_char.char_base.cache
-        )
-        
-        if not party_leader_id or party_leader_id == 0:
-            self.party_cache['timestamp'] = time.time()
-            return
-        
-        # Ищем лидера (быстро через map)
-        leader = None
-        
-        if self.app_state:
-            leader_pid = self.app_state.get_pid_by_char_id(party_leader_id)
-            if leader_pid and leader_pid in self.characters:
-                leader = self.characters[leader_pid]
-        
-        # Fallback: ищем напрямую
-        if not leader:
-            for char in all_chars:
-                char.char_base.refresh()
-                if char.char_base.char_id == party_leader_id:
-                    leader = char
-                    break
-        
-        if not leader:
-            self.party_cache['timestamp'] = time.time()
-            return
-        
-        # Собираем всех членов группы (все окна с party_ptr != 0)
-        members = []
-        
-        for char in all_chars:
-            char.char_base.refresh()
-            
-            # Проверяем party_ptr
-            char_party_ptr = resolve_offset(
-                char.memory,
-                OFFSETS["party_ptr"],
-                char.char_base.cache
-            )
-            
-            if not char_party_ptr or char_party_ptr == 0:
-                continue
-            
-            char.char_base.cache["party_ptr"] = char_party_ptr
-            
-            members.append(char)
-            
-            # Заполняем member_info
-            self.party_cache['member_info'][char.char_base.char_id] = {
-                'pid': char.pid,
-                'name': char.char_base.char_name
-            }
-        
-        # Сохраняем в кеш
-        self.party_cache['leader'] = leader
-        self.party_cache['members'] = members
-        self.party_cache['timestamp'] = time.time()
-        
-        print(f"🔄 Party cache updated: leader={leader.char_base.char_name}, members={len(members)}")
-
-    def _get_party_cache(self, force_update=False):
-        """
-        Получить кеш группы с проверкой актуальности
-        
-        Args:
-            force_update: принудительно обновить кеш
-        
-        Returns:
-            dict: party_cache
-        """
-        import time
-        
-        # Проверяем актуальность (1 секунда)
-        if force_update or not self.party_cache['timestamp'] or (time.time() - self.party_cache['timestamp']) > 1.0:
-            self._update_party_cache()
-        
-        return self.party_cache
 
     def set_ahk_manager(self, ahk_manager):
         """Установить AHK менеджер"""
@@ -253,6 +259,22 @@ class MultiboxManager:
                 self.world_manager = None
                 self._main_pid = None
         
+        # НОВОЕ: Удаляем персонажей с невалидным char_id (выход на выбор персонажа)
+        to_remove = []
+        for pid, char in list(self.characters.items()):
+            # Быстрая проверка char_id без полного refresh
+            char_base = char.char_base.cache.get("char_base")
+            if char_base:
+                current_char_id = char.memory.read_int(char_base + 0x6A8)
+                if current_char_id is None or current_char_id == 0:
+                    logging.info(f"🚪 PID {pid} на выборе персонажа, удаляем из списка")
+                    to_remove.append(pid)
+        
+        for pid in to_remove:
+            char = self.characters[pid]
+            # НЕ закрываем память (процесс еще жив, просто на выборе персонажа)
+            del self.characters[pid]
+        
         # Проверяем смену персонажа для существующих процессов
         to_recreate = []
         for pid, char in list(self.characters.items()):
@@ -266,16 +288,26 @@ class MultiboxManager:
                 logging.info(f"🔄 Character changed in PID {pid}, recreating...")
                 to_recreate.append(pid)
             else:
-                # НОВОЕ: Обновляем fly trigger кеш (только если персонаж не менялся)
+                # Обновляем fly trigger кеш
                 char.update_fly_trigger_cache()
         
-        # Пересоздаём персонажей (смена персонажа или невалидность)
+        # Пересоздаём персонажей (смена персонажа)
         for pid in to_recreate:
             old_char = self.characters[pid]
             char_base = CharBase(old_char.memory)
+            
+            # Проверяем валидность перед добавлением
+            if not char_base.is_valid():
+                logging.warning(f"⚠️ PID {pid} CharBase invalid after recreate, removing")
+                del self.characters[pid]
+                continue
+            
             new_char = Character(pid, old_char.memory, char_base)
+            new_char.manager = self
             self.characters[pid] = new_char
-            logging.info(f"✅ Character recreated for PID {pid}: {char_base.char_name}")
+            
+            char_name = char_base.char_name if char_base.char_name else "???"
+            logging.info(f"✅ Character recreated for PID {pid}: {char_name}")
         
         # Добавляем новые процессы
         for pid in current_pids - existing_pids:
@@ -291,7 +323,7 @@ class MultiboxManager:
 
                 logging.info(f"DEBUG PID={pid}: char_origin={hex(char_base.cache.get('char_origin', 0))}, char_base={hex(char_base.cache.get('char_base', 0))}")
                 char = Character(pid, mem, char_base)
-                char.manager = self  # НОВОЕ: Устанавливаем ссылку на manager
+                char.manager = self
                 self.characters[pid] = char
                 
                 if self._main_pid is None:
@@ -301,11 +333,21 @@ class MultiboxManager:
                 char_name = char_base.char_name if char_base.char_name else "???"
                 logging.info(f"✅ New character added: PID={pid}, Name={repr(char_name)}")
         
-        # ИСПРАВЛЕНО: Обновляем мапу pid↔char_id ВСЕГДА в конце refresh
+        # Обновляем мапу pid↔char_id
         if self.app_state:
             self.app_state.update_pid_char_id_map(self.get_all_characters())
             logging.debug(f"🔄 Map updated: {self.app_state.char_id_to_pid}")
-    
+        
+        # Обновляем кеш быстрой проверки
+        self.update_quick_check_cache()
+        
+        # НОВОЕ: Очищаем last_active_character если он был удален
+        if self.app_state and self.app_state.last_active_character:
+            active_pid = self.app_state.last_active_character.pid
+            if active_pid not in self.characters:
+                logging.info(f"🚪 Last active character (PID {active_pid}) removed, clearing")
+                self.app_state.last_active_character = None
+                
     def refresh_characters(self):
         """Алиас для refresh()"""
         self.refresh()
@@ -327,47 +369,40 @@ class MultiboxManager:
     # ===================================================
     def get_leader_and_group(self):
         """
-        Найти лидера и группу на основе АКТИВНОГО окна:
+        Найти лидера и группу на основе АКТИВНОГО окна
         
-        1. Берем последнее активное окно
-        2. Если у него нет пати - он сам и есть группа
-        3. Если есть пати и он лидер - собираем его группу
-        4. Если есть пати но он не лидер - ищем лидера среди наших окон
+        Логика:
+        1. Берем активное окно
+        2. Если нет группы - возвращаем только его
+        3. Если есть группа - возвращаем всех из группы
         
         Returns:
-            (leader, group): 
-                - leader: Character объект лидера
-                - group: список Character объектов в группе (включая лидера)
+            (leader, group): лидер и список участников
         """
         from game.offsets import resolve_offset, OFFSETS
-        
-        print("\n🔍 get_leader_and_group() вызван")
         
         # Берем активное окно
         active_char = self.app_state.last_active_character if self.app_state else None
         
+        # Проверка валидности
         if not active_char or not active_char.is_valid():
-            print("❌ Нет активного персонажа")
             return None, []
         
-        # Обновляем данные активного персонажа
-        active_char.char_base.refresh()
-
-        # БЕЗОПАСНАЯ ПРОВЕРКА ВАЛИДНОСТИ ПЕРЕД REFRESH
-        if not active_char.char_base.is_valid():
-            print("❌ Активный персонаж не валиден")
-            return None, []
-        
-        # БЕЗОПАСНЫЙ REFRESH С TRY-EXCEPT
+        # Безопасное обновление
         try:
             active_char.char_base.refresh()
-        except Exception as e:
-            print(f"❌ Ошибка при обновлении данных: {e}")
+        except:
+            if self.app_state:
+                self.app_state.last_active_character = None
+            return None, []
+        
+        # Проверка char_id
+        if not active_char.char_base.char_id or active_char.char_base.char_id == 0:
+            if self.app_state:
+                self.app_state.last_active_character = None
             return None, []
         
         active_char_id = active_char.char_base.char_id
-        
-        print(f"📍 Активный персонаж: {active_char.char_base.char_name} (ID: {active_char_id})")
         
         # Читаем party_ptr активного персонажа
         party_ptr = resolve_offset(
@@ -376,12 +411,10 @@ class MultiboxManager:
             active_char.char_base.cache
         )
         
-        # СЛУЧАЙ 1: Нет пати - активный персонаж сам себе группа
+        # Нет группы - возвращаем только активное окно
         if not party_ptr or party_ptr == 0:
-            print("✅ Нет пати - активный персонаж = группа")
             return active_char, [active_char]
         
-        # Записываем в кеш
         active_char.char_base.cache["party_ptr"] = party_ptr
         
         # Читаем party_leader_id
@@ -392,120 +425,16 @@ class MultiboxManager:
         )
         
         if not party_leader_id or party_leader_id == 0:
-            print("✅ Нет лидера в пати - активный персонаж = лидер")
             return active_char, [active_char]
         
-        print(f"📍 Party leader ID: {party_leader_id}")
-        
-        # Получаем всех наших персонажей
+        # Собираем всех кто в группе (включая активного)
         all_chars = self.get_all_characters()
-        
-        # СЛУЧАЙ 2: Активный персонаж = лидер
-        if active_char_id == party_leader_id:
-            print("✅ Активный персонаж = лидер, собираем группу")
-            
-            # Собираем всех кто в группе с этим лидером
-            group_members = [active_char]
-            
-            for char in all_chars:
-                if char.char_base.char_id == active_char_id:
-                    continue  # Пропускаем самого лидера
-                
-                char.char_base.refresh()
-                
-                # Читаем party_ptr
-                char_party_ptr = resolve_offset(
-                    char.memory,
-                    OFFSETS["party_ptr"],
-                    char.char_base.cache
-                )
-                
-                if not char_party_ptr or char_party_ptr == 0:
-                    continue
-                
-                char.char_base.cache["party_ptr"] = char_party_ptr
-                
-                # Читаем party_leader_id
-                char_party_leader_id = resolve_offset(
-                    char.memory,
-                    OFFSETS["party_leader_id"],
-                    char.char_base.cache
-                )
-                
-                # Если его лидер = активный персонаж - добавляем в группу
-                if char_party_leader_id == active_char_id:
-                    group_members.append(char)
-            
-            print(f"✅ Группа собрана: {len(group_members)} участников")
-            return active_char, group_members
-        
-        # СЛУЧАЙ 3: Активный персонаж НЕ лидер - ищем лидера
-        print("🔍 Активный персонаж не лидер, ищем лидера...")
-        
-        # Ищем лидера по ID среди наших персонажей через мапу
-        leader_char = None
-        
-        if self.app_state:
-            leader_pid = self.app_state.get_pid_by_char_id(party_leader_id)
-            if leader_pid and leader_pid in self.characters:
-                leader_char = self.characters[leader_pid]
-        
-        # Fallback: ищем напрямую
-        if not leader_char:
-            for char in all_chars:
-                char.char_base.refresh()
-                if char.char_base.char_id == party_leader_id:
-                    leader_char = char
-                    break
-        
-        # Если лидер не найден среди наших - активный персонаж становится лидером
-        if not leader_char:
-            print("⚠️ Лидер не найден среди наших окон - активный персонаж = лидер")
-            
-            # Собираем группу с активным как лидером
-            group_members = [active_char]
-            
-            for char in all_chars:
-                if char.char_base.char_id == active_char_id:
-                    continue
-                
-                char.char_base.refresh()
-                
-                char_party_ptr = resolve_offset(
-                    char.memory,
-                    OFFSETS["party_ptr"],
-                    char.char_base.cache
-                )
-                
-                if not char_party_ptr or char_party_ptr == 0:
-                    continue
-                
-                char.char_base.cache["party_ptr"] = char_party_ptr
-                
-                char_party_leader_id = resolve_offset(
-                    char.memory,
-                    OFFSETS["party_leader_id"],
-                    char.char_base.cache
-                )
-                
-                # Добавляем всех кто в той же группе
-                if char_party_leader_id == party_leader_id:
-                    group_members.append(char)
-            
-            print(f"✅ Группа собрана: {len(group_members)} участников")
-            return active_char, group_members
-        
-        # Лидер найден - собираем его группу
-        print(f"✅ Лидер найден: {leader_char.char_base.char_name}")
-        
-        group_members = [leader_char]
+        group_members = []
         
         for char in all_chars:
-            if char.char_base.char_id == party_leader_id:
-                continue  # Пропускаем самого лидера
-            
             char.char_base.refresh()
             
+            # Читаем party_ptr
             char_party_ptr = resolve_offset(
                 char.memory,
                 OFFSETS["party_ptr"],
@@ -517,18 +446,19 @@ class MultiboxManager:
             
             char.char_base.cache["party_ptr"] = char_party_ptr
             
+            # Читаем party_leader_id
             char_party_leader_id = resolve_offset(
                 char.memory,
                 OFFSETS["party_leader_id"],
                 char.char_base.cache
             )
             
-            # Если его лидер = найденный лидер - добавляем в группу
+            # Если лидер совпадает - добавляем в группу
             if char_party_leader_id == party_leader_id:
                 group_members.append(char)
         
-        print(f"✅ Группа собрана: {len(group_members)} участников")
-        return leader_char, group_members
+        # Возвращаем активное окно как "лидера" и всю группу
+        return active_char, group_members
 
     # ===================================================
     # ТИПОВЫЕ ФУНКЦИИ ТЕЛЕПОРТАЦИИ (С ПРОВЕРКОЙ ЛИЦЕНЗИИ)
