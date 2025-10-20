@@ -15,16 +15,16 @@ def register_dev_actions(action_manager, multibox_manager, app_state, action_lim
         action_limiter: система лимитов
     """
     
-    # === РАЗДЕЛИТЕЛЬ ===
-    action_manager.register(
-        'separator_dev',
-        label='',
-        type='quick',
-        callback=lambda: None,
-        has_hotkey=True,
-        required_permission=PERMISSION_DEV,
-        is_separator=True
-    )
+    # # === РАЗДЕЛИТЕЛЬ ===
+    # action_manager.register(
+    #     'separator_dev',
+    #     label='',
+    #     type='quick',
+    #     callback=lambda: None,
+    #     has_hotkey=True,
+    #     required_permission=PERMISSION_DEV,
+    #     is_separator=True
+    # )
     
     # # === QB SO ===
     # def action_tp_to_so():

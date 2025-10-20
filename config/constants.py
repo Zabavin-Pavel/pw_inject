@@ -177,7 +177,7 @@ DUNGEON_POINTS = [
     {
         "name": "17 FROST GUARD", 
         "trigger": (350, 327),
-        "target": (32, -117, 275+INCREASE_MAX),
+        "target": (32, -117, 275+10),
         "radius": 40,
         "count_in_limits": False
     },
