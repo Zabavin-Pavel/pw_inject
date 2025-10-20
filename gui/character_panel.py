@@ -220,7 +220,7 @@ class CharacterRow(tk.Frame):
         """Завершить мигание"""
         self.name_label.configure(fg=original_fg)
         self.is_flashing = False
-        
+
     def update_display(self):
         """Обновить отображение строки с учетом роли в группе"""
         # Фон ВСЕГДА остаётся тёмным
@@ -232,22 +232,75 @@ class CharacterRow(tk.Frame):
         # НОВОЕ: Определяем цвет ника в зависимости от роли
         new_fg = COLOR_TEXT  # По умолчанию серый
         
-        # Получаем кеш группы из менеджера
-        if hasattr(self.character, 'manager') and self.character.manager:
-            party_cache = self.character.manager._get_party_cache()
+        # Берем активное окно
+        active_char = self.app_state.last_active_character
+        
+        if not active_char:
+            # Нет активного окна - все серые
+            self.name_label.configure(fg=new_fg)
+            return
+        
+        # Если это активное окно - желтый
+        if self.character.pid == active_char.pid:
+            new_fg = COLOR_LEADER
+            self.name_label.configure(fg=new_fg)
+            return
+        
+        # Проверяем, есть ли у активного окна группа
+        if hasattr(active_char, 'manager') and active_char.manager:
+            from game.offsets import resolve_offset, OFFSETS
             
-            leader = party_cache.get('leader')
-            members = party_cache.get('members', [])
+            # Обновляем данные активного персонажа
+            active_char.char_base.refresh()
             
-            # Проверяем роль персонажа
-            if leader and self.character.char_base.char_id == leader.char_base.char_id:
-                new_fg = COLOR_LEADER  # Желтый для лидера
-            elif any(m.char_base.char_id == self.character.char_base.char_id for m in members):
-                new_fg = COLOR_MEMBER  # Зеленый для члена группы
-            # НОВОЕ: Если нет лидера - выделяем активное окно желтым
-            elif not leader and self.app_state.last_active_character:
-                if self.character.pid == self.app_state.last_active_character.pid:
-                    new_fg = COLOR_LEADER  # Желтый для активного окна
+            # Читаем party_ptr активного персонажа
+            party_ptr = resolve_offset(
+                active_char.memory,
+                OFFSETS["party_ptr"],
+                active_char.char_base.cache
+            )
+            
+            # Если у активного окна НЕТ группы - все остальные серые
+            if not party_ptr or party_ptr == 0:
+                self.name_label.configure(fg=new_fg)
+                return
+            
+            # Читаем party_leader_id
+            party_leader_id = resolve_offset(
+                active_char.memory,
+                OFFSETS["party_leader_id"],
+                active_char.char_base.cache
+            )
+            
+            if not party_leader_id or party_leader_id == 0:
+                self.name_label.configure(fg=new_fg)
+                return
+            
+            # Проверяем, находится ли ЭТОТ персонаж в той же группе
+            self.character.char_base.refresh()
+            
+            # Читаем party_ptr этого персонажа
+            char_party_ptr = resolve_offset(
+                self.character.memory,
+                OFFSETS["party_ptr"],
+                self.character.char_base.cache
+            )
+            
+            if not char_party_ptr or char_party_ptr == 0:
+                # Нет группы - серый
+                self.name_label.configure(fg=new_fg)
+                return
+            
+            # Читаем party_leader_id этого персонажа
+            char_party_leader_id = resolve_offset(
+                self.character.memory,
+                OFFSETS["party_leader_id"],
+                self.character.char_base.cache
+            )
+            
+            # Если лидер совпадает с лидером активного окна - зеленый
+            if char_party_leader_id == party_leader_id:
+                new_fg = COLOR_MEMBER
         
         # Применяем цвет
         self.name_label.configure(fg=new_fg)
