@@ -282,6 +282,13 @@ class MultiboxManager:
             mem = Memory()
             if mem.attach_by_pid(pid):
                 char_base = CharBase(mem)
+
+                # ПРОВЕРКА ВАЛИДНОСТИ ДО ДОБАВЛЕНИЯ
+                if not char_base.is_valid():
+                    logging.warning(f"⚠️ PID {pid} attached but character data is invalid, skipping")
+                    mem.close()
+                    continue
+
                 logging.info(f"DEBUG PID={pid}: char_origin={hex(char_base.cache.get('char_origin', 0))}, char_base={hex(char_base.cache.get('char_base', 0))}")
                 char = Character(pid, mem, char_base)
                 char.manager = self  # НОВОЕ: Устанавливаем ссылку на manager
@@ -345,6 +352,19 @@ class MultiboxManager:
         
         # Обновляем данные активного персонажа
         active_char.char_base.refresh()
+
+        # БЕЗОПАСНАЯ ПРОВЕРКА ВАЛИДНОСТИ ПЕРЕД REFRESH
+        if not active_char.char_base.is_valid():
+            print("❌ Активный персонаж не валиден")
+            return None, []
+        
+        # БЕЗОПАСНЫЙ REFRESH С TRY-EXCEPT
+        try:
+            active_char.char_base.refresh()
+        except Exception as e:
+            print(f"❌ Ошибка при обновлении данных: {e}")
+            return None, []
+        
         active_char_id = active_char.char_base.char_id
         
         print(f"📍 Активный персонаж: {active_char.char_base.char_name} (ID: {active_char_id})")

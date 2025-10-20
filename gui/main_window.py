@@ -448,7 +448,14 @@ class MainWindow:
         if leader:
             leader_pid = leader.pid
             logging.info(f"🎯 Leader found: PID={leader_pid}, Name={leader.char_base.char_name}")
-            
+
+            # ОБНОВЛЯЕМ active_characters и current_leader
+            self.app_state.active_characters.clear()
+            for member in group:
+                self.app_state.active_characters.add(member)
+
+            self.app_state.current_leader = leader  # Сохраняем лидера
+
             # Записать excluded_windows в settings.ini через AHK
             from pathlib import Path
             settings_ini = Path.home() / "AppData" / "Local" / "xvocmuk" / "settings.ini"
@@ -493,6 +500,10 @@ class MainWindow:
                 logging.error(f"❌ Failed to save leader PID to settings.ini: {e}")
         else:
             logging.info("⚠️ No leader found in group")
+            
+            # Если нет лидера, очищаем группу
+            self.app_state.active_characters.clear()
+            self.app_state.current_leader = None
         
         # === ШАГ 4: ОБНОВИТЬ UI ===
         self.character_panel.set_characters(self.manager.get_all_characters())

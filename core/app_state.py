@@ -13,6 +13,9 @@ class AppState:
         
         # Последнее активное окно
         self.last_active_character = None  # Character последнего активного окна ElementClient.exe
+    
+        # НОВОЕ: Текущий лидер группы активного окна
+        self.current_leader = None  # Character объект лидера или None
         
         # НОВОЕ: Мапа pid ↔ char_id (обновляется при refresh)
         self.pid_to_char_id = {}  # {pid: char_id}

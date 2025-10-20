@@ -91,9 +91,19 @@ class ActionLimiter:
         
         try:
             with open(log_file, 'r', encoding='utf-8') as f:
-                records = json.load(f)
+                content = f.read().strip()
             
-            if not isinstance(records, list):
+            # Если файл пустой
+            if not content:
+                return []
+            
+            # Пытаемся распарсить как JSON массив
+            try:
+                records = json.loads(content)
+            except json.JSONDecodeError:
+                # Возможно файл поврежден - пересоздаем
+                logging.warning(f"⚠️ Log file {log_file} is corrupted, recreating...")
+                log_file.unlink()
                 return []
             
             # Валидация цепочки хешей

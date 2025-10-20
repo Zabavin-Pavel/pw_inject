@@ -220,7 +220,7 @@ class CharacterRow(tk.Frame):
         """Завершить мигание"""
         self.name_label.configure(fg=original_fg)
         self.is_flashing = False
-    
+        
     def update_display(self):
         """Обновить отображение строки с учетом роли в группе"""
         # Фон ВСЕГДА остаётся тёмным
