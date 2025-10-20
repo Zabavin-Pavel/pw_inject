@@ -30,8 +30,8 @@ CLASS_NAMES_DEBUG = {
 
 # Радиус проверки лута (метры)
 LOOT_CHECK_RADIUS = 50
-INCREASE_MIN = 2
-INCREASE_MAX = 10
+INCREASE_MIN = 0
+INCREASE_MAX = 0
 
 # LONG/EXIT точки (локация 243)
 LONG_LEFT_POINT = (355, -66, 281+INCREASE_MAX)      # <- LONG

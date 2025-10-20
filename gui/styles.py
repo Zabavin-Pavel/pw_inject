@@ -12,7 +12,10 @@ COLOR_TEXT_BRIGHT = "#b0b0b0"
 COLOR_ACCENT = "#ff8c42"        # Оранжевый основной
 COLOR_ACCENT_HOVER = "#ffa050"  # Светло-оранжевый при наведении
 COLOR_BORDER = "#3a3a3a"
-COLOR_SELECTED = "#ffa050"      # Светло-оранжевый для выделения
+COLOR_SELECTED = "#ffa050"      # Светло-оранжевый для выделения# После COLOR_SELECTED добавь:
+
+COLOR_LEADER = "#d4d4a0"       # Приглушенный желтый для лидера
+COLOR_MEMBER = "#a0d4b0"       # Приглушенный зеленый для членов группы
 
 # Размеры окна
 WINDOW_WIDTH = 320

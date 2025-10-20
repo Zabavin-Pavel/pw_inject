@@ -99,6 +99,9 @@ class MainWindow:
         # self.root.after(100, self.on_refresh)
         self.on_refresh()
 
+        # Запустить периодическое обновление цветов
+        self.root.after(2000, self._update_party_colors)
+
     def _register_actions(self):
             """Зарегистрировать все действия (ОБНОВЛЕНО)"""
             
@@ -493,6 +496,9 @@ class MainWindow:
         
         # === ШАГ 4: ОБНОВИТЬ UI ===
         self.character_panel.set_characters(self.manager.get_all_characters())
+
+        # Обновить цвета ников (лидер/члены группы)
+        self.character_panel.update_display()
         
         logging.info("🔄 Refresh completed")
 
@@ -692,3 +698,11 @@ class MainWindow:
         
         # Запустить первый раз
         self.root.after(500, poll)
+
+    def _update_party_colors(self):
+        """Периодически обновлять цвета ников (лидер/члены)"""
+        if hasattr(self, 'character_panel'):
+            self.character_panel.update_display()
+        
+        # Повторить через 2 секунды
+        self.root.after(2000, self._update_party_colors)

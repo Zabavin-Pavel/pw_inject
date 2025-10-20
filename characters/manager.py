@@ -284,6 +284,7 @@ class MultiboxManager:
                 char_base = CharBase(mem)
                 logging.info(f"DEBUG PID={pid}: char_origin={hex(char_base.cache.get('char_origin', 0))}, char_base={hex(char_base.cache.get('char_base', 0))}")
                 char = Character(pid, mem, char_base)
+                char.manager = self  # НОВОЕ: Устанавливаем ссылку на manager
                 self.characters[pid] = char
                 
                 if self._main_pid is None:

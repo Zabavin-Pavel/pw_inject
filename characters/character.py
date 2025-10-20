@@ -11,6 +11,7 @@ class Character:
         self.pid = pid
         self.memory = memory
         self.char_base = char_base
+        self.manager = None  # НОВОЕ: Будет установлено из CharacterManager
         
         # Поведение (класс-специфичная логика)
         # self.behavior = CharacterBehavior.for_class(char_base.char_class)

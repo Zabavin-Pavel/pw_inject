@@ -48,6 +48,10 @@ class CharacterPanel(tk.Frame):
                 self.on_character_selected,
                 on_icon_clicked=self._on_icon_clicked
             )
+            # НОВОЕ: Передаем ссылку на менеджера для доступа к party_cache
+            if hasattr(character, 'manager'):
+                row.character.manager = character.manager
+
             row.pack(fill=tk.X, padx=2, pady=0)
             self.character_rows[character] = row
     
@@ -150,6 +154,9 @@ class CharacterRow(tk.Frame):
         
         self.is_flashing = False
         self.flash_job = None
+    
+        # НОВОЕ: Кешируем последний цвет ника для оптимизации
+        self.last_nick_color = COLOR_TEXT
         
         # Иконка класса (ВСЕГДА ЦВЕТНАЯ)
         if self.color_icon:
@@ -215,9 +222,32 @@ class CharacterRow(tk.Frame):
         self.is_flashing = False
     
     def update_display(self):
-        """Обновить отображение строки (без toggle выбора)"""
+        """Обновить отображение строки с учетом роли в группе"""
         # Фон ВСЕГДА остаётся тёмным
         self.configure(bg=COLOR_BG)
         if hasattr(self, 'icon_label'):
             self.icon_label.configure(bg=COLOR_BG)
         self.name_label.configure(bg=COLOR_BG)
+        
+        # НОВОЕ: Определяем цвет ника в зависимости от роли
+        new_fg = COLOR_TEXT  # По умолчанию серый
+        
+        # Получаем кеш группы из менеджера
+        if hasattr(self.character, 'manager') and self.character.manager:
+            party_cache = self.character.manager._get_party_cache()
+            
+            leader = party_cache.get('leader')
+            members = party_cache.get('members', [])
+            
+            # Проверяем роль персонажа
+            if leader and self.character.char_base.char_id == leader.char_base.char_id:
+                new_fg = COLOR_LEADER  # Желтый для лидера
+            elif any(m.char_base.char_id == self.character.char_base.char_id for m in members):
+                new_fg = COLOR_MEMBER  # Зеленый для члена группы
+            # НОВОЕ: Если нет лидера - выделяем активное окно желтым
+            elif not leader and self.app_state.last_active_character:
+                if self.character.pid == self.app_state.last_active_character.pid:
+                    new_fg = COLOR_LEADER  # Желтый для активного окна
+        
+        # Применяем цвет
+        self.name_label.configure(fg=new_fg)
