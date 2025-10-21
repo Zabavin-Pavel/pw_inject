@@ -16,13 +16,11 @@ if (A_Args.Length() > 0) {
 
 global headhunter_x, headhunter_y
 global leader_x, leader_y
-global excluded_windows := 0
 global element_windows := []
 
 LoadSettings() {
     global headhunter_x, headhunter_y
     global leader_x, leader_y
-    global excluded_windows
 
     EnvGet, LocalAppData, LOCALAPPDATA
     settings_file := LocalAppData . "\xvocmuk\settings.ini"
@@ -31,8 +29,31 @@ LoadSettings() {
     IniRead, headhunter_y, %settings_file%, Coordinates, headhunter_y, 553
     IniRead, leader_x, %settings_file%, Coordinates, leader_x, 411
     IniRead, leader_y, %settings_file%, Coordinates, leader_y, 666
-    IniRead, excluded_windows, %settings_file%, Excluded, windows, 0
     ; MsgBox, excluded_windows = %excluded_windows%
+}
+
+; НОВОЕ: Функция проверки исключения - читает файл каждый раз
+IsExcluded(window_pid) {
+    EnvGet, LocalAppData, LOCALAPPDATA
+    settings_file := LocalAppData . "\xvocmuk\settings.ini"
+    
+    ; Читаем список PIDs через запятую
+    IniRead, excluded_windows_str, %settings_file%, Excluded, windows, 0
+    
+    ; Если "0" или пусто - никого не исключаем
+    if (excluded_windows_str = "0" || excluded_windows_str = "") {
+        return false
+    }
+    
+    ; Парсим список и проверяем наличие PID
+    Loop, Parse, excluded_windows_str, `,
+    {
+        if (A_LoopField = window_pid) {
+            return true
+        }
+    }
+    
+    return false
 }
 
 ; Обновить список окон
@@ -69,7 +90,7 @@ ClickAtMouse() {
 }
 
 FollowLider() {
-    global element_windows, excluded_windows, leader_x, leader_y
+    global element_windows, leader_x, leader_y
     
     if (element_windows.Length() = 0) {
         return
@@ -79,11 +100,12 @@ FollowLider() {
     offset_x := leader_x + 30
     assist_y := leader_y + 65
     follow_y := leader_y + 50
-    ; MsgBox, excluded_windows = %excluded_windows%
 
     for index, window_id in element_windows {
         WinGet, window_pid, PID, ahk_id %window_id%
-        if (window_pid != excluded_windows) && WinExist("ahk_id " . window_id) {
+        
+        ; IsExcluded теперь сам читает актуальный список
+        if (!IsExcluded(window_pid)) && WinExist("ahk_id " . window_id) {
             CoordMode, Mouse, Screen
             ControlClick, x%leader_x% y%leader_y%, ahk_id %window_id%, , R, NA
             ControlClick, x%offset_x% y%assist_y%, ahk_id %window_id%, , L, NA

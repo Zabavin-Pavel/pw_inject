@@ -3,6 +3,7 @@
 Добавлено кеширование fly trigger состояний
 """
 # from characters.behaviors import CharacterBehavior
+import logging
 
 class Character:
     """Представление одного игрового персонажа"""

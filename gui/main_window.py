@@ -588,10 +588,10 @@ class MainWindow:
         
         # Запустить первый раз
         self.root.after(500, poll)
-
+    
     def _update_party_colors(self):
         """Умное обновление: проверка изменений + обновление цветов"""
-        # НОВОЕ: Проверяем есть ли валидные персонажи
+        # Проверяем есть ли валидные персонажи
         valid_chars = self.manager.get_all_characters()
         
         if not valid_chars:
@@ -604,6 +604,9 @@ class MainWindow:
             logging.info("🔄 Auto-refresh triggered by changes")
             self._silent_refresh()
         else:
+            # Обновляем группу и excluded_windows
+            self.manager.update_group_and_excluded()
+            
             # Просто обновляем цвета (быстро)
             if hasattr(self, 'character_panel'):
                 self.character_panel.update_display()
@@ -636,74 +639,23 @@ class MainWindow:
                 self.prev_permission_level = "none"
                 self.hotkey_panel.update_display()
         
-        # ВАЖНО: Сохраняем старый список персонажей
+        # Сохраняем старый список персонажей
         old_chars = set(char.pid for char in self.manager.get_all_characters())
         
-        # Обновить персонажей
+        # Обновить персонажей (внутри уже обновится excluded_windows)
         self.manager.refresh()
         
-        # НОВОЕ: Проверяем изменился ли список валидных персонажей
+        # Проверяем изменился ли список валидных персонажей
         new_chars = set(char.pid for char in self.manager.get_all_characters())
-        
         chars_changed = (old_chars != new_chars)
         
-        # Определить лидера (для AHK excluded_windows)
-        leader, group = self.manager.get_leader_and_group()
+        # УДАЛЕНО: Весь блок с определением лидера и записью в settings.ini
+        # Теперь это делается автоматически в manager.refresh()
         
-        if leader:
-            leader_pid = leader.pid
-            
-            # Обновляем active_characters
-            self.app_state.active_characters.clear()
-            for member in group:
-                self.app_state.active_characters.add(member)
-            
-            self.app_state.current_leader = leader
-            
-            # Записать excluded_windows в settings.ini
-            from pathlib import Path
-            settings_ini = Path.home() / "AppData" / "Local" / "xvocmuk" / "settings.ini"
-            
-            try:
-                if settings_ini.exists():
-                    with open(settings_ini, 'r', encoding='utf-8') as f:
-                        lines = f.readlines()
-                else:
-                    lines = []
-                
-                found_section = False
-                found_windows = False
-                new_lines = []
-                
-                for line in lines:
-                    if line.strip() == '[Excluded]':
-                        found_section = True
-                        new_lines.append(line)
-                    elif found_section and line.startswith('windows='):
-                        found_windows = True
-                        new_lines.append(f'windows={leader_pid}\n')
-                    else:
-                        new_lines.append(line)
-                
-                if not found_section:
-                    new_lines.append('\n[Excluded]\n')
-                    new_lines.append(f'windows={leader_pid}\n')
-                elif not found_windows:
-                    new_lines.append(f'windows={leader_pid}\n')
-                
-                with open(settings_ini, 'w', encoding='utf-8') as f:
-                    f.writelines(new_lines)
-                    
-            except Exception as e:
-                logging.error(f"❌ Failed to save leader PID: {e}")
-        else:
-            self.app_state.active_characters.clear()
-            self.app_state.current_leader = None
-        
-        # НОВОЕ: Обновляем UI ТОЛЬКО если список персонажей изменился
+        # Обновляем UI ТОЛЬКО если список персонажей изменился
         if chars_changed:
             logging.info(f"🔄 Character list changed: {old_chars} -> {new_chars}")
             self.character_panel.set_characters(self.manager.get_all_characters())
         
-        # Обновляем цвета (это быстро, без чтения памяти)
+        # Обновляем цвета
         self.character_panel.update_display()
