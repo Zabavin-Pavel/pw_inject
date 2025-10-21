@@ -59,12 +59,27 @@ class MultiboxManager:
         """
         import time
         
+        # ИСПРАВЛЕНО: Всегда берем АКТУАЛЬНЫЙ список PIDs из системы
         current_pids = set(self._get_all_pids())
-        cached_pids = self.quick_check_cache['pids']
+        
+        # ИСПРАВЛЕНО: Сравниваем с PIDs в self.characters (не с кешем!)
+        existing_pids = set(self.characters.keys())
         
         # 1. Проверка PIDs (новые/закрытые окна)
-        if current_pids != cached_pids:
-            logging.info(f"🔄 PIDs changed: {len(cached_pids)} -> {len(current_pids)}")
+        if current_pids != existing_pids:
+            logging.info(f"🔄 PIDs changed: {len(existing_pids)} -> {len(current_pids)}")
+            logging.info(f"   Existing: {existing_pids}")
+            logging.info(f"   Current:  {current_pids}")
+            
+            # Показываем какие закрыты / добавлены
+            closed = existing_pids - current_pids
+            new = current_pids - existing_pids
+            
+            if closed:
+                logging.info(f"   Closed:   {closed}")
+            if new:
+                logging.info(f"   New:      {new}")
+            
             return True
         
         # НОВОЕ: Проверяем что хотя бы одно окно НЕ на выборе персонажа
@@ -74,11 +89,18 @@ class MultiboxManager:
         
         for pid in current_pids:
             if pid not in self.characters:
-                continue
+                # Новый PID - нужен refresh
+                logging.info(f"🔄 New PID {pid} detected")
+                return True
             
             char = self.characters[pid]
             
-            # Проверка валидности
+            # Проверка валидности памяти
+            if not char.memory.is_valid():
+                logging.info(f"🔄 PID {pid} memory became invalid")
+                return True
+            
+            # Проверка валидности персонажа
             if not char.is_valid():
                 logging.info(f"🔄 PID {pid} became invalid")
                 return True
@@ -86,9 +108,14 @@ class MultiboxManager:
             # Читаем текущий char_id
             char_base = char.char_base.cache.get("char_base")
             if not char_base:
-                continue
+                logging.info(f"🔄 PID {pid} lost char_base")
+                return True
             
-            current_char_id = char.memory.read_int(char_base + 0x6A8)
+            try:
+                current_char_id = char.memory.read_int(char_base + 0x6A8)
+            except Exception as e:
+                logging.info(f"🔄 PID {pid} failed to read char_id: {e}")
+                return True
             
             # Если char_id валиден - есть хотя бы один персонаж в игре
             if current_char_id and current_char_id != 0:
@@ -113,21 +140,25 @@ class MultiboxManager:
             # Читаем текущий party_ptr
             char_origin = char.char_base.cache.get("char_origin")
             if char_origin:
-                party_ptr_addr = char_base + 0xAA0
-                current_party_ptr = char.memory.read_uint64(party_ptr_addr)
-                
-                if current_party_ptr is None:
-                    continue
-                
-                cached_party_ptr = self.quick_check_cache['party_states'].get(pid, 0)
-                
-                # Проверка изменения группы
-                if (current_party_ptr == 0) != (cached_party_ptr == 0):
-                    logging.info(f"🔄 Party state changed for PID {pid}")
+                try:
+                    party_ptr_addr = char_base + 0xAA0
+                    current_party_ptr = char.memory.read_uint64(party_ptr_addr)
+                    
+                    if current_party_ptr is None:
+                        continue
+                    
+                    cached_party_ptr = self.quick_check_cache['party_states'].get(pid, 0)
+                    
+                    # Проверка изменения группы
+                    if (current_party_ptr == 0) != (cached_party_ptr == 0):
+                        logging.info(f"🔄 Party state changed for PID {pid}")
+                        return True
+                except Exception as e:
+                    logging.info(f"🔄 PID {pid} failed to read party_ptr: {e}")
                     return True
         
-        # НОВОЕ: Если НЕТ валидных персонажей (все на выборе) - не обновляем
-        if not has_valid_chars:
+        # Если НЕТ валидных персонажей (все на выборе) - не обновляем
+        if not has_valid_chars and len(current_pids) > 0:
             logging.debug("⏸️ All characters on character select - skip refresh")
             return False
         
@@ -250,9 +281,21 @@ class MultiboxManager:
         existing_pids = set(self.characters.keys())
         
         # Удаляем закрытые процессы
-        for pid in existing_pids - current_pids:
+        closed_pids = existing_pids - current_pids
+        
+        if closed_pids:
+            logging.info(f"🚪 Closing {len(closed_pids)} processes: {closed_pids}")
+        
+        for pid in closed_pids:
             char = self.characters[pid]
-            char.memory.close()
+            
+            # ВАЖНО: Закрываем память
+            try:
+                char.memory.close()
+                logging.info(f"✅ Memory closed for PID {pid}")
+            except Exception as e:
+                logging.warning(f"⚠️ Failed to close memory for PID {pid}: {e}")
+            
             del self.characters[pid]
             
             if pid == self._main_pid:
@@ -262,18 +305,38 @@ class MultiboxManager:
         # НОВОЕ: Удаляем персонажей с невалидным char_id (выход на выбор персонажа)
         to_remove = []
         for pid, char in list(self.characters.items()):
-            # Быстрая проверка char_id без полного refresh
-            char_base = char.char_base.cache.get("char_base")
-            if char_base:
-                current_char_id = char.memory.read_int(char_base + 0x6A8)
+            # 1. Проверка что память процесса еще валидна
+            if not char.memory.is_valid():
+                logging.info(f"🚪 PID {pid} память невалидна, удаляем")
+                to_remove.append(pid)
+                continue
+            
+            # 2. Проверка char_base указателя
+            char_base_addr = char.char_base.cache.get("char_base")
+            if not char_base_addr:
+                logging.info(f"🚪 PID {pid} нет char_base в кеше, удаляем")
+                to_remove.append(pid)
+                continue
+            
+            # 3. Попытка прочитать char_id
+            try:
+                current_char_id = char.memory.read_int(char_base_addr + 0x6A8)
+                
+                # 4. Проверка что char_id валиден
                 if current_char_id is None or current_char_id == 0:
-                    logging.info(f"🚪 PID {pid} на выборе персонажа, удаляем из списка")
+                    logging.info(f"🚪 PID {pid} char_id = {current_char_id}, удаляем (выбор персонажа)")
                     to_remove.append(pid)
-        
+                    continue
+            except Exception as e:
+                logging.warning(f"🚪 PID {pid} ошибка чтения char_id: {e}, удаляем")
+                to_remove.append(pid)
+                continue
+
         for pid in to_remove:
             char = self.characters[pid]
-            # НЕ закрываем память (процесс еще жив, просто на выборе персонажа)
+            # НЕ закрываем память (процесс может быть еще жив)
             del self.characters[pid]
+            logging.info(f"✅ Character removed from list: PID={pid}")
         
         # Проверяем смену персонажа для существующих процессов
         to_recreate = []
