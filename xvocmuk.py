@@ -83,7 +83,7 @@ if __name__ == '__main__':
         # Создание менеджеров
         settings_manager = SettingsManager()
         multibox_manager = MultiboxManager()
-        
+
         # Создание и запуск GUI
         app = MainWindow(multibox_manager, settings_manager)
         

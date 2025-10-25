@@ -210,6 +210,11 @@ class HotkeyManager:
             
             # === ВЫПОЛНИТЬ ЭКШЕН (если нужно) ===
             if should_execute:
+                # === ПРОВЕРКА: АКТИВНО ЛИ ОКНО ElementClient? ===
+                if not self._is_elementclient_active():
+                    time.sleep(wait_time)
+                    continue
+                
                 try:
                     self.action_manager.execute(action_id)
                     
@@ -342,3 +347,55 @@ class HotkeyManager:
         except:
             pass
         logging.info("Hotkey manager stopped")
+
+    def _is_elementclient_active(self) -> bool:
+        """
+        Проверить, является ли активное окно ElementClient.exe
+        
+        Returns:
+            bool: True если активно окно ElementClient
+        """
+        try:
+            import ctypes
+            from ctypes import wintypes
+            
+            user32 = ctypes.windll.user32
+            kernel32 = ctypes.windll.kernel32
+            
+            # Получаем HWND активного окна
+            hwnd = user32.GetForegroundWindow()
+            
+            if not hwnd:
+                return False
+            
+            # Получаем PID процесса
+            process_id = wintypes.DWORD()
+            user32.GetWindowThreadProcessId(hwnd, ctypes.byref(process_id))
+            
+            # Открываем процесс
+            PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
+            hProcess = kernel32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, process_id.value)
+            
+            if not hProcess:
+                return False
+            
+            try:
+                # Получаем имя процесса
+                MAX_PATH = 260
+                exe_name = ctypes.create_unicode_buffer(MAX_PATH)
+                size = wintypes.DWORD(MAX_PATH)
+                
+                if kernel32.QueryFullProcessImageNameW(hProcess, 0, exe_name, ctypes.byref(size)):
+                    full_path = exe_name.value
+                    process_name = full_path.split('\\')[-1].lower()
+                    
+                    return process_name == 'elementclient.exe'
+                
+            finally:
+                kernel32.CloseHandle(hProcess)
+            
+            return False
+            
+        except Exception as e:
+            logging.error(f"Error checking active window: {e}")
+            return False

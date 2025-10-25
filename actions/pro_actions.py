@@ -7,7 +7,8 @@ from config.constants import (
     DUNGEON_POINTS, 
     LONG_LEFT_POINT, 
     LONG_RIGHT_POINT, 
-    EXIT_POINT
+    EXIT_POINT,
+    MAIN_POINT
 )
 
 def get_point_type(point_name: str) -> str:
@@ -228,6 +229,20 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
         label='LONG ->  [PRO]',
         type='quick',
         callback=action_long_right,
+        has_hotkey=True,
+        required_permission=PERMISSION_PRO
+    )
+    
+    # === MAIN <> ===
+    def action_main():
+        """Телепортировать к точке LONG RIGHT (НЕ расходует лимиты)"""
+        _tp_to_special_point("LONG RIGHT", MAIN_POINT, "solo", multibox_manager, app_state)
+    
+    action_manager.register(
+        'tp_main',
+        label='MAIN <>  [PRO]',
+        type='quick',
+        callback=action_main,
         has_hotkey=True,
         required_permission=PERMISSION_PRO
     )

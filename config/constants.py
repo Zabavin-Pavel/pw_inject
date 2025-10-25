@@ -37,6 +37,7 @@ INCREASE_MAX = 0
 LONG_LEFT_POINT = (355, -66, 281+INCREASE_MAX)      # <- LONG
 LONG_RIGHT_POINT = (270, 330, 288+INCREASE_MAX)     # LONG ->
 EXIT_POINT = (-90, 153, 284+INCREASE_MAX)           # EXIT >>
+MAIN_POINT = (2, 19, 268+INCREASE_MAX)               # < BIG >
 
 # # QB точки
 # _SO_POINT = (-990, 340, 3)     # SO
@@ -214,8 +215,15 @@ DUNGEON_POINTS = [
     # QB ТОЧКИ (DEV уровень)
     # ========================================
     {
-        "name": "QB SO",
+        "name": "QB SO BASE",
         "trigger": (1433, -1433),
+        "target": (-800, 480, 3),
+        "radius": 20,
+        "count_in_limits": True
+    },
+    {
+        "name": "QB SO ARENA",
+        "trigger": (410, -275),
         "target": (-800, 480, 3),
         "radius": 20,
         "count_in_limits": True
@@ -228,10 +236,10 @@ DUNGEON_POINTS = [
         "count_in_limits": True
     },
     {
-        "name": "QB GO FINISH",
-        "trigger": (583, -538),
+        "name": "QB GO BASE",
+        "trigger": (558, -560),
         "target": (1200, -129, 3),
-        "radius": 20,
+        "radius": 50,
         "count_in_limits": True
     },
 ]
