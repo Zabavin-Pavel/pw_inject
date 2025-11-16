@@ -168,7 +168,7 @@ if __name__ == '__main__':
         '7 Roman': '18691165716581',
         '8 Olega': '30902511378380',
     }
-    EXPIRY = '311025'  # 31 октября 2025
+    EXPIRY = '221125'
     
     print("=== Мой MAC адрес ===\n")
     print(get_mac_address())
@@ -201,7 +201,7 @@ if __name__ == '__main__':
     # Талон на сегодня (до конца дня)
     today_ticket = generate_ticket(0, PERMISSION_PRO)
     print(f"Талон на сегодня:   {today_ticket}")
-    today_ticket = generate_ticket(0, PERMISSION_TRY)
+    today_ticket = generate_ticket(0, PERMISSION_DEV)
     print(f"Талон на сегодня:   {today_ticket}")
     # Проверяем с разными MAC
     # for test_mac in ['238300919419878', '84585009692719', '999999999999']:

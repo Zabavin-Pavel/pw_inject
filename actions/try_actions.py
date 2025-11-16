@@ -27,19 +27,19 @@ def register_try_actions(action_manager, ahk_manager, app_state):
         required_permission=PERMISSION_TRY
     )
 
-    # === SPACE ===
-    def ahk_press_space():
-        """Нажать Space на всех окнах"""
-        ahk_manager.send_key("Space")
+    # # === SPACE ===
+    # def ahk_press_space():
+    #     """Нажать Space на всех окнах"""
+    #     ahk_manager.send_key("Space")
     
-    action_manager.register(
-        'ahk_press_space',
-        label='SPACE    [TRY]',
-        type='quick',
-        callback=ahk_press_space,
-        has_hotkey=True,
-        required_permission=PERMISSION_TRY
-    )
+    # action_manager.register(
+    #     'ahk_press_space',
+    #     label='SPACE    [TRY]',
+    #     type='quick',
+    #     callback=ahk_press_space,
+    #     has_hotkey=True,
+    #     required_permission=PERMISSION_TRY
+    # )
 
     # === follow_leader - ИСПРАВЛЕНО ===
     def ahk_follow_leader():

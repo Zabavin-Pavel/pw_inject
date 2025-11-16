@@ -210,36 +210,88 @@ DUNGEON_POINTS = [
         "radius": 40,
         "count_in_limits": True
     },
-    
+    # ========================================
+    # АТН ВРЕМЕННО (DEV уровень)
+    # ========================================
+    # {
+    #     "name": "FROST ГМ", 
+    #     "trigger": (3239, 487),
+    #     "target": (3370, 332, 272),
+    #     "radius": 40,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "FROST ГО", 
+    #     "trigger": (988, -1479),
+    #     "target": (970, -1538, 260),
+    #     "radius": 40,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "FROST ГП", 
+    #     "trigger": (-1342, -758),
+    #     "target": (-1222, -721, 221),
+    #     "radius": 40,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "FROST ГЕ", 
+    #     "trigger": (-3202, -229),
+    #     "target": (-3203, -67, 272),
+    #     "radius": 40,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "FROST ГЦ", 
+    #     "trigger": (-4268, 2681),
+    #     "target": (-4070, 2574, 256),
+    #     "radius": 40,
+    #     "count_in_limits": True
+    # },
     # ========================================
     # QB ТОЧКИ (DEV уровень)
     # ========================================
     {
         "name": "QB SO BASE",
         "trigger": (1433, -1433),
-        "target": (-800, 480, 3),
+        "target": (-845.1, 437.2, 1.5),
         "radius": 20,
         "count_in_limits": True
     },
     {
         "name": "QB SO ARENA",
         "trigger": (410, -275),
-        "target": (-800, 480, 3),
+        "target": (-800, 480, 1.5),
         "radius": 20,
         "count_in_limits": True
     },
     {
-        "name": "QB GO START",
+        "name": "QB START",
         "trigger": (1502, -1366),
-        "target": (1200, -129, 3),
+        "target": (1433.5, -1434.1, 1.5),
         "radius": 20,
-        "count_in_limits": True
+        "count_in_limits": False
     },
     {
         "name": "QB GO BASE",
         "trigger": (558, -560),
-        "target": (1200, -129, 3),
+        "target": (1175.6, -152.3, 1.5),
         "radius": 50,
         "count_in_limits": True
+    },
+    {
+        "name": "QB FINISH",
+        "trigger": (1172, -151),
+        "target": (1434.2, -1504.5, 1.5),
+        "radius": 20,
+        "count_in_limits": False
+    },
+
+    {
+        "name": "QB GO START",
+        "trigger": (1434, -1504),
+        "target": (1175.6, -152.3, 1.5),
+        "radius": 20,
+        "count_in_limits": False
     },
 ]

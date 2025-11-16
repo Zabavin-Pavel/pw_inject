@@ -16,7 +16,7 @@ class ActionLimiter:
     # Лимиты по типам точек
     LIMITS = {
         'FROST': 200,  # FROST точки (NEXT/LONG)
-        'QB': 100,     # QB точки (QB SO/GO)
+        'QB': 120,     # QB точки (QB SO/GO)
     }
     
     def __init__(self):

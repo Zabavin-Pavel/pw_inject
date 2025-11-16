@@ -40,58 +40,58 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         required_permission=PERMISSION_TRY
     )
     
-    # === ATTACK (PRO) - НОВАЯ ЛОГИКА ===
-    def toggle_attack():
-        """Toggle: Атака (ассист + макросы)"""
-        is_active = app_state.is_action_active('attack')
+    # # === ATTACK (PRO) - НОВАЯ ЛОГИКА ===
+    # def toggle_attack():
+    #     """Toggle: Атака (ассист + макросы)"""
+    #     is_active = app_state.is_action_active('attack')
         
-        if is_active:
-            print("Attack: STARTED")
-            main_window._start_action_loop('attack', lambda: attack_loop_callback(multibox_manager, ahk_manager, app_state))
-        else:
-            print("Attack: STOPPED")
-            main_window._stop_action_loop('attack')
+    #     if is_active:
+    #         print("Attack: STARTED")
+    #         main_window._start_action_loop('attack', lambda: attack_loop_callback(multibox_manager, ahk_manager, app_state))
+    #     else:
+    #         print("Attack: STOPPED")
+    #         main_window._stop_action_loop('attack')
 
-    action_manager.register(
-        'attack',
-        label='Attack',
-        type='toggle',
-        callback=toggle_attack,
-        icon='⚔️',
-        has_hotkey=False,
-        required_permission=PERMISSION_PRO
-    )
+    # action_manager.register(
+    #     'attack',
+    #     label='Attack',
+    #     type='toggle',
+    #     callback=toggle_attack,
+    #     icon='⚔️',
+    #     has_hotkey=False,
+    #     required_permission=PERMISSION_PRO
+    # )
     
-    # === HEADHUNTER (DEV) - ОБНОВЛЕНО: через AHK ===
-    def toggle_headhunter():
-        """
-        Toggle: Headhunter (Tab + ЛКМ по 100, 100 для активного окна)
+    # # === HEADHUNTER (DEV) - ОБНОВЛЕНО: через AHK ===
+    # def toggle_headhunter():
+    #     """
+    #     Toggle: Headhunter (Tab + ЛКМ по 100, 100 для активного окна)
         
-        НОВАЯ ЛОГИКА:
-        - При активации: вызываем ahk_manager.start_headhunter()
-        - При деактивации: вызываем ahk_manager.stop_headhunter()
-        - Весь цикл выполняется в AHK, без Python loops
-        """
-        is_active = app_state.is_action_active('headhunter')
+    #     НОВАЯ ЛОГИКА:
+    #     - При активации: вызываем ahk_manager.start_headhunter()
+    #     - При деактивации: вызываем ahk_manager.stop_headhunter()
+    #     - Весь цикл выполняется в AHK, без Python loops
+    #     """
+    #     is_active = app_state.is_action_active('headhunter')
         
-        if is_active:
-            print("Headhunter: STARTED")
-            # Запускаем AHK цикл
-            ahk_manager.start_headhunter()
-        else:
-            print("Headhunter: STOPPED")
-            # Останавливаем AHK цикл
-            ahk_manager.stop_headhunter()
+    #     if is_active:
+    #         print("Headhunter: STARTED")
+    #         # Запускаем AHK цикл
+    #         ahk_manager.start_headhunter()
+    #     else:
+    #         print("Headhunter: STOPPED")
+    #         # Останавливаем AHK цикл
+    #         ahk_manager.stop_headhunter()
 
-    action_manager.register(
-        'headhunter',
-        label='Headhunter',
-        type='toggle',
-        callback=toggle_headhunter,
-        icon='☠',
-        has_hotkey=False,
-        required_permission=PERMISSION_PRO
-    )
+    # action_manager.register(
+    #     'headhunter',
+    #     label='Headhunter',
+    #     type='toggle',
+    #     callback=toggle_headhunter,
+    #     icon='☠',
+    #     has_hotkey=False,
+    #     required_permission=PERMISSION_PRO
+    # )
 
 
 # === CALLBACK ФУНКЦИИ ДЛЯ LOOPS ===

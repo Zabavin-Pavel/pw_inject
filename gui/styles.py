@@ -20,7 +20,8 @@ COLOR_MEMBER = "#a0d4b0"       # Приглушенный зеленый для 
 
 # Размеры окна
 WINDOW_WIDTH = 320
-WINDOW_HEIGHT = 360
+# WINDOW_HEIGHT = 360
+WINDOW_HEIGHT = 250
 # Шрифты
 FONT_MAIN = ("Consolas", 9)
 FONT_TITLE = ("Consolas", 14, "bold")
