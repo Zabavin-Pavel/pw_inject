@@ -40,66 +40,86 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         required_permission=PERMISSION_TRY
     )
     
-    # # === ATTACK (PRO) - НОВАЯ ЛОГИКА ===
-    # def toggle_attack():
-    #     """Toggle: Атака (ассист + макросы)"""
-    #     is_active = app_state.is_action_active('attack')
+    # === ATTACK (PRO) - НОВАЯ ЛОГИКА ===
+    def toggle_attack():
+        pass
+        # """Toggle: Атака (ассист + макросы)"""
+        # is_active = app_state.is_action_active('attack')
         
-    #     if is_active:
-    #         print("Attack: STARTED")
-    #         main_window._start_action_loop('attack', lambda: attack_loop_callback(multibox_manager, ahk_manager, app_state))
-    #     else:
-    #         print("Attack: STOPPED")
-    #         main_window._stop_action_loop('attack')
+        # if is_active:
+        #     print("Attack: STARTED")
+        #     main_window._start_action_loop('attack', lambda: attack_loop_callback(multibox_manager, ahk_manager, app_state))
+        # else:
+        #     print("Attack: STOPPED")
+        #     main_window._stop_action_loop('attack')
 
-    # action_manager.register(
-    #     'attack',
-    #     label='Attack',
-    #     type='toggle',
-    #     callback=toggle_attack,
-    #     icon='⚔️',
-    #     has_hotkey=False,
-    #     required_permission=PERMISSION_PRO
-    # )
+    action_manager.register(
+        'attack',
+        label='Attack',
+        type='toggle',
+        callback=toggle_attack,
+        icon='⚔️',
+        has_hotkey=False,
+        required_permission=PERMISSION_PRO
+    )
     
-    # # === HEADHUNTER (DEV) - ОБНОВЛЕНО: через AHK ===
-    # def toggle_headhunter():
-    #     """
-    #     Toggle: Headhunter (Tab + ЛКМ по 100, 100 для активного окна)
+    # === HEADHUNTER (DEV) - ОБНОВЛЕНО: через AHK ===
+    def toggle_headhunter():
+        pass
+        # """
+        # Toggle: Headhunter (Tab + ЛКМ по 100, 100 для активного окна)
         
-    #     НОВАЯ ЛОГИКА:
-    #     - При активации: вызываем ahk_manager.start_headhunter()
-    #     - При деактивации: вызываем ahk_manager.stop_headhunter()
-    #     - Весь цикл выполняется в AHK, без Python loops
-    #     """
-    #     is_active = app_state.is_action_active('headhunter')
+        # НОВАЯ ЛОГИКА:
+        # - При активации: вызываем ahk_manager.start_headhunter()
+        # - При деактивации: вызываем ahk_manager.stop_headhunter()
+        # - Весь цикл выполняется в AHK, без Python loops
+        # """
+        # is_active = app_state.is_action_active('headhunter')
         
-    #     if is_active:
-    #         print("Headhunter: STARTED")
-    #         # Запускаем AHK цикл
-    #         ahk_manager.start_headhunter()
-    #     else:
-    #         print("Headhunter: STOPPED")
-    #         # Останавливаем AHK цикл
-    #         ahk_manager.stop_headhunter()
+        # if is_active:
+        #     print("Headhunter: STARTED")
+        #     # Запускаем AHK цикл
+        #     ahk_manager.start_headhunter()
+        # else:
+        #     print("Headhunter: STOPPED")
+        #     # Останавливаем AHK цикл
+        #     ahk_manager.stop_headhunter()
 
-    # action_manager.register(
-    #     'headhunter',
-    #     label='Headhunter',
-    #     type='toggle',
-    #     callback=toggle_headhunter,
-    #     icon='☠',
-    #     has_hotkey=False,
-    #     required_permission=PERMISSION_PRO
-    # )
+    action_manager.register(
+        'headhunter',
+        label='Headhunter',
+        type='toggle',
+        callback=toggle_headhunter,
+        icon='☠',
+        has_hotkey=False,
+        required_permission=PERMISSION_PRO
+    )
 
 
 # === CALLBACK ФУНКЦИИ ДЛЯ LOOPS ===
 
-def follow_loop_callback(ahk_manager):
-    """Callback для Follow loop (вызывается каждые 500ms)"""
+def follow_loop_callback(multibox_manager, ahk_manager):
+    """
+    Callback для Follow loop (вызывается каждые 500ms)
+    
+    Вычисляет target_pids (все PIDs - excluded_pids) и передает в AHK
+    """
     try:
-        ahk_manager.follow_leader()
+        # Получаем все PIDs
+        all_pids = set(multibox_manager.characters.keys())
+        
+        # Получаем excluded PIDs (лидер + не в группе)
+        excluded = multibox_manager.excluded_pids
+        
+        # Вычисляем target PIDs (члены группы без лидера)
+        target_pids = list(all_pids - excluded)
+        
+        if not target_pids:
+            return
+        
+        # Передаем конкретные target PIDs в AHK
+        ahk_manager.follow_leader(target_pids=target_pids)
+        
     except Exception as e:
         logging.error(f"Error in follow_loop_callback: {e}")
 

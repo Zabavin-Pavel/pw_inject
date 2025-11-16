@@ -118,7 +118,8 @@ class MainWindow:
             register_try_actions(
                 self.action_manager,
                 self.ahk_manager,
-                self.app_state  # НОВОЕ: для получения PIDs группы
+                self.app_state,  # НОВОЕ: для получения PIDs группы
+                self.manager
             )
             
             # PRO уровень (TARGET, NEXT >>, <- LONG, LONG ->, FINAL ->)

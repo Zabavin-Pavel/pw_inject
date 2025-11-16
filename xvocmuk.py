@@ -1,105 +1,158 @@
 """
-Точка входа приложения
+Главный файл приложения xvocmuk
+Мультибокс бот для Perfect World
 """
 import sys
 import logging
 from pathlib import Path
-import socket
 
-# Определяем рабочую директорию
-if getattr(sys, 'frozen', False):
-    # Если упакован - логи ВНУТРИ временной папки
-    WORK_DIR = Path(sys._MEIPASS)
-else:
-    # Если из исходников - текущая папка
-    WORK_DIR = Path(__file__).parent
-
-# Настройка логирования (ВНУТРИ)
+# Настройка логирования
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler(WORK_DIR / 'bot_session.log', encoding='utf-8'),
-        logging.StreamHandler()
+        logging.StreamHandler(),
+        logging.FileHandler('xvocmuk.log', encoding='utf-8')
     ]
 )
 
-# Файл блокировки - тоже внутри
-LOCK_FILE = WORK_DIR / "bot.lock"
+# Импорты модулей приложения
+from core.app_hub import AppHub
 
-def check_single_instance():
-    """Проверить что запущен только один экземпляр"""
-    global LOCK_SOCKET
+
+class XvocmukApp:
+    """Главное приложение мультибокса"""
     
-    # Используем socket вместо файла (работает на всех ОС)
-    try:
-        LOCK_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        LOCK_SOCKET.bind(('127.0.0.1', 47200))  # Уникальный порт для приложения
-        logging.info("Первый экземпляр - запуск приложения")
+    VERSION = "8"
+    APP_NAME = "xvocmuk"
+    
+    def __init__(self):
+        """Инициализация приложения"""
+        self.app_hub = None
+        self.base_address = None
+        
+        logging.info("=" * 60)
+        logging.info("XVOCMUK MULTIBOX BOT")
+        logging.info("=" * 60)
+    
+    def initialize(self) -> bool:
+        """
+        Инициализация всех компонентов
+        
+        Returns:
+            bool: успешность инициализации
+        """
+        # 1. Инициализация AppHub и проверка лицензии
+        if not self._initialize_apphub():
+            return False
+        
+        # 2. Загрузка base_address из конфигурации
+        if not self._load_base_address():
+            return False
+        
+        logging.info("✅ Application initialized successfully")
         return True
-    except socket.error:
-        logging.warning("Приложение уже запущено - попытка активировать окно")
-        
-        # Попытка отправить сигнал запущенному экземпляру
-        try:
-            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            client.connect(('127.0.0.1', 47200))
-            client.send(b'SHOW_WINDOW')
-            client.close()
-            logging.info("Сигнал отправлен запущенному экземпляру")
-        except:
-            logging.error("Не удалось связаться с запущенным экземпляром")
-        
-        return False
-
-def remove_lock_file():
-    """Удалить файл блокировки"""
-    global LOCK_SOCKET
-    if LOCK_SOCKET:
-        try:
-            LOCK_SOCKET.close()
-        except:
-            pass
-        LOCK_SOCKET = None
     
-    if LOCK_FILE.exists():
-        LOCK_FILE.unlink()
-        logging.info("Lock file removed")
-
-if __name__ == '__main__':
-    try:
-        # Проверка single instance
-        if not check_single_instance():
-            print("❌ Приложение уже запущено! Активирую существующее окно...")
-            sys.exit(0)
+    def _initialize_apphub(self) -> bool:
+        """Инициализация AppHub и проверка лицензии"""
+        try:
+            logging.info("🔐 Checking license...")
+            
+            # Создаем AppHub
+            self.app_hub = AppHub(
+                app_name=self.APP_NAME,
+                current_version=self.VERSION,
+                timeout=10
+            )
+            
+            # Проверяем лицензию
+            license_level = self.app_hub.check_license()
+            
+            if license_level is None:
+                logging.error("❌ License check failed")
+                return False
+            
+            logging.info(f"✅ License: {license_level}")
+            
+            return True
+            
+        except Exception as e:
+            logging.error(f"❌ Error initializing AppHub: {e}")
+            return False
+    
+    def _load_base_address(self) -> bool:
+        """Загрузка base_address из AppHub"""
+        try:
+            logging.info("📋 Loading base_address from config...")
+            
+            # Получаем base_address из конфига
+            base_address_str = self.app_hub.get('base_address')
+            if not base_address_str:
+                logging.error("❌ base_address not found in config")
+                return False
+            
+            # Конвертируем hex строку в int
+            if isinstance(base_address_str, str):
+                self.base_address = int(base_address_str, 16) if base_address_str.startswith('0x') else int(base_address_str)
+            else:
+                self.base_address = base_address_str
+            
+            logging.info(f"✅ Base address: {hex(self.base_address)}")
+            
+            return True
+            
+        except Exception as e:
+            logging.error(f"❌ Error loading base_address: {e}")
+            return False
+    
+    def run(self):
+        """Запуск приложения"""
+        logging.info("🚀 Starting application...")
         
-        # Импорты (после проверки блокировки)
+        # Импорты GUI компонентов
         from characters.manager import MultiboxManager
         from config.settings import SettingsManager
         from gui import MainWindow
         
-        logging.info("=== Запуск приложения ===")
-        
         # Создание менеджеров
         settings_manager = SettingsManager()
         multibox_manager = MultiboxManager()
-
+        
+        # Передаем base_address в multibox_manager
+        multibox_manager.base_address = self.base_address
+        
         # Создание и запуск GUI
-        app = MainWindow(multibox_manager, settings_manager)
+        gui_app = MainWindow(multibox_manager, settings_manager)
         
         # Запустить слушатель для сигналов от других экземпляров
-        app.start_instance_listener()
+        gui_app.start_instance_listener()
         
         logging.info("GUI инициализирован")
         
-        # Запуск главного цикла
+        # Запуск главного цикла tkinter
+        gui_app.run()
+    
+    def shutdown(self):
+        """Завершение работы приложения"""
+        logging.info("🛑 Shutting down...")
+        logging.info("✅ Shutdown complete")
+
+
+def main():
+    """Точка входа приложения"""
+    try:
+        app = XvocmukApp()
+        
+        if not app.initialize():
+            logging.error("❌ Failed to initialize application")
+            sys.exit(1)
+        
         app.run()
         
-    except KeyboardInterrupt:
-        logging.info("Interrupted by user")
     except Exception as e:
-        logging.error(f"Fatal error: {e}", exc_info=True)
-    finally:
-        # Очистка
-        remove_lock_file()
-        logging.info("=== Завершение приложения ===")
+        logging.error(f"❌ Fatal error: {e}", exc_info=True)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

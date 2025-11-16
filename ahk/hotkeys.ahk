@@ -1,4 +1,4 @@
-; hotkeys.ahk - принимает путь к command_file как аргумент
+; hotkeys.ahk - работа через Window ID без файлов
 #NoTrayIcon
 #SingleInstance Force
 #NoEnv
@@ -6,126 +6,183 @@
 SetControlDelay -1
 SetBatchLines -1
 
-; Получаем путь к command_file из аргументов командной строки
-; Если аргумент не передан - используем текущую папку
-if (A_Args.Length() > 0) {
-    command_file := A_Args[1]
-} else {
-    command_file := A_ScriptDir . "\ahk_command.txt"
-}
+; === ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===
+global leader_x := 411
+global leader_y := 666
+global headhunter_x := 394
+global headhunter_y := 553
+global macros_spam_x := 0
+global macros_spam_y := 0
 
-global headhunter_x, headhunter_y
-global leader_x, leader_y
-global element_windows := []
-
-LoadSettings() {
-    global headhunter_x, headhunter_y
-    global leader_x, leader_y
-
-    EnvGet, LocalAppData, LOCALAPPDATA
-    settings_file := LocalAppData . "\xvocmuk\settings.ini"
-
-    IniRead, headhunter_x, %settings_file%, Coordinates, headhunter_x, 394
-    IniRead, headhunter_y, %settings_file%, Coordinates, headhunter_y, 553
-    IniRead, leader_x, %settings_file%, Coordinates, leader_x, 411
-    IniRead, leader_y, %settings_file%, Coordinates, leader_y, 666
-    ; MsgBox, excluded_windows = %excluded_windows%
-}
-
-; НОВОЕ: Функция проверки исключения - читает файл каждый раз
-IsExcluded(window_pid) {
-    EnvGet, LocalAppData, LOCALAPPDATA
-    settings_file := LocalAppData . "\xvocmuk\settings.ini"
+; Получение списка всех окон ElementClient (кроме исключенных)
+GetActiveWindows(excluded_pids := "") {
+    windows := []
     
-    ; Читаем список PIDs через запятую
-    IniRead, excluded_windows_str, %settings_file%, Excluded, windows, 0
-    
-    ; Если "0" или пусто - никого не исключаем
-    if (excluded_windows_str = "0" || excluded_windows_str = "") {
-        return false
-    }
-    
-    ; Парсим список и проверяем наличие PID
-    Loop, Parse, excluded_windows_str, `,
-    {
-        if (A_LoopField = window_pid) {
-            return true
+    ; Парсим список исключенных PIDs
+    excluded_array := []
+    if (excluded_pids != "") {
+        Loop, Parse, excluded_pids, `,
+        {
+            excluded_array.Push(A_LoopField)
         }
     }
     
-    return false
-}
-
-; Обновить список окон
-UpdateWindowList() {
-    global element_windows
-    element_windows := []
-    WinGet, id, list, ahk_class ElementClient Window
+    ; Получаем все окна ElementClient
+    WinGet, id, list, ahk_exe ElementClient.exe
     Loop, %id%
     {
         this_id := id%A_Index%
-        if WinExist("ahk_id " . this_id) {
-            element_windows.Push(this_id)
+        WinGet, window_pid, PID, ahk_id %this_id%
+        
+        ; Проверяем не в списке исключений
+        is_excluded := false
+        for index, excluded_pid in excluded_array {
+            if (window_pid = excluded_pid) {
+                is_excluded := true
+                break
+            }
+        }
+        
+        ; Добавляем если не исключен и существует
+        if (!is_excluded && WinExist("ahk_id " . this_id)) {
+            windows.Push(this_id)
         }
     }
-    LoadSettings()
+    
+    return windows
 }
 
-; Кликнуть в текущей позиции мыши
-ClickAtMouse() {
-    global element_windows
+; === КОМАНДЫ ===
+
+; Клик по текущей позиции мыши
+ClickAtMouse(excluded_pids := "") {
+    windows := GetActiveWindows(excluded_pids)
     
-    if (element_windows.Length() = 0) {
+    if (windows.Length() = 0) {
         return
     }
     
     MouseGetPos, xpos, ypos
     CoordMode, Mouse, Screen
     
-    for index, window_id in element_windows {
+    for index, window_id in windows {
         if WinExist("ahk_id " . window_id) {
             ControlClick, x%xpos% y%ypos%, ahk_id %window_id%, , L, NA
         }
     }
 }
 
-FollowLider() {
-    global element_windows, leader_x, leader_y
+; Follow лидера (ПКМ + Ассист + ПКМ + Follow) - ОБНОВЛЕНО
+FollowLeader(target_pids := "") {
+    windows := []
     
-    if (element_windows.Length() = 0) {
+    ; Парсим список целевых PIDs
+    target_array := []
+    if (target_pids != "") {
+        Loop, Parse, target_pids, `,
+        {
+            target_array.Push(A_LoopField)
+        }
+    }
+    
+    if (target_array.Length() = 0) {
+        return
+    }
+    
+    ; Получаем все окна ElementClient
+    WinGet, id, list, ahk_exe ElementClient.exe
+    Loop, %id%
+    {
+        this_id := id%A_Index%
+        WinGet, window_pid, PID, ahk_id %this_id%
+        
+        ; Проверяем что PID в списке целевых
+        is_target := false
+        for index, target_pid in target_array {
+            if (window_pid = target_pid) {
+                is_target := true
+                break
+            }
+        }
+        
+        ; Добавляем только если в списке целевых
+        if (is_target && WinExist("ahk_id " . this_id)) {
+            windows.Push(this_id)
+        }
+    }
+    
+    if (windows.Length() = 0) {
         return
     }
 
-    ; Вычисляем координаты с offset
     offset_x := leader_x + 30
     assist_y := leader_y + 65
     follow_y := leader_y + 50
-
-    for index, window_id in element_windows {
-        WinGet, window_pid, PID, ahk_id %window_id%
-        
-        ; IsExcluded теперь сам читает актуальный список
-        if (!IsExcluded(window_pid)) && WinExist("ahk_id " . window_id) {
-            CoordMode, Mouse, Screen
+    
+    CoordMode, Mouse, Screen
+    
+    for index, window_id in windows {
+        if WinExist("ahk_id " . window_id) {
+            ; ПКМ по лидеру
             ControlClick, x%leader_x% y%leader_y%, ahk_id %window_id%, , R, NA
+            Sleep, 50
+            ; ЛКМ Ассист
             ControlClick, x%offset_x% y%assist_y%, ahk_id %window_id%, , L, NA
+            Sleep, 50
+            ; ПКМ по лидеру
             ControlClick, x%leader_x% y%leader_y%, ahk_id %window_id%, , R, NA
+            Sleep, 50
+            ; ЛКМ Follow
             ControlClick, x%offset_x% y%follow_y%, ahk_id %window_id%, , L, NA
         }
     }
 }
 
-; Отправить клавишу во все окна
-SendKeyToAll(key, repeat_count := 1) {
-    global element_windows
+; Атака цели лидера (ПКМ + Ассист + Guard)
+AttackGuard(excluded_pids := "") {
+    windows := GetActiveWindows(excluded_pids)
     
-    if (element_windows.Length() = 0) {
+    if (windows.Length() = 0) {
+        return
+    }
+
+    offset_x := leader_x + 30
+    assist_y := leader_y + 65
+    
+    CoordMode, Mouse, Screen
+    
+    for index, window_id in windows {
+        if WinExist("ahk_id " . window_id) {
+            ; ПКМ по лидеру
+            ControlClick, x%leader_x% y%leader_y%, ahk_id %window_id%, , R, NA
+            Sleep, 50
+            ; ЛКМ Ассист
+            ControlClick, x%offset_x% y%assist_y%, ahk_id %window_id%, , L, NA
+            Sleep, 50
+            ; ЛКМ Guard макрос
+            ControlClick, x%macros_spam_x% y%macros_spam_y%, ahk_id %window_id%, , L, NA
+        }
+    }
+}
+
+; Отправить клавишу в конкретные окна (по списку window_id)
+SendKeyToWindows(key, window_ids := "", repeat_count := 1) {
+    ; Парсим список window_ids
+    windows := []
+    if (window_ids != "") {
+        Loop, Parse, window_ids, `,
+        {
+            windows.Push(A_LoopField)
+        }
+    }
+    
+    if (windows.Length() = 0) {
         return
     }
     
     CoordMode, Mouse, Screen
     
-    for index, window_id in element_windows {
+    for index, window_id in windows {
         if WinExist("ahk_id " . window_id) {
             ControlClick, x115 y75, ahk_id %window_id%, , L, NA
             Loop, %repeat_count%
@@ -136,149 +193,122 @@ SendKeyToAll(key, repeat_count := 1) {
     }
 }
 
-; === ИНИЦИАЛИЗАЦИЯ ===
-if FileExist(command_file) {
-    FileDelete, %command_file%
-}
-
-UpdateWindowList()
-
-SetTimer, CheckCommand, 10
-return
-
-CheckCommand:
-    if FileExist(command_file) {
-        FileRead, command, %command_file%
-        FileDelete, %command_file%
-        
-        if (command = "") {
-            return
-        }
-        
-        if (command = "CLICK") {
-            ClickAtMouse()
-        }
-        else if (command = "REFRESH") {
-            UpdateWindowList()
-        }
-        else if (command = "EXIT") {
-            ExitApp
-        }
-        else if (InStr(command, "KEY:") = 1) {
-            key := SubStr(command, 5)
-            SendKeyToAll(key)
-        }
-        else if (command = "FOLLOW") {
-            FollowLider()
-        }
-        else if (command = "HEADHUNTER_START") {
-            ; Ждем окно ElementClient (5 секунд)
-            WinWaitActive, ahk_class ElementClient Window, , 5
-            
-            if (!ErrorLevel) {
-                global headhunter_x, headhunter_y
-                ; Получаем ID окна
-                WinGet, window_id, ID, A
-                CoordMode, Mouse, Screen
-                
-                if (window_id) {
-                    ; Цикл headhunter
-                    Loop {
-                        ; Проверяем команды на остановку
-                        if FileExist(command_file) {
-                            FileRead, stop_command, %command_file%
-                            FileDelete, %command_file%
-                            
-                            if (stop_command = "HEADHUNTER_STOP") {
-                                break
-                            }
-                        }
-                        
-                        ; Проверка что окно еще существует
-                        if (!WinExist("ahk_id " . window_id)) {
-                            break
-                        }
-                        
-                        ControlClick, x115 y75, ahk_id %window_id%, , L, NA
-                        ControlSend, , {tab}, ahk_id %window_id%
-                        ControlClick, x%headhunter_x% y%headhunter_y%, ahk_id %window_id%, , L, 1, NA
-                        Sleep, 1100
-                    }
-                }
-            }
+; Headhunter для активного окна
+HeadhunterStart(excluded_pids := "") {
+    ; Ждем активное окно ElementClient
+    WinWaitActive, ahk_exe ElementClient.exe, , 5
+    
+    if (ErrorLevel) {
+        return
+    }
+    
+    ; Получаем ID активного окна
+    WinGet, window_id, ID, A
+    WinGet, window_pid, PID, ahk_id %window_id%
+    
+    ; Проверяем не в списке исключений
+    excluded_array := []
+    if (excluded_pids != "") {
+        Loop, Parse, excluded_pids, `,
+        {
+            excluded_array.Push(A_LoopField)
         }
     }
-return
-
-
-; ; Добавь в начало файла после глобальных переменных:
-; global headhunter_active := false
-; global headhunter_window_id := 0
-
-; CheckCommand:
-;     if FileExist(command_file) {
-;         FileRead, command, %command_file%
-;         FileDelete, %command_file%
+    
+    is_excluded := false
+    for index, excluded_pid in excluded_array {
+        if (window_pid = excluded_pid) {
+            is_excluded := true
+            break
+        }
+    }
+    
+    if (is_excluded) {
+        return
+    }
+    
+    CoordMode, Mouse, Screen
+    
+    ; Цикл headhunter
+    Loop {
+        ; Проверка что окно существует
+        if (!WinExist("ahk_id " . window_id)) {
+            break
+        }
         
-;         if (command = "") {
-;             return
-;         }
-        
-;         if (command = "CLICK") {
-;             ClickAtMouse()
-;         }
-;         else if (command = "REFRESH") {
-;             UpdateWindowList()
-;         }
-;         else if (command = "EXIT") {
-;             ExitApp
-;         }
-;         else if (InStr(command, "KEY:") = 1) {
-;             key := SubStr(command, 5)
-;             SendKeyToAll(key)
-;         }
-;         else if (command = "FOLLOW") {
-;             FollowLider()
-;         }
-;         else if (command = "HEADHUNTER_START") {
-;             global headhunter_active, headhunter_window_id
-            
-;             ; Получаем активное окно ElementClient
-;             WinGet, active_id, ID, A
-;             if WinExist("ahk_id " . active_id) {
-;                 WinGetClass, active_class, ahk_id %active_id%
-;                 if (active_class = "ElementClient Window") {
-;                     headhunter_window_id := active_id
-;                     headhunter_active := true
-;                     SetTimer, HeadhunterLoop, 500
-;                 }
-;             }
-;         }
-;         else if (command = "HEADHUNTER_STOP") {
-;             global headhunter_active
-;             headhunter_active := false
-;             SetTimer, HeadhunterLoop, Off
-;         }
-;     }
-; return
+        ControlClick, x115 y75, ahk_id %window_id%, , L, NA
+        ControlSend, , {tab}, ahk_id %window_id%
+        ControlClick, x%headhunter_x% y%headhunter_y%, ahk_id %window_id%, , L, 1, NA
+        Sleep, 1100
+    }
+}
 
-; HeadhunterLoop:
-;     global headhunter_active, headhunter_window_id, headhunter_x, headhunter_y
+; Обновить координаты UI
+UpdateCoordinates(lx, ly, hx, hy, mx := 0, my := 0) {
+    global leader_x, leader_y, headhunter_x, headhunter_y, macros_spam_x, macros_spam_y
     
-;     if (!headhunter_active) {
-;         SetTimer, HeadhunterLoop, Off
-;         return
-;     }
+    leader_x := lx
+    leader_y := ly
+    headhunter_x := hx
+    headhunter_y := hy
     
-;     ; Проверка что окно еще существует
-;     if (!WinExist("ahk_id " . headhunter_window_id)) {
-;         headhunter_active := false
-;         SetTimer, HeadhunterLoop, Off
-;         return
-;     }
+    if (mx != 0) {
+        macros_spam_x := mx
+    }
+    if (my != 0) {
+        macros_spam_y := my
+    }
+}
+
+; === COMMAND LINE INTERFACE ===
+; Использование:
+; hotkeys.exe click "1234,5678"
+; hotkeys.exe follow "1234"
+; hotkeys.exe key "space" "12345,67890,11111" "1"
+; hotkeys.exe coords "411" "666" "394" "553"
+
+if (A_Args.Length() > 0) {
+    command := A_Args[1]
     
-;     CoordMode, Mouse, Screen
-;     ControlClick, x115 y75, ahk_id %headhunter_window_id%, , L, NA
-;     ControlSend, , {tab}, ahk_id %headhunter_window_id%
-;     ControlClick, x%headhunter_x% y%headhunter_y%, ahk_id %headhunter_window_id%, , L, 1, NA
-; return
+    if (command = "click") {
+        excluded := A_Args.Length() > 1 ? A_Args[2] : ""
+        ClickAtMouse(excluded)
+    }
+    else if (command = "follow") {
+        target_pids := A_Args.Length() > 1 ? A_Args[2] : ""
+        FollowLeader(target_pids)
+    }
+    else if (command = "attack_guard") {
+        excluded := A_Args.Length() > 1 ? A_Args[2] : ""
+        AttackGuard(excluded)
+    }
+    else if (command = "key") {
+        key := A_Args.Length() > 1 ? A_Args[2] : ""
+        window_ids := A_Args.Length() > 2 ? A_Args[3] : ""
+        repeat := A_Args.Length() > 3 ? A_Args[4] : 1
+        
+        if (key != "" && window_ids != "") {
+            SendKeyToWindows(key, window_ids, repeat)
+        }
+    }
+    else if (command = "headhunter") {
+        excluded := A_Args.Length() > 1 ? A_Args[2] : ""
+        HeadhunterStart(excluded)
+    }
+    else if (command = "coords") {
+        lx := A_Args.Length() > 1 ? A_Args[2] : 411
+        ly := A_Args.Length() > 2 ? A_Args[3] : 666
+        hx := A_Args.Length() > 3 ? A_Args[4] : 394
+        hy := A_Args.Length() > 4 ? A_Args[5] : 553
+        mx := A_Args.Length() > 5 ? A_Args[6] : 0
+        my := A_Args.Length() > 6 ? A_Args[7] : 0
+        
+        UpdateCoordinates(lx, ly, hx, hy, mx, my)
+    }
+    
+    ; Выход после выполнения команды
+    ExitApp
+}
+
+; Если запущен без параметров - выход
+ExitApp

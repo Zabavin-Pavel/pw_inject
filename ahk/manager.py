@@ -1,206 +1,277 @@
 """
-Менеджер AHK - ОБНОВЛЕНО: копирование settings.ini в AppData
+AHK Manager v2 - работа через командную строку без файлов
 """
 import subprocess
 import logging
 from pathlib import Path
-import time
 import sys
-import shutil
 import hashlib
+from typing import Optional, List
 
 class AHKManager:
-    """Управление AutoHotkey скриптом"""
+    """Управление AutoHotkey через прямые вызовы команд"""
     
     def __init__(self):
-        self.process = None
+        """Инициализация менеджера"""
         self.appdata_dir = Path.home() / "AppData" / "Local" / "xvocmuk"
         self.appdata_dir.mkdir(parents=True, exist_ok=True)
-        self.command_file = self.appdata_dir / "ahk_command.txt"
         
-        # Скопировать файлы из bundle в AppData при необходимости
-        self._ensure_files_in_appdata()
+        # Путь к исполняемому AHK скрипту
+        self.ahk_exe = self.appdata_dir / "hotkeys.exe"
         
-        # Запустить AHK
-        self._start_ahk()
+        # Координаты UI (загружаются из конфига)
+        self.leader_x = 411
+        self.leader_y = 666
+        self.headhunter_x = 394
+        self.headhunter_y = 553
+        self.macros_spam_x = 0
+        self.macros_spam_y = 0
+        
+        # Копирование AHK exe в AppData
+        self._ensure_ahk_in_appdata()
     
-    def _ensure_files_in_appdata(self):
-        """
-        Скопировать hotkeys.exe и settings.ini из bundle в AppData
-        
-        - hotkeys.exe: копируется ВСЕГДА если хеш не совпадает (обновление)
-        - settings.ini: копируется ТОЛЬКО если отсутствует (портативная версия)
-        """
-        # Определяем путь к bundle
+    def _ensure_ahk_in_appdata(self):
+        """Копирование hotkeys.exe в AppData с проверкой хеша"""
         if getattr(sys, 'frozen', False):
-            # Скомпилированный EXE
             bundle_dir = Path(sys._MEIPASS) / "ahk"
         else:
-            # Dev режим
             bundle_dir = Path(__file__).parent
         
-        # === HOTKEYS.EXE (с проверкой хеша) ===
         source_exe = bundle_dir / "hotkeys.exe"
-        target_exe = self.appdata_dir / "hotkeys.exe"
         
         if not source_exe.exists():
-            logging.error(f"❌ Source hotkeys.exe not found: {source_exe}")
+            logging.error(f"❌ Source AHK exe not found: {source_exe}")
             return
         
-        # Проверяем хеш
-        should_copy_exe = True
+        # Проверка хеша и копирование
+        should_copy = True
         
-        if target_exe.exists():
+        if self.ahk_exe.exists():
             source_hash = self._compute_file_hash(source_exe)
-            target_hash = self._compute_file_hash(target_exe)
+            target_hash = self._compute_file_hash(self.ahk_exe)
             
             if source_hash == target_hash:
-                should_copy_exe = False
-                logging.info(f"✅ hotkeys.exe hash match, skip copy")
+                should_copy = False
+                logging.info("✅ AHK exe актуален")
             else:
-                logging.info(f"⚠️ hotkeys.exe hash mismatch, updating...")
+                logging.info("⚠️ Обновление AHK exe...")
         
-        if should_copy_exe:
-            try:
-                shutil.copy2(source_exe, target_exe)
-                logging.info(f"✅ hotkeys.exe copied to {target_exe}")
-            except Exception as e:
-                logging.error(f"❌ Failed to copy hotkeys.exe: {e}")
-        
-        # === SETTINGS.INI (только если отсутствует) ===
-        source_ini = bundle_dir / "settings.ini"
-        target_ini = self.appdata_dir / "settings.ini"
-        
-        if not source_ini.exists():
-            logging.warning(f"⚠️ Source settings.ini not found: {source_ini}")
-            return
-        
-        if not target_ini.exists():
-            try:
-                shutil.copy2(source_ini, target_ini)
-                logging.info(f"✅ settings.ini copied to {target_ini}")
-            except Exception as e:
-                logging.error(f"❌ Failed to copy settings.ini: {e}")
-        else:
-            logging.info(f"ℹ️ settings.ini already exists, skip copy")
+        if should_copy:
+            import shutil
+            shutil.copy2(source_exe, self.ahk_exe)
+            logging.info(f"✅ AHK exe скопирован: {self.ahk_exe}")
     
     def _compute_file_hash(self, filepath: Path) -> str:
         """Вычислить SHA256 хеш файла"""
         sha256 = hashlib.sha256()
-        
-        try:
-            with open(filepath, 'rb') as f:
-                while chunk := f.read(8192):
-                    sha256.update(chunk)
-            return sha256.hexdigest()
-        except Exception as e:
-            logging.error(f"Failed to compute hash for {filepath}: {e}")
-            return ""
+        with open(filepath, 'rb') as f:
+            for chunk in iter(lambda: f.read(8192), b''):
+                sha256.update(chunk)
+        return sha256.hexdigest()
     
-    def _start_ahk(self):
-        """Запустить AHK процесс"""
-        try:
-            # Путь к hotkeys.exe в AppData
-            ahk_exe = self.appdata_dir / "hotkeys.exe"
-            
-            if not ahk_exe.exists():
-                logging.error(f"❌ AHK exe not found: {ahk_exe}")
-                return False
-            
-            logging.info(f"📁 AHK exe: {ahk_exe}")
-            logging.info(f"📁 Command file: {self.command_file}")
-            
-            # Запустить AHK с путём к command_file
-            self.process = subprocess.Popen(
-                [str(ahk_exe), str(self.command_file)],
-                creationflags=subprocess.CREATE_NO_WINDOW
-            )
-            
-            logging.info(f"✅ AHK started (PID: {self.process.pid})")
-            
-            # Небольшая пауза для инициализации
-            time.sleep(0.1)
-            
-            return True
-            
-        except Exception as e:
-            logging.error(f"❌ Failed to start AHK: {e}")
-            return False
-    
-    def send_command(self, command: str):
+    def _execute_command(self, args: List[str]) -> bool:
         """
-        Отправить команду в AHK через файл
+        Выполнить AHK команду
         
         Args:
-            command: команда для AHK
+            args: список аргументов для AHK exe
         
         Returns:
-            bool: успешно ли отправлена команда
+            bool: успешность выполнения
         """
         try:
-            # Записать команду в файл
-            with open(self.command_file, 'w', encoding='utf-8') as f:
-                f.write(command)
+            if not self.ahk_exe.exists():
+                logging.error(f"❌ AHK exe not found: {self.ahk_exe}")
+                return False
+            
+            # Формируем полную команду
+            cmd = [str(self.ahk_exe)] + args
+            
+            # Запускаем процесс без окна
+            subprocess.Popen(
+                cmd,
+                creationflags=subprocess.CREATE_NO_WINDOW,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
             
             return True
             
         except Exception as e:
-            logging.error(f"Failed to send AHK command '{command}': {e}")
+            logging.error(f"❌ Failed to execute AHK command {args}: {e}")
             return False
     
-    # === ПРОСТЫЕ КОМАНДЫ БЕЗ ПАРАМЕТРОВ ===
-    
-    def click_at_mouse(self):
-        """Кликнуть по позиции курсора во всех окнах"""
-        return self.send_command("CLICK")
-    
-    def send_space(self):
-        """Отправить Space во все окна"""
-        return self.send_command("SPACE")
-    
-    def follow_leader(self):
-        """Follow - клик во всех окнах кроме лидера"""
-        return self.send_command("FOLLOW")
-    
-    def start_headhunter(self):
-        """Headhunter - Tab + клик в активном окне"""
-        return self.send_command("HEADHUNTER_START")
-    
-    def stop_headhunter(self):
-        """Headhunter - Tab + клик в активном окне"""
-        return self.send_command("HEADHUNTER_STOP")
-    
-    def send_key(self, key: str):
+    def _get_excluded_pids_string(self, excluded_pids: Optional[List[int]] = None) -> str:
         """
-        Отправить клавишу во все окна
+        Конвертировать список PIDs в строку для AHK
         
         Args:
-            key: клавиша для отправки (W, A, S, D, etc)
+            excluded_pids: список PIDs для исключения
+        
+        Returns:
+            str: PIDs через запятую или пустая строка
         """
-        return self.send_command(f"KEY:{key}")
+        if not excluded_pids:
+            return ""
+        
+        return ",".join(str(pid) for pid in excluded_pids)
+    
+    # === КОНФИГУРАЦИЯ ===
+    
+    def update_coordinates(self, 
+                          leader_x: Optional[int] = None,
+                          leader_y: Optional[int] = None,
+                          headhunter_x: Optional[int] = None,
+                          headhunter_y: Optional[int] = None,
+                          macros_spam_x: Optional[int] = None,
+                          macros_spam_y: Optional[int] = None):
+        """
+        Обновить координаты UI
+        
+        Args:
+            leader_x: X координата меню лидера
+            leader_y: Y координата меню лидера
+            headhunter_x: X координата кнопки headhunter
+            headhunter_y: Y координата кнопки headhunter
+            macros_spam_x: X координата кнопки макроса
+            macros_spam_y: Y координата кнопки макроса
+        """
+        if leader_x is not None:
+            self.leader_x = leader_x
+        if leader_y is not None:
+            self.leader_y = leader_y
+        if headhunter_x is not None:
+            self.headhunter_x = headhunter_x
+        if headhunter_y is not None:
+            self.headhunter_y = headhunter_y
+        if macros_spam_x is not None:
+            self.macros_spam_x = macros_spam_x
+        if macros_spam_y is not None:
+            self.macros_spam_y = macros_spam_y
+        
+        # Отправить команду в AHK для обновления координат
+        args = [
+            "coords",
+            str(self.leader_x),
+            str(self.leader_y),
+            str(self.headhunter_x),
+            str(self.headhunter_y),
+            str(self.macros_spam_x),
+            str(self.macros_spam_y)
+        ]
+        
+        return self._execute_command(args)
+    
+    # === ОСНОВНЫЕ КОМАНДЫ ===
+    
+    def click_at_mouse(self, excluded_pids: Optional[List[int]] = None) -> bool:
+        """
+        Кликнуть по текущей позиции мыши во всех окнах
+        
+        Args:
+            excluded_pids: список PIDs окон для исключения
+        
+        Returns:
+            bool: успешность выполнения
+        """
+        excluded_str = self._get_excluded_pids_string(excluded_pids)
+        args = ["click", excluded_str] if excluded_str else ["click"]
+        
+        return self._execute_command(args)
+    
+    def follow_leader(self, target_pids: Optional[List[int]] = None) -> bool:
+        """
+        Следовать за лидером в указанных окнах
+        
+        Args:
+            target_pids: список PIDs окон для выполнения команды
+        
+        Returns:
+            bool: успешность выполнения
+        """
+        if not target_pids:
+            logging.warning("⚠️ No target_pids provided for follow_leader")
+            return False
+        
+        target_str = ",".join(str(pid) for pid in target_pids)
+        args = ["follow", target_str]
+        
+        return self._execute_command(args)
+    
+    def attack_guard(self, excluded_pids: Optional[List[int]] = None) -> bool:
+        """
+        Атаковать цель лидера с использованием Guard макроса
+        
+        Args:
+            excluded_pids: список PIDs окон для исключения
+        
+        Returns:
+            bool: успешность выполнения
+        """
+        excluded_str = self._get_excluded_pids_string(excluded_pids)
+        args = ["attack_guard", excluded_str] if excluded_str else ["attack_guard"]
+        
+        return self._execute_command(args)
+    
+    def send_key(self, 
+                 key: str, 
+                 window_ids: Optional[List[int]] = None,
+                 repeat_count: int = 1) -> bool:
+        """
+        Отправить клавишу в конкретные окна
+        
+        Args:
+            key: клавиша для отправки (например, "space", "f", "1")
+            window_ids: список Window IDs окон для отправки
+            repeat_count: количество повторов нажатия
+        
+        Returns:
+            bool: успешность выполнения
+        """
+        if not window_ids:
+            logging.warning("⚠️ No window_ids provided for send_key")
+            return False
+        
+        window_ids_str = ",".join(str(wid) for wid in window_ids)
+        args = ["key", key, window_ids_str]
+        
+        if repeat_count > 1:
+            args.append(str(repeat_count))
+        
+        return self._execute_command(args)
+    
+    def headhunter_start(self, excluded_pids: Optional[List[int]] = None) -> bool:
+        """
+        Запустить headhunter в активном окне
+        
+        Args:
+            excluded_pids: список PIDs окон для исключения
+        
+        Returns:
+            bool: успешность выполнения
+        """
+        excluded_str = self._get_excluded_pids_string(excluded_pids)
+        args = ["headhunter", excluded_str] if excluded_str else ["headhunter"]
+        
+        return self._execute_command(args)
+    
+    # === СОВМЕСТИМОСТЬ ===
     
     def refresh_windows(self):
-        """Обновить список окон в AHK"""
-        logging.info("🔄 AHK window refresh")
-        return self.send_command("REFRESH")
+        """
+        Обновить список окон (заглушка для совместимости)
+        
+        В новой версии не нужно - каждая команда получает актуальный список окон
+        """
+        pass
     
-    def stop(self):
-        """Остановить AHK процесс"""
-        if self.process and self.process.poll() is None:
-            try:
-                self.send_command("EXIT")
-                self.process.wait(timeout=2)
-                logging.info("✅ AHK stopped gracefully")
-            except subprocess.TimeoutExpired:
-                self.process.kill()
-                logging.warning("⚠️ AHK killed forcefully")
-            except Exception as e:
-                logging.warning(f"⚠️ Error stopping AHK: {e}")
-
-    def attack_guard(self):
-        """Атака guard (ассист + макрос guard)"""
-        self._write_command("attack_guard")
-
-    def attack_boss(self):
-        """Атака boss (ассист + макрос boss)"""
-        self._write_command("attack_boss")
+    # === УТИЛИТЫ ===
+    
+    def cleanup(self):
+        """Очистка ресурсов (если необходимо)"""
+        # В новой версии нет постоянно запущенного процесса
+        pass
+    
+    def __del__(self):
+        """Деструктор"""
+        self.cleanup()
