@@ -5,4 +5,5 @@ keyboard
 pywin32
 pystray
 pillow
-pywin32
+ahk
+ahk[binary]

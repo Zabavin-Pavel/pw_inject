@@ -2,6 +2,7 @@
 TRY уровень - базовые действия - ИСПРАВЛЕНО
 """
 from core.keygen import PERMISSION_TRY
+import logging
 
 
 def register_try_actions(action_manager, ahk_manager, app_state, multibox_manager):
@@ -12,14 +13,13 @@ def register_try_actions(action_manager, ahk_manager, app_state, multibox_manage
         action_manager: менеджер действий
         ahk_manager: менеджер AHK
         app_state: состояние приложения
-        multibox_manager: менеджер мультибокса (для excluded_pids)
+        multibox_manager: менеджер мультибокса (для группы)
     """
     
     # === LBM ===
     def ahk_click_mouse():
         """Клик ЛКМ в позиции курсора"""
-        excluded_pids = list(multibox_manager.excluded_pids) if hasattr(multibox_manager, 'excluded_pids') else []
-        ahk_manager.click_at_mouse(excluded_pids=excluded_pids)
+        ahk_manager.click_at_mouse()
     
     action_manager.register(
         'ahk_click_mouse',
@@ -33,17 +33,31 @@ def register_try_actions(action_manager, ahk_manager, app_state, multibox_manage
     # === follow_leader ===
     def ahk_follow_leader():
         """ПКМ + Ассист + ПКМ + Follow для членов группы (БЕЗ лидера)"""
-        # Получаем все PIDs
-        all_pids = set(multibox_manager.characters.keys()) if hasattr(multibox_manager, 'characters') else set()
+        logging.info("🎯 ahk_follow_leader called")
         
-        # Получаем excluded PIDs (лидер + не в группе)
-        excluded = multibox_manager.excluded_pids if hasattr(multibox_manager, 'excluded_pids') else set()
+        # Получаем лидера и группу
+        leader, group = multibox_manager.get_leader_and_group()
         
-        # Вычисляем target PIDs (члены группы без лидера)
-        target_pids = list(all_pids - excluded)
+        logging.info(f"   Leader: {leader.char_base.char_name if leader else None}")
+        logging.info(f"   Group size: {len(group) if group else 0}")
+        
+        if not leader or not group:
+            logging.warning("⚠️ No leader or group!")
+            return
+        
+        # Вычисляем target PIDs (члены группы БЕЗ лидера)
+        target_pids = []
+        for member in group:
+            logging.info(f"   Member: {member.char_base.char_name} (PID={member.pid})")
+            if member.pid != leader.pid:  # Пропускаем лидера
+                target_pids.append(member.pid)
+        
+        logging.info(f"   Target PIDs (without leader): {target_pids}")
         
         if target_pids:
             ahk_manager.follow_leader(target_pids=target_pids)
+        else:
+            logging.warning("⚠️ No target PIDs after filtering!")
     
     action_manager.register(
         'ahk_follow_leader',

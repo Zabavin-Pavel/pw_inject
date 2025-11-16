@@ -1,6 +1,6 @@
 """
 AHK модуль - управление AutoHotkey скриптами
 """
-from ahk.manager import AHKManager
+from ahk_local.manager import AHKManager
 
 __all__ = ['AHKManager']

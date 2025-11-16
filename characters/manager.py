@@ -544,10 +544,11 @@ class MultiboxManager:
         
         # Записываем координаты (БЕЗ ПРОВЕРОК)
         character.char_base.set_position(target_x, target_y, target_z)
-        import time
+        
         # Нажимаем space если нужно (ОДИНОЧНЫЙ)
         if send_space and self.ahk_manager:
-            self.ahk_manager.send_key("Space")
+            # ИСПРАВЛЕНО: Передаем PID персонажа
+            self.ahk_manager.send_key('space', target_pids=[character.pid])
         
         # НОВОЕ: Проверка лицензии в конце
         self._check_license_expiry()
@@ -570,16 +571,19 @@ class MultiboxManager:
             return 0
         
         success_count = 0
+        teleported_pids = []  # НОВОЕ: Собираем PIDs успешно телепортированных
         
         # Записываем координаты всем (БЕЗ ПРОВЕРОК)
         for char in characters:
             if char.is_valid():
                 char.char_base.set_position(target_x, target_y, target_z)
                 success_count += 1
+                teleported_pids.append(char.pid)  # НОВОЕ
         
         # Нажимаем space ВСЕМ СРАЗУ если нужно (МАССОВЫЙ)
         if send_space and success_count > 0 and self.ahk_manager:
-            self.ahk_manager.send_key("space")
+            # ИСПРАВЛЕНО: Передаем список PIDs
+            self.ahk_manager.send_key('space', target_pids=teleported_pids)
         
         # НОВОЕ: Проверка лицензии в конце
         self._check_license_expiry()

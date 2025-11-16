@@ -102,17 +102,20 @@ def follow_loop_callback(multibox_manager, ahk_manager):
     """
     Callback для Follow loop (вызывается каждые 500ms)
     
-    Вычисляет target_pids (все PIDs - excluded_pids) и передает в AHK
+    Вычисляет target_pids (члены группы БЕЗ лидера) и передает в AHK
     """
     try:
-        # Получаем все PIDs
-        all_pids = set(multibox_manager.characters.keys())
+        # Получаем лидера и группу
+        leader, group = multibox_manager.get_leader_and_group()
         
-        # Получаем excluded PIDs (лидер + не в группе)
-        excluded = multibox_manager.excluded_pids
+        if not leader or not group:
+            return
         
-        # Вычисляем target PIDs (члены группы без лидера)
-        target_pids = list(all_pids - excluded)
+        # Вычисляем target PIDs (члены группы БЕЗ лидера)
+        target_pids = []
+        for member in group:
+            if member.pid != leader.pid:
+                target_pids.append(member.pid)
         
         if not target_pids:
             return

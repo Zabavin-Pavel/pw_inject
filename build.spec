@@ -1,21 +1,49 @@
 # -*- mode: python ; coding: utf-8 -*-
+import shutil
+from pathlib import Path
 
+# ========================================
+# ПОИСК AutoHotkey.exe из venv
+# ========================================
+ahk_exe_path = shutil.which('AutoHotkey.exe')
+if not ahk_exe_path:
+    raise FileNotFoundError('AutoHotkey.exe не найден. Установите AHK: pip install ahk')
+
+print(f"✅ Found AutoHotkey.exe: {ahk_exe_path}")
+
+# ========================================
+# АНАЛИЗ
+# ========================================
 block_cipher = None
 
 a = Analysis(
     ['xvocmuk.py'],
     pathex=[],
-    binaries=[],
+    binaries=[
+        # НОВОЕ: Упаковываем AutoHotkey.exe из venv
+        (ahk_exe_path, '.'),
+    ],
     datas=[
-        ('assets', 'assets'),              # Иконки классов и app icon
-        ('ahk/hotkeys.exe', 'ahk'),        # AHK скрипт в папке ahk
-        ('ahk/settings.ini', 'ahk'),       # НОВОЕ: Шаблон settings.ini
+        # Иконки классов и app icon
+        ('assets', 'assets'),
+        
+        # ОБНОВЛЕНО: Только settings.ini (БЕЗ hotkeys.exe!)
+        ('ahk_local/settings.ini', 'ahk_local'),  # Было: ahk/settings.ini
     ],
     hiddenimports=[
         'pystray._win32',
-        # Явно указываем все модули
+        
+        # НОВОЕ: AHK библиотека (все модули)
         'ahk',
-        'ahk.manager',
+        'ahk.directives',
+        'ahk._sync',
+        'ahk._sync.engine',
+        'ahk._sync.transport',
+        'ahk._hotkey',
+        'ahk._utils',
+        
+        # Остальные модули приложения
+        'ahk_local.manager',
         'actions',
         'actions.toggle_actions',
         'actions.try_actions',
@@ -56,6 +84,9 @@ a = Analysis(
     noarchive=False,
 )
 
+# ========================================
+# СБОРКА
+# ========================================
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
 exe = EXE(
@@ -81,15 +112,17 @@ exe = EXE(
     icon='assets/icon.png'
 )
 
-# ВАЖНО: После компиляции структура внутри EXE:
+# ========================================
+# ВАЖНО: После компиляции структура:
+# ========================================
+# xvocmuk.exe (в корне)
 # _internal/
+#   ├── AutoHotkey.exe        ← из venv!
 #   ├── assets/
 #   │   ├── icon.png
 #   │   └── class_icons/
 #   └── ahk/
-#       ├── hotkeys.exe
-#       └── settings.ini (шаблон)
+#       └── settings.ini        ← шаблон
 #
 # При первом запуске:
-# - hotkeys.exe скопируется в AppData (с проверкой хеша)
-# - settings.ini скопируется в AppData (только если отсутствует)
+# - settings.ini скопируется в AppData/Local/xvocmuk/ (только если отсутствует)
