@@ -23,12 +23,12 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         
         if is_active:
             print("Follow: STARTED")
-            multibox_manager.start_follow_freeze()  # ДОБАВИТЬ!
-            main_window._start_action_loop('follow', lambda: follow_loop_callback(multibox_manager))  # ИСПРАВИТЬ!
+            multibox_manager.start_follow_freeze()
+            main_window._start_action_loop('follow', lambda: follow_loop_callback(multibox_manager, ahk_manager))
         else:
             print("Follow: STOPPED")
             main_window._stop_action_loop('follow')
-            multibox_manager.stop_follow_freeze()  # ДОБАВИТЬ!
+            multibox_manager.stop_follow_freeze()
     
     action_manager.register(
         'follow',
@@ -40,19 +40,10 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         required_permission=PERMISSION_TRY
     )
     
-    # === ATTACK (PRO) - НОВАЯ ЛОГИКА ===
+    # === ATTACK (PRO) ===
     def toggle_attack():
         pass
-        # """Toggle: Атака (ассист + макросы)"""
-        # is_active = app_state.is_action_active('attack')
-        
-        # if is_active:
-        #     print("Attack: STARTED")
-        #     main_window._start_action_loop('attack', lambda: attack_loop_callback(multibox_manager, ahk_manager, app_state))
-        # else:
-        #     print("Attack: STOPPED")
-        #     main_window._stop_action_loop('attack')
-
+    
     action_manager.register(
         'attack',
         label='Attack',
@@ -63,27 +54,9 @@ def register_toggle_actions(action_manager, multibox_manager, ahk_manager, app_s
         required_permission=PERMISSION_PRO
     )
     
-    # === HEADHUNTER (DEV) - ОБНОВЛЕНО: через AHK ===
+    # === HEADHUNTER (DEV) ===
     def toggle_headhunter():
         pass
-        # """
-        # Toggle: Headhunter (Tab + ЛКМ по 100, 100 для активного окна)
-        
-        # НОВАЯ ЛОГИКА:
-        # - При активации: вызываем ahk_manager.start_headhunter()
-        # - При деактивации: вызываем ahk_manager.stop_headhunter()
-        # - Весь цикл выполняется в AHK, без Python loops
-        # """
-        # is_active = app_state.is_action_active('headhunter')
-        
-        # if is_active:
-        #     print("Headhunter: STARTED")
-        #     # Запускаем AHK цикл
-        #     ahk_manager.start_headhunter()
-        # else:
-        #     print("Headhunter: STOPPED")
-        #     # Останавливаем AHK цикл
-        #     ahk_manager.stop_headhunter()
 
     action_manager.register(
         'headhunter',
@@ -102,27 +75,10 @@ def follow_loop_callback(multibox_manager, ahk_manager):
     """
     Callback для Follow loop (вызывается каждые 500ms)
     
-    Вычисляет target_pids (члены группы БЕЗ лидера) и передает в AHK
+    Контролирует высоту полета членов группы относительно лидера
     """
     try:
-        # Получаем лидера и группу
-        leader, group = multibox_manager.get_leader_and_group()
-        
-        if not leader or not group:
-            return
-        
-        # Вычисляем target PIDs (члены группы БЕЗ лидера)
-        target_pids = []
-        for member in group:
-            if member.pid != leader.pid:
-                target_pids.append(member.pid)
-        
-        if not target_pids:
-            return
-        
-        # Передаем конкретные target PIDs в AHK
-        ahk_manager.follow_leader(target_pids=target_pids)
-        
+        multibox_manager.follow_leader()
     except Exception as e:
         logging.error(f"Error in follow_loop_callback: {e}")
 
@@ -130,23 +86,18 @@ def attack_loop_callback(multibox_manager, ahk_manager, app_state):
     """Callback для Attack loop (вызывается каждые 500ms)"""
     from config.constants import GUARD_ID, BOSS_IDS
     
-    # Берем активное окно
     active_char = app_state.last_active_character
     
     if not active_char:
         return
     
-    # Читаем target_id
     active_char.char_base.refresh()
     target_id = active_char.char_base.target_id
     
     if not target_id or target_id == 0:
         return
     
-    # Проверяем тип цели
     if target_id == GUARD_ID:
-        # Guard - отправляем команду
         ahk_manager.attack_guard()
     elif target_id in BOSS_IDS:
-        # Boss - отправляем команду
         ahk_manager.attack_boss()

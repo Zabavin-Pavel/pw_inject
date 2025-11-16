@@ -3,6 +3,7 @@ AHK Manager v3 - Python AHK API
 """
 import logging
 import configparser
+import time  # ← ДОБАВЬ
 from pathlib import Path
 from typing import List, Optional
 from ahk import AHK
@@ -25,6 +26,8 @@ class AHKManager:
         
         # Кеш окон
         self.windows = []
+        self.pid_to_hwnd = {}
+        
         self.refresh_windows()
         
         logging.info("✅ AHK Manager initialized")
@@ -68,39 +71,57 @@ class AHKManager:
             config.write(f)
     
     def refresh_windows(self):
-        """Обновить список окон"""
+        """Обновить список окон и кеш PID→HWND"""
         self.windows = self.ahk.find_windows(title='Asgard Perfect World')
-        logging.info(f"🔄 Found {len(self.windows)} windows")
-    
-    def _filter_windows_by_pids(self, target_pids: List[int]):
-        """Отфильтровать окна по PIDs"""
-        logging.info(f"🔍 Filtering windows: target_pids={target_pids}")
-        logging.info(f"🔍 Total windows available: {len(self.windows)}")
+        self.pid_to_hwnd.clear()
         
-        filtered = []
         for window in self.windows:
             try:
-                window_pid = window.process_id
-                logging.info(f"   Window PID: {window_pid}, in target: {window_pid in target_pids}")
-                
-                if window_pid in target_pids:
-                    filtered.append(window)
+                pid = window.get_pid()
+                hwnd = window.id
+                self.pid_to_hwnd[pid] = hwnd
+                logging.debug(f"   Cached: PID={pid} → HWND={hwnd}")
             except Exception as e:
-                logging.error(f"   Failed to get PID: {e}")
+                logging.error(f"   Failed to cache window: {e}")
                 continue
         
-        logging.info(f"✅ Filtered: {len(filtered)} windows")
+        logging.info(f"🔄 Found {len(self.windows)} windows, cached {len(self.pid_to_hwnd)} PIDs")
+    
+    def _get_windows_by_pids(self, target_pids: List[int]):
+        """Получить Window объекты по списку PIDs"""
+        logging.info(f"🔍 Getting windows for PIDs: {target_pids}")
+        logging.info(f"   Cache has: {list(self.pid_to_hwnd.keys())}")
+        
+        filtered = []
+        
+        for window in self.windows:
+            try:
+                pid = window.get_pid()
+                
+                if pid in target_pids:
+                    filtered.append(window)
+                    logging.info(f"   ✓ Found: PID={pid}, HWND={window.id}")
+            except Exception as e:
+                logging.error(f"   ✗ Failed to get PID: {e}")
+                continue
+        
+        logging.info(f"✅ Filtered: {len(filtered)}/{len(target_pids)} windows")
         return filtered
     
     def click_at_mouse(self, target_pids: Optional[List[int]] = None) -> bool:
         """Клик ЛКМ по позиции курсора"""
         try:
+            self.refresh_windows()
+            
             mouse_pos = self.ahk.get_mouse_position()
             x, y = mouse_pos
             
-            windows_to_click = self._filter_windows_by_pids(target_pids) if target_pids else self.windows
+            if target_pids:
+                windows = self._get_windows_by_pids(target_pids)
+            else:
+                windows = self.windows
             
-            for window in windows_to_click:
+            for window in windows:
                 window.click(x=x, y=y, button='L')
             
             return True
@@ -114,9 +135,12 @@ class AHKManager:
             if not target_pids:
                 return False
             
-            windows_to_send = self._filter_windows_by_pids(target_pids)
+            self.refresh_windows()
             
-            for window in windows_to_send:
+            windows = self._get_windows_by_pids(target_pids)
+            
+            for window in windows:
+                window.click(x=115, y=75, button='L')
                 window.send(f'{{{key}}}')
             
             return True
@@ -133,13 +157,15 @@ class AHKManager:
                 logging.warning("⚠️ No target PIDs!")
                 return False
             
-            windows_to_follow = self._filter_windows_by_pids(target_pids)
+            self.refresh_windows()
             
-            if not windows_to_follow:
+            windows = self._get_windows_by_pids(target_pids)
+            
+            if not windows:
                 logging.warning("⚠️ No windows after filtering!")
                 return False
             
-            logging.info(f"✅ Will execute follow for {len(windows_to_follow)} windows")
+            logging.info(f"✅ Will execute follow for {len(windows)} windows")
             
             leader_x = self.coords.get('leader_x', 411)
             leader_y = self.coords.get('leader_y', 666)
@@ -147,14 +173,13 @@ class AHKManager:
             assist_y = leader_y + 65
             follow_y = leader_y + 50
             
-            for window in windows_to_follow:
-                logging.info(f"   Executing follow sequence for window PID={window.process_id}")
+            for window in windows:
+                # window.click(x=115, y=75, button='L')
+                pid = window.get_pid()
+                logging.info(f"   Executing follow for PID={pid}, HWND={window.id}")
                 window.click(x=leader_x, y=leader_y, button='R')
-                self.ahk.sleep(50)
                 window.click(x=offset_x, y=assist_y, button='L')
-                self.ahk.sleep(50)
                 window.click(x=leader_x, y=leader_y, button='R')
-                self.ahk.sleep(50)
                 window.click(x=offset_x, y=follow_y, button='L')
             
             logging.info("✅ Follow sequence completed!")
@@ -162,7 +187,13 @@ class AHKManager:
         except Exception as e:
             logging.error(f"❌ follow_leader failed: {e}", exc_info=True)
             return False
-        
+    
+    def stop(self):
+        """Остановить менеджер"""
+        self.pid_to_hwnd.clear()
+        self.windows.clear()
+        logging.info("🛑 AHK Manager stopped")
+    
     def cleanup(self):
         """Очистка ресурсов"""
-        pass
+        self.stop()

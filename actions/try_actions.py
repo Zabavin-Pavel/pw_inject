@@ -45,14 +45,48 @@ def register_try_actions(action_manager, ahk_manager, app_state, multibox_manage
             logging.warning("⚠️ No leader or group!")
             return
         
-        # Вычисляем target PIDs (члены группы БЕЗ лидера)
-        target_pids = []
-        for member in group:
-            logging.info(f"   Member: {member.char_base.char_name} (PID={member.pid})")
-            if member.pid != leader.pid:  # Пропускаем лидера
-                target_pids.append(member.pid)
+        # НОВОЕ: Получаем реального лидера из памяти
+        from game.offsets import resolve_offset, OFFSETS
         
-        logging.info(f"   Target PIDs (without leader): {target_pids}")
+        leader.char_base.refresh()
+        party_ptr = resolve_offset(leader.memory, OFFSETS["party_ptr"], leader.char_base.cache)
+        
+        if not party_ptr or party_ptr == 0:
+            logging.warning("⚠️ No party!")
+            return
+        
+        party_leader_id = resolve_offset(leader.memory, OFFSETS["party_leader_id"], leader.char_base.cache)
+        
+        if not party_leader_id:
+            logging.warning("⚠️ No party_leader_id!")
+            return
+        
+        logging.info(f"   Party leader ID: {party_leader_id}")
+        
+        # Фильтруем: исключаем реального лидера + тех у кого нет группы
+        target_pids = []
+        real_leader_pid = None
+        
+        for member in group:
+            member.char_base.refresh()
+            
+            # Проверяем есть ли у члена группа
+            member_party_ptr = resolve_offset(member.memory, OFFSETS["party_ptr"], member.char_base.cache)
+            
+            if not member_party_ptr or member_party_ptr == 0:
+                logging.info(f"   {member.char_base.char_name}: skipped (no party)")
+                continue
+            
+            # Проверяем кто лидер
+            if member.char_base.char_id == party_leader_id:
+                real_leader_pid = member.pid
+                logging.info(f"   {member.char_base.char_name}: REAL LEADER (excluded)")
+            else:
+                target_pids.append(member.pid)
+                logging.info(f"   {member.char_base.char_name}: added to targets")
+        
+        logging.info(f"   Real leader PID: {real_leader_pid}")
+        logging.info(f"   Target PIDs: {target_pids}")
         
         if target_pids:
             ahk_manager.follow_leader(target_pids=target_pids)
