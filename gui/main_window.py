@@ -58,10 +58,10 @@ class MainWindow:
         
         # НОВОЕ: Сразу устанавливаем уровень доступа из лицензии
         self.app_state.verified = True
-        self.app_state.permission_level = license_level
-        self.prev_permission_level = license_level
+        self.app_state.permission_level = license_level.lower()  # <-- .lower()
+        self.prev_permission_level = license_level.lower()  # <-- .lower()
         
-        logging.info(f"🔑 Permission level set: {license_level}")
+        logging.info(f"🔑 Permission level set: {license_level.lower()}")
         
         # ActionLimiter
         self.action_limiter = ActionLimiter()
@@ -82,11 +82,11 @@ class MainWindow:
         # Регистрируем действия
         self._register_actions()
         
-        # Создать UI
-        self._create_ui()
-        
-        # Загрузить хоткеи из настроек
+        # НОВОЕ: Загрузить хоткеи ПЕРЕД созданием UI
         self._load_hotkeys()
+        
+        # Создать UI (теперь HotkeyPanel сразу увидит загруженные хоткеи)
+        self._create_ui()
         
         # Создать tray icon
         self._create_tray_icon()
@@ -612,9 +612,7 @@ class MainWindow:
             logging.info("🔄 Auto-refresh triggered by changes")
             self._silent_refresh()
         else:
-            # Обновляем группу и excluded_windows
-            self.manager.update_group_and_excluded()
-            
+            # УДАЛЕНО: self.manager.update_group_and_excluded()
             # Просто обновляем цвета (быстро)
             if hasattr(self, 'character_panel'):
                 self.character_panel.update_display()

@@ -26,15 +26,15 @@ APPDATA_DIR.mkdir(parents=True, exist_ok=True)
 IS_FROZEN = getattr(sys, 'frozen', False)
 
 if IS_FROZEN:
-    pass
-    # # РЕЖИМ EXE: только файл в AppData, БЕЗ консоли
-    # logging.basicConfig(
-    #     level=logging.INFO,
-    #     format='%(asctime)s - %(levelname)s - %(message)s',
-    #     handlers=[
-    #         logging.FileHandler(APPDATA_DIR / 'xvocmuk.log', encoding='utf-8')
-    #     ]
-    # )
+    # pass
+    # РЕЖИМ EXE: только файл в AppData, БЕЗ консоли
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(APPDATA_DIR / 'xvocmuk.log', encoding='utf-8')
+        ]
+    )
 else:
     # РЕЖИМ РАЗРАБОТКИ: консоль + файл
     logging.basicConfig(
@@ -95,15 +95,15 @@ class XvocmukApp:
             
             # Проверяем лицензию
             license_level = self.app_hub.check_license()
-            logging.info(f"✅ HWID: {self.app_hub.get_hwid()}")  # ИСПРАВЛЕНО: get_hwid()
+            logging.info(f"✅ HWID: {self.app_hub.get_hwid()}")
             
             if license_level is None:
                 logging.error("❌ License check failed")
                 return False
             
-            # НОВОЕ: Сохраняем уровень лицензии
-            self.license_level = license_level
-            logging.info(f"✅ License: {license_level}")
+            # НОВОЕ: Сохраняем уровень лицензии В LOWERCASE
+            self.license_level = license_level.lower()  # <-- ДОБАВЬ .lower()
+            logging.info(f"✅ License: {self.license_level}")
             
             return True
             

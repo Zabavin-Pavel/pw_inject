@@ -7,7 +7,7 @@ from pathlib import Path
 # ========================================
 ahk_exe_path = shutil.which('AutoHotkey.exe')
 if not ahk_exe_path:
-    raise FileNotFoundError('AutoHotkey.exe не найден. Установите AHK: pip install ahk')
+    raise FileNotFoundError('AutoHotkey.exe не найден. Установите AHK: pip install "ahk[binary]"')
 
 print(f"✅ Found AutoHotkey.exe: {ahk_exe_path}")
 
@@ -20,20 +20,20 @@ a = Analysis(
     ['xvocmuk.py'],
     pathex=[],
     binaries=[
-        # НОВОЕ: Упаковываем AutoHotkey.exe из venv
+        # Упаковываем AutoHotkey.exe из venv в корень _internal
         (ahk_exe_path, '.'),
     ],
     datas=[
         # Иконки классов и app icon
         ('assets', 'assets'),
         
-        # ОБНОВЛЕНО: Только settings.ini (БЕЗ hotkeys.exe!)
-        ('ahk_local/settings.ini', 'ahk_local'),  # Было: ahk/settings.ini
+        # settings.ini
+        ('ahk_local/settings.ini', 'ahk_local'),
     ],
     hiddenimports=[
         'pystray._win32',
         
-        # НОВОЕ: AHK библиотека (все модули)
+        # AHK библиотека (все модули)
         'ahk',
         'ahk.directives',
         'ahk._sync',
@@ -65,9 +65,9 @@ a = Analysis(
         'core.app_state',
         'core.action_manager',
         'core.hotkey_manager',
-        'core.license',
-        'core.license_manager',
         'core.keygen',
+        'core.action_limiter',
+        'core.app_hub',
         'gui',
         'gui.main_window',
         'gui.character_panel',
@@ -103,7 +103,7 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,                          # Без консоли (GUI приложение)
+    console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
@@ -111,18 +111,3 @@ exe = EXE(
     entitlements_file=None,
     icon='assets/icon.png'
 )
-
-# ========================================
-# ВАЖНО: После компиляции структура:
-# ========================================
-# xvocmuk.exe (в корне)
-# _internal/
-#   ├── AutoHotkey.exe        ← из venv!
-#   ├── assets/
-#   │   ├── icon.png
-#   │   └── class_icons/
-#   └── ahk/
-#       └── settings.ini        ← шаблон
-#
-# При первом запуске:
-# - settings.ini скопируется в AppData/Local/xvocmuk/ (только если отсутствует)

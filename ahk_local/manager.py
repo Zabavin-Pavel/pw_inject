@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import List, Optional
 from ahk import AHK
 from ahk.directives import NoTrayIcon
+import sys
 
 
 class AHKManager:
@@ -15,8 +16,25 @@ class AHKManager:
     
     def __init__(self):
         """Инициализация менеджера"""
-        # Инициализируем AHK
+        # НОВОЕ: Определяем путь к AutoHotkey.exe
+        if getattr(sys, 'frozen', False):
+            # Режим EXE - AutoHotkey.exe упакован в _internal
+            ahk_path = Path(sys._MEIPASS) / 'AutoHotkey.exe'
+            
+            if not ahk_path.exists():
+                raise FileNotFoundError(
+                    f"AutoHotkey.exe not found at {ahk_path}. "
+                    "Please rebuild with: pyinstaller build.spec --clean"
+                )
+            
+            logging.info(f"📍 AHK executable: {ahk_path}")
+        else:
+            # Режим разработки - используем из venv (AHK найдёт сам)
+            ahk_path = None
+        
+        # Инициализируем AHK с явным путём (если EXE)
         self.ahk = AHK(
+            executable_path=str(ahk_path) if ahk_path else None,
             directives=[NoTrayIcon(apply_to_hotkeys_process=True)],
             version='v1'
         )

@@ -102,7 +102,7 @@ class AppState:
             "none": 0,
             "try": 1,
             "pro": 2,
-            "dev": 3,
+            "dev": 3,  # <-- lowercase!
         }
         
         current_level = PERMISSION_HIERARCHY.get(self.permission_level, 0)
