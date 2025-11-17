@@ -56,160 +56,160 @@ BOSS_IDS = [123, 456, 789]
 # ОБНОВЛЕНО: добавлены count_in_limits
 # ========================================
 DUNGEON_POINTS = [
-    {
-        "name": "0 FROST START",
-        "trigger": (-210, 282),
-        "target": (-210, 183, 256),
-        "radius": 40,
-        "count_in_limits": False
-    },
-    {
-        "name": "1 FROST GUARD",
-        "trigger": (-210, 183),
-        "target": (-313, 187, 262),
-        "radius": 15,
-        "count_in_limits": True
-    },
-    {
-        "name": "2 FROST GUARD", 
-        "trigger": (-313, 187),
-        "target": (-309, 106, 262),
-        "radius": 15,
-        "count_in_limits": False
-    },
-    {
-        "name": "3 FROST GUARD", 
-        "trigger": (-309, 106),
-        "target": (-160, 267, 251),
-        "radius": 15,
-        "count_in_limits": True
-    },
-    {
-        "name": "4 FROST BOSS 1", 
-        "trigger": (-160, 267),
-        "target": (-68, 267, 233),
-        "radius": 15,
-        "count_in_limits": False
-    },
-    {
-        "name": "5 FROST GUARD", 
-        "trigger": (-50, 267),
-        "target": (-210, -83, 265),
-        "radius": 60,
-        "count_in_limits": True
-    },
-    {
-        "name": "6 FROST GUARD", 
-        "trigger": (-210, -83),
-        "target": (-210, -186, 279),
-        "radius": 15,
-        "count_in_limits": False
-    },
-    {
-        "name": "7 FROST GUARD", 
-        "trigger": (-210, -186),
-        "target": (-111, -276, 283),
-        "radius": 15,
-        "count_in_limits": True
-    },
-    {
-        "name": "8 FROST NPCQ 2", 
-        "trigger": (-111, -276),
-        "target": (-12, -276, 274),
-        "radius": 15,
-        "count_in_limits": False
-    },
-    {
-        "name": "9 FROST BOSS 2", 
-        "trigger": (-12, -276),
-        "target": (-25, -352, 274),
-        "radius": 15,
-        "count_in_limits": False
-    },
-    {
-        "name": "10 FROST NPCQ 3", 
-        "trigger": (-25, -352),
-        "target": (158, -94, 275),
-        "radius": 100,
-        "count_in_limits": True
-    },
-    {
-        "name": "11 FROST GUARD", 
-        "trigger": (158, -94),
-        "target": (265, -146, 279),
-        "radius": 60,
-        "count_in_limits": True
-    },
-    {
-        "name": "12 FROST BOSS 5", 
-        "trigger": (265, -146),
-        "target": (340, -10, 281),
-        "radius": 15,
-        "count_in_limits": True
-    },
-    {
-        "name": "13 FROST GUARD", 
-        "trigger": (340, -10),
-        "target": (269, 52, 288),
-        "radius": 40,
-        "count_in_limits": True
-    },
-    {
-        "name": "14 FROST BOSS 6", 
-        "trigger": (269, 52),
-        "target": (340, 202, 281),
-        "radius": 15,
-        "count_in_limits": True
-    },
-    {
-        "name": "15 FROST GUARD", 
-        "trigger": (340, 202),
-        "target": (282, 354, 288),
-        "radius": 40,
-        "count_in_limits": True
-    },
-    {
-        "name": "16 FROST BOSS 7", 
-        "trigger": (282, 354),
-        "target": (350, 327, 277),
-        "radius": 15,
-        "count_in_limits": False
-    },
-    {
-        "name": "17 FROST GUARD", 
-        "trigger": (350, 327),
-        "target": (32, -117, 275+10),
-        "radius": 40,
-        "count_in_limits": False
-    },
-    {
-        "name": "18 FROST BOSS 8", 
-        "trigger": (32, -117),
-        "target": (2, 19, 268),
-        "radius": 15,
-        "count_in_limits": False
-    },
-    {
-        "name": "19 FROST BOSS 9", 
-        "trigger": (2, 19),
-        "target": (-90, 153, 284),
-        "radius": 60,
-        "count_in_limits": False
-    },
-    {
-        "name": "20 FROST BOSS 10", 
-        "trigger": (-90, 153),
-        "target": (80, 175, 284),
-        "radius": 40,
-        "count_in_limits": True
-    },
-    {
-        "name": "21 FROST BOSS 11", 
-        "trigger": (80, 175),
-        "target": (-18, 166, 284),
-        "radius": 40,
-        "count_in_limits": True
-    },
+    # {
+    #     "name": "0 FROST START",
+    #     "trigger": (-210, 282),
+    #     "target": (-210, 183, 256),
+    #     "radius": 40,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "1 FROST GUARD",
+    #     "trigger": (-210, 183),
+    #     "target": (-313, 187, 262),
+    #     "radius": 15,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "2 FROST GUARD", 
+    #     "trigger": (-313, 187),
+    #     "target": (-309, 106, 262),
+    #     "radius": 15,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "3 FROST GUARD", 
+    #     "trigger": (-309, 106),
+    #     "target": (-160, 267, 251),
+    #     "radius": 15,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "4 FROST BOSS 1", 
+    #     "trigger": (-160, 267),
+    #     "target": (-68, 267, 233),
+    #     "radius": 15,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "5 FROST GUARD", 
+    #     "trigger": (-50, 267),
+    #     "target": (-210, -83, 265),
+    #     "radius": 60,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "6 FROST GUARD", 
+    #     "trigger": (-210, -83),
+    #     "target": (-210, -186, 279),
+    #     "radius": 15,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "7 FROST GUARD", 
+    #     "trigger": (-210, -186),
+    #     "target": (-111, -276, 283),
+    #     "radius": 15,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "8 FROST NPCQ 2", 
+    #     "trigger": (-111, -276),
+    #     "target": (-12, -276, 274),
+    #     "radius": 15,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "9 FROST BOSS 2", 
+    #     "trigger": (-12, -276),
+    #     "target": (-25, -352, 274),
+    #     "radius": 15,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "10 FROST NPCQ 3", 
+    #     "trigger": (-25, -352),
+    #     "target": (158, -94, 275),
+    #     "radius": 100,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "11 FROST GUARD", 
+    #     "trigger": (158, -94),
+    #     "target": (265, -146, 279),
+    #     "radius": 60,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "12 FROST BOSS 5", 
+    #     "trigger": (265, -146),
+    #     "target": (340, -10, 281),
+    #     "radius": 15,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "13 FROST GUARD", 
+    #     "trigger": (340, -10),
+    #     "target": (269, 52, 288),
+    #     "radius": 40,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "14 FROST BOSS 6", 
+    #     "trigger": (269, 52),
+    #     "target": (340, 202, 281),
+    #     "radius": 15,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "15 FROST GUARD", 
+    #     "trigger": (340, 202),
+    #     "target": (282, 354, 288),
+    #     "radius": 40,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "16 FROST BOSS 7", 
+    #     "trigger": (282, 354),
+    #     "target": (350, 327, 277),
+    #     "radius": 15,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "17 FROST GUARD", 
+    #     "trigger": (350, 327),
+    #     "target": (32, -117, 275+10),
+    #     "radius": 40,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "18 FROST BOSS 8", 
+    #     "trigger": (32, -117),
+    #     "target": (2, 19, 268),
+    #     "radius": 15,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "19 FROST BOSS 9", 
+    #     "trigger": (2, 19),
+    #     "target": (-90, 153, 284),
+    #     "radius": 60,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "20 FROST BOSS 10", 
+    #     "trigger": (-90, 153),
+    #     "target": (80, 175, 284),
+    #     "radius": 40,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "21 FROST BOSS 11", 
+    #     "trigger": (80, 175),
+    #     "target": (-18, 166, 284),
+    #     "radius": 40,
+    #     "count_in_limits": True
+    # },
     # ========================================
     # АТН ВРЕМЕННО (DEV уровень)
     # ========================================
@@ -251,47 +251,71 @@ DUNGEON_POINTS = [
     # ========================================
     # QB ТОЧКИ (DEV уровень)
     # ========================================
-    {
-        "name": "QB SO BASE",
-        "trigger": (1433, -1433),
-        "target": (-845.1, 437.2, 1.5),
-        "radius": 20,
-        "count_in_limits": True
-    },
-    {
-        "name": "QB SO ARENA",
-        "trigger": (410, -275),
-        "target": (-800, 480, 1.5),
-        "radius": 20,
-        "count_in_limits": True
-    },
-    {
-        "name": "QB START",
-        "trigger": (1502, -1366),
-        "target": (1433.5, -1434.1, 1.5),
-        "radius": 20,
-        "count_in_limits": False
-    },
-    {
-        "name": "QB GO BASE",
-        "trigger": (558, -560),
-        "target": (1175.6, -152.3, 1.5),
-        "radius": 50,
-        "count_in_limits": True
-    },
-    {
-        "name": "QB FINISH",
-        "trigger": (1172, -151),
-        "target": (1434.2, -1504.5, 1.5),
-        "radius": 20,
-        "count_in_limits": False
-    },
+
 
     {
-        "name": "QB GO START",
-        "trigger": (1434, -1504),
-        "target": (1175.6, -152.3, 1.5),
+        "name": "QB SO",
+        "trigger": (1433, -1433),
+        "target": (-800, 480, 2),
         "radius": 20,
-        "count_in_limits": False
+        "count_in_limits": True
     },
+    {
+        "name": "QB GO START",
+        "trigger": (1502, -1366),
+        "target": (1200, -129, 2),
+        "radius": 20,
+        "count_in_limits": True
+    },
+    {
+        "name": "QB GO FINISH",
+        "trigger": (583, -538),
+        "target": (1200, -129, 2),
+        "radius": 20,
+        "count_in_limits": True
+    },
+
+    # {
+    #     "name": "QB SO BASE",
+    #     "trigger": (1433, -1433),
+    #     "target": (-845.1, 437.2, 1.5),
+    #     "radius": 20,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "QB SO ARENA",
+    #     "trigger": (410, -275),
+    #     "target": (-800, 480, 1.5),
+    #     "radius": 20,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "QB START",
+    #     "trigger": (1502, -1366),
+    #     "target": (1433.5, -1434.1, 1.5),
+    #     "radius": 20,
+    #     "count_in_limits": False
+    # },
+    # {
+    #     "name": "QB GO BASE",
+    #     "trigger": (558, -560),
+    #     "target": (1175.6, -152.3, 1.5),
+    #     "radius": 50,
+    #     "count_in_limits": True
+    # },
+    # {
+    #     "name": "QB FINISH",
+    #     "trigger": (1172, -151),
+    #     "target": (1434.2, -1504.5, 1.5),
+    #     "radius": 20,
+    #     "count_in_limits": False
+    # },
+
+    # {
+    #     "name": "QB GO START",
+    #     "trigger": (1434, -1504),
+    #     "target": (1175.6, -152.3, 1.5),
+    #     "radius": 20,
+    #     "count_in_limits": False
+    # },
 ]

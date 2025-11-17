@@ -6,6 +6,17 @@ import sys
 import logging
 from pathlib import Path
 
+# Импорты модулей приложения
+from core.app_hub import AppHub
+
+# Определяем рабочую директорию
+if getattr(sys, 'frozen', False):
+    # Если упакован - логи ВНУТРИ временной папки
+    WORK_DIR = Path(sys._MEIPASS)
+else:
+    # Если из исходников - текущая папка
+    WORK_DIR = Path(__file__).parent
+
 # Настройка логирования
 logging.basicConfig(
     level=logging.INFO,
@@ -15,9 +26,6 @@ logging.basicConfig(
         logging.FileHandler('xvocmuk.log', encoding='utf-8')
     ]
 )
-
-# Импорты модулей приложения
-from core.app_hub import AppHub
 
 
 class XvocmukApp:
@@ -67,9 +75,11 @@ class XvocmukApp:
             
             # Проверяем лицензию
             license_level = self.app_hub.check_license()
+            logging.error(f"✅ HWID: {self.app_hub.get_hwid}.")
             
             if license_level is None:
                 logging.error("❌ License check failed")
+
                 return False
             
             logging.info(f"✅ License: {license_level}")
