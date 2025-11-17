@@ -54,15 +54,13 @@ class MultiboxManager:
     def needs_refresh(self) -> bool:
         """
         Быстрая проверка - нужен ли refresh?
-        
-        ВАЖНО: Если ВСЕ окна на выборе персонажа (char_id = 0) - не обновляем
         """
         import time
         
-        # ИСПРАВЛЕНО: Всегда берем АКТУАЛЬНЫЙ список PIDs из системы
+        # Всегда берем АКТУАЛЬНЫЙ список PIDs из системы
         current_pids = set(self._get_all_pids())
         
-        # ИСПРАВЛЕНО: Сравниваем с PIDs в self.characters (не с кешем!)
+        # Сравниваем с PIDs в self.characters
         existing_pids = set(self.characters.keys())
         
         # 1. Проверка PIDs (новые/закрытые окна)
@@ -84,8 +82,6 @@ class MultiboxManager:
         
         # НОВОЕ: Проверяем что хотя бы одно окно НЕ на выборе персонажа
         from game.offsets import resolve_offset, OFFSETS
-        
-        has_valid_chars = False
         
         for pid in current_pids:
             if pid not in self.characters:
@@ -117,10 +113,6 @@ class MultiboxManager:
                 logging.info(f"🔄 PID {pid} failed to read char_id: {e}")
                 return True
             
-            # Если char_id валиден - есть хотя бы один персонаж в игре
-            if current_char_id and current_char_id != 0:
-                has_valid_chars = True
-            
             # Проверка что char_id не обнулился
             if current_char_id is None or current_char_id == 0:
                 cached_char_id = self.quick_check_cache['char_ids'].get(pid)
@@ -130,6 +122,11 @@ class MultiboxManager:
                 continue
             
             cached_char_id = self.quick_check_cache['char_ids'].get(pid)
+            
+            # НОВОЕ: Проверка ПОЯВЛЕНИЯ персонажа (был 0, стал валидным)
+            if cached_char_id == 0 and current_char_id != 0:
+                logging.info(f"🔄 Character entered game: PID {pid}, char_id {current_char_id}")
+                return True
             
             # Проверка смены персонажа
             if current_char_id != cached_char_id:
@@ -156,11 +153,6 @@ class MultiboxManager:
                 except Exception as e:
                     logging.info(f"🔄 PID {pid} failed to read party_ptr: {e}")
                     return True
-        
-        # Если НЕТ валидных персонажей (все на выборе) - не обновляем
-        if not has_valid_chars and len(current_pids) > 0:
-            logging.debug("⏸️ All characters on character select - skip refresh")
-            return False
         
         return False
 

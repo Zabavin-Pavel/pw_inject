@@ -252,26 +252,32 @@ DUNGEON_POINTS = [
     # QB ТОЧКИ (DEV уровень)
     # ========================================
 
-
     {
-        "name": "QB SO",
+        "name": "QB SO BASE",
         "trigger": (1433, -1433),
-        "target": (-800, 480, 2),
+        "target": (-800, 480, 3),
+        "radius": 20,
+        "count_in_limits": True
+    },
+    {
+        "name": "QB SO ARENA",
+        "trigger": (410, -275),
+        "target": (-800, 480, 3),
         "radius": 20,
         "count_in_limits": True
     },
     {
         "name": "QB GO START",
         "trigger": (1502, -1366),
-        "target": (1200, -129, 2),
+        "target": (1200, -129, 3),
         "radius": 20,
         "count_in_limits": True
     },
     {
-        "name": "QB GO FINISH",
-        "trigger": (583, -538),
-        "target": (1200, -129, 2),
-        "radius": 20,
+        "name": "QB GO BASE",
+        "trigger": (558, -560),
+        "target": (1200, -129, 3),
+        "radius": 50,
         "count_in_limits": True
     },
 

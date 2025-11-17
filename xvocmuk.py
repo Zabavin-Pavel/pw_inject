@@ -26,15 +26,15 @@ APPDATA_DIR.mkdir(parents=True, exist_ok=True)
 IS_FROZEN = getattr(sys, 'frozen', False)
 
 if IS_FROZEN:
-    # pass
-    # РЕЖИМ EXE: только файл в AppData, БЕЗ консоли
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(APPDATA_DIR / 'xvocmuk.log', encoding='utf-8')
-        ]
-    )
+    pass
+    # # РЕЖИМ EXE: только файл в AppData, БЕЗ консоли
+    # logging.basicConfig(
+    #     level=logging.INFO,
+    #     format='%(asctime)s - %(levelname)s - %(message)s',
+    #     handlers=[
+    #         logging.FileHandler(APPDATA_DIR / 'xvocmuk.log', encoding='utf-8')
+    #     ]
+    # )
 else:
     # РЕЖИМ РАЗРАБОТКИ: консоль + файл
     logging.basicConfig(

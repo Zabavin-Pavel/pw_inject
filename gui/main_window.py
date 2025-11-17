@@ -599,20 +599,11 @@ class MainWindow:
     
     def _update_party_colors(self):
         """Умное обновление: проверка изменений + обновление цветов"""
-        # Проверяем есть ли валидные персонажи
-        valid_chars = self.manager.get_all_characters()
-        
-        if not valid_chars:
-            # Нет валидных персонажей - не делаем ничего
-            self.root.after(1000, self._update_party_colors)
-            return
-        
-        # Быстрая проверка - нужен ли refresh?
+        # ИСПРАВЛЕНО: Всегда проверяем needs_refresh(), даже если нет валидных персонажей
         if self.manager.needs_refresh():
             logging.info("🔄 Auto-refresh triggered by changes")
             self._silent_refresh()
         else:
-            # УДАЛЕНО: self.manager.update_group_and_excluded()
             # Просто обновляем цвета (быстро)
             if hasattr(self, 'character_panel'):
                 self.character_panel.update_display()
