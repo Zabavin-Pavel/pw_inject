@@ -11,7 +11,8 @@ import urllib.request
 from typing import Optional, Any
 
 # Флаг для вывода компонентов HWID при инициализации
-DEBUG = True
+# В режиме EXE - отключен, в режиме разработки - включен
+DEBUG = not getattr(sys, 'frozen', False)
 
 
 class AppHub:
@@ -307,8 +308,14 @@ class AppHub:
             str: уровень доступа (DEV, PRO, TRY) при успехе
             None: доступ запрещен (нет лицензии или версия устарела)
         """
-        if not self._load_licenses():
+        # НОВОЕ: Функция для отказа с копированием HWID
+        def deny_with_hwid(reason: str) -> None:
+            print(f"❌ {reason}")
+            self._copy_hwid_to_clipboard()
             return None
+        
+        if not self._load_licenses():
+            return deny_with_hwid("Не удалось загрузить лицензии")
         
         # Проверка версии
         min_version = self._licenses.get('min_version')
@@ -318,31 +325,25 @@ class AppHub:
                 minimum = int(min_version)
                 
                 if current < minimum:
-                    print(f"❌ ВЕРСИЯ УСТАРЕЛА: текущая={current}, минимальная={minimum}")
-                    return None
+                    return deny_with_hwid(f"ВЕРСИЯ УСТАРЕЛА: текущая={current}, минимальная={minimum}")
             except ValueError:
-                print(f"❌ Ошибка: неверный формат версии")
-                return None
+                return deny_with_hwid("Ошибка: неверный формат версии")
         
         # Найти пользователя
         user_name = self._find_user()
         if user_name is None:
-            print(f"❌ HWID не найден в базе")
-            self._copy_hwid_to_clipboard()
-            return None
+            return deny_with_hwid("HWID не найден в базе")
         
         self._user_name = user_name
         
         # Проверить приложение
         apps = self._licenses['apps']
         if self.app_name not in apps:
-            print(f"❌ Приложение '{self.app_name}' не найдено")
-            return None
+            return deny_with_hwid(f"Приложение '{self.app_name}' не найдено")
         
         app_users = apps[self.app_name]
         if user_name not in app_users:
-            print(f"❌ У '{user_name}' нет доступа к '{self.app_name}'")
-            return None
+            return deny_with_hwid(f"У '{user_name}' нет доступа к '{self.app_name}'")
         
         user_data = app_users[user_name]
         self._user_data = user_data
@@ -355,15 +356,12 @@ class AppHub:
         # Проверка expires
         expires = user_data.get('expires')
         if not expires:
-            print(f"❌ Лицензия неактивна")
-            return None
+            return deny_with_hwid("Лицензия неактивна")
 
         # Проверка даты онлайн
         current_date = self._get_current_date_online()
-
         if current_date is None:
-            print("❌ Отказ: не удалось проверить дату")
-            return None
+            return deny_with_hwid("Отказ: не удалось проверить дату")
 
         from datetime import datetime
         try:
@@ -371,8 +369,7 @@ class AppHub:
             current_dt = datetime.strptime(current_date, "%Y-%m-%d")
             
             if current_dt > expires_dt:
-                print(f"❌ Лицензия истекла {expires}")
-                return None
+                return deny_with_hwid(f"Лицензия истекла {expires}")
             
             level = user_data.get('level', 'TRY')
             days_left = (expires_dt - current_dt).days
@@ -380,8 +377,7 @@ class AppHub:
             return level
             
         except ValueError as e:
-            print(f"❌ Отказ: неверный формат даты")
-            return None
+            return deny_with_hwid("Отказ: неверный формат даты")
     
     def get_server(self) -> Optional[str]:
         """

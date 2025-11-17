@@ -17,15 +17,34 @@ else:
     # Если из исходников - текущая папка
     WORK_DIR = Path(__file__).parent
 
-# Настройка логирования
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler(),
-        logging.FileHandler('xvocmuk.log', encoding='utf-8')
-    ]
-)
+# === НАСТРОЙКА ЛОГИРОВАНИЯ ===
+# AppData папка для логов (как в других модулях)
+APPDATA_DIR = Path.home() / "AppData" / "Local" / "xvocmuk"
+APPDATA_DIR.mkdir(parents=True, exist_ok=True)
+
+# Определяем режим (упакован или нет)
+IS_FROZEN = getattr(sys, 'frozen', False)
+
+if IS_FROZEN:
+    pass
+    # # РЕЖИМ EXE: только файл в AppData, БЕЗ консоли
+    # logging.basicConfig(
+    #     level=logging.INFO,
+    #     format='%(asctime)s - %(levelname)s - %(message)s',
+    #     handlers=[
+    #         logging.FileHandler(APPDATA_DIR / 'xvocmuk.log', encoding='utf-8')
+    #     ]
+    # )
+else:
+    # РЕЖИМ РАЗРАБОТКИ: консоль + файл
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.StreamHandler(),
+            logging.FileHandler(APPDATA_DIR / 'xvocmuk.log', encoding='utf-8')
+        ]
+    )
 
 
 class XvocmukApp:
@@ -38,6 +57,7 @@ class XvocmukApp:
         """Инициализация приложения"""
         self.app_hub = None
         self.base_address = None
+        self.license_level = None  # НОВОЕ: сохраняем уровень лицензии
         
         logging.info("=" * 60)
         logging.info("XVOCMUK MULTIBOX BOT")
@@ -75,13 +95,14 @@ class XvocmukApp:
             
             # Проверяем лицензию
             license_level = self.app_hub.check_license()
-            logging.error(f"✅ HWID: {self.app_hub.get_hwid}.")
+            logging.info(f"✅ HWID: {self.app_hub.get_hwid()}")  # ИСПРАВЛЕНО: get_hwid()
             
             if license_level is None:
                 logging.error("❌ License check failed")
-
                 return False
             
+            # НОВОЕ: Сохраняем уровень лицензии
+            self.license_level = license_level
             logging.info(f"✅ License: {license_level}")
             
             return True
@@ -91,7 +112,7 @@ class XvocmukApp:
             return False
     
     def _load_base_address(self) -> bool:
-        """Загрузка base_address из AppHub"""
+        """Загрузка base_address из AppHub и установка в систему оффсетов"""
         try:
             logging.info("📋 Loading base_address from config...")
             
@@ -101,13 +122,17 @@ class XvocmukApp:
                 logging.error("❌ base_address not found in config")
                 return False
             
-            # Конвертируем hex строку в int
+            # Конвертируем hex строку в int для хранения
             if isinstance(base_address_str, str):
-                self.base_address = int(base_address_str, 16) if base_address_str.startswith('0x') else int(base_address_str)
+                self.base_address = int(base_address_str, 16) if base_address_str.startswith('0x') else int(base_address_str, 16)
             else:
                 self.base_address = base_address_str
             
             logging.info(f"✅ Base address: {hex(self.base_address)}")
+            
+            # НОВОЕ: Устанавливаем base_address в систему оффсетов
+            from game.offsets import set_base_address
+            set_base_address(hex(self.base_address))
             
             return True
             
@@ -131,8 +156,13 @@ class XvocmukApp:
         # Передаем base_address в multibox_manager
         multibox_manager.base_address = self.base_address
         
-        # Создание и запуск GUI
-        gui_app = MainWindow(multibox_manager, settings_manager)
+        # НОВОЕ: Передаем app_hub И license_level в GUI
+        gui_app = MainWindow(
+            multibox_manager, 
+            settings_manager, 
+            self.app_hub,
+            self.license_level  # НОВОЕ
+        )
         
         # Запустить слушатель для сигналов от других экземпляров
         gui_app.start_instance_listener()
@@ -141,11 +171,6 @@ class XvocmukApp:
         
         # Запуск главного цикла tkinter
         gui_app.run()
-    
-    def shutdown(self):
-        """Завершение работы приложения"""
-        logging.info("🛑 Shutting down...")
-        logging.info("✅ Shutdown complete")
 
 
 def main():

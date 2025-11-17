@@ -3,20 +3,30 @@
 Все оффсеты в одном месте с удобной нотацией
 """
 
-def _load_base_address():
-    """Загрузить BASE_ADRESS из license.ini"""
-    try:
-        from core.license_manager import LicenseConfig
-        license = LicenseConfig()
-        base = license.get_base_address()
-        # Убираем пробелы и добавляем 0x
-        return f"0x{base.strip().upper()}"
-    except Exception as e:
-        print(f"⚠️ Failed to load BASE_ADRESS: {e}, using default")
-        return "0x013FCB38"
+# Глобальная переменная для base_address (устанавливается из xvocmuk.py)
+_BASE_ADDRESS = "0x013FCB38"  # Дефолтное значение
+
+def set_base_address(address: str):
+    """
+    Установить базовый адрес из конфигурации
     
-# Загружаем базовый адрес
-_BASE_ADDRESS = _load_base_address()
+    Args:
+        address: hex строка вида "0x1416EB8" или "1416EB8"
+    """
+    global _BASE_ADDRESS
+    
+    # Нормализуем формат (добавляем 0x если нет)
+    if not address.startswith('0x'):
+        address = f"0x{address}"
+    
+    _BASE_ADDRESS = address
+    
+    # Обновляем OFFSETS
+    OFFSETS["char_origin"] = f"static:ElementClient.exe +{_BASE_ADDRESS}"
+    OFFSETS["selection_origin"] = f"static:ElementClient.exe +{_BASE_ADDRESS} +0x38"
+    
+    import logging
+    logging.info(f"✅ Base address set: {_BASE_ADDRESS}")
 
 OFFSETS = {
     # ========================================

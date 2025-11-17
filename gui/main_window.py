@@ -17,12 +17,9 @@ from pathlib import Path
 from gui.styles import *
 from gui.character_panel import CharacterPanel
 from gui.hotkey_panel import HotkeyPanel
-from core import AppState, ActionManager, HotkeyManager, LicenseManager
-from core.license import LicenseManager
-from ahk_local.manager import AHKManager
-from core.license_manager import LicenseConfig
+from core import AppState, ActionManager, HotkeyManager
 from core.keygen import PERMISSION_NONE, PERMISSION_TRY, PERMISSION_PRO, PERMISSION_DEV
-from core.action_limiter import ActionLimiter  # НОВОЕ
+from core.action_limiter import ActionLimiter
 from ahk_local.manager import AHKManager
 from actions import (
     register_toggle_actions,
@@ -43,12 +40,15 @@ TOGGLE_ACTION_INTERVALS = {
 class MainWindow:
     """Главное окно - координатор"""
     
-    def __init__(self, multibox_manager, settings_manager):
+    def __init__(self, multibox_manager, settings_manager, app_hub, license_level):
         self.manager = multibox_manager
         self.settings_manager = settings_manager
         
-        # Менеджер лицензий (license.ini)
-        self.license_config = LicenseConfig()
+        # Сохраняем ссылку на AppHub
+        self.app_hub = app_hub
+        
+        # НОВОЕ: Сохраняем уровень лицензии (уже проверенный)
+        self.license_level = license_level
         
         # Предыдущий уровень доступа (для оптимизации UI)
         self.prev_permission_level = PERMISSION_NONE
@@ -56,7 +56,14 @@ class MainWindow:
         # Состояние приложения
         self.app_state = AppState()
         
-        # НОВОЕ: ActionLimiter
+        # НОВОЕ: Сразу устанавливаем уровень доступа из лицензии
+        self.app_state.verified = True
+        self.app_state.permission_level = license_level
+        self.prev_permission_level = license_level
+        
+        logging.info(f"🔑 Permission level set: {license_level}")
+        
+        # ActionLimiter
         self.action_limiter = ActionLimiter()
         
         # Менеджеры
@@ -72,7 +79,7 @@ class MainWindow:
         # Таймеры для toggle экшенов
         self.action_timers = {}
         
-        # Регистрируем действия (ОБНОВЛЕНО - передаем action_limiter)
+        # Регистрируем действия
         self._register_actions()
         
         # Создать UI
@@ -96,7 +103,7 @@ class MainWindow:
         self.manager.set_app_state(self.app_state)
         self.manager.set_action_limiter(self.action_limiter)
 
-        # ИСПРАВЛЕНО: Делаем первоначальную загрузку через _silent_refresh
+        # Делаем первоначальную загрузку через _silent_refresh
         self._silent_refresh()
 
         # Запустить периодическое обновление цветов
@@ -620,38 +627,18 @@ class MainWindow:
         # Обновить список окон в AHK
         self.ahk_manager.refresh_windows()
         
-        # Верификация лицензии
-        from core.license import LicenseManager
-        is_valid, perm_level = LicenseManager.verify_best_license(self.license_config)
-        
-        if is_valid:
-            self.app_state.verified = True
-            old_permission = self.app_state.permission_level
-            self.app_state.permission_level = perm_level
-            
-            if perm_level != old_permission:
-                self.prev_permission_level = perm_level
-                self.hotkey_panel.update_display()
-        else:
-            self.app_state.verified = False
-            self.app_state.permission_level = "none"
-            
-            if self.prev_permission_level != "none":
-                self.prev_permission_level = "none"
-                self.hotkey_panel.update_display()
+        # УПРОЩЕНО: Лицензия уже проверена при старте, просто используем сохранённый уровень
+        # Уровень доступа уже установлен в __init__, здесь ничего не делаем
         
         # Сохраняем старый список персонажей
         old_chars = set(char.pid for char in self.manager.get_all_characters())
         
-        # Обновить персонажей (внутри уже обновится excluded_windows)
+        # Обновить персонажей
         self.manager.refresh()
         
         # Проверяем изменился ли список валидных персонажей
         new_chars = set(char.pid for char in self.manager.get_all_characters())
         chars_changed = (old_chars != new_chars)
-        
-        # УДАЛЕНО: Весь блок с определением лидера и записью в settings.ini
-        # Теперь это делается автоматически в manager.refresh()
         
         # Обновляем UI ТОЛЬКО если список персонажей изменился
         if chars_changed:

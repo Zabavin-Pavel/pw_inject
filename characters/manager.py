@@ -596,7 +596,6 @@ class MultiboxManager:
         Если срок истек - запускает принудительный refresh GUI
         """
         try:
-            from core.license_manager import LicenseManager
             from datetime import datetime
             
             # Предполагаем что license_config доступен через GUI
