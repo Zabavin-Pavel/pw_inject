@@ -4,7 +4,7 @@
 """
 
 # Глобальная переменная для base_address (устанавливается из xvocmuk.py)
-_BASE_ADDRESS = "0x013FCB38"  # Дефолтное значение
+_BASE_ADDRESS = "0x01417EB8"  # Дефолтное значение
 
 def set_base_address(address: str):
     """

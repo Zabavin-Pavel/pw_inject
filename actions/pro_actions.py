@@ -248,44 +248,44 @@ def register_pro_actions(action_manager, multibox_manager, app_state, action_lim
     #     required_permission=PERMISSION_PRO
     # )
     
-    # # === REDO >> (ВМЕСТО EXIT) ===
-    # def action_redo():
-    #     """Телепортировать на последнюю сохраненную точку из NEXT (НЕ расходует лимиты)"""
-    #     if not multibox_manager.last_teleport_destination:
-    #         print("\n[REDO >>] Нет сохраненной точки для REDO телепорта\n")
-    #         return
+    # === REDO >> (ВМЕСТО EXIT) ===
+    def action_redo():
+        """Телепортировать на последнюю сохраненную точку из NEXT (НЕ расходует лимиты)"""
+        if not multibox_manager.last_teleport_destination:
+            print("\n[REDO >>] Нет сохраненной точки для REDO телепорта\n")
+            return
         
-    #     target_x, target_y, target_z = multibox_manager.last_teleport_destination
+        target_x, target_y, target_z = multibox_manager.last_teleport_destination
         
-    #     # Получаем группу (всегда работаем с группой)
-    #     _, group = multibox_manager.get_leader_and_group()
+        # Получаем группу (всегда работаем с группой)
+        _, group = multibox_manager.get_leader_and_group()
         
-    #     if not group:
-    #         print(f"\n[REDO >>] Нет группы")
-    #         return
+        if not group:
+            print(f"\n[REDO >>] Нет группы")
+            return
         
-    #     # ГРУППОВОЙ ТЕЛЕПОРТ (НЕ ЗАПИСЫВАЕМ ЛИМИТЫ!)
-    #     success_count = multibox_manager.teleport_group(
-    #         group,
-    #         target_x,
-    #         target_y,
-    #         target_z,
-    #         send_space=True
-    #     )
+        # ГРУППОВОЙ ТЕЛЕПОРТ (НЕ ЗАПИСЫВАЕМ ЛИМИТЫ!)
+        success_count = multibox_manager.teleport_group(
+            group,
+            target_x,
+            target_y,
+            target_z,
+            send_space=True
+        )
         
-    #     if success_count > 0:
-    #         print(f"\n[REDO >>] Телепортировано {success_count} персонажей\n")
-    #     else:
-    #         print(f"\n[REDO >>] Никто не был телепортирован\n")
+        if success_count > 0:
+            print(f"\n[REDO >>] Телепортировано {success_count} персонажей\n")
+        else:
+            print(f"\n[REDO >>] Никто не был телепортирован\n")
     
-    # action_manager.register(
-    #     'tp_redo',
-    #     label='REDO >>  [PRO]',
-    #     type='quick',
-    #     callback=action_redo,
-    #     has_hotkey=True,
-    #     required_permission=PERMISSION_PRO
-    # )
+    action_manager.register(
+        'tp_redo',
+        label='REDO >>  [PRO]',
+        type='quick',
+        callback=action_redo,
+        has_hotkey=True,
+        required_permission=PERMISSION_PRO
+    )
 
 
 # def _tp_to_special_point(point_name, point_data, mode, multibox_manager, app_state):
